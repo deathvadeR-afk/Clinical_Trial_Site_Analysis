@@ -1,0 +1,6 @@
+2025-10-29 17:39:01,593 - data_ingestion.clinicaltrials_api - INFO - Getting studies with params: {'pageSize': 10}
+2025-10-29 17:39:01,594 - data_ingestion.clinicaltrials_api - INFO - Making request to https://clinicaltrials.gov/api/v2/studies with params: {'pageSize': 10}
+2025-10-29 17:39:02,237 - data_ingestion.clinicaltrials_api - INFO - Response status code: 200
+2025-10-29 17:39:02,243 - data_ingestion.clinicaltrials_api - INFO - Getting studies with params: {'pageSize': 5}
+2025-10-29 17:39:02,243 - data_ingestion.clinicaltrials_api - INFO - Making request to https://clinicaltrials.gov/api/v2/studies with params: {'pageSize': 5}
+2025-10-29 17:39:02,595 - data_ingestion.clinicaltrials_api - INFO - Response status code: 200

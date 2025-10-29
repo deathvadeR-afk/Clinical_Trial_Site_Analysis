@@ -1,0 +1,232 @@
+"""
+Database Manager for Clinical Trial Site Analysis Platform
+Handles SQLite database creation, connections, and basic operations
+"""
+import sqlite3
+import os
+import logging
+from typing import Optional, List, Dict, Any
+
+# Set up logging
+log_dir = "../logs"
+os.makedirs(log_dir, exist_ok=True)
+
+# Create logger for this module
+logger = logging.getLogger(__name__)
+
+# Remove any existing handlers to avoid duplicates
+for handler in logger.handlers[:]:
+    logger.removeHandler(handler)
+
+# Set logger level
+logger.setLevel(logging.INFO)
+
+# Create formatter
+formatter = logging.Formatter('%(asctime)s - %(name)s - %(levelname)s - %(message)s')
+
+# File handler
+file_handler = logging.FileHandler(os.path.join(log_dir, "database.log"))
+file_handler.setLevel(logging.INFO)
+file_handler.setFormatter(formatter)
+
+# Console handler
+console_handler = logging.StreamHandler()
+console_handler.setLevel(logging.INFO)
+console_handler.setFormatter(formatter)
+
+# Add handlers to logger
+logger.addHandler(file_handler)
+logger.addHandler(console_handler)
+
+class DatabaseManager:
+    """Manager for SQLite database operations"""
+    
+    def __init__(self, db_path: str = "../clinical_trials.db"):
+        """
+        Initialize the database manager
+        
+        Args:
+            db_path: Path to the SQLite database file
+        """
+        self.db_path = db_path
+        self.connection = None
+        
+    def connect(self) -> bool:
+        """
+        Establish connection to the database
+        
+        Returns:
+            True if connection successful, False otherwise
+        """
+        try:
+            self.connection = sqlite3.connect(self.db_path)
+            self.connection.row_factory = sqlite3.Row  # Enable column access by name
+            logger.info(f"Connected to database at {self.db_path}")
+            return True
+        except sqlite3.Error as e:
+            logger.error(f"Failed to connect to database: {e}")
+            return False
+    
+    def disconnect(self):
+        """Close database connection"""
+        if self.connection:
+            self.connection.close()
+            self.connection = None
+            logger.info("Disconnected from database")
+    
+    def create_tables(self, schema_file: str = "schema.sql") -> bool:
+        """
+        Create database tables from schema file
+        
+        Args:
+            schema_file: Path to SQL schema file
+            
+        Returns:
+            True if tables created successfully, False otherwise
+        """
+        if not self.connection:
+            logger.error("No database connection")
+            return False
+            
+        try:
+            # Read schema file
+            with open(schema_file, 'r') as f:
+                schema_sql = f.read()
+            
+            # Execute schema
+            cursor = self.connection.cursor()
+            cursor.executescript(schema_sql)
+            self.connection.commit()
+            logger.info("Database tables created successfully")
+            return True
+        except sqlite3.Error as e:
+            logger.error(f"Failed to create tables: {e}")
+            return False
+        except FileNotFoundError:
+            logger.error(f"Schema file not found: {schema_file}")
+            return False
+    
+    def insert_data(self, table: str, data: Dict[str, Any]) -> bool:
+        """
+        Insert data into specified table
+        
+        Args:
+            table: Table name
+            data: Dictionary of column-value pairs
+            
+        Returns:
+            True if insertion successful, False otherwise
+        """
+        if not self.connection:
+            logger.error("No database connection")
+            return False
+            
+        try:
+            cursor = self.connection.cursor()
+            
+            # Build INSERT statement
+            columns = ', '.join(data.keys())
+            placeholders = ', '.join(['?' for _ in data])
+            sql = f"INSERT INTO {table} ({columns}) VALUES ({placeholders})"
+            
+            # Execute INSERT
+            cursor.execute(sql, list(data.values()))
+            self.connection.commit()
+            logger.debug(f"Inserted data into {table}")
+            return True
+        except sqlite3.Error as e:
+            logger.error(f"Failed to insert data into {table}: {e}")
+            return False
+    
+    def insert_many(self, table: str, data_list: List[Dict[str, Any]]) -> bool:
+        """
+        Insert multiple rows into specified table
+        
+        Args:
+            table: Table name
+            data_list: List of dictionaries containing column-value pairs
+            
+        Returns:
+            True if insertion successful, False otherwise
+        """
+        if not data_list:
+            logger.warning("No data to insert")
+            return True
+            
+        if not self.connection:
+            logger.error("No database connection")
+            return False
+            
+        try:
+            cursor = self.connection.cursor()
+            
+            # Build INSERT statement from first item
+            first_item = data_list[0]
+            columns = ', '.join(first_item.keys())
+            placeholders = ', '.join(['?' for _ in first_item])
+            sql = f"INSERT INTO {table} ({columns}) VALUES ({placeholders})"
+            
+            # Extract values from all items
+            values_list = [list(item.values()) for item in data_list]
+            
+            # Execute INSERT
+            cursor.executemany(sql, values_list)
+            self.connection.commit()
+            logger.info(f"Inserted {len(data_list)} rows into {table}")
+            return True
+        except sqlite3.Error as e:
+            logger.error(f"Failed to insert data into {table}: {e}")
+            return False
+    
+    def query(self, sql: str, params: Optional[tuple] = None) -> List[sqlite3.Row]:
+        """
+        Execute SELECT query and return results
+        
+        Args:
+            sql: SQL SELECT statement
+            params: Query parameters
+            
+        Returns:
+            List of rows matching query
+        """
+        if not self.connection:
+            logger.error("No database connection")
+            return []
+            
+        try:
+            cursor = self.connection.cursor()
+            if params:
+                cursor.execute(sql, params)
+            else:
+                cursor.execute(sql)
+            return cursor.fetchall()
+        except sqlite3.Error as e:
+            logger.error(f"Query failed: {e}")
+            return []
+    
+    def execute(self, sql: str, params: Optional[tuple] = None) -> bool:
+        """
+        Execute non-SELECT SQL statement
+        
+        Args:
+            sql: SQL statement
+            params: Query parameters
+            
+        Returns:
+            True if execution successful, False otherwise
+        """
+        if not self.connection:
+            logger.error("No database connection")
+            return False
+            
+        try:
+            cursor = self.connection.cursor()
+            if params:
+                cursor.execute(sql, params)
+            else:
+                cursor.execute(sql)
+            self.connection.commit()
+            return True
+        except sqlite3.Error as e:
+            logger.error(f"Execution failed: {e}")
+            return False
