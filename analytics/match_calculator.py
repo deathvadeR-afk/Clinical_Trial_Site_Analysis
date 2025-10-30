@@ -4,7 +4,15 @@ Handles calculation of compatibility scores between sites and studies
 """
 import logging
 import os
+import json
 from typing import Dict, List, Optional, Any
+from datetime import datetime
+
+# Add the project root to the Python path for imports
+import sys
+sys.path.append(os.path.dirname(os.path.abspath(__file__)) + "/../")
+
+from analytics.metrics_calculator import MetricsCalculator
 
 # Set up logging
 log_dir = "../logs"
@@ -259,11 +267,42 @@ class MatchScoreCalculator:
                 
             site_data = dict(site_results[0])
             
-            # Get site experience data (simplified)
-            # In a real implementation, this would query trial participation data
-            site_conditions = ["diabetes", "hypertension", "cardiovascular disease"]
-            site_phases = ["Phase 2", "Phase 3"]
-            site_interventions = ["Drug", "Device"]
+            # Get site experience data from trial participation
+            participation_results = self.db_manager.query(
+                "SELECT ct.conditions, ct.phase, ct.interventions FROM site_trial_participation stp JOIN clinical_trials ct ON stp.nct_id = ct.nct_id WHERE stp.site_id = ?", (site_id,))
+            
+            site_conditions = []
+            site_phases = []
+            site_interventions = []
+            
+            # Extract experience data from participation records
+            for row in participation_results:
+                # Extract conditions
+                if row['conditions']:
+                    try:
+                        conditions = json.loads(row['conditions'])
+                        site_conditions.extend(conditions)
+                    except json.JSONDecodeError:
+                        pass
+                
+                # Extract phases
+                if row['phase']:
+                    site_phases.append(row['phase'])
+                
+                # Extract interventions
+                if row['interventions']:
+                    try:
+                        interventions = json.loads(row['interventions'])
+                        for intervention in interventions:
+                            if isinstance(intervention, dict) and 'interventionType' in intervention:
+                                site_interventions.append(intervention['interventionType'])
+                    except json.JSONDecodeError:
+                        pass
+            
+            # Remove duplicates
+            site_conditions = list(set(site_conditions))
+            site_phases = list(set(site_phases))
+            site_interventions = list(set(site_interventions))
             
             # Extract target study parameters
             target_conditions = target_study.get('conditions', [])
@@ -303,6 +342,105 @@ class MatchScoreCalculator:
         except Exception as e:
             logger.error(f"Error calculating match scores for site {site_id}: {e}")
             return {}
+
+    def apply_experience_based_adjustments(self, site_id: int, 
+                                         base_scores: Dict[str, float],
+                                         target_study: Dict[str, Any]) -> Dict[str, float]:
+        """
+        Apply experience-based adjustments to match scores based on site performance metrics
+        
+        Args:
+            site_id: ID of the site to adjust scores for
+            base_scores: Dictionary with base match scores
+            target_study: Dictionary containing target study parameters
+            
+        Returns:
+            Dictionary with adjusted match scores
+        """
+        try:
+            # Get site performance metrics
+            metrics_calculator = MetricsCalculator(self.db_manager)
+            trial_data = metrics_calculator.aggregate_trial_participation_data(site_id)
+            
+            if not trial_data:
+                logger.info(f"No performance metrics found for site {site_id}, returning base scores")
+                return base_scores
+            
+            # Extract relevant metrics
+            completion_ratio = trial_data.get('completion_ratio', 0)
+            avg_enrollment = trial_data.get('avg_enrollment', 0)
+            total_studies = trial_data.get('total_studies', 0)
+            
+            # Apply adjustments based on experience
+            adjusted_scores = base_scores.copy()
+            
+            # Adjustment factor based on completion ratio (0.8 to 1.2 multiplier)
+            completion_adjustment = 0.8 + (completion_ratio * 0.4)  # Maps 0-1 to 0.8-1.2
+            
+            # Adjustment factor based on study volume (more studies = more reliable)
+            volume_adjustment = min(1.2, 1.0 + (total_studies / 100))  # Caps at 1.2x
+            
+            # Apply adjustments to overall score
+            adjusted_scores['overall_match_score'] = min(1.0, 
+                base_scores['overall_match_score'] * completion_adjustment * volume_adjustment)
+            
+            # Log adjustments
+            logger.info(f"Applied experience adjustments for site {site_id}: "
+                       f"completion_adj={completion_adjustment:.3f}, "
+                       f"volume_adj={volume_adjustment:.3f}")
+            
+            return adjusted_scores
+            
+        except Exception as e:
+            logger.error(f"Error applying experience-based adjustments for site {site_id}: {e}")
+            return base_scores
+
+    def store_match_scores(self, site_id: int, target_study: Dict[str, Any], 
+                          scores: Dict[str, float]) -> bool:
+        """
+        Store match scores with target study parameters in the database
+        
+        Args:
+            site_id: ID of the site
+            target_study: Dictionary containing target study parameters
+            scores: Dictionary with calculated match scores
+            
+        Returns:
+            True if successful, False otherwise
+        """
+        try:
+            # Extract target study parameters for storage
+            target_therapeutic_area = ', '.join(target_study.get('conditions', []))[:100]  # Limit length
+            target_phase = target_study.get('phase', '')[:50]  # Limit length
+            target_intervention_type = target_study.get('intervention_type', '')[:50]  # Limit length
+            
+            # Prepare data for insertion
+            match_data = {
+                'site_id': site_id,
+                'target_therapeutic_area': target_therapeutic_area,
+                'target_phase': target_phase,
+                'target_intervention_type': target_intervention_type,
+                'therapeutic_match_score': scores.get('therapeutic_match_score', 0),
+                'phase_match_score': scores.get('phase_match_score', 0),
+                'intervention_match_score': scores.get('intervention_match_score', 0),
+                'geographic_match_score': scores.get('geographic_match_score', 0),
+                'overall_match_score': scores.get('overall_match_score', 0),
+                'calculated_at': datetime.now().isoformat()
+            }
+            
+            # Insert into database
+            success = self.db_manager.insert_data('match_scores', match_data)
+            
+            if success:
+                logger.info(f"Stored match scores for site {site_id}")
+            else:
+                logger.error(f"Failed to store match scores for site {site_id}")
+                
+            return success
+            
+        except Exception as e:
+            logger.error(f"Error storing match scores for site {site_id}: {e}")
+            return False
 
 # Example usage
 if __name__ == "__main__":

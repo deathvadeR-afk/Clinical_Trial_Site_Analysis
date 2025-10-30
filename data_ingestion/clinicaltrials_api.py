@@ -157,6 +157,104 @@ class ClinicalTrialsAPI:
                 continue
         return None
 
+    def get_studies_since_date(self, since_date: str, page_size: int = 100) -> List[Dict]:
+        """
+        Get studies updated since a specific date (client-side filtering)
+        
+        Args:
+            since_date: Date string in YYYY-MM-DD format
+            page_size: Number of results per page
+            
+        Returns:
+            List of studies updated since the specified date
+        """
+        import datetime
+        
+        try:
+            target_date = datetime.datetime.strptime(since_date, "%Y-%m-%d")
+        except ValueError:
+            logger.error(f"Invalid date format: {since_date}. Expected YYYY-MM-DD")
+            return []
+        
+        matching_studies = []
+        page_token = None
+        processed_count = 0
+        max_pages = 50  # Limit to prevent infinite loops
+        pages_processed = 0
+        
+        logger.info(f"Searching for studies updated since {since_date}")
+        
+        while pages_processed < max_pages:
+            # Get a page of studies
+            result = self.get_studies(page_size=page_size, page_token=page_token)
+            
+            if not result:
+                logger.warning("Failed to retrieve studies")
+                break
+                
+            studies = result.get('studies', [])
+            if not studies:
+                logger.info("No more studies found")
+                break
+                
+            # Filter studies by last update date
+            for study in studies:
+                try:
+                    status_module = study['protocolSection']['statusModule']
+                    last_update_date_str = status_module['lastUpdateSubmitDate']
+                    last_update_date = datetime.datetime.strptime(last_update_date_str, "%Y-%m-%d")
+                    
+                    if last_update_date >= target_date:
+                        matching_studies.append(study)
+                except (KeyError, ValueError):
+                    # Skip studies with missing or invalid dates
+                    continue
+            
+            processed_count += len(studies)
+            logger.info(f"Processed {processed_count} studies, found {len(matching_studies)} matching")
+            
+            # Check for next page
+            next_page_token = result.get('nextPageToken')
+            if not next_page_token:
+                logger.info("No more pages available")
+                break
+                
+            page_token = next_page_token
+            pages_processed += 1
+            
+            # Rate limiting
+            time.sleep(0.1)
+        
+        logger.info(f"Found {len(matching_studies)} studies updated since {since_date}")
+        return matching_studies
+
+    def save_raw_response(self, response_data: Dict, filename: str) -> bool:
+        """
+        Save raw API response to JSON file for debugging and analysis
+        
+        Args:
+            response_data: Raw API response data
+            filename: Name of file to save data to
+            
+        Returns:
+            True if successful, False otherwise
+        """
+        try:
+            # Create raw_data directory if it doesn't exist
+            raw_data_dir = os.path.join(os.path.dirname(os.path.abspath(__file__)), "..", "raw_data")
+            os.makedirs(raw_data_dir, exist_ok=True)
+            
+            # Save response to file
+            file_path = os.path.join(raw_data_dir, filename)
+            with open(file_path, 'w', encoding='utf-8') as f:
+                json.dump(response_data, f, indent=2, ensure_ascii=False)
+            
+            logger.info(f"Saved raw response to {file_path}")
+            return True
+        except Exception as e:
+            logger.error(f"Failed to save raw response: {e}")
+            return False
+
 # Example usage
 if __name__ == "__main__":
     # Initialize the API client

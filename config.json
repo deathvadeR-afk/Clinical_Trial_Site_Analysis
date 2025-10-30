@@ -1,0 +1,26 @@
+{
+    "api_keys": {
+        "clinical_trials": "",
+        "pubmed": "",
+        "gemini": ""
+    },
+    "database": {
+        "path": "clinical_trials.db"
+    },
+    "data_ingestion": {
+        "clinical_trials": {
+            "base_url": "https://clinicaltrials.gov/api/v2/studies",
+            "max_requests_per_second": 5,
+            "timeout": 30
+        },
+        "pubmed": {
+            "base_url": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/",
+            "max_requests_per_second": 10,
+            "timeout": 30
+        }
+    },
+    "logging": {
+        "level": "INFO",
+        "format": "%(asctime)s - %(name)s - %(levelname)s - %(message)s"
+    }
+}

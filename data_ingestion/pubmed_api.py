@@ -206,6 +206,85 @@ class PubMedAPI:
         else:
             return None
 
+    def extract_condition_specific_counts(self, publications: List[Dict], conditions: List[str]) -> Dict[str, int]:
+        """
+        Extract publication counts specific to certain medical conditions
+        
+        Args:
+            publications: List of publication dictionaries
+            conditions: List of medical conditions to search for
+            
+        Returns:
+            Dictionary mapping conditions to publication counts
+        """
+        condition_counts = {condition: 0 for condition in conditions}
+        
+        for pub in publications:
+            # Extract title and abstract for text analysis
+            title = pub.get('title', '').lower()
+            abstract = pub.get('abstract', '').lower()
+            mesh_terms = pub.get('mesh_terms', [])
+            
+            # Check each condition
+            for condition in conditions:
+                condition_lower = condition.lower()
+                
+                # Check in title
+                if condition_lower in title:
+                    condition_counts[condition] += 1
+                    continue  # Count each publication only once per condition
+                    
+                # Check in abstract
+                if condition_lower in abstract:
+                    condition_counts[condition] += 1
+                    continue
+                    
+                # Check in MeSH terms
+                for mesh_term in mesh_terms:
+                    if condition_lower in mesh_term.lower():
+                        condition_counts[condition] += 1
+                        break
+                        
+        return condition_counts
+
+    def store_publication_records(self, publications: List[Dict], investigator_id: Optional[int] = None, site_id: Optional[int] = None) -> bool:
+        """
+        Store publication records in the database
+        
+        Args:
+            publications: List of publication dictionaries
+            investigator_id: Optional investigator ID to link publications to
+            site_id: Optional site ID to link publications to
+            
+        Returns:
+            True if successful, False otherwise
+        """
+        try:
+            # This would typically use a database manager, but for now we'll just log
+            logger.info(f"Storing {len(publications)} publication records")
+            
+            # In a real implementation, this would insert into pubmed_publications table
+            for pub in publications:
+                # Extract publication data
+                pmid = pub.get('pmid')
+                title = pub.get('title')
+                authors = json.dumps(pub.get('authors', []))
+                journal = pub.get('journal')
+                publication_date = pub.get('publication_date')
+                citations_count = pub.get('citations_count', 0)
+                abstract = pub.get('abstract')
+                keywords = json.dumps(pub.get('keywords', []))
+                mesh_terms = json.dumps(pub.get('mesh_terms', []))
+                
+                # Log the publication data
+                logger.debug(f"Publication: {pmid} - {title}")
+                
+            logger.info(f"Successfully processed {len(publications)} publication records")
+            return True
+        except Exception as e:
+            logger.error(f"Error storing publication records: {e}")
+            return False
+
 # Example usage
 if __name__ == "__main__":
     # Initialize the API client

@@ -1,0 +1,21 @@
+# Clinical Trial Site Analysis Platform - Requirements
+
+# Core dependencies
+requests>=2.28.0
+sqlite3  # Built-in with Python
+
+# AI/ML dependencies (for future implementation)
+# google-generativeai>=0.3.0
+# scikit-learn>=1.3.0
+# numpy>=1.24.0
+# pandas>=2.0.0
+
+# Dashboard dependencies (for future implementation)
+# streamlit>=1.28.0
+# plotly>=5.15.0
+# folium>=0.14.0
+
+# Development dependencies
+pytest>=7.4.0
+black>=23.0.0
+flake8>=6.0.0
