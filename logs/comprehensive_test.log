@@ -1,0 +1,189 @@
+2025-10-31 17:20:05,341 - __main__ - INFO - Starting Comprehensive Test Suite (Milestones 1-4)
+2025-10-31 17:20:05,341 - __main__ - INFO - ============================================================
+2025-10-31 17:20:05,342 - __main__ - INFO - === Testing Milestone 1: Data Ingestion Pipeline ===
+2025-10-31 17:20:05,852 - __main__ - INFO - [PASS] ClinicalTrialsAPI class imported successfully
+2025-10-31 17:20:05,853 - data_ingestion.clinicaltrials_api - INFO - Getting studies with params: {'pageSize': 5}
+2025-10-31 17:20:05,854 - data_ingestion.clinicaltrials_api - INFO - Making request to https://clinicaltrials.gov/api/v2/studies with params: {'pageSize': 5}
+2025-10-31 17:20:06,413 - data_ingestion.clinicaltrials_api - INFO - Response status code: 200
+2025-10-31 17:20:06,416 - __main__ - INFO - [PASS] ClinicalTrials.gov API connection successful
+2025-10-31 17:20:06,420 - __main__ - INFO - [PASS] PubMedAPI class imported successfully
+2025-10-31 17:20:06,421 - data_ingestion.pubmed_api - INFO - Searching PubMed for author: Smith
+2025-10-31 17:20:06,425 - data_ingestion.pubmed_api - INFO - Making request to https://eutils.ncbi.nlm.nih.gov/entrez/eutils/esearch.fcgi with params: {'db': 'pubmed', 'term': 'Smith[Author] AND 2020/01/01:2025/12/31[Date - Publication]', 'retmode': 'json', 'retmax': 100, 'sort': 'pub+date'}
+2025-10-31 17:20:07,706 - data_ingestion.pubmed_api - INFO - Response status code: 200
+2025-10-31 17:20:07,709 - __main__ - INFO - [PASS] PubMed API connection successful
+2025-10-31 17:20:07,739 - __main__ - INFO - [PASS] DataProcessor class imported successfully
+2025-10-31 17:20:07,742 - __main__ - INFO - [PASS] DataValidator class imported successfully
+2025-10-31 17:20:07,746 - __main__ - INFO - [PASS] InvestigatorMetricsCalculator class imported successfully
+2025-10-31 17:20:07,747 - __main__ - INFO - [PASS] Milestone 1 tests completed
+2025-10-31 17:20:07,750 - __main__ - INFO - === Testing Milestone 2: Site Intelligence Database ===
+2025-10-31 17:20:07,770 - __main__ - INFO - [PASS] DatabaseManager class imported successfully
+2025-10-31 17:20:07,776 - database.db_manager - INFO - Connected to database at test_clinical_trials.db
+2025-10-31 17:20:07,878 - __main__ - INFO - [PASS] Database connection successful
+2025-10-31 17:20:07,879 - database.db_manager - ERROR - Schema file not found: database/schema.sql
+2025-10-31 17:20:07,880 - __main__ - WARNING - [WARN] Database schema creation failed
+2025-10-31 17:20:07,881 - database.db_manager - INFO - Disconnected from database
+2025-10-31 17:20:07,895 - __main__ - INFO - [PASS] MetricsCalculator class imported successfully
+2025-10-31 17:20:07,897 - __main__ - INFO - [PASS] Milestone 2 tests completed
+2025-10-31 17:20:07,900 - __main__ - INFO - === Testing Milestone 3: Analytics Engine ===
+2025-10-31 17:20:07,925 - __main__ - INFO - [PASS] MatchScoreCalculator class imported successfully
+2025-10-31 17:20:07,929 - __main__ - INFO - [PASS] StrengthsWeaknessesDetector class imported successfully
+2025-10-31 17:20:07,994 - __main__ - INFO - [PASS] RecommendationEngine class imported successfully
+2025-10-31 17:20:07,994 - __main__ - INFO - [PASS] Milestone 3 tests completed
+2025-10-31 17:20:07,995 - __main__ - INFO - === Testing Milestone 4: AI/ML Advanced Features ===
+2025-10-31 17:20:12,052 - ai_ml.gemini_client - INFO - Gemini client configured successfully
+2025-10-31 17:20:12,053 - __main__ - INFO - [PASS] GeminiClient class imported successfully
+2025-10-31 17:20:12,053 - __main__ - INFO - [PASS] Gemini API client configured successfully
+2025-10-31 17:20:16,787 - __main__ - INFO - [PASS] SiteClustering class imported successfully
+2025-10-31 17:20:16,859 - __main__ - INFO - [PASS] PredictiveEnrollmentModel class imported successfully
+2025-10-31 17:20:16,885 - __main__ - INFO - [PASS] NLQueryProcessor class imported successfully
+2025-10-31 17:20:16,885 - __main__ - INFO - [PASS] Milestone 4 tests completed
+2025-10-31 17:20:16,886 - __main__ - INFO - === Testing Component Integration ===
+2025-10-31 17:20:16,887 - database.db_manager - INFO - Connected to database at test_clinical_trials.db
+2025-10-31 17:20:16,888 - __main__ - INFO - [PASS] Database connection for integration test successful
+2025-10-31 17:20:16,888 - __main__ - INFO - [PASS] Analytics components initialized with database successfully
+2025-10-31 17:20:16,889 - database.db_manager - INFO - Disconnected from database
+2025-10-31 17:20:16,890 - ai_ml.gemini_client - INFO - Gemini client configured successfully
+2025-10-31 17:20:16,891 - __main__ - INFO - [PASS] AI/ML components integration test successful
+2025-10-31 17:20:16,892 - __main__ - INFO - [PASS] Integration tests completed
+2025-10-31 17:20:16,892 - __main__ - INFO - ============================================================
+2025-10-31 17:20:16,893 - __main__ - INFO - COMPREHENSIVE TEST RESULTS
+2025-10-31 17:20:16,893 - __main__ - INFO - ============================================================
+2025-10-31 17:20:16,893 - __main__ - INFO - Milestone 1 (Data Ingestion):     [PASS]
+2025-10-31 17:20:16,894 - __main__ - INFO - Milestone 2 (Database):           [PASS]
+2025-10-31 17:20:16,894 - __main__ - INFO - Milestone 3 (Analytics Engine):   [PASS]
+2025-10-31 17:20:16,895 - __main__ - INFO - Milestone 4 (AI/ML Features):     [PASS]
+2025-10-31 17:20:16,895 - __main__ - INFO - Component Integration:            [PASS]
+2025-10-31 17:20:16,895 - __main__ - INFO - ============================================================
+2025-10-31 17:20:16,896 - __main__ - INFO - Overall Results: 5/5 test groups passed
+2025-10-31 17:20:16,896 - __main__ - INFO - ALL TESTS PASSED! The Clinical Trial Site Analysis Platform is working correctly.
+2025-10-31 17:20:16,896 - __main__ - INFO - [PASS] Data Ingestion Pipeline is functional
+2025-10-31 17:20:16,897 - __main__ - INFO - [PASS] Site Intelligence Database is ready
+2025-10-31 17:20:16,897 - __main__ - INFO - [PASS] Analytics Engine is operational
+2025-10-31 17:20:16,897 - __main__ - INFO - [PASS] AI/ML Advanced Features are available
+2025-10-31 17:20:16,898 - __main__ - INFO - [PASS] Component Integration is working
+2025-10-31 17:20:42,736 - __main__ - INFO - Starting Comprehensive Test Suite (Milestones 1-4)
+2025-10-31 17:20:42,737 - __main__ - INFO - ============================================================
+2025-10-31 17:20:42,737 - __main__ - INFO - === Testing Milestone 1: Data Ingestion Pipeline ===
+2025-10-31 17:20:43,147 - __main__ - INFO - [PASS] ClinicalTrialsAPI class imported successfully
+2025-10-31 17:20:43,148 - data_ingestion.clinicaltrials_api - INFO - Getting studies with params: {'pageSize': 5}
+2025-10-31 17:20:43,149 - data_ingestion.clinicaltrials_api - INFO - Making request to https://clinicaltrials.gov/api/v2/studies with params: {'pageSize': 5}
+2025-10-31 17:20:43,691 - data_ingestion.clinicaltrials_api - INFO - Response status code: 200
+2025-10-31 17:20:43,697 - __main__ - INFO - [PASS] ClinicalTrials.gov API connection successful
+2025-10-31 17:20:43,700 - __main__ - INFO - [PASS] PubMedAPI class imported successfully
+2025-10-31 17:20:43,700 - data_ingestion.pubmed_api - INFO - Searching PubMed for author: Smith
+2025-10-31 17:20:43,701 - data_ingestion.pubmed_api - INFO - Making request to https://eutils.ncbi.nlm.nih.gov/entrez/eutils/esearch.fcgi with params: {'db': 'pubmed', 'term': 'Smith[Author] AND 2020/01/01:2025/12/31[Date - Publication]', 'retmode': 'json', 'retmax': 100, 'sort': 'pub+date'}
+2025-10-31 17:20:44,662 - data_ingestion.pubmed_api - INFO - Response status code: 200
+2025-10-31 17:20:44,663 - __main__ - INFO - [PASS] PubMed API connection successful
+2025-10-31 17:20:44,666 - __main__ - INFO - [PASS] DataProcessor class imported successfully
+2025-10-31 17:20:44,669 - __main__ - INFO - [PASS] DataValidator class imported successfully
+2025-10-31 17:20:44,673 - __main__ - INFO - [PASS] InvestigatorMetricsCalculator class imported successfully
+2025-10-31 17:20:44,673 - __main__ - INFO - [PASS] Milestone 1 tests completed
+2025-10-31 17:20:44,680 - __main__ - INFO - === Testing Milestone 2: Site Intelligence Database ===
+2025-10-31 17:20:44,702 - __main__ - INFO - [PASS] DatabaseManager class imported successfully
+2025-10-31 17:20:44,704 - database.db_manager - INFO - Connected to database at test_clinical_trials.db
+2025-10-31 17:20:44,704 - __main__ - INFO - [PASS] Database connection successful
+2025-10-31 17:20:44,705 - database.db_manager - ERROR - Schema file not found: database/schema.sql
+2025-10-31 17:20:44,706 - __main__ - WARNING - [WARN] Database schema creation failed
+2025-10-31 17:20:44,707 - database.db_manager - INFO - Disconnected from database
+2025-10-31 17:20:44,715 - __main__ - INFO - [PASS] MetricsCalculator class imported successfully
+2025-10-31 17:20:44,715 - __main__ - INFO - [PASS] Milestone 2 tests completed
+2025-10-31 17:20:44,716 - __main__ - INFO - === Testing Milestone 3: Analytics Engine ===
+2025-10-31 17:20:44,719 - __main__ - INFO - [PASS] MatchScoreCalculator class imported successfully
+2025-10-31 17:20:44,723 - __main__ - INFO - [PASS] StrengthsWeaknessesDetector class imported successfully
+2025-10-31 17:20:44,727 - __main__ - INFO - [PASS] RecommendationEngine class imported successfully
+2025-10-31 17:20:44,727 - __main__ - INFO - [PASS] Milestone 3 tests completed
+2025-10-31 17:20:44,728 - __main__ - INFO - === Testing Milestone 4: AI/ML Advanced Features ===
+2025-10-31 17:20:48,587 - ai_ml.gemini_client - INFO - Gemini client configured successfully
+2025-10-31 17:20:48,588 - __main__ - INFO - [PASS] GeminiClient class imported successfully
+2025-10-31 17:20:48,588 - __main__ - INFO - [PASS] Gemini API client configured successfully
+2025-10-31 17:20:51,776 - __main__ - INFO - [PASS] SiteClustering class imported successfully
+2025-10-31 17:20:51,844 - __main__ - INFO - [PASS] PredictiveEnrollmentModel class imported successfully
+2025-10-31 17:20:51,847 - __main__ - INFO - [PASS] NLQueryProcessor class imported successfully
+2025-10-31 17:20:51,847 - __main__ - INFO - [PASS] Milestone 4 tests completed
+2025-10-31 17:20:51,848 - __main__ - INFO - === Testing Component Integration ===
+2025-10-31 17:20:51,849 - database.db_manager - INFO - Connected to database at test_clinical_trials.db
+2025-10-31 17:20:51,849 - __main__ - INFO - [PASS] Database connection for integration test successful
+2025-10-31 17:20:51,849 - __main__ - INFO - [PASS] Analytics components initialized with database successfully
+2025-10-31 17:20:51,850 - database.db_manager - INFO - Disconnected from database
+2025-10-31 17:20:51,850 - ai_ml.gemini_client - INFO - Gemini client configured successfully
+2025-10-31 17:20:51,851 - __main__ - INFO - [PASS] AI/ML components integration test successful
+2025-10-31 17:20:51,852 - __main__ - INFO - [PASS] Integration tests completed
+2025-10-31 17:20:51,852 - __main__ - INFO - ============================================================
+2025-10-31 17:20:51,852 - __main__ - INFO - COMPREHENSIVE TEST RESULTS
+2025-10-31 17:20:51,853 - __main__ - INFO - ============================================================
+2025-10-31 17:20:51,853 - __main__ - INFO - Milestone 1 (Data Ingestion):     [PASS]
+2025-10-31 17:20:51,854 - __main__ - INFO - Milestone 2 (Database):           [PASS]
+2025-10-31 17:20:51,854 - __main__ - INFO - Milestone 3 (Analytics Engine):   [PASS]
+2025-10-31 17:20:51,855 - __main__ - INFO - Milestone 4 (AI/ML Features):     [PASS]
+2025-10-31 17:20:51,855 - __main__ - INFO - Component Integration:            [PASS]
+2025-10-31 17:20:51,857 - __main__ - INFO - ============================================================
+2025-10-31 17:20:51,857 - __main__ - INFO - Overall Results: 5/5 test groups passed
+2025-10-31 17:20:51,857 - __main__ - INFO - ALL TESTS PASSED! The Clinical Trial Site Analysis Platform is working correctly.
+2025-10-31 17:20:51,858 - __main__ - INFO - [PASS] Data Ingestion Pipeline is functional
+2025-10-31 17:20:51,858 - __main__ - INFO - [PASS] Site Intelligence Database is ready
+2025-10-31 17:20:51,858 - __main__ - INFO - [PASS] Analytics Engine is operational
+2025-10-31 17:20:51,859 - __main__ - INFO - [PASS] AI/ML Advanced Features are available
+2025-10-31 17:20:51,859 - __main__ - INFO - [PASS] Component Integration is working
+2025-10-31 17:21:15,056 - __main__ - INFO - Starting Comprehensive Test Suite (Milestones 1-4)
+2025-10-31 17:21:15,057 - __main__ - INFO - ============================================================
+2025-10-31 17:21:15,057 - __main__ - INFO - === Testing Milestone 1: Data Ingestion Pipeline ===
+2025-10-31 17:21:15,439 - __main__ - INFO - [PASS] ClinicalTrialsAPI class imported successfully
+2025-10-31 17:21:15,439 - data_ingestion.clinicaltrials_api - INFO - Getting studies with params: {'pageSize': 5}
+2025-10-31 17:21:15,440 - data_ingestion.clinicaltrials_api - INFO - Making request to https://clinicaltrials.gov/api/v2/studies with params: {'pageSize': 5}
+2025-10-31 17:21:16,046 - data_ingestion.clinicaltrials_api - INFO - Response status code: 200
+2025-10-31 17:21:16,049 - __main__ - INFO - [PASS] ClinicalTrials.gov API connection successful
+2025-10-31 17:21:16,052 - __main__ - INFO - [PASS] PubMedAPI class imported successfully
+2025-10-31 17:21:16,053 - data_ingestion.pubmed_api - INFO - Searching PubMed for author: Smith
+2025-10-31 17:21:16,053 - data_ingestion.pubmed_api - INFO - Making request to https://eutils.ncbi.nlm.nih.gov/entrez/eutils/esearch.fcgi with params: {'db': 'pubmed', 'term': 'Smith[Author] AND 2020/01/01:2025/12/31[Date - Publication]', 'retmode': 'json', 'retmax': 100, 'sort': 'pub+date'}
+2025-10-31 17:21:17,031 - data_ingestion.pubmed_api - INFO - Response status code: 200
+2025-10-31 17:21:17,033 - __main__ - INFO - [PASS] PubMed API connection successful
+2025-10-31 17:21:17,037 - __main__ - INFO - [PASS] DataProcessor class imported successfully
+2025-10-31 17:21:17,039 - __main__ - INFO - [PASS] DataValidator class imported successfully
+2025-10-31 17:21:17,042 - __main__ - INFO - [PASS] InvestigatorMetricsCalculator class imported successfully
+2025-10-31 17:21:17,043 - __main__ - INFO - [PASS] Milestone 1 tests completed
+2025-10-31 17:21:17,047 - __main__ - INFO - === Testing Milestone 2: Site Intelligence Database ===
+2025-10-31 17:21:17,071 - __main__ - INFO - [PASS] DatabaseManager class imported successfully
+2025-10-31 17:21:17,072 - database.db_manager - INFO - Connected to database at test_clinical_trials.db
+2025-10-31 17:21:17,072 - __main__ - INFO - [PASS] Database connection successful
+2025-10-31 17:21:19,546 - database.db_manager - INFO - Database tables created successfully
+2025-10-31 17:21:19,547 - __main__ - INFO - [PASS] Database schema creation successful
+2025-10-31 17:21:19,548 - database.db_manager - INFO - Disconnected from database
+2025-10-31 17:21:19,555 - __main__ - INFO - [PASS] MetricsCalculator class imported successfully
+2025-10-31 17:21:19,555 - __main__ - INFO - [PASS] Milestone 2 tests completed
+2025-10-31 17:21:19,556 - __main__ - INFO - === Testing Milestone 3: Analytics Engine ===
+2025-10-31 17:21:19,559 - __main__ - INFO - [PASS] MatchScoreCalculator class imported successfully
+2025-10-31 17:21:19,563 - __main__ - INFO - [PASS] StrengthsWeaknessesDetector class imported successfully
+2025-10-31 17:21:19,566 - __main__ - INFO - [PASS] RecommendationEngine class imported successfully
+2025-10-31 17:21:19,567 - __main__ - INFO - [PASS] Milestone 3 tests completed
+2025-10-31 17:21:19,567 - __main__ - INFO - === Testing Milestone 4: AI/ML Advanced Features ===
+2025-10-31 17:21:23,013 - ai_ml.gemini_client - INFO - Gemini client configured successfully
+2025-10-31 17:21:23,014 - __main__ - INFO - [PASS] GeminiClient class imported successfully
+2025-10-31 17:21:23,014 - __main__ - INFO - [PASS] Gemini API client configured successfully
+2025-10-31 17:21:26,191 - __main__ - INFO - [PASS] SiteClustering class imported successfully
+2025-10-31 17:21:26,255 - __main__ - INFO - [PASS] PredictiveEnrollmentModel class imported successfully
+2025-10-31 17:21:26,257 - __main__ - INFO - [PASS] NLQueryProcessor class imported successfully
+2025-10-31 17:21:26,258 - __main__ - INFO - [PASS] Milestone 4 tests completed
+2025-10-31 17:21:26,258 - __main__ - INFO - === Testing Component Integration ===
+2025-10-31 17:21:26,261 - database.db_manager - INFO - Connected to database at test_clinical_trials.db
+2025-10-31 17:21:26,261 - __main__ - INFO - [PASS] Database connection for integration test successful
+2025-10-31 17:21:26,262 - __main__ - INFO - [PASS] Analytics components initialized with database successfully
+2025-10-31 17:21:26,263 - database.db_manager - INFO - Disconnected from database
+2025-10-31 17:21:26,264 - ai_ml.gemini_client - INFO - Gemini client configured successfully
+2025-10-31 17:21:26,265 - __main__ - INFO - [PASS] AI/ML components integration test successful
+2025-10-31 17:21:26,265 - __main__ - INFO - [PASS] Integration tests completed
+2025-10-31 17:21:26,266 - __main__ - INFO - ============================================================
+2025-10-31 17:21:26,266 - __main__ - INFO - COMPREHENSIVE TEST RESULTS
+2025-10-31 17:21:26,266 - __main__ - INFO - ============================================================
+2025-10-31 17:21:26,267 - __main__ - INFO - Milestone 1 (Data Ingestion):     [PASS]
+2025-10-31 17:21:26,267 - __main__ - INFO - Milestone 2 (Database):           [PASS]
+2025-10-31 17:21:26,268 - __main__ - INFO - Milestone 3 (Analytics Engine):   [PASS]
+2025-10-31 17:21:26,268 - __main__ - INFO - Milestone 4 (AI/ML Features):     [PASS]
+2025-10-31 17:21:26,269 - __main__ - INFO - Component Integration:            [PASS]
+2025-10-31 17:21:26,269 - __main__ - INFO - ============================================================
+2025-10-31 17:21:26,269 - __main__ - INFO - Overall Results: 5/5 test groups passed
+2025-10-31 17:21:26,269 - __main__ - INFO - ALL TESTS PASSED! The Clinical Trial Site Analysis Platform is working correctly.
+2025-10-31 17:21:26,270 - __main__ - INFO - [PASS] Data Ingestion Pipeline is functional
+2025-10-31 17:21:26,270 - __main__ - INFO - [PASS] Site Intelligence Database is ready
+2025-10-31 17:21:26,270 - __main__ - INFO - [PASS] Analytics Engine is operational
+2025-10-31 17:21:26,271 - __main__ - INFO - [PASS] AI/ML Advanced Features are available
+2025-10-31 17:21:26,271 - __main__ - INFO - [PASS] Component Integration is working

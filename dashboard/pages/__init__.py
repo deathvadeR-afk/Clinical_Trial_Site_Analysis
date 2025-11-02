@@ -1,1 +1,3 @@
-# Auto-generated file
+"""
+Initialization file for dashboard pages
+"""

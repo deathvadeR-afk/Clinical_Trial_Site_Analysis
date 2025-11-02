@@ -1,0 +1,2 @@
+2025-11-02 09:59:45,126 - database.db_manager - INFO - Connected to database at clinical_trials.db
+2025-11-02 09:59:45,159 - ai_ml.gemini_client - INFO - Gemini client configured successfully

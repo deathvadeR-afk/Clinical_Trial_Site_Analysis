@@ -1,0 +1,9 @@
+2025-10-31 17:20:06,421 - data_ingestion.pubmed_api - INFO - Searching PubMed for author: Smith
+2025-10-31 17:20:06,425 - data_ingestion.pubmed_api - INFO - Making request to https://eutils.ncbi.nlm.nih.gov/entrez/eutils/esearch.fcgi with params: {'db': 'pubmed', 'term': 'Smith[Author] AND 2020/01/01:2025/12/31[Date - Publication]', 'retmode': 'json', 'retmax': 100, 'sort': 'pub+date'}
+2025-10-31 17:20:07,706 - data_ingestion.pubmed_api - INFO - Response status code: 200
+2025-10-31 17:20:43,700 - data_ingestion.pubmed_api - INFO - Searching PubMed for author: Smith
+2025-10-31 17:20:43,701 - data_ingestion.pubmed_api - INFO - Making request to https://eutils.ncbi.nlm.nih.gov/entrez/eutils/esearch.fcgi with params: {'db': 'pubmed', 'term': 'Smith[Author] AND 2020/01/01:2025/12/31[Date - Publication]', 'retmode': 'json', 'retmax': 100, 'sort': 'pub+date'}
+2025-10-31 17:20:44,662 - data_ingestion.pubmed_api - INFO - Response status code: 200
+2025-10-31 17:21:16,053 - data_ingestion.pubmed_api - INFO - Searching PubMed for author: Smith
+2025-10-31 17:21:16,053 - data_ingestion.pubmed_api - INFO - Making request to https://eutils.ncbi.nlm.nih.gov/entrez/eutils/esearch.fcgi with params: {'db': 'pubmed', 'term': 'Smith[Author] AND 2020/01/01:2025/12/31[Date - Publication]', 'retmode': 'json', 'retmax': 100, 'sort': 'pub+date'}
+2025-10-31 17:21:17,031 - data_ingestion.pubmed_api - INFO - Response status code: 200

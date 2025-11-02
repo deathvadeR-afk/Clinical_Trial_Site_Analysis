@@ -89,8 +89,29 @@ class DatabaseManager:
             return False
             
         try:
+            # Handle relative paths correctly
+            if not os.path.isabs(schema_file):
+                # Try to find the schema file relative to the database directory
+                db_dir = os.path.dirname(os.path.abspath(__file__))
+                schema_path = os.path.join(db_dir, schema_file)
+                if not os.path.exists(schema_path):
+                    # Try one level up (for when called from tests directory)
+                    schema_path = os.path.join(db_dir, "..", "database", schema_file)
+                    schema_path = os.path.abspath(schema_path)
+                    if not os.path.exists(schema_path):
+                        # Try the direct path from project root
+                        schema_path = os.path.join(db_dir, "..", schema_file)
+                        schema_path = os.path.abspath(schema_path)
+            else:
+                schema_path = schema_file
+                
+            # Check if file exists
+            if not os.path.exists(schema_path):
+                logger.error(f"Schema file not found at: {schema_path}")
+                return False
+                
             # Read schema file
-            with open(schema_file, 'r') as f:
+            with open(schema_path, 'r') as f:
                 schema_sql = f.read()
             
             # Execute schema

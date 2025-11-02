@@ -1,0 +1,16 @@
+2025-10-31 17:20:07,776 - database.db_manager - INFO - Connected to database at test_clinical_trials.db
+2025-10-31 17:20:07,879 - database.db_manager - ERROR - Schema file not found: database/schema.sql
+2025-10-31 17:20:07,881 - database.db_manager - INFO - Disconnected from database
+2025-10-31 17:20:16,887 - database.db_manager - INFO - Connected to database at test_clinical_trials.db
+2025-10-31 17:20:16,889 - database.db_manager - INFO - Disconnected from database
+2025-10-31 17:20:44,704 - database.db_manager - INFO - Connected to database at test_clinical_trials.db
+2025-10-31 17:20:44,705 - database.db_manager - ERROR - Schema file not found: database/schema.sql
+2025-10-31 17:20:44,707 - database.db_manager - INFO - Disconnected from database
+2025-10-31 17:20:51,849 - database.db_manager - INFO - Connected to database at test_clinical_trials.db
+2025-10-31 17:20:51,850 - database.db_manager - INFO - Disconnected from database
+2025-10-31 17:21:17,072 - database.db_manager - INFO - Connected to database at test_clinical_trials.db
+2025-10-31 17:21:19,546 - database.db_manager - INFO - Database tables created successfully
+2025-10-31 17:21:19,548 - database.db_manager - INFO - Disconnected from database
+2025-10-31 17:21:26,261 - database.db_manager - INFO - Connected to database at test_clinical_trials.db
+2025-10-31 17:21:26,263 - database.db_manager - INFO - Disconnected from database
+2025-11-02 09:59:45,126 - database.db_manager - INFO - Connected to database at clinical_trials.db
