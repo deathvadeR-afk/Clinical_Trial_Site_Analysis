@@ -1,0 +1,38 @@
+name: Automated Data Ingestion
+
+on:
+  schedule:
+    # Run daily at 2:00 AM UTC
+    - cron: '0 2 * * *'
+  workflow_dispatch:  # Allows manual triggering
+
+jobs:
+  data-ingestion:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v3
+    
+    - name: Set up Python 3.9
+      uses: actions/setup-python@v4
+      with:
+        python-version: 3.9
+    
+    - name: Install dependencies
+      run: |
+        python -m pip install --upgrade pip
+        pip install -r requirements.txt
+    
+    - name: Run data ingestion pipeline
+      env:
+        CLINICAL_TRIALS_API_KEY: ${{ secrets.CLINICAL_TRIALS_API_KEY }}
+        PUBMED_API_KEY: ${{ secrets.PUBMED_API_KEY }}
+      run: |
+        python pipeline/automated_pipeline.py
+    
+    - name: Commit and push updated data
+      run: |
+        git config --local user.email "action@github.com"
+        git config --local user.name "GitHub Action"
+        git add -A
+        git commit -m "Update clinical trial data [skip ci]" || exit 0
+        git push

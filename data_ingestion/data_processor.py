@@ -1,12 +1,11 @@
-"""
-Data Processor for Clinical Trial Site Analysis Platform
-Handles the flow of data from APIs to the database
-"""
 import json
 import logging
 import os
 from typing import Dict, List, Optional, Any
 from datetime import datetime
+import requests
+import time
+from urllib.parse import quote_plus
 
 # Set up logging
 log_dir = "../logs"
@@ -32,6 +31,98 @@ class DataProcessor:
             db_manager: Database manager instance
         """
         self.db_manager = db_manager
+    
+    def geocode_address(self, city: str, state: str, country: str) -> Optional[Dict[str, float]]:
+        """
+        Geocode an address to get latitude and longitude coordinates.
+        Uses OpenStreetMap Nominatim API for geocoding.
+        
+        Args:
+            city: City name
+            state: State/region
+            country: Country name
+            
+        Returns:
+            Dictionary with 'lat' and 'lon' keys, or None if geocoding failed
+        """
+        # Construct address string
+        address_parts = [part for part in [city, state, country] if part]
+        address = ", ".join(address_parts) if address_parts else ""
+        
+        if not address:
+            return None
+            
+        try:
+            # Use OpenStreetMap Nominatim API (free, no API key required)
+            # Note: This service has usage limits, so we should cache results
+            base_url = "https://nominatim.openstreetmap.org/search"
+            params = {
+                'q': address,
+                'format': 'json',
+                'limit': 1,
+                'addressdetails': 1
+            }
+            
+            headers = {
+                'User-Agent': 'ClinicalTrialSiteAnalysis/1.0 (research purposes)'
+            }
+            
+            logger.info(f"Geocoding address: {address}")
+            
+            # Implement retry logic for better error handling
+            max_retries = 3
+            for attempt in range(max_retries):
+                try:
+                    response = requests.get(base_url, params=params, headers=headers, timeout=10)
+                    response.raise_for_status()
+                    
+                    data = response.json()
+                    if data and len(data) > 0:
+                        result = data[0]
+                        # Validate that we have the required fields
+                        if 'lat' in result and 'lon' in result:
+                            coordinates = {
+                                'lat': float(result['lat']),
+                                'lon': float(result['lon'])
+                            }
+                            logger.info(f"Geocoded {address} to {coordinates}")
+                            return coordinates
+                        else:
+                            logger.warning(f"Geocoding result missing lat/lon for address: {address}")
+                            return None
+                    else:
+                        logger.warning(f"No geocoding results for address: {address}")
+                        return None
+                        
+                except requests.exceptions.Timeout:
+                    logger.warning(f"Geocoding timeout for address: {address} (attempt {attempt + 1}/{max_retries})")
+                    if attempt < max_retries - 1:
+                        time.sleep(2 ** attempt)  # Exponential backoff
+                        continue
+                    else:
+                        logger.error(f"Geocoding failed after {max_retries} attempts due to timeout: {address}")
+                        return None
+                        
+                except requests.exceptions.RequestException as e:
+                    logger.error(f"Geocoding request error for address '{address}' (attempt {attempt + 1}/{max_retries}): {e}")
+                    if attempt < max_retries - 1:
+                        time.sleep(2 ** attempt)  # Exponential backoff
+                        continue
+                    else:
+                        logger.error(f"Geocoding failed after {max_retries} attempts: {address}")
+                        return None
+                        
+                except (ValueError, KeyError) as e:
+                    logger.error(f"Geocoding data parsing error for address '{address}': {e}")
+                    return None
+                    
+                except Exception as e:
+                    logger.error(f"Unexpected error during geocoding for address '{address}': {e}")
+                    return None
+                    
+        except Exception as e:
+            logger.error(f"Error geocoding address '{address}': {e}")
+            return None
     
     def process_clinical_trial_data(self, study_data: Dict) -> bool:
         """
@@ -117,14 +208,34 @@ class DataProcessor:
                 'study_first_posted': study_first_posted
             }
             
-            # Insert into database
+            # Try to insert first
             success = self.db_manager.insert_data('clinical_trials', trial_data)
-            if success:
-                logger.info(f"Processed clinical trial data for {nct_id}")
-            else:
-                logger.error(f"Failed to insert clinical trial data for {nct_id}")
             
-            return success
+            # If insert fails, try to update existing record
+            if not success:
+                # Check if the record already exists
+                existing_record = self.db_manager.query(
+                    "SELECT nct_id FROM clinical_trials WHERE nct_id = ?", (nct_id,))
+                
+                if existing_record and len(existing_record) > 0:
+                    # Build update query
+                    set_clause = ', '.join([f"{key} = ?" for key in trial_data.keys() if key != 'nct_id'])
+                    values = [trial_data[key] for key in trial_data.keys() if key != 'nct_id'] + [nct_id]
+                    sql = f"UPDATE clinical_trials SET {set_clause} WHERE nct_id = ?"
+                    
+                    success = self.db_manager.execute(sql, tuple(values))
+                    if success:
+                        logger.info(f"Updated clinical trial data for {nct_id}")
+                    else:
+                        logger.error(f"Failed to update clinical trial data for {nct_id}")
+                else:
+                    logger.error(f"Failed to insert clinical trial data for {nct_id} and record does not exist")
+                    return False
+            else:
+                logger.info(f"Processed clinical trial data for {nct_id}")
+            
+            # Regardless of insert/update, continue with site processing
+            return True
             
         except Exception as e:
             logger.error(f"Error processing clinical trial data: {e}")
@@ -148,6 +259,23 @@ class DataProcessor:
             id_module = protocol_section.get('identificationModule', {})
             nct_id = id_module.get('nctId')
             
+            # Extract status module for recruitment status
+            status_module = protocol_section.get('statusModule', {})
+            overall_status = status_module.get('overallStatus', 'Unknown')
+            
+            # Extract design module for enrollment info
+            design_module = protocol_section.get('designModule', {})
+            design_info = design_module.get('designInfo', {})
+            enrollment_info = design_info.get('enrollmentInfo', {})
+            enrollment_count = enrollment_info.get('count')
+            
+            # Extract dates
+            start_date_struct = status_module.get('startDateStruct', {})
+            start_date = start_date_struct.get('date')
+            
+            completion_date_struct = status_module.get('completionDateStruct', {})
+            completion_date = completion_date_struct.get('date')
+            
             # Extract locations module
             contacts_locations_module = protocol_section.get('contactsLocationsModule', {})
             locations = contacts_locations_module.get('locations', [])
@@ -159,23 +287,105 @@ class DataProcessor:
                 state = location.get('zip', '')
                 country = location.get('country', '')
                 
-                # Create site data (simplified for now)
-                site_data = {
-                    'site_name': facility,
-                    'city': city,
-                    'state': state,
-                    'country': country,
-                    'institution_type': 'Unknown',
-                    'accreditation_status': 'Unknown'
-                }
+                # Check if site already exists
+                existing_site = self.db_manager.query(
+                    "SELECT site_id FROM sites_master WHERE site_name = ?", (facility,))
                 
-                # Insert site data
-                site_success = self.db_manager.insert_data('sites_master', site_data)
-                if site_success:
-                    logger.info(f"Processed site data for {facility}")
+                site_id = None
+                if existing_site and len(existing_site) > 0:
+                    site_id = existing_site[0]['site_id']
+                    # Update existing site
+                    site_data = {
+                        'normalized_name': facility.lower() if facility else None,
+                        'city': city,
+                        'state': state,
+                        'country': country,
+                        'last_updated': datetime.now().isoformat()
+                    }
+                    
+                    # Build update query
+                    set_clause = ', '.join([f"{key} = ?" for key in site_data.keys()])
+                    values = list(site_data.values()) + [facility]
+                    sql = f"UPDATE sites_master SET {set_clause} WHERE site_name = ?"
+                    
+                    site_success = self.db_manager.execute(sql, tuple(values))
+                    if site_success:
+                        logger.info(f"Updated site data for {facility}")
+                    else:
+                        logger.error(f"Failed to update site data for {facility}")
+                        return False
+                else:
+                    # Geocode the address to get coordinates
+                    coordinates = self.geocode_address(city, state, country)
+                    latitude = coordinates['lat'] if coordinates else None
+                    longitude = coordinates['lon'] if coordinates else None
+                    
+                    # Create new site data
+                    site_data = {
+                        'site_name': facility,
+                        'normalized_name': facility.lower() if facility else None,
+                        'city': city,
+                        'state': state,
+                        'country': country,
+                        'latitude': latitude,
+                        'longitude': longitude,
+                        'institution_type': 'Unknown',
+                        'total_capacity': 0,
+                        'accreditation_status': 'Unknown',
+                        'created_at': datetime.now().isoformat(),
+                        'last_updated': datetime.now().isoformat()
+                    }
+                    
+                    # Insert site data
+                    site_success = self.db_manager.insert_data('sites_master', site_data)
+                    if site_success:
+                        # Get the site_id of the newly inserted site
+                        site_result = self.db_manager.query(
+                            "SELECT site_id FROM sites_master WHERE site_name = ?", (facility,))
+                        logger.info(f"Site insertion result: {site_result}")
+                        if site_result and len(site_result) > 0:
+                            site_id = site_result[0]['site_id']
+                            logger.info(f"Set site_id to {site_id} for {facility}")
+                        else:
+                            logger.error(f"Failed to retrieve site_id for {facility}")
+                            return False
+                        logger.info(f"Processed site data for {facility}")
+                    else:
+                        logger.error(f"Failed to insert site data for {facility}")
+                        return False
                 
-                # TODO: Link site to trial in site_trial_participation table
-                # This would require getting the site_id after insertion
+                # Link site to trial in site_trial_participation table
+                logger.info(f"Attempting to link site {site_id} to trial {nct_id}")
+                if site_id and nct_id:
+                    # Check if the link already exists
+                    existing_link = self.db_manager.query(
+                        "SELECT site_trial_id FROM site_trial_participation WHERE site_id = ? AND nct_id = ?", 
+                        (site_id, nct_id))
+                    
+                    if not existing_link or len(existing_link) == 0:
+                        # Create the link
+                        link_data = {
+                            'site_id': site_id,
+                            'nct_id': nct_id,
+                            'role': 'Facility',  # Default role
+                            'recruitment_status': overall_status,
+                            'actual_enrollment': enrollment_count,
+                            'enrollment_start_date': start_date,
+                            'enrollment_end_date': completion_date,
+                            'data_submission_quality_score': 1.0  # Default score
+                        }
+                        
+                        logger.info(f"Inserting link data: {link_data}")
+                        link_success = self.db_manager.insert_data('site_trial_participation', link_data)
+                        if link_success:
+                            logger.info(f"Linked site {site_id} to trial {nct_id}")
+                        else:
+                            logger.error(f"Failed to link site {site_id} to trial {nct_id}")
+                            return False
+                    else:
+                        logger.info(f"Site {site_id} already linked to trial {nct_id}")
+                else:
+                    logger.warning(f"Skipping link creation: site_id={site_id}, nct_id={nct_id}")
             
             return True
             

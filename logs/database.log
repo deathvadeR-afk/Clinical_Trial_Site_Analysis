@@ -14,3 +14,40 @@
 2025-10-31 17:21:26,261 - database.db_manager - INFO - Connected to database at test_clinical_trials.db
 2025-10-31 17:21:26,263 - database.db_manager - INFO - Disconnected from database
 2025-11-02 09:59:45,126 - database.db_manager - INFO - Connected to database at clinical_trials.db
+2025-11-02 11:45:30,761 - database.db_manager - INFO - Connected to database at ../clinical_trials.db
+2025-11-02 11:45:30,763 - database.db_manager - ERROR - Query failed: no such column: last_updated
+2025-11-02 11:45:34,650 - database.db_manager - INFO - Connected to database at ../clinical_trials.db
+2025-11-02 11:45:34,652 - database.db_manager - ERROR - Query failed: no such column: last_updated
+2025-11-02 11:45:36,074 - database.db_manager - ERROR - Failed to insert data into clinical_trials: UNIQUE constraint failed: clinical_trials.nct_id
+2025-11-02 11:45:36,335 - database.db_manager - ERROR - Failed to insert data into clinical_trials: UNIQUE constraint failed: clinical_trials.nct_id
+2025-11-02 11:45:38,226 - database.db_manager - INFO - Disconnected from database
+2025-11-02 11:46:43,335 - database.db_manager - INFO - Connected to database at ../clinical_trials.db
+2025-11-02 11:46:43,347 - database.db_manager - INFO - Disconnected from database
+2025-11-02 11:48:17,147 - database.db_manager - INFO - Connected to database at test_clinical_trials.db
+2025-11-02 11:48:19,899 - database.db_manager - INFO - Database tables created successfully
+2025-11-02 11:48:21,210 - database.db_manager - INFO - Disconnected from database
+2025-11-02 11:48:44,914 - database.db_manager - INFO - Connected to database at clinical_trials.db
+2025-11-02 11:48:47,232 - database.db_manager - INFO - Database tables created successfully
+2025-11-02 11:48:49,278 - database.db_manager - INFO - Disconnected from database
+2025-11-02 11:57:39,546 - database.db_manager - INFO - Connected to database at e:/Codecademy/Clinical_Site_Trial_Analysis/clinical_trials.db
+2025-11-02 11:57:39,547 - database.db_manager - INFO - Disconnected from database
+2025-11-02 11:57:53,444 - database.db_manager - INFO - Connected to database at e:/Codecademy/Clinical_Site_Trial_Analysis/clinical_trials.db
+2025-11-02 11:57:53,446 - database.db_manager - INFO - Disconnected from database
+2025-11-02 11:59:00,781 - database.db_manager - INFO - Connected to database at ../clinical_trials.db
+2025-11-02 11:59:02,195 - database.db_manager - INFO - Disconnected from database
+2025-11-02 11:59:36,877 - database.db_manager - INFO - Connected to database at E:\Codecademy\Clinical_Site_Trial_Analysis\dashboard\pages\../../clinical_trials.db
+2025-11-02 11:59:36,881 - database.db_manager - INFO - Disconnected from database
+2025-11-02 11:59:36,884 - database.db_manager - INFO - Connected to database at E:\Codecademy\Clinical_Site_Trial_Analysis\dashboard\pages\../../clinical_trials.db
+2025-11-02 11:59:36,886 - database.db_manager - INFO - Disconnected from database
+2025-11-02 11:59:36,906 - database.db_manager - INFO - Connected to database at E:\Codecademy\Clinical_Site_Trial_Analysis\dashboard\pages\../../clinical_trials.db
+2025-11-02 11:59:36,907 - database.db_manager - INFO - Disconnected from database
+2025-11-02 12:37:39,354 - database.db_manager - INFO - Connected to database at ../clinical_trials.db
+2025-11-02 12:37:39,443 - database.db_manager - INFO - Disconnected from database
+2025-11-02 12:41:55,579 - database.db_manager - INFO - Connected to database at ../clinical_trials.db
+2025-11-02 12:41:55,674 - database.db_manager - INFO - Disconnected from database
+2025-11-02 12:58:08,603 - database.db_manager - INFO - Connected to database at E:\Codecademy\Clinical_Site_Trial_Analysis\dashboard\pages\../../clinical_trials.db
+2025-11-02 12:58:08,606 - database.db_manager - INFO - Disconnected from database
+2025-11-02 12:58:08,609 - database.db_manager - INFO - Connected to database at E:\Codecademy\Clinical_Site_Trial_Analysis\dashboard\pages\../../clinical_trials.db
+2025-11-02 12:58:08,611 - database.db_manager - INFO - Disconnected from database
+2025-11-02 12:58:08,628 - database.db_manager - INFO - Connected to database at E:\Codecademy\Clinical_Site_Trial_Analysis\dashboard\pages\../../clinical_trials.db
+2025-11-02 12:58:08,630 - database.db_manager - INFO - Disconnected from database

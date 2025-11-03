@@ -49,10 +49,12 @@ def main():
             logger.error("Failed to connect to database")
             return False
             
-        # Create tables if they don't exist
-        if not db_manager.create_tables("database/schema.sql"):
-            logger.error("Failed to create database tables")
-            return False
+        # Try to create tables, but continue if they already exist
+        try:
+            db_manager.create_tables("database/schema.sql")
+        except Exception as e:
+            logger.info(f"Tables may already exist: {e}")
+            pass  # Continue even if tables already exist
             
         # Initialize API clients
         ct_api = ClinicalTrialsAPI()
@@ -71,13 +73,13 @@ def main():
         
         # 1. Get clinical trials data
         logger.info("1. Fetching clinical trials data...")
-        studies_result = ct_api.get_studies(page_size=5)  # Small sample for demo
+        studies_result = ct_api.get_studies(page_size=20)  # Larger sample for more data
         
         if studies_result:
             logger.info(f"Retrieved {len(studies_result.get('studies', []))} studies")
             
             # Process each study
-            for study in studies_result.get('studies', [])[:2]:  # Process first 2 for demo
+            for study in studies_result.get('studies', [])[:5]:  # Process first 5 for more data
                 nct_id = study['protocolSection']['identificationModule']['nctId']
                 logger.info(f"Processing study {nct_id}...")
                 

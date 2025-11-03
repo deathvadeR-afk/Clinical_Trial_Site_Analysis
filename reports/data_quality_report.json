@@ -1,0 +1,67 @@
+{
+  "generated_at": "2025-11-03T03:16:30.489953",
+  "completeness": {
+    "sites_master": {
+      "total_records": 24,
+      "complete_records": 24,
+      "completeness_ratio": 1.0
+    },
+    "clinical_trials": {
+      "total_records": 5,
+      "complete_records": 5,
+      "completeness_ratio": 1.0
+    },
+    "investigators": {
+      "total_records": 19,
+      "complete_records": 19,
+      "completeness_ratio": 1.0
+    }
+  },
+  "recency": {
+    "sites_master": {
+      "total_with_dates": 24,
+      "recent_records": 24,
+      "recency_ratio": 1.0
+    },
+    "clinical_trials": {
+      "total_with_dates": 5,
+      "recent_records": 0,
+      "recency_ratio": 0.0
+    }
+  },
+  "consistency": {
+    "duplicate_sites": {
+      "count": 6,
+      "details": [
+        {
+          "site_name": "Alder Hey Children's NHS Foundation Trust",
+          "occurrences": 4
+        },
+        {
+          "site_name": "CHU de Poitiers",
+          "occurrences": 4
+        },
+        {
+          "site_name": "Department of Obstetrics and Gynecology Universita' Dell'Insubria",
+          "occurrences": 4
+        },
+        {
+          "site_name": "First Excellence Research Group LLC",
+          "occurrences": 4
+        },
+        {
+          "site_name": "Liverpool Women's NHS Foundation Trust",
+          "occurrences": 4
+        },
+        {
+          "site_name": "The University of Texas M. D. Anderson Cancer Center",
+          "occurrences": 4
+        }
+      ]
+    },
+    "invalid_date_sequences": {
+      "count": 0,
+      "details": []
+    }
+  }
+}

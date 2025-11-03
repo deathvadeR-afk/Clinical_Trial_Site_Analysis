@@ -6,6 +6,7 @@ import logging
 import os
 from typing import Dict, List, Optional, Any
 import json
+from datetime import datetime
 
 # Set up logging
 log_dir = "../logs"
@@ -194,7 +195,7 @@ class DataValidator:
             # Get validation statistics (simplified)
             quality_report = {
                 'total_records': record_counts,
-                'validation_timestamp': '2025-10-29',  # In practice, would use datetime.now()
+                'validation_timestamp': datetime.now().isoformat(),  # In practice, would use datetime.now()
                 'overall_quality_score': 0.85,  # Placeholder value
                 'issues_found': {
                     'missing_data': 5,
@@ -219,7 +220,7 @@ class DataValidator:
         """
         try:
             quality_report = {
-                'timestamp': '2025-10-29',  # In practice, would use datetime.now()
+                'timestamp': datetime.now().isoformat(),  # In practice, would use datetime.now()
                 'tables_analyzed': [],
                 'missing_data_issues': [],
                 'duplicate_data_issues': [],
@@ -299,7 +300,7 @@ class DataValidator:
         """
         try:
             profiling_report = {
-                'timestamp': '2025-10-29',  # In practice, would use datetime.now()
+                'timestamp': datetime.now().isoformat(),  # In practice, would use datetime.now()
                 'table_statistics': {},
                 'field_distributions': {}
             }

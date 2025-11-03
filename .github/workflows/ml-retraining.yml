@@ -1,0 +1,35 @@
+name: ML Model Retraining
+
+on:
+  schedule:
+    # Run weekly on Monday at 3:00 AM UTC
+    - cron: '0 3 * * 1'
+  workflow_dispatch:  # Allows manual triggering
+
+jobs:
+  ml-retraining:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v3
+    
+    - name: Set up Python 3.9
+      uses: actions/setup-python@v4
+      with:
+        python-version: 3.9
+    
+    - name: Install dependencies
+      run: |
+        python -m pip install --upgrade pip
+        pip install -r requirements.txt
+    
+    - name: Retrain ML models with real data
+      run: |
+        python pipeline/improve_ml_with_real_data.py
+    
+    - name: Commit and push updated models
+      run: |
+        git config --local user.email "action@github.com"
+        git config --local user.name "GitHub Action"
+        git add -A
+        git commit -m "Retrain ML models with latest data [skip ci]" || exit 0
+        git push

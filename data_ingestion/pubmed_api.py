@@ -72,6 +72,7 @@ class PubMedAPI:
         
         if time_since_last_request < min_interval:
             sleep_time = min_interval - time_since_last_request
+            logger.debug(f"Rate limiting: sleeping for {sleep_time:.3f} seconds")
             time.sleep(sleep_time)
             
         self.last_request_time = time.time()

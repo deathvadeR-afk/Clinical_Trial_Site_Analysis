@@ -1,0 +1,270 @@
+2025-11-02 11:45:04,849 - automated_pipeline - INFO - AutomatedPipeline initialized
+2025-11-02 11:45:30,757 - automated_pipeline - INFO - AutomatedPipeline initialized
+2025-11-02 11:45:30,759 - utils.cache_manager - INFO - CacheManager initialized with cache_dir=../cache, default_ttl=1800
+2025-11-02 11:45:30,761 - database.db_manager - INFO - Connected to database at ../clinical_trials.db
+2025-11-02 11:45:30,763 - database.db_manager - ERROR - Query failed: no such column: last_updated
+2025-11-02 11:45:34,647 - __main__ - INFO - AutomatedPipeline initialized
+2025-11-02 11:45:34,648 - __main__ - INFO - Starting automated pipeline run...
+2025-11-02 11:45:34,648 - utils.cache_manager - INFO - CacheManager initialized with cache_dir=../cache, default_ttl=1800
+2025-11-02 11:45:34,650 - database.db_manager - INFO - Connected to database at ../clinical_trials.db
+2025-11-02 11:45:34,652 - database.db_manager - ERROR - Query failed: no such column: last_updated
+2025-11-02 11:45:34,657 - __main__ - INFO - Fetching clinical trials updated since 2025-11-02
+2025-11-02 11:45:34,658 - data_ingestion.clinicaltrials_api - INFO - Getting studies with params: {'pageSize': 10}
+2025-11-02 11:45:34,659 - data_ingestion.clinicaltrials_api - INFO - Making request to https://clinicaltrials.gov/api/v2/studies with params: {'pageSize': 10}
+2025-11-02 11:45:35,218 - data_ingestion.clinicaltrials_api - INFO - Response status code: 200
+2025-11-02 11:45:35,221 - __main__ - INFO - Fetched 10 clinical trials
+2025-11-02 11:45:35,221 - __main__ - INFO - Fetching publication data for 1 investigators
+2025-11-02 11:45:35,222 - data_ingestion.pubmed_api - INFO - Searching PubMed for author: Smith
+2025-11-02 11:45:35,223 - data_ingestion.pubmed_api - INFO - Making request to https://eutils.ncbi.nlm.nih.gov/entrez/eutils/esearch.fcgi with params: {'db': 'pubmed', 'term': 'Smith[Author] AND 2020/01/01:2025/12/31[Date - Publication]', 'retmode': 'json', 'retmax': 100, 'sort': 'pub+date'}
+2025-11-02 11:45:36,071 - data_ingestion.pubmed_api - INFO - Response status code: 200
+2025-11-02 11:45:36,072 - __main__ - INFO - No investigator data found
+2025-11-02 11:45:36,072 - __main__ - INFO - Processing 10 clinical trials
+2025-11-02 11:45:36,073 - __main__ - INFO - Processing study NCT03353935...
+2025-11-02 11:45:36,074 - database.db_manager - ERROR - Failed to insert data into clinical_trials: UNIQUE constraint failed: clinical_trials.nct_id
+2025-11-02 11:45:36,075 - data_ingestion.data_processor - ERROR - Failed to insert clinical trial data for NCT03353935
+2025-11-02 11:45:36,076 - __main__ - ERROR - Failed to process clinical trial data for NCT03353935
+2025-11-02 11:45:36,206 - data_ingestion.data_processor - INFO - Updated site data for Department of Obstetrics and Gynecology Universita' Dell'Insubria
+2025-11-02 11:45:36,207 - __main__ - INFO - Successfully processed site data for NCT03353935
+2025-11-02 11:45:36,334 - data_ingestion.data_processor - INFO - Processed investigator data for Stefano Uccella
+2025-11-02 11:45:36,334 - __main__ - INFO - Successfully processed investigator data for NCT03353935
+2025-11-02 11:45:36,335 - __main__ - INFO - Processing study NCT06858735...
+2025-11-02 11:45:36,335 - database.db_manager - ERROR - Failed to insert data into clinical_trials: UNIQUE constraint failed: clinical_trials.nct_id
+2025-11-02 11:45:36,336 - data_ingestion.data_processor - ERROR - Failed to insert clinical trial data for NCT06858735
+2025-11-02 11:45:36,337 - __main__ - ERROR - Failed to process clinical trial data for NCT06858735
+2025-11-02 11:45:36,444 - data_ingestion.data_processor - INFO - Updated site data for The University of Texas M. D. Anderson Cancer Center
+2025-11-02 11:45:36,445 - __main__ - INFO - Successfully processed site data for NCT06858735
+2025-11-02 11:45:36,446 - __main__ - INFO - Successfully processed investigator data for NCT06858735
+2025-11-02 11:45:36,446 - __main__ - INFO - Processing study NCT01319435...
+2025-11-02 11:45:36,655 - data_ingestion.data_processor - INFO - Processed clinical trial data for NCT01319435
+2025-11-02 11:45:36,656 - __main__ - INFO - Successfully processed clinical trial data for NCT01319435
+2025-11-02 11:45:36,754 - data_ingestion.data_processor - INFO - Processed site data for Alder Hey Children's NHS Foundation Trust
+2025-11-02 11:45:36,866 - data_ingestion.data_processor - INFO - Processed site data for Liverpool Women's NHS Foundation Trust
+2025-11-02 11:45:36,867 - __main__ - INFO - Successfully processed site data for NCT01319435
+2025-11-02 11:45:36,867 - __main__ - INFO - Successfully processed investigator data for NCT01319435
+2025-11-02 11:45:36,868 - __main__ - INFO - Processing study NCT04570735...
+2025-11-02 11:45:36,977 - data_ingestion.data_processor - INFO - Processed clinical trial data for NCT04570735
+2025-11-02 11:45:36,977 - __main__ - INFO - Successfully processed clinical trial data for NCT04570735
+2025-11-02 11:45:37,089 - data_ingestion.data_processor - INFO - Processed site data for CHU de Poitiers
+2025-11-02 11:45:37,090 - __main__ - INFO - Successfully processed site data for NCT04570735
+2025-11-02 11:45:37,090 - __main__ - INFO - Successfully processed investigator data for NCT04570735
+2025-11-02 11:45:37,091 - __main__ - INFO - Processing study NCT06867835...
+2025-11-02 11:45:37,222 - data_ingestion.data_processor - INFO - Processed clinical trial data for NCT06867835
+2025-11-02 11:45:37,223 - __main__ - INFO - Successfully processed clinical trial data for NCT06867835
+2025-11-02 11:45:37,322 - data_ingestion.data_processor - INFO - Processed site data for First Excellence Research Group LLC
+2025-11-02 11:45:37,323 - __main__ - INFO - Successfully processed site data for NCT06867835
+2025-11-02 11:45:37,324 - __main__ - INFO - Successfully processed investigator data for NCT06867835
+2025-11-02 11:45:37,324 - __main__ - INFO - Processed 3 clinical trials successfully
+2025-11-02 11:45:37,325 - __main__ - INFO - Validating processed data...
+2025-11-02 11:45:37,327 - data_ingestion.data_validator - INFO - Created comprehensive data quality report
+2025-11-02 11:45:37,329 - data_ingestion.data_validator - INFO - Built data profiling module
+2025-11-02 11:45:37,329 - __main__ - INFO - Data validation completed
+2025-11-02 11:45:37,330 - __main__ - INFO - Calculating site metrics...
+2025-11-02 11:45:37,330 - __main__ - INFO - Calculating metrics for site 3...
+2025-11-02 11:45:37,331 - analytics.metrics_calculator - INFO - No trial participation data found for site 3
+2025-11-02 11:45:37,332 - analytics.metrics_calculator - INFO - No temporal data found for site 3
+2025-11-02 11:45:37,332 - analytics.metrics_calculator - INFO - No investigators found for site 3
+2025-11-02 11:45:37,333 - analytics.metrics_calculator - INFO - No trial participation data found for site 3
+2025-11-02 11:45:37,333 - analytics.metrics_calculator - INFO - No temporal data found for site 3
+2025-11-02 11:45:37,334 - analytics.metrics_calculator - INFO - No investigators found for site 3
+2025-11-02 11:45:37,334 - analytics.metrics_calculator - INFO - Created capability profile for site 3
+2025-11-02 11:45:37,335 - analytics.match_calculator - INFO - Overall match score: 0.090
+2025-11-02 11:45:37,335 - analytics.match_calculator - INFO - Match scores calculated for site 3
+2025-11-02 11:45:37,336 - analytics.metrics_calculator - INFO - No trial participation data found for site 3
+2025-11-02 11:45:37,337 - analytics.match_calculator - INFO - No performance metrics found for site 3, returning base scores
+2025-11-02 11:45:37,467 - analytics.match_calculator - INFO - Stored match scores for site 3
+2025-11-02 11:45:37,467 - __main__ - INFO - Stored match scores for site 3
+2025-11-02 11:45:37,467 - __main__ - INFO - Successfully calculated metrics for site 3
+2025-11-02 11:45:37,468 - __main__ - INFO - Calculating metrics for site 5...
+2025-11-02 11:45:37,468 - analytics.metrics_calculator - INFO - No trial participation data found for site 5
+2025-11-02 11:45:37,470 - analytics.metrics_calculator - INFO - No temporal data found for site 5
+2025-11-02 11:45:37,471 - analytics.metrics_calculator - INFO - No investigators found for site 5
+2025-11-02 11:45:37,472 - analytics.metrics_calculator - INFO - No trial participation data found for site 5
+2025-11-02 11:45:37,473 - analytics.metrics_calculator - INFO - No temporal data found for site 5
+2025-11-02 11:45:37,474 - analytics.metrics_calculator - INFO - No investigators found for site 5
+2025-11-02 11:45:37,475 - analytics.metrics_calculator - INFO - Created capability profile for site 5
+2025-11-02 11:45:37,476 - analytics.match_calculator - INFO - Overall match score: 0.090
+2025-11-02 11:45:37,476 - analytics.match_calculator - INFO - Match scores calculated for site 5
+2025-11-02 11:45:37,477 - analytics.metrics_calculator - INFO - No trial participation data found for site 5
+2025-11-02 11:45:37,477 - analytics.match_calculator - INFO - No performance metrics found for site 5, returning base scores
+2025-11-02 11:45:37,588 - analytics.match_calculator - INFO - Stored match scores for site 5
+2025-11-02 11:45:37,590 - __main__ - INFO - Stored match scores for site 5
+2025-11-02 11:45:37,590 - __main__ - INFO - Successfully calculated metrics for site 5
+2025-11-02 11:45:37,591 - __main__ - INFO - Calculating metrics for site 1...
+2025-11-02 11:45:37,591 - analytics.metrics_calculator - INFO - No trial participation data found for site 1
+2025-11-02 11:45:37,592 - analytics.metrics_calculator - INFO - No temporal data found for site 1
+2025-11-02 11:45:37,593 - analytics.metrics_calculator - INFO - No investigators found for site 1
+2025-11-02 11:45:37,594 - analytics.metrics_calculator - INFO - No trial participation data found for site 1
+2025-11-02 11:45:37,594 - analytics.metrics_calculator - INFO - No temporal data found for site 1
+2025-11-02 11:45:37,595 - analytics.metrics_calculator - INFO - No investigators found for site 1
+2025-11-02 11:45:37,595 - analytics.metrics_calculator - INFO - Created capability profile for site 1
+2025-11-02 11:45:37,596 - analytics.match_calculator - INFO - Overall match score: 0.090
+2025-11-02 11:45:37,597 - analytics.match_calculator - INFO - Match scores calculated for site 1
+2025-11-02 11:45:37,597 - analytics.metrics_calculator - INFO - No trial participation data found for site 1
+2025-11-02 11:45:37,598 - analytics.match_calculator - INFO - No performance metrics found for site 1, returning base scores
+2025-11-02 11:45:37,723 - analytics.match_calculator - INFO - Stored match scores for site 1
+2025-11-02 11:45:37,724 - __main__ - INFO - Stored match scores for site 1
+2025-11-02 11:45:37,724 - __main__ - INFO - Successfully calculated metrics for site 1
+2025-11-02 11:45:37,725 - __main__ - INFO - Calculating metrics for site 6...
+2025-11-02 11:45:37,726 - analytics.metrics_calculator - INFO - No trial participation data found for site 6
+2025-11-02 11:45:37,727 - analytics.metrics_calculator - INFO - No temporal data found for site 6
+2025-11-02 11:45:37,727 - analytics.metrics_calculator - INFO - No investigators found for site 6
+2025-11-02 11:45:37,728 - analytics.metrics_calculator - INFO - No trial participation data found for site 6
+2025-11-02 11:45:37,728 - analytics.metrics_calculator - INFO - No temporal data found for site 6
+2025-11-02 11:45:37,729 - analytics.metrics_calculator - INFO - No investigators found for site 6
+2025-11-02 11:45:37,729 - analytics.metrics_calculator - INFO - Created capability profile for site 6
+2025-11-02 11:45:37,730 - analytics.match_calculator - INFO - Overall match score: 0.150
+2025-11-02 11:45:37,731 - analytics.match_calculator - INFO - Match scores calculated for site 6
+2025-11-02 11:45:37,731 - analytics.metrics_calculator - INFO - No trial participation data found for site 6
+2025-11-02 11:45:37,731 - analytics.match_calculator - INFO - No performance metrics found for site 6, returning base scores
+2025-11-02 11:45:37,884 - analytics.match_calculator - INFO - Stored match scores for site 6
+2025-11-02 11:45:37,885 - __main__ - INFO - Stored match scores for site 6
+2025-11-02 11:45:37,885 - __main__ - INFO - Successfully calculated metrics for site 6
+2025-11-02 11:45:37,885 - __main__ - INFO - Calculating metrics for site 4...
+2025-11-02 11:45:37,886 - analytics.metrics_calculator - INFO - No trial participation data found for site 4
+2025-11-02 11:45:37,887 - analytics.metrics_calculator - INFO - No temporal data found for site 4
+2025-11-02 11:45:37,888 - analytics.metrics_calculator - INFO - No investigators found for site 4
+2025-11-02 11:45:37,889 - analytics.metrics_calculator - INFO - No trial participation data found for site 4
+2025-11-02 11:45:37,890 - analytics.metrics_calculator - INFO - No temporal data found for site 4
+2025-11-02 11:45:37,891 - analytics.metrics_calculator - INFO - No investigators found for site 4
+2025-11-02 11:45:37,892 - analytics.metrics_calculator - INFO - Created capability profile for site 4
+2025-11-02 11:45:37,893 - analytics.match_calculator - INFO - Overall match score: 0.090
+2025-11-02 11:45:37,893 - analytics.match_calculator - INFO - Match scores calculated for site 4
+2025-11-02 11:45:37,894 - analytics.metrics_calculator - INFO - No trial participation data found for site 4
+2025-11-02 11:45:37,894 - analytics.match_calculator - INFO - No performance metrics found for site 4, returning base scores
+2025-11-02 11:45:38,089 - analytics.match_calculator - INFO - Stored match scores for site 4
+2025-11-02 11:45:38,090 - __main__ - INFO - Stored match scores for site 4
+2025-11-02 11:45:38,090 - __main__ - INFO - Successfully calculated metrics for site 4
+2025-11-02 11:45:38,091 - __main__ - INFO - Calculating metrics for site 2...
+2025-11-02 11:45:38,092 - analytics.metrics_calculator - INFO - No trial participation data found for site 2
+2025-11-02 11:45:38,092 - analytics.metrics_calculator - INFO - No temporal data found for site 2
+2025-11-02 11:45:38,093 - analytics.metrics_calculator - INFO - No investigators found for site 2
+2025-11-02 11:45:38,094 - analytics.metrics_calculator - INFO - No trial participation data found for site 2
+2025-11-02 11:45:38,094 - analytics.metrics_calculator - INFO - No temporal data found for site 2
+2025-11-02 11:45:38,095 - analytics.metrics_calculator - INFO - No investigators found for site 2
+2025-11-02 11:45:38,096 - analytics.metrics_calculator - INFO - Created capability profile for site 2
+2025-11-02 11:45:38,096 - analytics.match_calculator - INFO - Overall match score: 0.150
+2025-11-02 11:45:38,097 - analytics.match_calculator - INFO - Match scores calculated for site 2
+2025-11-02 11:45:38,097 - analytics.metrics_calculator - INFO - No trial participation data found for site 2
+2025-11-02 11:45:38,098 - analytics.match_calculator - INFO - No performance metrics found for site 2, returning base scores
+2025-11-02 11:45:38,222 - analytics.match_calculator - INFO - Stored match scores for site 2
+2025-11-02 11:45:38,223 - __main__ - INFO - Stored match scores for site 2
+2025-11-02 11:45:38,224 - __main__ - INFO - Successfully calculated metrics for site 2
+2025-11-02 11:45:38,224 - __main__ - INFO - Metrics calculation completed
+2025-11-02 11:45:38,225 - __main__ - INFO - Automated pipeline completed successfully in 3.58 seconds
+2025-11-02 11:45:38,226 - database.db_manager - INFO - Disconnected from database
+2025-11-02 11:46:43,330 - __main__ - INFO - DataQualityMonitor initialized
+2025-11-02 11:46:43,331 - __main__ - INFO - Starting data quality monitoring...
+2025-11-02 11:46:43,332 - utils.cache_manager - INFO - CacheManager initialized with cache_dir=../cache, default_ttl=1800
+2025-11-02 11:46:43,335 - database.db_manager - INFO - Connected to database at ../clinical_trials.db
+2025-11-02 11:46:43,338 - data_ingestion.data_validator - INFO - Created comprehensive data quality report
+2025-11-02 11:46:43,340 - data_ingestion.data_validator - INFO - Built data profiling module
+2025-11-02 11:46:43,343 - __main__ - INFO - Data quality report saved to E:\Codecademy\Clinical_Site_Trial_Analysis\pipeline\..\reports\data_quality_report_20251102_114643.json
+2025-11-02 11:46:43,343 - __main__ - INFO - Data Quality Monitoring Summary:
+2025-11-02 11:46:43,344 - __main__ - INFO -   - Sites: 6
+2025-11-02 11:46:43,345 - __main__ - INFO -   - Clinical Trials: 5
+2025-11-02 11:46:43,345 - __main__ - INFO -   - Investigators: 2
+2025-11-02 11:46:43,346 - __main__ - INFO -   - Data Quality Score: 0.00
+2025-11-02 11:46:43,346 - __main__ - INFO - Data quality monitoring completed successfully
+2025-11-02 11:46:43,347 - database.db_manager - INFO - Disconnected from database
+2025-11-02 11:48:44,910 - __main__ - INFO - Starting Clinical Trial Site Analysis Platform
+2025-11-02 11:48:44,911 - __main__ - INFO - Initializing components...
+2025-11-02 11:48:44,912 - utils.cache_manager - INFO - CacheManager initialized with cache_dir=../cache, default_ttl=1800
+2025-11-02 11:48:44,914 - database.db_manager - INFO - Connected to database at clinical_trials.db
+2025-11-02 11:48:47,232 - database.db_manager - INFO - Database tables created successfully
+2025-11-02 11:48:47,233 - __main__ - INFO - All components initialized successfully
+2025-11-02 11:48:47,234 - __main__ - INFO - === Demonstrating Data Ingestion Pipeline ===
+2025-11-02 11:48:47,234 - __main__ - INFO - 1. Fetching clinical trials data...
+2025-11-02 11:48:47,234 - data_ingestion.clinicaltrials_api - INFO - Getting studies with params: {'pageSize': 5}
+2025-11-02 11:48:47,236 - data_ingestion.clinicaltrials_api - INFO - Making request to https://clinicaltrials.gov/api/v2/studies with params: {'pageSize': 5}
+2025-11-02 11:48:47,755 - data_ingestion.clinicaltrials_api - INFO - Response status code: 200
+2025-11-02 11:48:47,757 - __main__ - INFO - Retrieved 5 studies
+2025-11-02 11:48:47,758 - __main__ - INFO - Processing study NCT03353935...
+2025-11-02 11:48:47,898 - data_ingestion.data_processor - INFO - Processed clinical trial data for NCT03353935
+2025-11-02 11:48:47,899 - __main__ - INFO - Successfully processed clinical trial data for NCT03353935
+2025-11-02 11:48:48,018 - data_ingestion.data_processor - INFO - Processed site data for Department of Obstetrics and Gynecology Universita' Dell'Insubria
+2025-11-02 11:48:48,019 - __main__ - INFO - Successfully processed site data for NCT03353935
+2025-11-02 11:48:48,143 - data_ingestion.data_processor - INFO - Processed investigator data for Stefano Uccella
+2025-11-02 11:48:48,143 - __main__ - INFO - Successfully processed investigator data for NCT03353935
+2025-11-02 11:48:48,144 - __main__ - INFO - Processing study NCT06858735...
+2025-11-02 11:48:48,243 - data_ingestion.data_processor - INFO - Processed clinical trial data for NCT06858735
+2025-11-02 11:48:48,243 - __main__ - INFO - Successfully processed clinical trial data for NCT06858735
+2025-11-02 11:48:48,374 - data_ingestion.data_processor - INFO - Processed site data for The University of Texas M. D. Anderson Cancer Center
+2025-11-02 11:48:48,374 - __main__ - INFO - Successfully processed site data for NCT06858735
+2025-11-02 11:48:48,375 - __main__ - INFO - Successfully processed investigator data for NCT06858735
+2025-11-02 11:48:48,375 - __main__ - INFO - 2. Fetching investigator publication data...
+2025-11-02 11:48:48,376 - data_ingestion.pubmed_api - INFO - Searching PubMed for author: Smith J
+2025-11-02 11:48:48,377 - data_ingestion.pubmed_api - INFO - Making request to https://eutils.ncbi.nlm.nih.gov/entrez/eutils/esearch.fcgi with params: {'db': 'pubmed', 'term': 'Smith J[Author] AND 2020/01/01:2025/12/31[Date - Publication]', 'retmode': 'json', 'retmax': 100, 'sort': 'pub+date'}
+2025-11-02 11:48:49,260 - data_ingestion.pubmed_api - INFO - Response status code: 200
+2025-11-02 11:48:49,261 - __main__ - INFO - Found 0 publications for author
+2025-11-02 11:48:49,261 - __main__ - INFO - 3. Validating data...
+2025-11-02 11:48:49,264 - data_ingestion.data_validator - INFO - Created comprehensive data quality report
+2025-11-02 11:48:49,267 - data_ingestion.data_validator - INFO - Built data profiling module
+2025-11-02 11:48:49,267 - __main__ - INFO - Data quality report generated
+2025-11-02 11:48:49,267 - __main__ - INFO - Data profiling report generated
+2025-11-02 11:48:49,268 - __main__ - INFO - 4. Calculating match scores...
+2025-11-02 11:48:49,269 - analytics.match_calculator - INFO - Overall match score: 0.090
+2025-11-02 11:48:49,270 - analytics.match_calculator - INFO - Match scores calculated for site 1
+2025-11-02 11:48:49,270 - __main__ - INFO - Match scores calculated: {'therapeutic_match_score': 0.0, 'phase_match_score': 0.0, 'intervention_match_score': 0.0, 'geographic_match_score': 0.6, 'overall_match_score': 0.09}
+2025-11-02 11:48:49,271 - __main__ - INFO - 5. Generating quality reports...
+2025-11-02 11:48:49,272 - data_ingestion.data_validator - INFO - Generated data quality report
+2025-11-02 11:48:49,273 - __main__ - INFO - Detailed quality report generated
+2025-11-02 11:48:49,274 - __main__ - INFO - === Data Ingestion Pipeline Demo Completed ===
+2025-11-02 11:48:49,274 - __main__ - INFO - Summary of operations:
+2025-11-02 11:48:49,275 - __main__ - INFO - - Clinical trials data fetched and processed
+2025-11-02 11:48:49,275 - __main__ - INFO - - Investigator publication data fetched
+2025-11-02 11:48:49,276 - __main__ - INFO - - Data validation and quality control performed
+2025-11-02 11:48:49,276 - __main__ - INFO - - Match scores calculated for sample data
+2025-11-02 11:48:49,277 - __main__ - INFO - - Quality reports generated
+2025-11-02 11:48:49,278 - database.db_manager - INFO - Disconnected from database
+2025-11-02 11:48:49,278 - __main__ - INFO - Disconnected from database
+2025-11-02 11:48:49,279 - __main__ - INFO - Clinical Trial Site Analysis Platform demo completed successfully
+2025-11-02 11:57:39,544 - utils.cache_manager - INFO - CacheManager initialized with cache_dir=../cache, default_ttl=1800
+2025-11-02 11:57:39,546 - database.db_manager - INFO - Connected to database at e:/Codecademy/Clinical_Site_Trial_Analysis/clinical_trials.db
+2025-11-02 11:57:39,547 - database.db_manager - INFO - Disconnected from database
+2025-11-02 11:57:53,443 - utils.cache_manager - INFO - CacheManager initialized with cache_dir=../cache, default_ttl=1800
+2025-11-02 11:57:53,444 - database.db_manager - INFO - Connected to database at e:/Codecademy/Clinical_Site_Trial_Analysis/clinical_trials.db
+2025-11-02 11:57:53,446 - database.db_manager - INFO - Disconnected from database
+2025-11-02 11:59:00,779 - utils.cache_manager - INFO - CacheManager initialized with cache_dir=../cache, default_ttl=1800
+2025-11-02 11:59:00,781 - database.db_manager - INFO - Connected to database at ../clinical_trials.db
+2025-11-02 11:59:00,785 - utils.cache_manager - ERROR - Error writing cache for key analytics_metrics_summary: Object of type Row is not JSON serializable
+2025-11-02 11:59:00,788 - utils.cache_manager - ERROR - Error writing cache for key analytics_site_count: Object of type Row is not JSON serializable
+2025-11-02 11:59:00,793 - utils.cache_manager - ERROR - Error writing cache for key analytics_country_distribution: Object of type Row is not JSON serializable
+2025-11-02 11:59:02,195 - database.db_manager - INFO - Disconnected from database
+2025-11-02 11:59:36,875 - utils.cache_manager - INFO - CacheManager initialized with cache_dir=../cache, default_ttl=1800
+2025-11-02 11:59:36,877 - database.db_manager - INFO - Connected to database at E:\Codecademy\Clinical_Site_Trial_Analysis\dashboard\pages\../../clinical_trials.db
+2025-11-02 11:59:36,881 - database.db_manager - INFO - Disconnected from database
+2025-11-02 11:59:36,883 - utils.cache_manager - INFO - CacheManager initialized with cache_dir=../cache, default_ttl=1800
+2025-11-02 11:59:36,884 - database.db_manager - INFO - Connected to database at E:\Codecademy\Clinical_Site_Trial_Analysis\dashboard\pages\../../clinical_trials.db
+2025-11-02 11:59:36,886 - database.db_manager - INFO - Disconnected from database
+2025-11-02 11:59:36,905 - utils.cache_manager - INFO - CacheManager initialized with cache_dir=../cache, default_ttl=1800
+2025-11-02 11:59:36,906 - database.db_manager - INFO - Connected to database at E:\Codecademy\Clinical_Site_Trial_Analysis\dashboard\pages\../../clinical_trials.db
+2025-11-02 11:59:36,907 - database.db_manager - INFO - Disconnected from database
+2025-11-02 12:37:39,352 - utils.cache_manager - INFO - CacheManager initialized with cache_dir=../cache, default_ttl=1800
+2025-11-02 12:37:39,354 - database.db_manager - INFO - Connected to database at ../clinical_trials.db
+2025-11-02 12:37:39,356 - utils.cache_manager - ERROR - Error reading cache for key analytics_metrics_summary: Expecting value: line 4 column 5 (char 57)
+2025-11-02 12:37:39,358 - utils.cache_manager - ERROR - Error writing cache for key analytics_metrics_summary: Object of type Row is not JSON serializable
+2025-11-02 12:37:39,359 - utils.cache_manager - ERROR - Error reading cache for key analytics_site_count: Expecting value: line 4 column 5 (char 52)
+2025-11-02 12:37:39,361 - utils.cache_manager - ERROR - Error writing cache for key analytics_site_count: Object of type Row is not JSON serializable
+2025-11-02 12:37:39,364 - utils.cache_manager - ERROR - Error reading cache for key analytics_country_distribution: Expecting value: line 4 column 5 (char 62)
+2025-11-02 12:37:39,366 - utils.cache_manager - ERROR - Error writing cache for key analytics_country_distribution: Object of type Row is not JSON serializable
+2025-11-02 12:37:39,443 - database.db_manager - INFO - Disconnected from database
+2025-11-02 12:41:55,578 - utils.cache_manager - INFO - CacheManager initialized with cache_dir=../cache, default_ttl=1800
+2025-11-02 12:41:55,579 - database.db_manager - INFO - Connected to database at ../clinical_trials.db
+2025-11-02 12:41:55,582 - utils.cache_manager - ERROR - Error reading cache for key analytics_metrics_summary: Expecting value: line 4 column 5 (char 57)
+2025-11-02 12:41:55,585 - utils.cache_manager - ERROR - Error writing cache for key analytics_metrics_summary: Object of type Row is not JSON serializable
+2025-11-02 12:41:55,587 - utils.cache_manager - ERROR - Error reading cache for key analytics_site_count: Expecting value: line 4 column 5 (char 52)
+2025-11-02 12:41:55,588 - utils.cache_manager - ERROR - Error writing cache for key analytics_site_count: Object of type Row is not JSON serializable
+2025-11-02 12:41:55,592 - utils.cache_manager - ERROR - Error reading cache for key analytics_country_distribution: Expecting value: line 4 column 5 (char 62)
+2025-11-02 12:41:55,594 - utils.cache_manager - ERROR - Error writing cache for key analytics_country_distribution: Object of type Row is not JSON serializable
+2025-11-02 12:41:55,659 - utils.cache_manager - ERROR - Error writing cache for key analytics_site_info: Object of type Row is not JSON serializable
+2025-11-02 12:41:55,668 - utils.cache_manager - ERROR - Error writing cache for key analytics_trial_info: Object of type Row is not JSON serializable
+2025-11-02 12:41:55,674 - database.db_manager - INFO - Disconnected from database
+2025-11-02 12:58:08,601 - utils.cache_manager - INFO - CacheManager initialized with cache_dir=../cache, default_ttl=1800
+2025-11-02 12:58:08,603 - database.db_manager - INFO - Connected to database at E:\Codecademy\Clinical_Site_Trial_Analysis\dashboard\pages\../../clinical_trials.db
+2025-11-02 12:58:08,606 - database.db_manager - INFO - Disconnected from database
+2025-11-02 12:58:08,608 - utils.cache_manager - INFO - CacheManager initialized with cache_dir=../cache, default_ttl=1800
+2025-11-02 12:58:08,609 - database.db_manager - INFO - Connected to database at E:\Codecademy\Clinical_Site_Trial_Analysis\dashboard\pages\../../clinical_trials.db
+2025-11-02 12:58:08,611 - database.db_manager - INFO - Disconnected from database
+2025-11-02 12:58:08,626 - utils.cache_manager - INFO - CacheManager initialized with cache_dir=../cache, default_ttl=1800
+2025-11-02 12:58:08,628 - database.db_manager - INFO - Connected to database at E:\Codecademy\Clinical_Site_Trial_Analysis\dashboard\pages\../../clinical_trials.db
+2025-11-02 12:58:08,630 - database.db_manager - INFO - Disconnected from database

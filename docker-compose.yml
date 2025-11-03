@@ -1,0 +1,53 @@
+version: '3.8'
+
+services:
+  # Main application service
+  clinical-trial-app:
+    build: .
+    container_name: clinical-trial-analysis-app
+    ports:
+      - "8501:8501"  # Streamlit dashboard
+    volumes:
+      - ./logs:/app/logs
+      - ./cache:/app/cache
+      - ./reports:/app/reports
+      - clinical-trials-data:/app/data
+    environment:
+      - PYTHONPATH=/app
+    networks:
+      - clinical-trial-network
+
+  # Data ingestion service (scheduled)
+  data-ingestion:
+    build: .
+    container_name: clinical-trial-data-ingestion
+    command: python pipeline/automated_pipeline.py
+    volumes:
+      - ./logs:/app/logs
+      - clinical-trials-data:/app/data
+    environment:
+      - PYTHONPATH=/app
+    networks:
+      - clinical-trial-network
+
+  # ML training service
+  ml-training:
+    build: .
+    container_name: clinical-trial-ml-training
+    command: python pipeline/improve_ml_with_real_data.py
+    volumes:
+      - ./logs:/app/logs
+      - clinical-trials-data:/app/data
+    environment:
+      - PYTHONPATH=/app
+    networks:
+      - clinical-trial-network
+
+# Volumes for data persistence
+volumes:
+  clinical-trials-data:
+
+# Networks for service communication
+networks:
+  clinical-trial-network:
+    driver: bridge

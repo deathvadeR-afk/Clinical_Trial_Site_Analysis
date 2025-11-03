@@ -6,10 +6,12 @@ import sys
 import os
 import pandas as pd
 import plotly.express as px
-import plotly.graph_objects as go
 
 # Add the project root to the Python path
 sys.path.append(os.path.dirname(os.path.abspath(__file__)) + "/../../")
+
+# Import database manager
+from database.db_manager import DatabaseManager
 
 def show_analytics_page():
     """Display the analytics page"""
@@ -18,48 +20,209 @@ def show_analytics_page():
     
     st.write("Comprehensive analytics and performance metrics for clinical trial sites.")
     
-    # Sample metrics visualization
+    # Initialize database connection
+    db_manager = DatabaseManager("clinical_trials.db")
+    if not db_manager.connect():
+        st.error("Failed to connect to database. Showing sample data instead.")
+        show_sample_data()
+        return
+    
+    try:
+        # Fetch real metrics data from database with caching
+        st.subheader("Performance Metrics")
+        
+        # Get site metrics summary with caching
+        metrics_query = """
+        SELECT 
+            COUNT(*) as total_sites,
+            AVG(completion_ratio) as avg_completion_rate,
+            AVG(recruitment_efficiency_score) as avg_recruitment_efficiency,
+            AVG(experience_index) as avg_experience_index
+        FROM site_metrics
+        WHERE completion_ratio IS NOT NULL
+        """
+        
+        metrics_result = db_manager.query(metrics_query, use_cache=True, cache_key="analytics_metrics_summary")
+        if metrics_result and metrics_result[0]['total_sites'] > 0:
+            metrics_data = metrics_result[0]
+            col1, col2, col3, col4 = st.columns(4)
+            
+            with col1:
+                st.metric("Total Sites", metrics_data['total_sites'])
+            
+            with col2:
+                st.metric("Avg Completion Rate", f"{metrics_data['avg_completion_rate']:.1%}")
+            
+            with col3:
+                st.metric("Avg Recruitment Efficiency", f"{metrics_data['avg_recruitment_efficiency']:.1f}")
+            
+            with col4:
+                st.metric("Avg Experience Index", f"{metrics_data['avg_experience_index']:.1f}")
+        else:
+            # If no metrics data, show basic site count
+            site_count_query = "SELECT COUNT(*) as total_sites FROM sites_master"
+            site_count_result = db_manager.query(site_count_query, use_cache=True, cache_key="analytics_site_count")
+            if site_count_result:
+                st.metric("Total Sites", site_count_result[0]['total_sites'])
+            else:
+                st.metric("Total Sites", "N/A")
+            st.info("No detailed metrics data available yet. Run the full data pipeline to generate metrics.")
+        
+        # Create real charts from database data with caching
+        st.subheader("Site Distribution")
+        
+        # Get country distribution with caching
+        country_query = """
+        SELECT 
+            country,
+            COUNT(*) as site_count
+        FROM sites_master
+        WHERE country IS NOT NULL
+        GROUP BY country
+        ORDER BY site_count DESC
+        """
+        
+        country_result = db_manager.query(country_query, use_cache=True, cache_key="analytics_country_distribution")
+        if country_result:
+            # Convert query results to properly formatted DataFrame
+            country_data = []
+            for row in country_result:
+                country_data.append({
+                    'country': row['country'],
+                    'site_count': row['site_count']
+                })
+            country_df = pd.DataFrame(country_data)
+            fig1 = px.bar(country_df, x='country', y='site_count', 
+                         title='Sites by Country')
+            fig1.update_layout(xaxis_title="Country", yaxis_title="Number of Sites")
+            st.plotly_chart(fig1, use_container_width=True)
+        else:
+            st.info("No country data available.")
+        
+        # Performance distribution scatter plot
+        st.subheader("Site Information")
+        
+        # Get basic site information with caching
+        site_info_query = """
+        SELECT 
+            site_name,
+            city,
+            state,
+            country,
+            institution_type
+        FROM sites_master
+        WHERE site_name IS NOT NULL
+        ORDER BY site_name
+        """
+        
+        site_info_result = db_manager.query(site_info_query, use_cache=True, cache_key="analytics_site_info")
+        if site_info_result:
+            # Convert query results to properly formatted DataFrame
+            site_info_data = []
+            for row in site_info_result:
+                site_info_data.append({
+                    'site_name': row['site_name'],
+                    'city': row['city'] or '',
+                    'state': row['state'] or '',
+                    'country': row['country'] or '',
+                    'institution_type': row['institution_type'] or ''
+                })
+            site_info_df = pd.DataFrame(site_info_data)
+            st.dataframe(site_info_df)
+        else:
+            st.info("No site information available.")
+            
+        # Clinical trial information
+        st.subheader("Clinical Trials")
+        
+        trial_info_query = """
+        SELECT 
+            nct_id,
+            title,
+            status,
+            phase,
+            conditions
+        FROM clinical_trials
+        ORDER BY title
+        """
+        
+        trial_info_result = db_manager.query(trial_info_query, use_cache=True, cache_key="analytics_trial_info")
+        if trial_info_result:
+            # Convert query results to properly formatted DataFrame
+            trial_info_data = []
+            for row in trial_info_result:
+                trial_info_data.append({
+                    'nct_id': row['nct_id'],
+                    'title': row['title'] or '',
+                    'status': row['status'] or '',
+                    'phase': row['phase'] or '',
+                    'conditions': row['conditions'] or ''
+                })
+            trial_info_df = pd.DataFrame(trial_info_data)
+            st.dataframe(trial_info_df)
+        else:
+            st.info("No clinical trial information available.")
+            
+    except Exception as e:
+        st.error(f"Error fetching data from database: {str(e)}")
+        st.info("Showing sample data instead.")
+        show_sample_data()
+    finally:
+        db_manager.disconnect()
+
+def show_sample_data():
+    """Display sample data when database is not available or has no relevant data"""
     st.subheader("Performance Metrics")
-    st.info("In a full implementation, this would show interactive charts and visualizations.")
+    st.info("In a full implementation with real data, this would show interactive charts and visualizations.")
     
     # Sample metrics
-    metrics_data = [
-        {"Metric": "Average Enrollment Time", "Value": "4.2 months"},
-        {"Metric": "Completion Rate", "Value": "87%"},
-        {"Metric": "Protocol Adherence", "Value": "93%"},
-        {"Metric": "Data Quality Score", "Value": "91%"},
-    ]
-    
-    st.table(metrics_data)
+    col1, col2, col3, col4 = st.columns(4)
+    with col1:
+        st.metric("Total Sites", "1,248")
+    with col2:
+        st.metric("Avg Completion Rate", "87%")
+    with col3:
+        st.metric("Avg Recruitment Efficiency", "92.5")
+    with col4:
+        st.metric("Avg Experience Index", "88.3")
     
     # Create sample charts
-    st.subheader("Trend Analysis")
+    st.subheader("Site Distribution")
     
-    # Sample trend data
-    trend_data = pd.DataFrame({
-        'Month': ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct'],
-        'Sites': [120, 135, 142, 156, 168, 182, 195, 210, 225, 240],
-        'Trials': [85, 92, 98, 105, 118, 126, 134, 142, 156, 168]
+    # Sample country data
+    country_data = pd.DataFrame({
+        'country': ['United States', 'Germany', 'United Kingdom', 'Canada', 'France', 'Italy', 'Australia', 'Japan'],
+        'site_count': [420, 180, 156, 98, 87, 76, 65, 58]
     })
     
-    # Line chart
-    fig1 = px.line(trend_data, x='Month', y=['Sites', 'Trials'], 
-                   title='Growth Trends')
+    # Bar chart
+    fig1 = px.bar(country_data, x='country', y='site_count', 
+                  title='Sites by Country (Sample Data)')
     st.plotly_chart(fig1, use_container_width=True)
     
-    # Sample distribution data
-    st.subheader("Performance Distribution")
-    distribution_data = pd.DataFrame({
-        'Site': ['Mayo Clinic', 'Johns Hopkins', 'Cleveland Clinic', 'Mass General', 'Stanford'],
-        'Completion_Rate': [94, 91, 89, 92, 88],
-        'Enrollment_Efficiency': [92, 89, 87, 90, 85]
+    # Sample site information
+    st.subheader("Sample Sites")
+    sample_sites = pd.DataFrame({
+        'site_name': ['Mayo Clinic', 'Johns Hopkins Hospital', 'Cleveland Clinic', 'Massachusetts General Hospital', 'Stanford Health Care'],
+        'city': ['Rochester', 'Baltimore', 'Cleveland', 'Boston', 'Stanford'],
+        'state': ['MN', 'MD', 'OH', 'MA', 'CA'],
+        'country': ['United States', 'United States', 'United States', 'United States', 'United States'],
+        'institution_type': ['Academic Medical Center', 'Academic Medical Center', 'Academic Medical Center', 'Academic Medical Center', 'Academic Medical Center']
     })
     
-    # Scatter plot
-    fig2 = px.scatter(distribution_data, x='Completion_Rate', y='Enrollment_Efficiency',
-                      text='Site', title='Performance Matrix')
-    fig2.update_traces(textposition='top center')
-    st.plotly_chart(fig2, use_container_width=True)
+    st.dataframe(sample_sites)
+    
+    # Sample trial information
+    st.subheader("Sample Clinical Trials")
+    sample_trials = pd.DataFrame({
+        'nct_id': ['NCT03353935', 'NCT06858735', 'NCT05432198', 'NCT04321098', 'NCT03210987'],
+        'title': ['Functional Outcomes After Nerve Sparing Surgery for Deep Endometriosis', 'HYPERION CCA: a Phase 2 Trial', 'Novel Immunotherapy for Melanoma', 'Cardiovascular Outcomes in Diabetes', 'Alzheimer\'s Disease Prevention Study'],
+        'status': ['COMPLETED', 'RECRUITING', 'ACTIVE', 'COMPLETED', 'RECRUITING'],
+        'phase': ['N/A', 'PHASE 2', 'PHASE 3', 'PHASE 4', 'PHASE 1'],
+        'conditions': ['Endometriosis', 'Cholangiocarcinoma', 'Melanoma', 'Diabetes', 'Alzheimer Disease']
+    })
+    
+    st.dataframe(sample_trials)
 
 if __name__ == "__main__":
     show_analytics_page()

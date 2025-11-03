@@ -1,0 +1,10 @@
+services:
+  clinical-trial-app:
+    build: .
+    ports:
+      - "8501:8501"
+    volumes:
+      - .:/app
+    environment:
+      - PYTHONPATH=/app
+    command: streamlit run dashboard/app.py --server.port=8501 --server.address=0.0.0.0

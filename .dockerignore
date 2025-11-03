@@ -1,0 +1,57 @@
+# Ignore git directory
+.git
+.gitignore
+
+# Ignore Python cache and compiled files
+__pycache__
+*.pyc
+*.pyo
+*.pyd
+.Python
+*.so
+.coverage
+.coverage.*
+.cache
+
+# Ignore virtual environments
+venv
+venv/
+.env
+.venv
+.venv/
+
+# Ignore test files
+tests/
+test_*
+*_test.py
+
+# Ignore log files
+logs/
+*.log
+
+# Ignore cache directories
+.pytest_cache
+.pytest_cache/
+
+# Ignore database files (except we'll mount them as volumes)
+*.db
+*.db-journal
+
+# Ignore IDE files
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# Ignore OS generated files
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+Thumbs.db
+
+# Ignore cache and reports
+cache/
+reports/

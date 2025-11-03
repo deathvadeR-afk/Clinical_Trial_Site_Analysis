@@ -12,6 +12,147 @@ from streamlit_folium import st_folium
 # Add the project root to the Python path
 sys.path.append(os.path.dirname(os.path.abspath(__file__)) + "/../../")
 
+# Import database manager
+from database.db_manager import DatabaseManager
+
+def get_db_connection():
+    """Create and return a database connection"""
+    db_path = "clinical_trials.db"
+    db_manager = DatabaseManager(db_path)
+    if db_manager.connect():
+        return db_manager
+    return None
+
+def fetch_sites_data(search_term="", therapeutic_area="All", country="All"):
+    """Fetch sites data from database with optional filters"""
+    db_manager = get_db_connection()
+    if not db_manager:
+        return []
+    
+    try:
+        # Base query
+        query = """
+        SELECT site_id, site_name, city, state, country, institution_type, 
+               total_capacity, accreditation_status
+        FROM sites_master 
+        WHERE 1=1
+        """
+        params = []
+        
+        # Add search filter
+        if search_term:
+            query += " AND (site_name LIKE ? OR city LIKE ? OR state LIKE ? OR country LIKE ?)"
+            search_pattern = f"%{search_term}%"
+            params.extend([search_pattern, search_pattern, search_pattern, search_pattern])
+        
+        # Add country filter
+        if country != "All":
+            query += " AND country = ?"
+            params.append(country)
+        
+        # Order by site name
+        query += " ORDER BY site_name"
+        
+        results = db_manager.query(query, tuple(params))
+        db_manager.disconnect()
+        
+        # Convert to list of dictionaries
+        sites_data = []
+        for row in results:
+            sites_data.append({
+                "ID": row["site_id"],
+                "Name": row["site_name"],
+                "City": row["city"] or "",
+                "State": row["state"] or "",
+                "Country": row["country"] or "",
+                "Institution Type": row["institution_type"] or "Unknown",
+                "Total Capacity": row["total_capacity"] or 0,
+                "Accreditation": row["accreditation_status"] or "Unknown"
+            })
+        
+        return sites_data
+    except Exception as e:
+        st.error(f"Error fetching sites data: {e}")
+        if db_manager:
+            db_manager.disconnect()
+        return []
+
+def fetch_site_metrics():
+    """Fetch site metrics data from database"""
+    db_manager = get_db_connection()
+    if not db_manager:
+        return []
+    
+    try:
+        query = """
+        SELECT sm.site_id, sm.site_name, sm.city, sm.country,
+               COALESCE(sm.total_capacity, 0) as capacity,
+               COALESCE(met.total_studies, 0) as total_studies,
+               COALESCE(met.completion_ratio, 0) as completion_ratio
+        FROM sites_master sm
+        LEFT JOIN site_metrics met ON sm.site_id = met.site_id
+        ORDER BY sm.site_name
+        LIMIT 100
+        """
+        
+        results = db_manager.query(query)
+        db_manager.disconnect()
+        
+        # Convert to list of dictionaries
+        metrics_data = []
+        for row in results:
+            # Convert completion ratio to percentage
+            completion_pct = round(row["completion_ratio"] * 100, 1) if row["completion_ratio"] else 0
+            
+            metrics_data.append({
+                "ID": row["site_id"],
+                "Name": row["site_name"],
+                "Location": f"{row['city'] or ''}, {row['country'] or ''}".strip(", "),
+                "Studies": row["total_studies"] or 0,
+                "Success Rate": f"{completion_pct}%"
+            })
+        
+        return metrics_data
+    except Exception as e:
+        st.error(f"Error fetching site metrics: {e}")
+        if db_manager:
+            db_manager.disconnect()
+        return []
+
+def fetch_map_data():
+    """Fetch geographical data for map visualization"""
+    db_manager = get_db_connection()
+    if not db_manager:
+        return pd.DataFrame()
+    
+    try:
+        query = """
+        SELECT site_id, site_name, city, state, country, latitude, longitude
+        FROM sites_master 
+        WHERE latitude IS NOT NULL AND longitude IS NOT NULL
+        ORDER BY site_name
+        """
+        
+        results = db_manager.query(query)
+        db_manager.disconnect()
+        
+        # Convert to DataFrame
+        map_data = []
+        for row in results:
+            map_data.append({
+                'lat': row["latitude"],
+                'lon': row["longitude"],
+                'name': row["site_name"],
+                'location': f"{row['city'] or ''}, {row['state'] or ''}, {row['country'] or ''}".strip(", ")
+            })
+        
+        return pd.DataFrame(map_data)
+    except Exception as e:
+        st.error(f"Error fetching map data: {e}")
+        if db_manager:
+            db_manager.disconnect()
+        return pd.DataFrame()
+
 def show_site_explorer_page():
     """Display the site explorer page"""
     st.title("🔍 Site Explorer")
@@ -37,44 +178,53 @@ def show_site_explorer_page():
             ["All", "United States", "Canada", "United Kingdom", "Germany", "Other"]
         )
     
-    # Display sample sites data
+    # Fetch real data from database
+    sites_data = fetch_sites_data(search_term, therapeutic_area, country)
+    metrics_data = fetch_site_metrics()
+    
+    # Display sites data
     st.subheader("Sites Database")
-    st.write("Displaying sample sites from the database:")
+    st.write(f"Displaying {len(sites_data)} sites from the database:")
     
-    # Sample data - in a real implementation, this would come from the database
-    sample_sites = [
-        {"ID": 1, "Name": "Mayo Clinic", "Location": "Rochester, MN", "Studies": 127, "Success Rate": "94%"},
-        {"ID": 2, "Name": "Johns Hopkins Hospital", "Location": "Baltimore, MD", "Studies": 98, "Success Rate": "91%"},
-        {"ID": 3, "Name": "Cleveland Clinic", "Location": "Cleveland, OH", "Studies": 87, "Success Rate": "89%"},
-        {"ID": 4, "Name": "Massachusetts General Hospital", "Location": "Boston, MA", "Studies": 112, "Success Rate": "92%"},
-        {"ID": 5, "Name": "Stanford Health Care", "Location": "Stanford, CA", "Studies": 76, "Success Rate": "88%"},
-    ]
+    if sites_data:
+        # Convert to DataFrame for better display
+        df = pd.DataFrame(sites_data)
+        st.dataframe(df, use_container_width=True)
+    else:
+        st.info("No sites found matching your criteria.")
     
-    st.table(sample_sites)
+    # Display metrics data in table format
+    st.subheader("Site Performance Metrics")
+    st.write("Key performance indicators for clinical trial sites:")
     
-    # Create a simple map visualization
+    if metrics_data:
+        # Display as table
+        metrics_df = pd.DataFrame(metrics_data)
+        st.table(metrics_df)
+    else:
+        st.info("No metrics data available.")
+    
+    # Create a map visualization
     st.subheader("Site Locations")
     st.write("Interactive map showing site locations:")
     
-    # Sample map data
-    map_data = pd.DataFrame({
-        'lat': [44.0237, 39.2964, 41.5022, 42.3625, 37.4316],
-        'lon': [-92.4665, -76.5922, -81.6722, -71.0750, -122.1774],
-        'name': ['Mayo Clinic', 'Johns Hopkins', 'Cleveland Clinic', 'Mass General', 'Stanford']
-    })
-    
-    # Create a simple map using Plotly
-    fig = px.scatter_mapbox(
-        map_data, 
-        lat="lat", 
-        lon="lon", 
-        hover_name="name",
-        zoom=3,
-        height=400
-    )
-    fig.update_layout(mapbox_style="open-street-map")
-    fig.update_layout(margin={"r":0,"t":0,"l":0,"b":0})
-    st.plotly_chart(fig, use_container_width=True)
+    map_data = fetch_map_data()
+    if not map_data.empty and len(map_data) > 0:
+        # Create a simple map using Plotly
+        fig = px.scatter_mapbox(
+            map_data, 
+            lat="lat", 
+            lon="lon", 
+            hover_name="name",
+            hover_data=["location"],
+            zoom=2,
+            height=500
+        )
+        fig.update_layout(mapbox_style="open-street-map")
+        fig.update_layout(margin={"r":0,"t":0,"l":0,"b":0})
+        st.plotly_chart(fig, use_container_width=True)
+    else:
+        st.info("No geographical data available for mapping.")
 
 if __name__ == "__main__":
     show_site_explorer_page()

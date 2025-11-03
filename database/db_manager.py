@@ -7,8 +7,11 @@ import os
 import logging
 from typing import Optional, List, Dict, Any
 
+# Import cache manager
+from utils.cache_manager import CacheManager
+
 # Set up logging
-log_dir = "../logs"
+log_dir = "logs"
 os.makedirs(log_dir, exist_ok=True)
 
 # Create logger for this module
@@ -41,7 +44,7 @@ logger.addHandler(console_handler)
 class DatabaseManager:
     """Manager for SQLite database operations"""
     
-    def __init__(self, db_path: str = "../clinical_trials.db"):
+    def __init__(self, db_path: str = "clinical_trials.db"):
         """
         Initialize the database manager
         
@@ -50,6 +53,7 @@ class DatabaseManager:
         """
         self.db_path = db_path
         self.connection = None
+        self.cache_manager = CacheManager(cache_dir="cache", default_ttl=1800)  # 30 minutes default TTL
         
     def connect(self) -> bool:
         """
@@ -74,7 +78,7 @@ class DatabaseManager:
             self.connection = None
             logger.info("Disconnected from database")
     
-    def create_tables(self, schema_file: str = "schema.sql") -> bool:
+    def create_tables(self, schema_file: str = "database/schema.sql") -> bool:
         """
         Create database tables from schema file
         
@@ -89,19 +93,11 @@ class DatabaseManager:
             return False
             
         try:
-            # Handle relative paths correctly
+            # Handle relative paths correctly using absolute paths
             if not os.path.isabs(schema_file):
-                # Try to find the schema file relative to the database directory
-                db_dir = os.path.dirname(os.path.abspath(__file__))
-                schema_path = os.path.join(db_dir, schema_file)
-                if not os.path.exists(schema_path):
-                    # Try one level up (for when called from tests directory)
-                    schema_path = os.path.join(db_dir, "..", "database", schema_file)
-                    schema_path = os.path.abspath(schema_path)
-                    if not os.path.exists(schema_path):
-                        # Try the direct path from project root
-                        schema_path = os.path.join(db_dir, "..", schema_file)
-                        schema_path = os.path.abspath(schema_path)
+                # Get the project root directory
+                project_root = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+                schema_path = os.path.join(project_root, schema_file)
             else:
                 schema_path = schema_file
                 
@@ -199,13 +195,15 @@ class DatabaseManager:
             logger.error(f"Failed to insert data into {table}: {e}")
             return False
     
-    def query(self, sql: str, params: Optional[tuple] = None) -> List[sqlite3.Row]:
+    def query(self, sql: str, params: Optional[tuple] = None, use_cache: bool = False, cache_key: Optional[str] = None) -> List[sqlite3.Row]:
         """
         Execute SELECT query and return results
         
         Args:
             sql: SQL SELECT statement
             params: Query parameters
+            use_cache: Whether to use caching
+            cache_key: Custom cache key (if None, generated from SQL and params)
             
         Returns:
             List of rows matching query
@@ -213,14 +211,36 @@ class DatabaseManager:
         if not self.connection:
             logger.error("No database connection")
             return []
+        
+        # Use cache if requested
+        if use_cache:
+            # Generate cache key if not provided
+            if cache_key is None:
+                cache_key = f"query_{hash(sql + str(params))}"
             
+            # Try to get from cache
+            cached_result = self.cache_manager.get(cache_key)
+            if cached_result is not None:
+                logger.debug(f"Cache hit for query: {cache_key}")
+                return cached_result
+            else:
+                logger.debug(f"Cache miss for query: {cache_key}")
+        
         try:
             cursor = self.connection.cursor()
             if params:
                 cursor.execute(sql, params)
             else:
                 cursor.execute(sql)
-            return cursor.fetchall()
+            
+            result = cursor.fetchall()
+            
+            # Cache the result if requested
+            if use_cache and cache_key:
+                self.cache_manager.set(cache_key, result)
+                logger.debug(f"Cached query result for key: {cache_key}")
+            
+            return result
         except sqlite3.Error as e:
             logger.error(f"Query failed: {e}")
             return []

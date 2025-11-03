@@ -1,1 +1,1 @@
-# Auto-generated file
+"""Database module for Clinical Trial Site Analysis Platform"""
