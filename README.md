@@ -19,6 +19,18 @@ start.bat
 ./start.sh
 ```
 
+### Using consolidated analysis scripts:
+
+**Analyze data for ML readiness:**
+```bash
+python data_analysis.py
+```
+
+**Run ML operations (training and clustering):**
+```bash
+python ml_operations.py
+```
+
 ### Using Docker Compose directly:
 
 ```bash

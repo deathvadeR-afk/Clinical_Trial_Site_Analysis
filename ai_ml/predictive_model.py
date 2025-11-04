@@ -121,8 +121,13 @@ class PredictiveEnrollmentModel:
             ).codes
 
             # Calculate enrollment duration
-            df["start_date"] = pd.to_datetime(df["start_date"])
-            df["completion_date"] = pd.to_datetime(df["completion_date"])
+            # Handle different date formats
+            df["start_date"] = pd.to_datetime(df["start_date"], format='mixed', errors='coerce')
+            df["completion_date"] = pd.to_datetime(df["completion_date"], format='mixed', errors='coerce')
+            
+            # Remove rows with invalid dates
+            df = df.dropna(subset=['start_date', 'completion_date'])
+            
             df["enrollment_duration_days"] = (
                 df["completion_date"] - df["start_date"]
             ).dt.days

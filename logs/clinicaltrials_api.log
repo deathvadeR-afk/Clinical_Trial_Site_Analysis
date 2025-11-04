@@ -1049,3 +1049,523 @@
 2025-11-03 15:38:11,811 - data_ingestion.clinicaltrials_api - INFO - Making request to https://clinicaltrials.gov/api/v2/studies with params: {'pageSize': 5}
 2025-11-03 15:38:12,149 - data_ingestion.clinicaltrials_api - INFO - Response status code: 200
 2025-11-03 15:38:12,160 - data_ingestion.clinicaltrials_api - INFO - Response status code: 200
+2025-11-03 17:02:51,637 - data_ingestion.clinicaltrials_api - INFO - Making request to https://clinicaltrials.gov/api/v2/studies with params: {'fmt': 'json', 'filter.overallStatus': ' recruiting, active, completed, withdrawn, terminated, unknown_status', 'filter.lastUpdateDate': '[2025-10-04,]', 'pageSize': 100}
+2025-11-03 17:02:52,392 - data_ingestion.clinicaltrials_api - INFO - Response status code: 400
+2025-11-03 17:02:52,393 - data_ingestion.clinicaltrials_api - ERROR - HTTP Error: 400 Client Error: Bad Request for url: https://clinicaltrials.gov/api/v2/studies?fmt=json&filter.overallStatus=+recruiting%2C+active%2C+completed%2C+withdrawn%2C+terminated%2C+unknown_status&filter.lastUpdateDate=%5B2025-10-04%2C%5D&pageSize=100
+2025-11-03 17:02:52,394 - data_ingestion.clinicaltrials_api - ERROR - Response content: `fmt` is unknown parameter
+2025-11-03 17:03:36,690 - data_ingestion.clinicaltrials_api - INFO - Getting studies with params: {'pageSize': 10}
+2025-11-03 17:03:36,691 - data_ingestion.clinicaltrials_api - INFO - Making request to https://clinicaltrials.gov/api/v2/studies with params: {'pageSize': 10}
+2025-11-03 17:03:37,314 - data_ingestion.clinicaltrials_api - INFO - Response status code: 200
+2025-11-03 17:03:44,648 - data_ingestion.clinicaltrials_api - INFO - Getting studies with params: {'pageSize': 100}
+2025-11-03 17:03:44,649 - data_ingestion.clinicaltrials_api - INFO - Making request to https://clinicaltrials.gov/api/v2/studies with params: {'pageSize': 100}
+2025-11-03 17:03:45,982 - data_ingestion.clinicaltrials_api - INFO - Response status code: 200
+2025-11-03 18:02:50,520 - data_ingestion.clinicaltrials_api - INFO - Getting studies with params: {'pageSize': 1000}
+2025-11-03 18:02:50,552 - data_ingestion.clinicaltrials_api - INFO - Making request to https://clinicaltrials.gov/api/v2/studies with params: {'pageSize': 1000}
+2025-11-03 18:02:53,350 - data_ingestion.clinicaltrials_api - INFO - Response status code: 200
+2025-11-03 18:02:53,869 - data_ingestion.clinicaltrials_api - INFO - Getting studies with params: {'pageSize': 1000, 'pageToken': 'ZVNj7o2Elu8o3lptWdamo-32mo6QfJRuYven1fg'}
+2025-11-03 18:02:53,871 - data_ingestion.clinicaltrials_api - INFO - Making request to https://clinicaltrials.gov/api/v2/studies with params: {'pageSize': 1000, 'pageToken': 'ZVNj7o2Elu8o3lptWdamo-32mo6QfJRuYven1fg'}
+2025-11-03 18:02:55,939 - data_ingestion.clinicaltrials_api - INFO - Response status code: 200
+2025-11-03 18:02:56,385 - data_ingestion.clinicaltrials_api - INFO - Getting studies with params: {'pageSize': 1000, 'pageToken': 'ZVNj7o2Elu8o3lptWdamo-32mo6QfpBmbfig3vg'}
+2025-11-03 18:02:56,386 - data_ingestion.clinicaltrials_api - INFO - Making request to https://clinicaltrials.gov/api/v2/studies with params: {'pageSize': 1000, 'pageToken': 'ZVNj7o2Elu8o3lptWdamo-32mo6QfpBmbfig3vg'}
+2025-11-03 18:02:58,847 - data_ingestion.clinicaltrials_api - INFO - Response status code: 200
+2025-11-03 18:02:59,347 - data_ingestion.clinicaltrials_api - INFO - Getting studies with params: {'pageSize': 1000, 'pageToken': 'ZVNj7o2Elu8o3lptWdamo-32mo6QfZNobPmt2vg'}
+2025-11-03 18:02:59,348 - data_ingestion.clinicaltrials_api - INFO - Making request to https://clinicaltrials.gov/api/v2/studies with params: {'pageSize': 1000, 'pageToken': 'ZVNj7o2Elu8o3lptWdamo-32mo6QfZNobPmt2vg'}
+2025-11-03 18:03:01,604 - data_ingestion.clinicaltrials_api - INFO - Response status code: 200
+2025-11-03 18:03:02,088 - data_ingestion.clinicaltrials_api - INFO - Getting studies with params: {'pageSize': 1000, 'pageToken': 'ZVNj7o2Elu8o3lptWdamo-32mo6QfZ9qZvKj3_g'}
+2025-11-03 18:03:02,089 - data_ingestion.clinicaltrials_api - INFO - Making request to https://clinicaltrials.gov/api/v2/studies with params: {'pageSize': 1000, 'pageToken': 'ZVNj7o2Elu8o3lptWdamo-32mo6QfZ9qZvKj3_g'}
+2025-11-03 18:03:03,320 - data_ingestion.clinicaltrials_api - INFO - Response status code: 200
+2025-11-03 18:03:03,830 - data_ingestion.clinicaltrials_api - INFO - Getting studies with params: {'pageSize': 1000, 'pageToken': 'ZVNj7o2Elu8o3lptWdamo-32mo6Qfp9sbPOs2vg'}
+2025-11-03 18:03:03,831 - data_ingestion.clinicaltrials_api - INFO - Making request to https://clinicaltrials.gov/api/v2/studies with params: {'pageSize': 1000, 'pageToken': 'ZVNj7o2Elu8o3lptWdamo-32mo6Qfp9sbPOs2vg'}
+2025-11-03 18:03:05,420 - data_ingestion.clinicaltrials_api - INFO - Response status code: 200
+2025-11-03 18:03:05,926 - data_ingestion.clinicaltrials_api - INFO - Getting studies with params: {'pageSize': 1000, 'pageToken': 'ZVNj7o2Elu8o3lptWdamo-32mo6QepFtbPKk3fg'}
+2025-11-03 18:03:05,927 - data_ingestion.clinicaltrials_api - INFO - Making request to https://clinicaltrials.gov/api/v2/studies with params: {'pageSize': 1000, 'pageToken': 'ZVNj7o2Elu8o3lptWdamo-32mo6QepFtbPKk3fg'}
+2025-11-03 18:03:07,333 - data_ingestion.clinicaltrials_api - INFO - Response status code: 200
+2025-11-03 18:03:07,877 - data_ingestion.clinicaltrials_api - INFO - Getting studies with params: {'pageSize': 1000, 'pageToken': 'ZVNj7o2Elu8o3lptWdamo-32mo6QeZZoZvCn2Pg'}
+2025-11-03 18:03:07,878 - data_ingestion.clinicaltrials_api - INFO - Making request to https://clinicaltrials.gov/api/v2/studies with params: {'pageSize': 1000, 'pageToken': 'ZVNj7o2Elu8o3lptWdamo-32mo6QeZZoZvCn2Pg'}
+2025-11-03 18:03:08,983 - data_ingestion.clinicaltrials_api - INFO - Response status code: 200
+2025-11-03 18:03:09,526 - data_ingestion.clinicaltrials_api - INFO - Getting studies with params: {'pageSize': 1000, 'pageToken': 'ZVNj7o2Elu8o3lptWdamo-32mo6QfJZsZfSl2_g'}
+2025-11-03 18:03:09,528 - data_ingestion.clinicaltrials_api - INFO - Making request to https://clinicaltrials.gov/api/v2/studies with params: {'pageSize': 1000, 'pageToken': 'ZVNj7o2Elu8o3lptWdamo-32mo6QfJZsZfSl2_g'}
+2025-11-03 18:03:10,780 - data_ingestion.clinicaltrials_api - INFO - Response status code: 200
+2025-11-03 18:03:11,308 - data_ingestion.clinicaltrials_api - INFO - Getting studies with params: {'pageSize': 1000, 'pageToken': 'ZVNj7o2Elu8o3lptWdamo-32mo6QfZdnZvGi2Pg'}
+2025-11-03 18:03:11,417 - data_ingestion.clinicaltrials_api - INFO - Making request to https://clinicaltrials.gov/api/v2/studies with params: {'pageSize': 1000, 'pageToken': 'ZVNj7o2Elu8o3lptWdamo-32mo6QfZdnZvGi2Pg'}
+2025-11-03 18:03:13,045 - data_ingestion.clinicaltrials_api - INFO - Response status code: 200
+2025-11-03 18:03:13,911 - data_ingestion.clinicaltrials_api - INFO - Getting studies with params: {'pageSize': 1000, 'pageToken': 'ZVNj7o2Elu8o3lptWdamo-32mo6QfZBtZPOp'}
+2025-11-03 18:03:13,912 - data_ingestion.clinicaltrials_api - INFO - Making request to https://clinicaltrials.gov/api/v2/studies with params: {'pageSize': 1000, 'pageToken': 'ZVNj7o2Elu8o3lptWdamo-32mo6QfZBtZPOp'}
+2025-11-03 18:03:15,587 - data_ingestion.clinicaltrials_api - INFO - Response status code: 200
+2025-11-03 18:03:16,128 - data_ingestion.clinicaltrials_api - INFO - Getting studies with params: {'pageSize': 1000, 'pageToken': 'ZVNj7o2Elu8o3lptWdamo-32mo6QeZ9mY_ik2_g'}
+2025-11-03 18:03:16,129 - data_ingestion.clinicaltrials_api - INFO - Making request to https://clinicaltrials.gov/api/v2/studies with params: {'pageSize': 1000, 'pageToken': 'ZVNj7o2Elu8o3lptWdamo-32mo6QeZ9mY_ik2_g'}
+2025-11-03 18:03:17,536 - data_ingestion.clinicaltrials_api - INFO - Response status code: 200
+2025-11-03 18:03:18,053 - data_ingestion.clinicaltrials_api - INFO - Getting studies with params: {'pageSize': 1000, 'pageToken': 'ZVNj7o2Elu8o3lptWdamo-32mo6QfZJrYvmh2fg'}
+2025-11-03 18:03:18,054 - data_ingestion.clinicaltrials_api - INFO - Making request to https://clinicaltrials.gov/api/v2/studies with params: {'pageSize': 1000, 'pageToken': 'ZVNj7o2Elu8o3lptWdamo-32mo6QfZJrYvmh2fg'}
+2025-11-03 18:03:19,113 - data_ingestion.clinicaltrials_api - INFO - Response status code: 200
+2025-11-03 18:03:19,595 - data_ingestion.clinicaltrials_api - INFO - Getting studies with params: {'pageSize': 1000, 'pageToken': 'ZVNj7o2Elu8o3lptWdamo-32mo6QfJVqZPig1Pg'}
+2025-11-03 18:03:19,596 - data_ingestion.clinicaltrials_api - INFO - Making request to https://clinicaltrials.gov/api/v2/studies with params: {'pageSize': 1000, 'pageToken': 'ZVNj7o2Elu8o3lptWdamo-32mo6QfJVqZPig1Pg'}
+2025-11-03 18:03:20,676 - data_ingestion.clinicaltrials_api - INFO - Response status code: 200
+2025-11-03 18:03:21,220 - data_ingestion.clinicaltrials_api - INFO - Getting studies with params: {'pageSize': 1000, 'pageToken': 'ZVNj7o2Elu8o3lptWdamo-32mo6QfpFrZ_Gi3_g'}
+2025-11-03 18:03:21,221 - data_ingestion.clinicaltrials_api - INFO - Making request to https://clinicaltrials.gov/api/v2/studies with params: {'pageSize': 1000, 'pageToken': 'ZVNj7o2Elu8o3lptWdamo-32mo6QfpFrZ_Gi3_g'}
+2025-11-03 18:03:22,295 - data_ingestion.clinicaltrials_api - INFO - Response status code: 200
+2025-11-03 18:03:23,063 - data_ingestion.clinicaltrials_api - INFO - Getting studies with params: {'pageSize': 1000, 'pageToken': 'ZVNj7o2Elu8o3lptWdamo-32mo6QfZ9rYPSj3_g'}
+2025-11-03 18:03:23,064 - data_ingestion.clinicaltrials_api - INFO - Making request to https://clinicaltrials.gov/api/v2/studies with params: {'pageSize': 1000, 'pageToken': 'ZVNj7o2Elu8o3lptWdamo-32mo6QfZ9rYPSj3_g'}
+2025-11-03 18:03:24,437 - data_ingestion.clinicaltrials_api - INFO - Response status code: 200
+2025-11-03 18:03:25,247 - data_ingestion.clinicaltrials_api - INFO - Getting studies with params: {'pageSize': 1000, 'pageToken': 'ZVNj7o2Elu8o3lptWdamo-32mo6QfpJuZfmn0A'}
+2025-11-03 18:03:25,248 - data_ingestion.clinicaltrials_api - INFO - Making request to https://clinicaltrials.gov/api/v2/studies with params: {'pageSize': 1000, 'pageToken': 'ZVNj7o2Elu8o3lptWdamo-32mo6QfpJuZfmn0A'}
+2025-11-03 18:03:26,363 - data_ingestion.clinicaltrials_api - INFO - Response status code: 200
+2025-11-03 18:03:27,110 - data_ingestion.clinicaltrials_api - INFO - Getting studies with params: {'pageSize': 1000, 'pageToken': 'ZVNj7o2Elu8o3lptWdamo-32mo6QfpNmbPCs0A'}
+2025-11-03 18:03:27,112 - data_ingestion.clinicaltrials_api - INFO - Making request to https://clinicaltrials.gov/api/v2/studies with params: {'pageSize': 1000, 'pageToken': 'ZVNj7o2Elu8o3lptWdamo-32mo6QfpNmbPCs0A'}
+2025-11-03 18:03:28,851 - data_ingestion.clinicaltrials_api - INFO - Response status code: 200
+2025-11-03 18:03:29,596 - data_ingestion.clinicaltrials_api - INFO - Getting studies with params: {'pageSize': 1000, 'pageToken': 'ZVNj7o2Elu8o3lptWdamo-32mo6QfJdvZvOj1Pg'}
+2025-11-03 18:03:29,597 - data_ingestion.clinicaltrials_api - INFO - Making request to https://clinicaltrials.gov/api/v2/studies with params: {'pageSize': 1000, 'pageToken': 'ZVNj7o2Elu8o3lptWdamo-32mo6QfJdvZvOj1Pg'}
+2025-11-03 18:03:30,721 - data_ingestion.clinicaltrials_api - INFO - Response status code: 200
+2025-11-03 18:03:31,657 - data_ingestion.clinicaltrials_api - INFO - Getting studies with params: {'pageSize': 1000, 'pageToken': 'ZVNj7o2Elu8o3lptWdamo-32mo6QeZ9ubPCi2_g'}
+2025-11-03 18:03:31,658 - data_ingestion.clinicaltrials_api - INFO - Making request to https://clinicaltrials.gov/api/v2/studies with params: {'pageSize': 1000, 'pageToken': 'ZVNj7o2Elu8o3lptWdamo-32mo6QeZ9ubPCi2_g'}
+2025-11-03 18:03:35,786 - data_ingestion.clinicaltrials_api - INFO - Response status code: 200
+2025-11-03 18:04:42,776 - data_ingestion.clinicaltrials_api - INFO - Getting studies with params: {'pageSize': 1000}
+2025-11-03 18:04:42,777 - data_ingestion.clinicaltrials_api - INFO - Making request to https://clinicaltrials.gov/api/v2/studies with params: {'pageSize': 1000}
+2025-11-03 18:04:45,140 - data_ingestion.clinicaltrials_api - INFO - Response status code: 200
+2025-11-03 18:04:45,540 - data_ingestion.clinicaltrials_api - INFO - Getting studies with params: {'pageSize': 1000, 'pageToken': 'ZVNj7o2Elu8o3lptWdamo-32mo6QfJRuYven1fg'}
+2025-11-03 18:04:45,541 - data_ingestion.clinicaltrials_api - INFO - Making request to https://clinicaltrials.gov/api/v2/studies with params: {'pageSize': 1000, 'pageToken': 'ZVNj7o2Elu8o3lptWdamo-32mo6QfJRuYven1fg'}
+2025-11-03 18:04:47,679 - data_ingestion.clinicaltrials_api - INFO - Response status code: 200
+2025-11-03 18:04:48,016 - data_ingestion.clinicaltrials_api - INFO - Getting studies with params: {'pageSize': 1000, 'pageToken': 'ZVNj7o2Elu8o3lptWdamo-32mo6QfpBmbfig3vg'}
+2025-11-03 18:04:48,016 - data_ingestion.clinicaltrials_api - INFO - Making request to https://clinicaltrials.gov/api/v2/studies with params: {'pageSize': 1000, 'pageToken': 'ZVNj7o2Elu8o3lptWdamo-32mo6QfpBmbfig3vg'}
+2025-11-03 18:04:50,021 - data_ingestion.clinicaltrials_api - INFO - Response status code: 200
+2025-11-03 18:04:50,392 - data_ingestion.clinicaltrials_api - INFO - Getting studies with params: {'pageSize': 1000, 'pageToken': 'ZVNj7o2Elu8o3lptWdamo-32mo6QfZNobPmt2vg'}
+2025-11-03 18:04:50,393 - data_ingestion.clinicaltrials_api - INFO - Making request to https://clinicaltrials.gov/api/v2/studies with params: {'pageSize': 1000, 'pageToken': 'ZVNj7o2Elu8o3lptWdamo-32mo6QfZNobPmt2vg'}
+2025-11-03 18:04:52,626 - data_ingestion.clinicaltrials_api - INFO - Response status code: 200
+2025-11-03 18:04:52,987 - data_ingestion.clinicaltrials_api - INFO - Getting studies with params: {'pageSize': 1000, 'pageToken': 'ZVNj7o2Elu8o3lptWdamo-32mo6QfZ9qZvKj3_g'}
+2025-11-03 18:04:52,988 - data_ingestion.clinicaltrials_api - INFO - Making request to https://clinicaltrials.gov/api/v2/studies with params: {'pageSize': 1000, 'pageToken': 'ZVNj7o2Elu8o3lptWdamo-32mo6QfZ9qZvKj3_g'}
+2025-11-03 18:04:55,055 - data_ingestion.clinicaltrials_api - INFO - Response status code: 200
+2025-11-03 18:04:55,478 - data_ingestion.clinicaltrials_api - INFO - Getting studies with params: {'pageSize': 1000, 'pageToken': 'ZVNj7o2Elu8o3lptWdamo-32mo6Qfp9sbPOs2vg'}
+2025-11-03 18:04:55,479 - data_ingestion.clinicaltrials_api - INFO - Making request to https://clinicaltrials.gov/api/v2/studies with params: {'pageSize': 1000, 'pageToken': 'ZVNj7o2Elu8o3lptWdamo-32mo6Qfp9sbPOs2vg'}
+2025-11-03 18:04:56,513 - data_ingestion.clinicaltrials_api - INFO - Response status code: 200
+2025-11-03 18:04:56,898 - data_ingestion.clinicaltrials_api - INFO - Getting studies with params: {'pageSize': 1000, 'pageToken': 'ZVNj7o2Elu8o3lptWdamo-32mo6QepFtbPKk3fg'}
+2025-11-03 18:04:56,899 - data_ingestion.clinicaltrials_api - INFO - Making request to https://clinicaltrials.gov/api/v2/studies with params: {'pageSize': 1000, 'pageToken': 'ZVNj7o2Elu8o3lptWdamo-32mo6QepFtbPKk3fg'}
+2025-11-03 18:04:58,492 - data_ingestion.clinicaltrials_api - INFO - Response status code: 200
+2025-11-03 18:04:58,904 - data_ingestion.clinicaltrials_api - INFO - Getting studies with params: {'pageSize': 1000, 'pageToken': 'ZVNj7o2Elu8o3lptWdamo-32mo6QeZZoZvCn2Pg'}
+2025-11-03 18:04:58,906 - data_ingestion.clinicaltrials_api - INFO - Making request to https://clinicaltrials.gov/api/v2/studies with params: {'pageSize': 1000, 'pageToken': 'ZVNj7o2Elu8o3lptWdamo-32mo6QeZZoZvCn2Pg'}
+2025-11-03 18:04:59,902 - data_ingestion.clinicaltrials_api - INFO - Response status code: 200
+2025-11-03 18:05:00,359 - data_ingestion.clinicaltrials_api - INFO - Getting studies with params: {'pageSize': 1000, 'pageToken': 'ZVNj7o2Elu8o3lptWdamo-32mo6QfJZsZfSl2_g'}
+2025-11-03 18:05:00,359 - data_ingestion.clinicaltrials_api - INFO - Making request to https://clinicaltrials.gov/api/v2/studies with params: {'pageSize': 1000, 'pageToken': 'ZVNj7o2Elu8o3lptWdamo-32mo6QfJZsZfSl2_g'}
+2025-11-03 18:05:01,777 - data_ingestion.clinicaltrials_api - INFO - Response status code: 200
+2025-11-03 18:05:02,570 - data_ingestion.clinicaltrials_api - INFO - Getting studies with params: {'pageSize': 1000, 'pageToken': 'ZVNj7o2Elu8o3lptWdamo-32mo6QfZdnZvGi2Pg'}
+2025-11-03 18:05:02,571 - data_ingestion.clinicaltrials_api - INFO - Making request to https://clinicaltrials.gov/api/v2/studies with params: {'pageSize': 1000, 'pageToken': 'ZVNj7o2Elu8o3lptWdamo-32mo6QfZdnZvGi2Pg'}
+2025-11-03 18:05:03,543 - data_ingestion.clinicaltrials_api - INFO - Response status code: 200
+2025-11-03 18:05:03,975 - data_ingestion.clinicaltrials_api - INFO - Getting studies with params: {'pageSize': 1000, 'pageToken': 'ZVNj7o2Elu8o3lptWdamo-32mo6QfZBtZPOp'}
+2025-11-03 18:05:03,975 - data_ingestion.clinicaltrials_api - INFO - Making request to https://clinicaltrials.gov/api/v2/studies with params: {'pageSize': 1000, 'pageToken': 'ZVNj7o2Elu8o3lptWdamo-32mo6QfZBtZPOp'}
+2025-11-03 18:05:05,362 - data_ingestion.clinicaltrials_api - INFO - Response status code: 200
+2025-11-03 18:05:05,788 - data_ingestion.clinicaltrials_api - INFO - Getting studies with params: {'pageSize': 1000, 'pageToken': 'ZVNj7o2Elu8o3lptWdamo-32mo6QeZ9mY_ik2_g'}
+2025-11-03 18:05:05,789 - data_ingestion.clinicaltrials_api - INFO - Making request to https://clinicaltrials.gov/api/v2/studies with params: {'pageSize': 1000, 'pageToken': 'ZVNj7o2Elu8o3lptWdamo-32mo6QeZ9mY_ik2_g'}
+2025-11-03 18:05:07,198 - data_ingestion.clinicaltrials_api - INFO - Response status code: 200
+2025-11-03 18:05:07,601 - data_ingestion.clinicaltrials_api - INFO - Getting studies with params: {'pageSize': 1000, 'pageToken': 'ZVNj7o2Elu8o3lptWdamo-32mo6QfZJrYvmh2fg'}
+2025-11-03 18:05:07,602 - data_ingestion.clinicaltrials_api - INFO - Making request to https://clinicaltrials.gov/api/v2/studies with params: {'pageSize': 1000, 'pageToken': 'ZVNj7o2Elu8o3lptWdamo-32mo6QfZJrYvmh2fg'}
+2025-11-03 18:05:09,652 - data_ingestion.clinicaltrials_api - INFO - Response status code: 200
+2025-11-03 18:05:09,993 - data_ingestion.clinicaltrials_api - INFO - Getting studies with params: {'pageSize': 1000, 'pageToken': 'ZVNj7o2Elu8o3lptWdamo-32mo6QfJVqZPig1Pg'}
+2025-11-03 18:05:09,994 - data_ingestion.clinicaltrials_api - INFO - Making request to https://clinicaltrials.gov/api/v2/studies with params: {'pageSize': 1000, 'pageToken': 'ZVNj7o2Elu8o3lptWdamo-32mo6QfJVqZPig1Pg'}
+2025-11-03 18:05:10,957 - data_ingestion.clinicaltrials_api - INFO - Response status code: 200
+2025-11-03 18:05:11,373 - data_ingestion.clinicaltrials_api - INFO - Getting studies with params: {'pageSize': 1000, 'pageToken': 'ZVNj7o2Elu8o3lptWdamo-32mo6QfpFrZ_Gi3_g'}
+2025-11-03 18:05:11,374 - data_ingestion.clinicaltrials_api - INFO - Making request to https://clinicaltrials.gov/api/v2/studies with params: {'pageSize': 1000, 'pageToken': 'ZVNj7o2Elu8o3lptWdamo-32mo6QfpFrZ_Gi3_g'}
+2025-11-03 18:05:12,855 - data_ingestion.clinicaltrials_api - INFO - Response status code: 200
+2025-11-03 18:05:13,534 - data_ingestion.clinicaltrials_api - INFO - Getting studies with params: {'pageSize': 1000, 'pageToken': 'ZVNj7o2Elu8o3lptWdamo-32mo6QfZ9rYPSj3_g'}
+2025-11-03 18:05:13,535 - data_ingestion.clinicaltrials_api - INFO - Making request to https://clinicaltrials.gov/api/v2/studies with params: {'pageSize': 1000, 'pageToken': 'ZVNj7o2Elu8o3lptWdamo-32mo6QfZ9rYPSj3_g'}
+2025-11-03 18:05:14,590 - data_ingestion.clinicaltrials_api - INFO - Response status code: 200
+2025-11-03 18:05:15,193 - data_ingestion.clinicaltrials_api - INFO - Getting studies with params: {'pageSize': 1000, 'pageToken': 'ZVNj7o2Elu8o3lptWdamo-32mo6QfpJuZfmn0A'}
+2025-11-03 18:05:15,194 - data_ingestion.clinicaltrials_api - INFO - Making request to https://clinicaltrials.gov/api/v2/studies with params: {'pageSize': 1000, 'pageToken': 'ZVNj7o2Elu8o3lptWdamo-32mo6QfpJuZfmn0A'}
+2025-11-03 18:05:16,577 - data_ingestion.clinicaltrials_api - INFO - Response status code: 200
+2025-11-03 18:05:17,154 - data_ingestion.clinicaltrials_api - INFO - Getting studies with params: {'pageSize': 1000, 'pageToken': 'ZVNj7o2Elu8o3lptWdamo-32mo6QfpNmbPCs0A'}
+2025-11-03 18:05:17,155 - data_ingestion.clinicaltrials_api - INFO - Making request to https://clinicaltrials.gov/api/v2/studies with params: {'pageSize': 1000, 'pageToken': 'ZVNj7o2Elu8o3lptWdamo-32mo6QfpNmbPCs0A'}
+2025-11-03 18:05:18,890 - data_ingestion.clinicaltrials_api - INFO - Response status code: 200
+2025-11-03 18:05:19,561 - data_ingestion.clinicaltrials_api - INFO - Getting studies with params: {'pageSize': 1000, 'pageToken': 'ZVNj7o2Elu8o3lptWdamo-32mo6QfJdvZvOj1Pg'}
+2025-11-03 18:05:19,562 - data_ingestion.clinicaltrials_api - INFO - Making request to https://clinicaltrials.gov/api/v2/studies with params: {'pageSize': 1000, 'pageToken': 'ZVNj7o2Elu8o3lptWdamo-32mo6QfJdvZvOj1Pg'}
+2025-11-03 18:05:21,091 - data_ingestion.clinicaltrials_api - INFO - Response status code: 200
+2025-11-03 18:05:21,755 - data_ingestion.clinicaltrials_api - INFO - Getting studies with params: {'pageSize': 1000, 'pageToken': 'ZVNj7o2Elu8o3lptWdamo-32mo6QeZ9ubPCi2_g'}
+2025-11-03 18:05:21,756 - data_ingestion.clinicaltrials_api - INFO - Making request to https://clinicaltrials.gov/api/v2/studies with params: {'pageSize': 1000, 'pageToken': 'ZVNj7o2Elu8o3lptWdamo-32mo6QeZ9ubPCi2_g'}
+2025-11-03 18:05:23,237 - data_ingestion.clinicaltrials_api - INFO - Response status code: 200
+2025-11-03 18:05:23,904 - data_ingestion.clinicaltrials_api - INFO - Getting studies with params: {'pageSize': 1000, 'pageToken': 'ZVNj7o2Elu8o3lptWdamo-32mo6QfZZuYPKm2fg'}
+2025-11-03 18:05:23,905 - data_ingestion.clinicaltrials_api - INFO - Making request to https://clinicaltrials.gov/api/v2/studies with params: {'pageSize': 1000, 'pageToken': 'ZVNj7o2Elu8o3lptWdamo-32mo6QfZZuYPKm2fg'}
+2025-11-03 18:05:25,365 - data_ingestion.clinicaltrials_api - INFO - Response status code: 200
+2025-11-03 18:05:26,610 - data_ingestion.clinicaltrials_api - INFO - Getting studies with params: {'pageSize': 1000, 'pageToken': 'ZVNj7o2Elu8o3lptWdamo-32mo6QeZRoYvKl3vg'}
+2025-11-03 18:05:26,612 - data_ingestion.clinicaltrials_api - INFO - Making request to https://clinicaltrials.gov/api/v2/studies with params: {'pageSize': 1000, 'pageToken': 'ZVNj7o2Elu8o3lptWdamo-32mo6QeZRoYvKl3vg'}
+2025-11-03 18:05:27,901 - data_ingestion.clinicaltrials_api - INFO - Response status code: 200
+2025-11-03 18:05:28,737 - data_ingestion.clinicaltrials_api - INFO - Getting studies with params: {'pageSize': 1000, 'pageToken': 'ZVNj7o2Elu8o3lptWdamo-32mo6QfJNuZvim1Pg'}
+2025-11-03 18:05:28,738 - data_ingestion.clinicaltrials_api - INFO - Making request to https://clinicaltrials.gov/api/v2/studies with params: {'pageSize': 1000, 'pageToken': 'ZVNj7o2Elu8o3lptWdamo-32mo6QfJNuZvim1Pg'}
+2025-11-03 18:05:31,529 - data_ingestion.clinicaltrials_api - INFO - Response status code: 200
+2025-11-03 18:05:32,294 - data_ingestion.clinicaltrials_api - INFO - Getting studies with params: {'pageSize': 1000, 'pageToken': 'ZVNj7o2Elu8o3lptWdamo-32mo6Qe5dvYvCj1fg'}
+2025-11-03 18:05:32,295 - data_ingestion.clinicaltrials_api - INFO - Making request to https://clinicaltrials.gov/api/v2/studies with params: {'pageSize': 1000, 'pageToken': 'ZVNj7o2Elu8o3lptWdamo-32mo6Qe5dvYvCj1fg'}
+2025-11-03 18:05:33,481 - data_ingestion.clinicaltrials_api - INFO - Response status code: 200
+2025-11-03 18:05:34,374 - data_ingestion.clinicaltrials_api - INFO - Getting studies with params: {'pageSize': 1000, 'pageToken': 'ZVNj7o2Elu8o3lptWdamo-32mo6QeZ9mYvGn3fg'}
+2025-11-03 18:05:34,375 - data_ingestion.clinicaltrials_api - INFO - Making request to https://clinicaltrials.gov/api/v2/studies with params: {'pageSize': 1000, 'pageToken': 'ZVNj7o2Elu8o3lptWdamo-32mo6QeZ9mYvGn3fg'}
+2025-11-03 18:05:35,582 - data_ingestion.clinicaltrials_api - INFO - Response status code: 200
+2025-11-03 18:05:38,532 - data_ingestion.clinicaltrials_api - INFO - Getting studies with params: {'pageSize': 1000, 'pageToken': 'ZVNj7o2Elu8o3lptWdamo-32mo6QeZVoZfah2vg'}
+2025-11-03 18:05:38,533 - data_ingestion.clinicaltrials_api - INFO - Making request to https://clinicaltrials.gov/api/v2/studies with params: {'pageSize': 1000, 'pageToken': 'ZVNj7o2Elu8o3lptWdamo-32mo6QeZVoZfah2vg'}
+2025-11-03 18:05:43,878 - data_ingestion.clinicaltrials_api - INFO - Response status code: 200
+2025-11-03 18:05:44,817 - data_ingestion.clinicaltrials_api - INFO - Getting studies with params: {'pageSize': 1000, 'pageToken': 'ZVNj7o2Elu8o3lptWdamo-32mo6QfJ5oY_Gs3vg'}
+2025-11-03 18:05:44,818 - data_ingestion.clinicaltrials_api - INFO - Making request to https://clinicaltrials.gov/api/v2/studies with params: {'pageSize': 1000, 'pageToken': 'ZVNj7o2Elu8o3lptWdamo-32mo6QfJ5oY_Gs3vg'}
+2025-11-03 18:05:49,344 - data_ingestion.clinicaltrials_api - INFO - Response status code: 200
+2025-11-03 18:05:50,758 - data_ingestion.clinicaltrials_api - INFO - Getting studies with params: {'pageSize': 1000, 'pageToken': 'ZVNj7o2Elu8o3lptWdamo-32mo6QfpFpZvil0A'}
+2025-11-03 18:05:50,759 - data_ingestion.clinicaltrials_api - INFO - Making request to https://clinicaltrials.gov/api/v2/studies with params: {'pageSize': 1000, 'pageToken': 'ZVNj7o2Elu8o3lptWdamo-32mo6QfpFpZvil0A'}
+2025-11-03 18:05:54,806 - data_ingestion.clinicaltrials_api - INFO - Response status code: 200
+2025-11-03 18:05:55,797 - data_ingestion.clinicaltrials_api - INFO - Getting studies with params: {'pageSize': 1000, 'pageToken': 'ZVNj7o2Elu8o3lptWdamo-32mo6QfJZnbPWi2fg'}
+2025-11-03 18:05:55,798 - data_ingestion.clinicaltrials_api - INFO - Making request to https://clinicaltrials.gov/api/v2/studies with params: {'pageSize': 1000, 'pageToken': 'ZVNj7o2Elu8o3lptWdamo-32mo6QfJZnbPWi2fg'}
+2025-11-03 18:05:56,929 - data_ingestion.clinicaltrials_api - INFO - Response status code: 200
+2025-11-03 18:05:58,127 - data_ingestion.clinicaltrials_api - INFO - Getting studies with params: {'pageSize': 1000, 'pageToken': 'ZVNj7o2Elu8o3lptWdamo-32mo6QfZFpbPel1Pg'}
+2025-11-03 18:05:58,128 - data_ingestion.clinicaltrials_api - INFO - Making request to https://clinicaltrials.gov/api/v2/studies with params: {'pageSize': 1000, 'pageToken': 'ZVNj7o2Elu8o3lptWdamo-32mo6QfZFpbPel1Pg'}
+2025-11-03 18:05:59,521 - data_ingestion.clinicaltrials_api - INFO - Response status code: 200
+2025-11-03 18:06:01,594 - data_ingestion.clinicaltrials_api - INFO - Getting studies with params: {'pageSize': 1000, 'pageToken': 'ZVNj7o2Elu8o3lptWdamo-32mo6Qe5FvbfWh2fg'}
+2025-11-03 18:06:01,595 - data_ingestion.clinicaltrials_api - INFO - Making request to https://clinicaltrials.gov/api/v2/studies with params: {'pageSize': 1000, 'pageToken': 'ZVNj7o2Elu8o3lptWdamo-32mo6Qe5FvbfWh2fg'}
+2025-11-03 18:06:05,583 - data_ingestion.clinicaltrials_api - INFO - Response status code: 200
+2025-11-03 18:06:06,585 - data_ingestion.clinicaltrials_api - INFO - Getting studies with params: {'pageSize': 1000, 'pageToken': 'ZVNj7o2Elu8o3lptWdamo-32mo6QeZJoZvKg2fg'}
+2025-11-03 18:06:06,586 - data_ingestion.clinicaltrials_api - INFO - Making request to https://clinicaltrials.gov/api/v2/studies with params: {'pageSize': 1000, 'pageToken': 'ZVNj7o2Elu8o3lptWdamo-32mo6QeZJoZvKg2fg'}
+2025-11-03 18:06:07,823 - data_ingestion.clinicaltrials_api - INFO - Response status code: 200
+2025-11-03 18:06:08,697 - data_ingestion.clinicaltrials_api - INFO - Getting studies with params: {'pageSize': 1000, 'pageToken': 'ZVNj7o2Elu8o3lptWdamo-32mo6QfJZoZfWg2vg'}
+2025-11-03 18:06:08,698 - data_ingestion.clinicaltrials_api - INFO - Making request to https://clinicaltrials.gov/api/v2/studies with params: {'pageSize': 1000, 'pageToken': 'ZVNj7o2Elu8o3lptWdamo-32mo6QfJZoZfWg2vg'}
+2025-11-03 18:06:09,979 - data_ingestion.clinicaltrials_api - INFO - Response status code: 200
+2025-11-03 18:06:18,391 - data_ingestion.clinicaltrials_api - INFO - Getting studies with params: {'pageSize': 1000, 'pageToken': 'ZVNj7o2Elu8o3lptWdamo-32mo6QeZVpY_ak2vg'}
+2025-11-03 18:06:18,391 - data_ingestion.clinicaltrials_api - INFO - Making request to https://clinicaltrials.gov/api/v2/studies with params: {'pageSize': 1000, 'pageToken': 'ZVNj7o2Elu8o3lptWdamo-32mo6QeZVpY_ak2vg'}
+2025-11-03 18:06:19,565 - data_ingestion.clinicaltrials_api - INFO - Response status code: 200
+2025-11-03 18:06:19,957 - data_ingestion.clinicaltrials_api - INFO - Getting studies with params: {'pageSize': 1000, 'pageToken': 'ZVNj7o2Elu8o3lptWdamo-32mo6Qfp5sZPOn2_g'}
+2025-11-03 18:06:19,958 - data_ingestion.clinicaltrials_api - INFO - Making request to https://clinicaltrials.gov/api/v2/studies with params: {'pageSize': 1000, 'pageToken': 'ZVNj7o2Elu8o3lptWdamo-32mo6Qfp5sZPOn2_g'}
+2025-11-03 18:06:21,127 - data_ingestion.clinicaltrials_api - INFO - Response status code: 200
+2025-11-03 18:06:21,508 - data_ingestion.clinicaltrials_api - INFO - Getting studies with params: {'pageSize': 1000, 'pageToken': 'ZVNj7o2Elu8o3lptWdamo-32mo6Qfp5uZfOi3fg'}
+2025-11-03 18:06:21,510 - data_ingestion.clinicaltrials_api - INFO - Making request to https://clinicaltrials.gov/api/v2/studies with params: {'pageSize': 1000, 'pageToken': 'ZVNj7o2Elu8o3lptWdamo-32mo6Qfp5uZfOi3fg'}
+2025-11-03 18:06:22,630 - data_ingestion.clinicaltrials_api - INFO - Response status code: 200
+2025-11-03 18:06:23,050 - data_ingestion.clinicaltrials_api - INFO - Getting studies with params: {'pageSize': 1000, 'pageToken': 'ZVNj7o2Elu8o3lptWdamo-32mo6QfZdoZfCl0A'}
+2025-11-03 18:06:23,051 - data_ingestion.clinicaltrials_api - INFO - Making request to https://clinicaltrials.gov/api/v2/studies with params: {'pageSize': 1000, 'pageToken': 'ZVNj7o2Elu8o3lptWdamo-32mo6QfZdoZfCl0A'}
+2025-11-03 18:06:24,720 - data_ingestion.clinicaltrials_api - INFO - Response status code: 200
+2025-11-03 18:06:25,149 - data_ingestion.clinicaltrials_api - INFO - Getting studies with params: {'pageSize': 1000, 'pageToken': 'ZVNj7o2Elu8o3lptWdamo-32mo6QepdtZvil3fg'}
+2025-11-03 18:06:25,150 - data_ingestion.clinicaltrials_api - INFO - Making request to https://clinicaltrials.gov/api/v2/studies with params: {'pageSize': 1000, 'pageToken': 'ZVNj7o2Elu8o3lptWdamo-32mo6QepdtZvil3fg'}
+2025-11-03 18:06:29,656 - data_ingestion.clinicaltrials_api - INFO - Response status code: 200
+2025-11-03 18:06:30,086 - data_ingestion.clinicaltrials_api - INFO - Getting studies with params: {'pageSize': 1000, 'pageToken': 'ZVNj7o2Elu8o3lptWdamo-32mo6Qe55vZPSn2fg'}
+2025-11-03 18:06:30,087 - data_ingestion.clinicaltrials_api - INFO - Making request to https://clinicaltrials.gov/api/v2/studies with params: {'pageSize': 1000, 'pageToken': 'ZVNj7o2Elu8o3lptWdamo-32mo6Qe55vZPSn2fg'}
+2025-11-03 18:06:31,566 - data_ingestion.clinicaltrials_api - INFO - Response status code: 200
+2025-11-03 18:06:32,059 - data_ingestion.clinicaltrials_api - INFO - Getting studies with params: {'pageSize': 1000, 'pageToken': 'ZVNj7o2Elu8o3lptWdamo-32mo6QeZNsbfig3_g'}
+2025-11-03 18:06:32,060 - data_ingestion.clinicaltrials_api - INFO - Making request to https://clinicaltrials.gov/api/v2/studies with params: {'pageSize': 1000, 'pageToken': 'ZVNj7o2Elu8o3lptWdamo-32mo6QeZNsbfig3_g'}
+2025-11-03 18:06:33,378 - data_ingestion.clinicaltrials_api - INFO - Response status code: 200
+2025-11-03 18:06:33,845 - data_ingestion.clinicaltrials_api - INFO - Getting studies with params: {'pageSize': 1000, 'pageToken': 'ZVNj7o2Elu8o3lptWdamo-32mo6QfZFuZ_mg0A'}
+2025-11-03 18:06:33,846 - data_ingestion.clinicaltrials_api - INFO - Making request to https://clinicaltrials.gov/api/v2/studies with params: {'pageSize': 1000, 'pageToken': 'ZVNj7o2Elu8o3lptWdamo-32mo6QfZFuZ_mg0A'}
+2025-11-03 18:06:35,237 - data_ingestion.clinicaltrials_api - INFO - Response status code: 200
+2025-11-03 18:06:35,691 - data_ingestion.clinicaltrials_api - INFO - Getting studies with params: {'pageSize': 1000, 'pageToken': 'ZVNj7o2Elu8o3lptWdamo-32mo6QeZ5nY_Gj2vg'}
+2025-11-03 18:06:35,692 - data_ingestion.clinicaltrials_api - INFO - Making request to https://clinicaltrials.gov/api/v2/studies with params: {'pageSize': 1000, 'pageToken': 'ZVNj7o2Elu8o3lptWdamo-32mo6QeZ5nY_Gj2vg'}
+2025-11-03 18:06:37,114 - data_ingestion.clinicaltrials_api - INFO - Response status code: 200
+2025-11-03 18:06:37,567 - data_ingestion.clinicaltrials_api - INFO - Getting studies with params: {'pageSize': 1000, 'pageToken': 'ZVNj7o2Elu8o3lptWdamo-32mo6QfpFmYfKm3_g'}
+2025-11-03 18:06:37,567 - data_ingestion.clinicaltrials_api - INFO - Making request to https://clinicaltrials.gov/api/v2/studies with params: {'pageSize': 1000, 'pageToken': 'ZVNj7o2Elu8o3lptWdamo-32mo6QfpFmYfKm3_g'}
+2025-11-03 18:06:38,960 - data_ingestion.clinicaltrials_api - INFO - Response status code: 200
+2025-11-03 18:06:39,968 - data_ingestion.clinicaltrials_api - INFO - Getting studies with params: {'pageSize': 1000, 'pageToken': 'ZVNj7o2Elu8o3lptWdamo-32mo6QfJBnY_ej1fg'}
+2025-11-03 18:06:39,969 - data_ingestion.clinicaltrials_api - INFO - Making request to https://clinicaltrials.gov/api/v2/studies with params: {'pageSize': 1000, 'pageToken': 'ZVNj7o2Elu8o3lptWdamo-32mo6QfJBnY_ej1fg'}
+2025-11-03 18:06:41,387 - data_ingestion.clinicaltrials_api - INFO - Response status code: 200
+2025-11-03 18:06:41,791 - data_ingestion.clinicaltrials_api - INFO - Getting studies with params: {'pageSize': 1000, 'pageToken': 'ZVNj7o2Elu8o3lptWdamo-32mo6QfZ5uY_it0A'}
+2025-11-03 18:06:41,792 - data_ingestion.clinicaltrials_api - INFO - Making request to https://clinicaltrials.gov/api/v2/studies with params: {'pageSize': 1000, 'pageToken': 'ZVNj7o2Elu8o3lptWdamo-32mo6QfZ5uY_it0A'}
+2025-11-03 18:06:43,040 - data_ingestion.clinicaltrials_api - INFO - Response status code: 200
+2025-11-03 18:06:44,238 - data_ingestion.clinicaltrials_api - INFO - Getting studies with params: {'pageSize': 1000, 'pageToken': 'ZVNj7o2Elu8o3lptWdamo-32mo6Qe5dvY_mi3Pg'}
+2025-11-03 18:06:44,239 - data_ingestion.clinicaltrials_api - INFO - Making request to https://clinicaltrials.gov/api/v2/studies with params: {'pageSize': 1000, 'pageToken': 'ZVNj7o2Elu8o3lptWdamo-32mo6Qe5dvY_mi3Pg'}
+2025-11-03 18:06:45,373 - data_ingestion.clinicaltrials_api - INFO - Response status code: 200
+2025-11-03 18:06:45,971 - data_ingestion.clinicaltrials_api - INFO - Getting studies with params: {'pageSize': 1000, 'pageToken': 'ZVNj7o2Elu8o3lptWdamo-32mo6QfJZvZvKj3_g'}
+2025-11-03 18:06:45,972 - data_ingestion.clinicaltrials_api - INFO - Making request to https://clinicaltrials.gov/api/v2/studies with params: {'pageSize': 1000, 'pageToken': 'ZVNj7o2Elu8o3lptWdamo-32mo6QfJZvZvKj3_g'}
+2025-11-03 18:06:47,293 - data_ingestion.clinicaltrials_api - INFO - Response status code: 200
+2025-11-03 18:06:47,739 - data_ingestion.clinicaltrials_api - INFO - Getting studies with params: {'pageSize': 1000, 'pageToken': 'ZVNj7o2Elu8o3lptWdamo-32mo6QfJ9tYfig1fg'}
+2025-11-03 18:06:47,740 - data_ingestion.clinicaltrials_api - INFO - Making request to https://clinicaltrials.gov/api/v2/studies with params: {'pageSize': 1000, 'pageToken': 'ZVNj7o2Elu8o3lptWdamo-32mo6QfJ9tYfig1fg'}
+2025-11-03 18:06:49,037 - data_ingestion.clinicaltrials_api - INFO - Response status code: 200
+2025-11-03 18:06:49,510 - data_ingestion.clinicaltrials_api - INFO - Getting studies with params: {'pageSize': 1000, 'pageToken': 'ZVNj7o2Elu8o3lptWdamo-32mo6QfJZuYvSl2_g'}
+2025-11-03 18:06:49,511 - data_ingestion.clinicaltrials_api - INFO - Making request to https://clinicaltrials.gov/api/v2/studies with params: {'pageSize': 1000, 'pageToken': 'ZVNj7o2Elu8o3lptWdamo-32mo6QfJZuYvSl2_g'}
+2025-11-03 18:06:50,947 - data_ingestion.clinicaltrials_api - INFO - Response status code: 200
+2025-11-03 18:06:51,611 - data_ingestion.clinicaltrials_api - INFO - Getting studies with params: {'pageSize': 1000, 'pageToken': 'ZVNj7o2Elu8o3lptWdamo-32mo6QeZVoYfWs3Pg'}
+2025-11-03 18:06:51,612 - data_ingestion.clinicaltrials_api - INFO - Making request to https://clinicaltrials.gov/api/v2/studies with params: {'pageSize': 1000, 'pageToken': 'ZVNj7o2Elu8o3lptWdamo-32mo6QeZVoYfWs3Pg'}
+2025-11-03 18:06:52,947 - data_ingestion.clinicaltrials_api - INFO - Response status code: 200
+2025-11-04 08:50:01,202 - data_ingestion.clinicaltrials_api - INFO - Getting studies with params: {'pageSize': 1000}
+2025-11-04 08:50:01,215 - data_ingestion.clinicaltrials_api - INFO - Making request to https://clinicaltrials.gov/api/v2/studies with params: {'pageSize': 1000}
+2025-11-04 08:50:03,360 - data_ingestion.clinicaltrials_api - INFO - Response status code: 200
+2025-11-04 08:50:03,777 - data_ingestion.clinicaltrials_api - INFO - Getting studies with params: {'pageSize': 1000, 'pageToken': 'ZVNj7o2Elu8o3lptVoj4tqr2mo6QeZ9sY_Gg3fg'}
+2025-11-04 08:50:03,778 - data_ingestion.clinicaltrials_api - INFO - Making request to https://clinicaltrials.gov/api/v2/studies with params: {'pageSize': 1000, 'pageToken': 'ZVNj7o2Elu8o3lptVoj4tqr2mo6QeZ9sY_Gg3fg'}
+2025-11-04 08:50:05,781 - data_ingestion.clinicaltrials_api - INFO - Response status code: 200
+2025-11-04 08:50:06,189 - data_ingestion.clinicaltrials_api - INFO - Getting studies with params: {'pageSize': 1000, 'pageToken': 'ZVNj7o2Elu8o3lptVoj4tqr2mo6QeZZmYfal2Pg'}
+2025-11-04 08:50:06,190 - data_ingestion.clinicaltrials_api - INFO - Making request to https://clinicaltrials.gov/api/v2/studies with params: {'pageSize': 1000, 'pageToken': 'ZVNj7o2Elu8o3lptVoj4tqr2mo6QeZZmYfal2Pg'}
+2025-11-04 08:50:07,232 - data_ingestion.clinicaltrials_api - INFO - Response status code: 200
+2025-11-04 08:50:07,672 - data_ingestion.clinicaltrials_api - INFO - Getting studies with params: {'pageSize': 1000, 'pageToken': 'ZVNj7o2Elu8o3lptVoj4tqr2mo6QfZVrZfet2vg'}
+2025-11-04 08:50:07,674 - data_ingestion.clinicaltrials_api - INFO - Making request to https://clinicaltrials.gov/api/v2/studies with params: {'pageSize': 1000, 'pageToken': 'ZVNj7o2Elu8o3lptVoj4tqr2mo6QfZVrZfet2vg'}
+2025-11-04 08:50:09,048 - data_ingestion.clinicaltrials_api - INFO - Response status code: 200
+2025-11-04 08:50:09,465 - data_ingestion.clinicaltrials_api - INFO - Getting studies with params: {'pageSize': 1000, 'pageToken': 'ZVNj7o2Elu8o3lptVoj4tqr2mo6Qe5RsYPGj3_g'}
+2025-11-04 08:50:09,466 - data_ingestion.clinicaltrials_api - INFO - Making request to https://clinicaltrials.gov/api/v2/studies with params: {'pageSize': 1000, 'pageToken': 'ZVNj7o2Elu8o3lptVoj4tqr2mo6Qe5RsYPGj3_g'}
+2025-11-04 08:50:11,738 - data_ingestion.clinicaltrials_api - INFO - Response status code: 200
+2025-11-04 08:50:12,091 - data_ingestion.clinicaltrials_api - INFO - Getting studies with params: {'pageSize': 1000, 'pageToken': 'ZVNj7o2Elu8o3lptVoj4tqr2mo6Qe5NrbPen2Pg'}
+2025-11-04 08:50:12,092 - data_ingestion.clinicaltrials_api - INFO - Making request to https://clinicaltrials.gov/api/v2/studies with params: {'pageSize': 1000, 'pageToken': 'ZVNj7o2Elu8o3lptVoj4tqr2mo6Qe5NrbPen2Pg'}
+2025-11-04 08:50:13,134 - data_ingestion.clinicaltrials_api - INFO - Response status code: 200
+2025-11-04 08:50:13,536 - data_ingestion.clinicaltrials_api - INFO - Getting studies with params: {'pageSize': 1000, 'pageToken': 'ZVNj7o2Elu8o3lptVoj4tqr2mo6QfZVrYvis3vg'}
+2025-11-04 08:50:13,538 - data_ingestion.clinicaltrials_api - INFO - Making request to https://clinicaltrials.gov/api/v2/studies with params: {'pageSize': 1000, 'pageToken': 'ZVNj7o2Elu8o3lptVoj4tqr2mo6QfZVrYvis3vg'}
+2025-11-04 08:50:14,945 - data_ingestion.clinicaltrials_api - INFO - Response status code: 200
+2025-11-04 08:50:15,306 - data_ingestion.clinicaltrials_api - INFO - Getting studies with params: {'pageSize': 1000, 'pageToken': 'ZVNj7o2Elu8o3lptVoj4tqr2mo6Qf5VmZ_ii0A'}
+2025-11-04 08:50:15,307 - data_ingestion.clinicaltrials_api - INFO - Making request to https://clinicaltrials.gov/api/v2/studies with params: {'pageSize': 1000, 'pageToken': 'ZVNj7o2Elu8o3lptVoj4tqr2mo6Qf5VmZ_ii0A'}
+2025-11-04 08:50:16,329 - data_ingestion.clinicaltrials_api - INFO - Response status code: 200
+2025-11-04 08:50:16,712 - data_ingestion.clinicaltrials_api - INFO - Getting studies with params: {'pageSize': 1000, 'pageToken': 'ZVNj7o2Elu8o3lptVoj4tqr2mo6Qep9uYfCk1fg'}
+2025-11-04 08:50:16,713 - data_ingestion.clinicaltrials_api - INFO - Making request to https://clinicaltrials.gov/api/v2/studies with params: {'pageSize': 1000, 'pageToken': 'ZVNj7o2Elu8o3lptVoj4tqr2mo6Qep9uYfCk1fg'}
+2025-11-04 08:50:18,097 - data_ingestion.clinicaltrials_api - INFO - Response status code: 200
+2025-11-04 08:50:18,900 - data_ingestion.clinicaltrials_api - INFO - Getting studies with params: {'pageSize': 1000, 'pageToken': 'ZVNj7o2Elu8o3lptVoj4tqr2mo6QfZJqZfmi2Pg'}
+2025-11-04 08:50:18,901 - data_ingestion.clinicaltrials_api - INFO - Making request to https://clinicaltrials.gov/api/v2/studies with params: {'pageSize': 1000, 'pageToken': 'ZVNj7o2Elu8o3lptVoj4tqr2mo6QfZJqZfmi2Pg'}
+2025-11-04 08:50:19,904 - data_ingestion.clinicaltrials_api - INFO - Response status code: 200
+2025-11-04 08:50:20,343 - data_ingestion.clinicaltrials_api - INFO - Getting studies with params: {'pageSize': 1000, 'pageToken': 'ZVNj7o2Elu8o3lptVoj4tqr2mo6QfJVvZvGm1fg'}
+2025-11-04 08:50:20,344 - data_ingestion.clinicaltrials_api - INFO - Making request to https://clinicaltrials.gov/api/v2/studies with params: {'pageSize': 1000, 'pageToken': 'ZVNj7o2Elu8o3lptVoj4tqr2mo6QfJVvZvGm1fg'}
+2025-11-04 08:50:22,628 - data_ingestion.clinicaltrials_api - INFO - Response status code: 200
+2025-11-04 08:50:23,149 - data_ingestion.clinicaltrials_api - INFO - Getting studies with params: {'pageSize': 1000, 'pageToken': 'ZVNj7o2Elu8o3lptVoj4tqr2mo6QfpFoYPml1Pg'}
+2025-11-04 08:50:23,150 - data_ingestion.clinicaltrials_api - INFO - Making request to https://clinicaltrials.gov/api/v2/studies with params: {'pageSize': 1000, 'pageToken': 'ZVNj7o2Elu8o3lptVoj4tqr2mo6QfpFoYPml1Pg'}
+2025-11-04 08:50:24,180 - data_ingestion.clinicaltrials_api - INFO - Response status code: 200
+2025-11-04 08:50:24,589 - data_ingestion.clinicaltrials_api - INFO - Getting studies with params: {'pageSize': 1000, 'pageToken': 'ZVNj7o2Elu8o3lptVoj4tqr2mo6QfpVsbPim3fg'}
+2025-11-04 08:50:24,590 - data_ingestion.clinicaltrials_api - INFO - Making request to https://clinicaltrials.gov/api/v2/studies with params: {'pageSize': 1000, 'pageToken': 'ZVNj7o2Elu8o3lptVoj4tqr2mo6QfpVsbPim3fg'}
+2025-11-04 08:50:26,052 - data_ingestion.clinicaltrials_api - INFO - Response status code: 200
+2025-11-04 08:50:26,424 - data_ingestion.clinicaltrials_api - INFO - Getting studies with params: {'pageSize': 1000, 'pageToken': 'ZVNj7o2Elu8o3lptVoj4tqr2mo6QeZdpZvSp'}
+2025-11-04 08:50:26,424 - data_ingestion.clinicaltrials_api - INFO - Making request to https://clinicaltrials.gov/api/v2/studies with params: {'pageSize': 1000, 'pageToken': 'ZVNj7o2Elu8o3lptVoj4tqr2mo6QeZdpZvSp'}
+2025-11-04 08:50:27,409 - data_ingestion.clinicaltrials_api - INFO - Response status code: 200
+2025-11-04 08:50:27,786 - data_ingestion.clinicaltrials_api - INFO - Getting studies with params: {'pageSize': 1000, 'pageToken': 'ZVNj7o2Elu8o3lptVoj4tqr2mo6QfJBoYPSg2Pg'}
+2025-11-04 08:50:27,787 - data_ingestion.clinicaltrials_api - INFO - Making request to https://clinicaltrials.gov/api/v2/studies with params: {'pageSize': 1000, 'pageToken': 'ZVNj7o2Elu8o3lptVoj4tqr2mo6QfJBoYPSg2Pg'}
+2025-11-04 08:50:29,269 - data_ingestion.clinicaltrials_api - INFO - Response status code: 200
+2025-11-04 08:50:29,669 - data_ingestion.clinicaltrials_api - INFO - Getting studies with params: {'pageSize': 1000, 'pageToken': 'ZVNj7o2Elu8o3lptVoj4tqr2mo6Qe59uZ_ak2Pg'}
+2025-11-04 08:50:29,670 - data_ingestion.clinicaltrials_api - INFO - Making request to https://clinicaltrials.gov/api/v2/studies with params: {'pageSize': 1000, 'pageToken': 'ZVNj7o2Elu8o3lptVoj4tqr2mo6Qe59uZ_ak2Pg'}
+2025-11-04 08:50:30,699 - data_ingestion.clinicaltrials_api - INFO - Response status code: 200
+2025-11-04 08:50:31,088 - data_ingestion.clinicaltrials_api - INFO - Getting studies with params: {'pageSize': 1000, 'pageToken': 'ZVNj7o2Elu8o3lptVoj4tqr2mo6QeZFuYPCh3vg'}
+2025-11-04 08:50:31,089 - data_ingestion.clinicaltrials_api - INFO - Making request to https://clinicaltrials.gov/api/v2/studies with params: {'pageSize': 1000, 'pageToken': 'ZVNj7o2Elu8o3lptVoj4tqr2mo6QeZFuYPCh3vg'}
+2025-11-04 08:50:32,191 - data_ingestion.clinicaltrials_api - INFO - Response status code: 200
+2025-11-04 08:50:32,650 - data_ingestion.clinicaltrials_api - INFO - Getting studies with params: {'pageSize': 1000, 'pageToken': 'ZVNj7o2Elu8o3lptVoj4tqr2mo6Qe55vY_Ch0A'}
+2025-11-04 08:50:32,651 - data_ingestion.clinicaltrials_api - INFO - Making request to https://clinicaltrials.gov/api/v2/studies with params: {'pageSize': 1000, 'pageToken': 'ZVNj7o2Elu8o3lptVoj4tqr2mo6Qe55vY_Ch0A'}
+2025-11-04 08:50:34,871 - data_ingestion.clinicaltrials_api - INFO - Response status code: 200
+2025-11-04 08:50:35,255 - data_ingestion.clinicaltrials_api - INFO - Getting studies with params: {'pageSize': 1000, 'pageToken': 'ZVNj7o2Elu8o3lptVoj4tqr2mo6QfJZpY_Oi0A'}
+2025-11-04 08:50:35,255 - data_ingestion.clinicaltrials_api - INFO - Making request to https://clinicaltrials.gov/api/v2/studies with params: {'pageSize': 1000, 'pageToken': 'ZVNj7o2Elu8o3lptVoj4tqr2mo6QfJZpY_Oi0A'}
+2025-11-04 08:50:36,261 - data_ingestion.clinicaltrials_api - INFO - Response status code: 200
+2025-11-04 08:50:36,657 - data_ingestion.clinicaltrials_api - INFO - Getting studies with params: {'pageSize': 1000, 'pageToken': 'ZVNj7o2Elu8o3lptVoj4tqr2mo6QfpJvZfam3vg'}
+2025-11-04 08:50:36,658 - data_ingestion.clinicaltrials_api - INFO - Making request to https://clinicaltrials.gov/api/v2/studies with params: {'pageSize': 1000, 'pageToken': 'ZVNj7o2Elu8o3lptVoj4tqr2mo6QfpJvZfam3vg'}
+2025-11-04 08:50:37,692 - data_ingestion.clinicaltrials_api - INFO - Response status code: 200
+2025-11-04 08:50:38,095 - data_ingestion.clinicaltrials_api - INFO - Getting studies with params: {'pageSize': 1000, 'pageToken': 'ZVNj7o2Elu8o3lptVoj4tqr2mo6QfZFoZPCl3_g'}
+2025-11-04 08:50:38,096 - data_ingestion.clinicaltrials_api - INFO - Making request to https://clinicaltrials.gov/api/v2/studies with params: {'pageSize': 1000, 'pageToken': 'ZVNj7o2Elu8o3lptVoj4tqr2mo6QfZFoZPCl3_g'}
+2025-11-04 08:50:39,468 - data_ingestion.clinicaltrials_api - INFO - Response status code: 200
+2025-11-04 08:50:40,286 - data_ingestion.clinicaltrials_api - INFO - Getting studies with params: {'pageSize': 1000, 'pageToken': 'ZVNj7o2Elu8o3lptVoj4tqr2mo6QfpZsY_Wl2_g'}
+2025-11-04 08:50:40,287 - data_ingestion.clinicaltrials_api - INFO - Making request to https://clinicaltrials.gov/api/v2/studies with params: {'pageSize': 1000, 'pageToken': 'ZVNj7o2Elu8o3lptVoj4tqr2mo6QfpZsY_Wl2_g'}
+2025-11-04 08:50:41,366 - data_ingestion.clinicaltrials_api - INFO - Response status code: 200
+2025-11-04 08:50:41,816 - data_ingestion.clinicaltrials_api - INFO - Getting studies with params: {'pageSize': 1000, 'pageToken': 'ZVNj7o2Elu8o3lptVoj4tqr2mo6Qe5dvZ_Kg1fg'}
+2025-11-04 08:50:41,817 - data_ingestion.clinicaltrials_api - INFO - Making request to https://clinicaltrials.gov/api/v2/studies with params: {'pageSize': 1000, 'pageToken': 'ZVNj7o2Elu8o3lptVoj4tqr2mo6Qe5dvZ_Kg1fg'}
+2025-11-04 08:50:43,161 - data_ingestion.clinicaltrials_api - INFO - Response status code: 200
+2025-11-04 08:50:43,597 - data_ingestion.clinicaltrials_api - INFO - Getting studies with params: {'pageSize': 1000, 'pageToken': 'ZVNj7o2Elu8o3lptVoj4tqr2mo6QeZJnZPas3vg'}
+2025-11-04 08:50:43,598 - data_ingestion.clinicaltrials_api - INFO - Making request to https://clinicaltrials.gov/api/v2/studies with params: {'pageSize': 1000, 'pageToken': 'ZVNj7o2Elu8o3lptVoj4tqr2mo6QeZJnZPas3vg'}
+2025-11-04 08:50:44,581 - data_ingestion.clinicaltrials_api - INFO - Response status code: 200
+2025-11-04 08:50:45,028 - data_ingestion.clinicaltrials_api - INFO - Getting studies with params: {'pageSize': 1000, 'pageToken': 'ZVNj7o2Elu8o3lptVoj4tqr2mo6Qf5doYfei2Pg'}
+2025-11-04 08:50:45,029 - data_ingestion.clinicaltrials_api - INFO - Making request to https://clinicaltrials.gov/api/v2/studies with params: {'pageSize': 1000, 'pageToken': 'ZVNj7o2Elu8o3lptVoj4tqr2mo6Qf5doYfei2Pg'}
+2025-11-04 08:50:46,295 - data_ingestion.clinicaltrials_api - INFO - Response status code: 200
+2025-11-04 08:50:46,685 - data_ingestion.clinicaltrials_api - INFO - Getting studies with params: {'pageSize': 1000, 'pageToken': 'ZVNj7o2Elu8o3lptVoj4tqr2mo6QeZRnY_Oi3vg'}
+2025-11-04 08:50:46,685 - data_ingestion.clinicaltrials_api - INFO - Making request to https://clinicaltrials.gov/api/v2/studies with params: {'pageSize': 1000, 'pageToken': 'ZVNj7o2Elu8o3lptVoj4tqr2mo6QeZRnY_Oi3vg'}
+2025-11-04 08:50:47,669 - data_ingestion.clinicaltrials_api - INFO - Response status code: 200
+2025-11-04 08:50:48,034 - data_ingestion.clinicaltrials_api - INFO - Getting studies with params: {'pageSize': 1000, 'pageToken': 'ZVNj7o2Elu8o3lptVoj4tqr2mo6QfpVrYPag2fg'}
+2025-11-04 08:50:48,035 - data_ingestion.clinicaltrials_api - INFO - Making request to https://clinicaltrials.gov/api/v2/studies with params: {'pageSize': 1000, 'pageToken': 'ZVNj7o2Elu8o3lptVoj4tqr2mo6QfpVrYPag2fg'}
+2025-11-04 08:50:49,720 - data_ingestion.clinicaltrials_api - INFO - Response status code: 200
+2025-11-04 08:50:50,164 - data_ingestion.clinicaltrials_api - INFO - Getting studies with params: {'pageSize': 1000, 'pageToken': 'ZVNj7o2Elu8o3lptVoj4tqr2mo6QepVubfKs2Pg'}
+2025-11-04 08:50:50,164 - data_ingestion.clinicaltrials_api - INFO - Making request to https://clinicaltrials.gov/api/v2/studies with params: {'pageSize': 1000, 'pageToken': 'ZVNj7o2Elu8o3lptVoj4tqr2mo6QepVubfKs2Pg'}
+2025-11-04 08:50:51,397 - data_ingestion.clinicaltrials_api - INFO - Response status code: 200
+2025-11-04 08:50:51,882 - data_ingestion.clinicaltrials_api - INFO - Getting studies with params: {'pageSize': 1000, 'pageToken': 'ZVNj7o2Elu8o3lptVoj4tqr2mo6QeZFnZfSt2Pg'}
+2025-11-04 08:50:51,882 - data_ingestion.clinicaltrials_api - INFO - Making request to https://clinicaltrials.gov/api/v2/studies with params: {'pageSize': 1000, 'pageToken': 'ZVNj7o2Elu8o3lptVoj4tqr2mo6QeZFnZfSt2Pg'}
+2025-11-04 08:50:53,399 - data_ingestion.clinicaltrials_api - INFO - Response status code: 200
+2025-11-04 08:50:53,829 - data_ingestion.clinicaltrials_api - INFO - Getting studies with params: {'pageSize': 1000, 'pageToken': 'ZVNj7o2Elu8o3lptVoj4tqr2mo6QfpFobPis2Pg'}
+2025-11-04 08:50:53,830 - data_ingestion.clinicaltrials_api - INFO - Making request to https://clinicaltrials.gov/api/v2/studies with params: {'pageSize': 1000, 'pageToken': 'ZVNj7o2Elu8o3lptVoj4tqr2mo6QfpFobPis2Pg'}
+2025-11-04 08:50:54,887 - data_ingestion.clinicaltrials_api - INFO - Response status code: 200
+2025-11-04 08:50:55,282 - data_ingestion.clinicaltrials_api - INFO - Getting studies with params: {'pageSize': 1000, 'pageToken': 'ZVNj7o2Elu8o3lptVoj4tqr2mo6QeZVnZ_Gl2Pg'}
+2025-11-04 08:50:55,283 - data_ingestion.clinicaltrials_api - INFO - Making request to https://clinicaltrials.gov/api/v2/studies with params: {'pageSize': 1000, 'pageToken': 'ZVNj7o2Elu8o3lptVoj4tqr2mo6QeZVnZ_Gl2Pg'}
+2025-11-04 08:50:56,813 - data_ingestion.clinicaltrials_api - INFO - Response status code: 200
+2025-11-04 08:50:57,171 - data_ingestion.clinicaltrials_api - INFO - Getting studies with params: {'pageSize': 1000, 'pageToken': 'ZVNj7o2Elu8o3lptVoj4tqr2mo6QfZ5rY_eh2vg'}
+2025-11-04 08:50:57,172 - data_ingestion.clinicaltrials_api - INFO - Making request to https://clinicaltrials.gov/api/v2/studies with params: {'pageSize': 1000, 'pageToken': 'ZVNj7o2Elu8o3lptVoj4tqr2mo6QfZ5rY_eh2vg'}
+2025-11-04 08:50:58,238 - data_ingestion.clinicaltrials_api - INFO - Response status code: 200
+2025-11-04 08:50:58,634 - data_ingestion.clinicaltrials_api - INFO - Getting studies with params: {'pageSize': 1000, 'pageToken': 'ZVNj7o2Elu8o3lptVoj4tqr2mo6QepNnYPGk3fg'}
+2025-11-04 08:50:58,635 - data_ingestion.clinicaltrials_api - INFO - Making request to https://clinicaltrials.gov/api/v2/studies with params: {'pageSize': 1000, 'pageToken': 'ZVNj7o2Elu8o3lptVoj4tqr2mo6QepNnYPGk3fg'}
+2025-11-04 08:51:00,081 - data_ingestion.clinicaltrials_api - INFO - Response status code: 200
+2025-11-04 08:51:00,911 - data_ingestion.clinicaltrials_api - INFO - Getting studies with params: {'pageSize': 1000, 'pageToken': 'ZVNj7o2Elu8o3lptVoj4tqr2mo6Qe59rbfCl0A'}
+2025-11-04 08:51:00,912 - data_ingestion.clinicaltrials_api - INFO - Making request to https://clinicaltrials.gov/api/v2/studies with params: {'pageSize': 1000, 'pageToken': 'ZVNj7o2Elu8o3lptVoj4tqr2mo6Qe59rbfCl0A'}
+2025-11-04 08:51:01,913 - data_ingestion.clinicaltrials_api - INFO - Response status code: 200
+2025-11-04 08:51:02,291 - data_ingestion.clinicaltrials_api - INFO - Getting studies with params: {'pageSize': 1000, 'pageToken': 'ZVNj7o2Elu8o3lptVoj4tqr2mo6Qe5dnbPmk0A'}
+2025-11-04 08:51:02,292 - data_ingestion.clinicaltrials_api - INFO - Making request to https://clinicaltrials.gov/api/v2/studies with params: {'pageSize': 1000, 'pageToken': 'ZVNj7o2Elu8o3lptVoj4tqr2mo6Qe5dnbPmk0A'}
+2025-11-04 08:51:03,472 - data_ingestion.clinicaltrials_api - INFO - Response status code: 200
+2025-11-04 08:51:03,855 - data_ingestion.clinicaltrials_api - INFO - Getting studies with params: {'pageSize': 1000, 'pageToken': 'ZVNj7o2Elu8o3lptVoj4tqr2mo6Qf5VrZ_Wl0A'}
+2025-11-04 08:51:03,856 - data_ingestion.clinicaltrials_api - INFO - Making request to https://clinicaltrials.gov/api/v2/studies with params: {'pageSize': 1000, 'pageToken': 'ZVNj7o2Elu8o3lptVoj4tqr2mo6Qf5VrZ_Wl0A'}
+2025-11-04 08:51:05,591 - data_ingestion.clinicaltrials_api - INFO - Response status code: 200
+2025-11-04 08:51:05,970 - data_ingestion.clinicaltrials_api - INFO - Getting studies with params: {'pageSize': 1000, 'pageToken': 'ZVNj7o2Elu8o3lptVoj4tqr2mo6Qe59nZfCh2fg'}
+2025-11-04 08:51:05,971 - data_ingestion.clinicaltrials_api - INFO - Making request to https://clinicaltrials.gov/api/v2/studies with params: {'pageSize': 1000, 'pageToken': 'ZVNj7o2Elu8o3lptVoj4tqr2mo6Qe59nZfCh2fg'}
+2025-11-04 08:51:07,054 - data_ingestion.clinicaltrials_api - INFO - Response status code: 200
+2025-11-04 08:51:07,512 - data_ingestion.clinicaltrials_api - INFO - Getting studies with params: {'pageSize': 1000, 'pageToken': 'ZVNj7o2Elu8o3lptVoj4tqr2mo6QfZJqY_mk2fg'}
+2025-11-04 08:51:07,513 - data_ingestion.clinicaltrials_api - INFO - Making request to https://clinicaltrials.gov/api/v2/studies with params: {'pageSize': 1000, 'pageToken': 'ZVNj7o2Elu8o3lptVoj4tqr2mo6QfZJqY_mk2fg'}
+2025-11-04 08:51:09,142 - data_ingestion.clinicaltrials_api - INFO - Response status code: 200
+2025-11-04 08:51:09,508 - data_ingestion.clinicaltrials_api - INFO - Getting studies with params: {'pageSize': 1000, 'pageToken': 'ZVNj7o2Elu8o3lptVoj4tqr2mo6QeZZqZ_Cs2Pg'}
+2025-11-04 08:51:09,509 - data_ingestion.clinicaltrials_api - INFO - Making request to https://clinicaltrials.gov/api/v2/studies with params: {'pageSize': 1000, 'pageToken': 'ZVNj7o2Elu8o3lptVoj4tqr2mo6QeZZqZ_Cs2Pg'}
+2025-11-04 08:51:10,571 - data_ingestion.clinicaltrials_api - INFO - Response status code: 200
+2025-11-04 08:51:11,034 - data_ingestion.clinicaltrials_api - INFO - Getting studies with params: {'pageSize': 1000, 'pageToken': 'ZVNj7o2Elu8o3lptVoj4tqr2mo6Qep9rY_Cm1Pg'}
+2025-11-04 08:51:11,035 - data_ingestion.clinicaltrials_api - INFO - Making request to https://clinicaltrials.gov/api/v2/studies with params: {'pageSize': 1000, 'pageToken': 'ZVNj7o2Elu8o3lptVoj4tqr2mo6Qep9rY_Cm1Pg'}
+2025-11-04 08:51:12,195 - data_ingestion.clinicaltrials_api - INFO - Response status code: 200
+2025-11-04 08:51:12,595 - data_ingestion.clinicaltrials_api - INFO - Getting studies with params: {'pageSize': 1000, 'pageToken': 'ZVNj7o2Elu8o3lptVoj4tqr2mo6Qe5NvbfSl2fg'}
+2025-11-04 08:51:12,596 - data_ingestion.clinicaltrials_api - INFO - Making request to https://clinicaltrials.gov/api/v2/studies with params: {'pageSize': 1000, 'pageToken': 'ZVNj7o2Elu8o3lptVoj4tqr2mo6Qe5NvbfSl2fg'}
+2025-11-04 08:51:13,819 - data_ingestion.clinicaltrials_api - INFO - Response status code: 200
+2025-11-04 08:51:14,177 - data_ingestion.clinicaltrials_api - INFO - Getting studies with params: {'pageSize': 1000, 'pageToken': 'ZVNj7o2Elu8o3lptVoj4tqr2mo6QfZFuYPmk2Pg'}
+2025-11-04 08:51:14,178 - data_ingestion.clinicaltrials_api - INFO - Making request to https://clinicaltrials.gov/api/v2/studies with params: {'pageSize': 1000, 'pageToken': 'ZVNj7o2Elu8o3lptVoj4tqr2mo6QfZFuYPmk2Pg'}
+2025-11-04 08:51:15,500 - data_ingestion.clinicaltrials_api - INFO - Response status code: 200
+2025-11-04 08:51:15,878 - data_ingestion.clinicaltrials_api - INFO - Getting studies with params: {'pageSize': 1000, 'pageToken': 'ZVNj7o2Elu8o3lptVoj4tqr2mo6QepNoYPal3_g'}
+2025-11-04 08:51:15,879 - data_ingestion.clinicaltrials_api - INFO - Making request to https://clinicaltrials.gov/api/v2/studies with params: {'pageSize': 1000, 'pageToken': 'ZVNj7o2Elu8o3lptVoj4tqr2mo6QepNoYPal3_g'}
+2025-11-04 08:51:17,709 - data_ingestion.clinicaltrials_api - INFO - Response status code: 200
+2025-11-04 08:51:18,133 - data_ingestion.clinicaltrials_api - INFO - Getting studies with params: {'pageSize': 1000, 'pageToken': 'ZVNj7o2Elu8o3lptVoj4tqr2mo6QepNvYvis1fg'}
+2025-11-04 08:51:18,134 - data_ingestion.clinicaltrials_api - INFO - Making request to https://clinicaltrials.gov/api/v2/studies with params: {'pageSize': 1000, 'pageToken': 'ZVNj7o2Elu8o3lptVoj4tqr2mo6QepNvYvis1fg'}
+2025-11-04 08:51:19,110 - data_ingestion.clinicaltrials_api - INFO - Response status code: 200
+2025-11-04 08:51:19,456 - data_ingestion.clinicaltrials_api - INFO - Getting studies with params: {'pageSize': 1000, 'pageToken': 'ZVNj7o2Elu8o3lptVoj4tqr2mo6QepFuYfSt3vg'}
+2025-11-04 08:51:19,457 - data_ingestion.clinicaltrials_api - INFO - Making request to https://clinicaltrials.gov/api/v2/studies with params: {'pageSize': 1000, 'pageToken': 'ZVNj7o2Elu8o3lptVoj4tqr2mo6QepFuYfSt3vg'}
+2025-11-04 08:51:20,721 - data_ingestion.clinicaltrials_api - INFO - Response status code: 200
+2025-11-04 08:51:21,524 - data_ingestion.clinicaltrials_api - INFO - Getting studies with params: {'pageSize': 1000, 'pageToken': 'ZVNj7o2Elu8o3lptVoj4tqr2mo6QfJZuYfWj2fg'}
+2025-11-04 08:51:21,525 - data_ingestion.clinicaltrials_api - INFO - Making request to https://clinicaltrials.gov/api/v2/studies with params: {'pageSize': 1000, 'pageToken': 'ZVNj7o2Elu8o3lptVoj4tqr2mo6QfJZuYfWj2fg'}
+2025-11-04 08:51:22,544 - data_ingestion.clinicaltrials_api - INFO - Response status code: 200
+2025-11-04 08:51:22,940 - data_ingestion.clinicaltrials_api - INFO - Getting studies with params: {'pageSize': 1000, 'pageToken': 'ZVNj7o2Elu8o3lptVoj4tqr2mo6QfJRuZvig3Pg'}
+2025-11-04 08:51:22,941 - data_ingestion.clinicaltrials_api - INFO - Making request to https://clinicaltrials.gov/api/v2/studies with params: {'pageSize': 1000, 'pageToken': 'ZVNj7o2Elu8o3lptVoj4tqr2mo6QfJRuZvig3Pg'}
+2025-11-04 08:51:24,048 - data_ingestion.clinicaltrials_api - INFO - Response status code: 200
+2025-11-04 08:51:24,402 - data_ingestion.clinicaltrials_api - INFO - Getting studies with params: {'pageSize': 1000, 'pageToken': 'ZVNj7o2Elu8o3lptVoj4tqr2mo6QfJ5uYPan0A'}
+2025-11-04 08:51:24,403 - data_ingestion.clinicaltrials_api - INFO - Making request to https://clinicaltrials.gov/api/v2/studies with params: {'pageSize': 1000, 'pageToken': 'ZVNj7o2Elu8o3lptVoj4tqr2mo6QfJ5uYPan0A'}
+2025-11-04 08:51:25,759 - data_ingestion.clinicaltrials_api - INFO - Response status code: 200
+2025-11-04 08:51:26,158 - data_ingestion.clinicaltrials_api - INFO - Getting studies with params: {'pageSize': 1000, 'pageToken': 'ZVNj7o2Elu8o3lptVoj4tqr2mo6QfpNubPig2fg'}
+2025-11-04 08:51:26,159 - data_ingestion.clinicaltrials_api - INFO - Making request to https://clinicaltrials.gov/api/v2/studies with params: {'pageSize': 1000, 'pageToken': 'ZVNj7o2Elu8o3lptVoj4tqr2mo6QfpNubPig2fg'}
+2025-11-04 08:51:27,178 - data_ingestion.clinicaltrials_api - INFO - Response status code: 200
+2025-11-04 08:51:27,582 - data_ingestion.clinicaltrials_api - INFO - Getting studies with params: {'pageSize': 1000, 'pageToken': 'ZVNj7o2Elu8o3lptVoj4tqr2mo6QepZrbfel2fg'}
+2025-11-04 08:51:27,583 - data_ingestion.clinicaltrials_api - INFO - Making request to https://clinicaltrials.gov/api/v2/studies with params: {'pageSize': 1000, 'pageToken': 'ZVNj7o2Elu8o3lptVoj4tqr2mo6QepZrbfel2fg'}
+2025-11-04 08:51:29,047 - data_ingestion.clinicaltrials_api - INFO - Response status code: 200
+2025-11-04 08:51:49,291 - data_ingestion.clinicaltrials_api - INFO - Getting studies with params: {'pageSize': 1000}
+2025-11-04 08:51:49,292 - data_ingestion.clinicaltrials_api - INFO - Making request to https://clinicaltrials.gov/api/v2/studies with params: {'pageSize': 1000}
+2025-11-04 08:51:51,681 - data_ingestion.clinicaltrials_api - INFO - Response status code: 200
+2025-11-04 08:51:52,087 - data_ingestion.clinicaltrials_api - INFO - Getting studies with params: {'pageSize': 1000, 'pageToken': 'ZVNj7o2Elu8o3lptVoj4tqr2mo6QeZ9sY_Gg3fg'}
+2025-11-04 08:51:52,088 - data_ingestion.clinicaltrials_api - INFO - Making request to https://clinicaltrials.gov/api/v2/studies with params: {'pageSize': 1000, 'pageToken': 'ZVNj7o2Elu8o3lptVoj4tqr2mo6QeZ9sY_Gg3fg'}
+2025-11-04 08:51:53,110 - data_ingestion.clinicaltrials_api - INFO - Response status code: 200
+2025-11-04 08:51:53,512 - data_ingestion.clinicaltrials_api - INFO - Getting studies with params: {'pageSize': 1000, 'pageToken': 'ZVNj7o2Elu8o3lptVoj4tqr2mo6QeZZmYfal2Pg'}
+2025-11-04 08:51:53,513 - data_ingestion.clinicaltrials_api - INFO - Making request to https://clinicaltrials.gov/api/v2/studies with params: {'pageSize': 1000, 'pageToken': 'ZVNj7o2Elu8o3lptVoj4tqr2mo6QeZZmYfal2Pg'}
+2025-11-04 08:51:55,779 - data_ingestion.clinicaltrials_api - INFO - Response status code: 200
+2025-11-04 08:51:56,223 - data_ingestion.clinicaltrials_api - INFO - Getting studies with params: {'pageSize': 1000, 'pageToken': 'ZVNj7o2Elu8o3lptVoj4tqr2mo6QfZVrZfet2vg'}
+2025-11-04 08:51:56,224 - data_ingestion.clinicaltrials_api - INFO - Making request to https://clinicaltrials.gov/api/v2/studies with params: {'pageSize': 1000, 'pageToken': 'ZVNj7o2Elu8o3lptVoj4tqr2mo6QfZVrZfet2vg'}
+2025-11-04 08:51:57,335 - data_ingestion.clinicaltrials_api - INFO - Response status code: 200
+2025-11-04 08:51:57,747 - data_ingestion.clinicaltrials_api - INFO - Getting studies with params: {'pageSize': 1000, 'pageToken': 'ZVNj7o2Elu8o3lptVoj4tqr2mo6Qe5RsYPGj3_g'}
+2025-11-04 08:51:57,748 - data_ingestion.clinicaltrials_api - INFO - Making request to https://clinicaltrials.gov/api/v2/studies with params: {'pageSize': 1000, 'pageToken': 'ZVNj7o2Elu8o3lptVoj4tqr2mo6Qe5RsYPGj3_g'}
+2025-11-04 08:51:58,697 - data_ingestion.clinicaltrials_api - INFO - Response status code: 200
+2025-11-04 08:51:59,047 - data_ingestion.clinicaltrials_api - INFO - Getting studies with params: {'pageSize': 1000, 'pageToken': 'ZVNj7o2Elu8o3lptVoj4tqr2mo6Qe5NrbPen2Pg'}
+2025-11-04 08:51:59,047 - data_ingestion.clinicaltrials_api - INFO - Making request to https://clinicaltrials.gov/api/v2/studies with params: {'pageSize': 1000, 'pageToken': 'ZVNj7o2Elu8o3lptVoj4tqr2mo6Qe5NrbPen2Pg'}
+2025-11-04 08:52:00,604 - data_ingestion.clinicaltrials_api - INFO - Response status code: 200
+2025-11-04 08:52:01,017 - data_ingestion.clinicaltrials_api - INFO - Getting studies with params: {'pageSize': 1000, 'pageToken': 'ZVNj7o2Elu8o3lptVoj4tqr2mo6QfZVrYvis3vg'}
+2025-11-04 08:52:01,018 - data_ingestion.clinicaltrials_api - INFO - Making request to https://clinicaltrials.gov/api/v2/studies with params: {'pageSize': 1000, 'pageToken': 'ZVNj7o2Elu8o3lptVoj4tqr2mo6QfZVrYvis3vg'}
+2025-11-04 08:52:02,140 - data_ingestion.clinicaltrials_api - INFO - Response status code: 200
+2025-11-04 08:52:02,491 - data_ingestion.clinicaltrials_api - INFO - Getting studies with params: {'pageSize': 1000, 'pageToken': 'ZVNj7o2Elu8o3lptVoj4tqr2mo6Qf5VmZ_ii0A'}
+2025-11-04 08:52:02,492 - data_ingestion.clinicaltrials_api - INFO - Making request to https://clinicaltrials.gov/api/v2/studies with params: {'pageSize': 1000, 'pageToken': 'ZVNj7o2Elu8o3lptVoj4tqr2mo6Qf5VmZ_ii0A'}
+2025-11-04 08:52:04,528 - data_ingestion.clinicaltrials_api - INFO - Response status code: 200
+2025-11-04 08:52:04,913 - data_ingestion.clinicaltrials_api - INFO - Getting studies with params: {'pageSize': 1000, 'pageToken': 'ZVNj7o2Elu8o3lptVoj4tqr2mo6Qep9uYfCk1fg'}
+2025-11-04 08:52:04,914 - data_ingestion.clinicaltrials_api - INFO - Making request to https://clinicaltrials.gov/api/v2/studies with params: {'pageSize': 1000, 'pageToken': 'ZVNj7o2Elu8o3lptVoj4tqr2mo6Qep9uYfCk1fg'}
+2025-11-04 08:52:05,945 - data_ingestion.clinicaltrials_api - INFO - Response status code: 200
+2025-11-04 08:52:06,828 - data_ingestion.clinicaltrials_api - INFO - Getting studies with params: {'pageSize': 1000, 'pageToken': 'ZVNj7o2Elu8o3lptVoj4tqr2mo6QfZJqZfmi2Pg'}
+2025-11-04 08:52:06,828 - data_ingestion.clinicaltrials_api - INFO - Making request to https://clinicaltrials.gov/api/v2/studies with params: {'pageSize': 1000, 'pageToken': 'ZVNj7o2Elu8o3lptVoj4tqr2mo6QfZJqZfmi2Pg'}
+2025-11-04 08:52:08,130 - data_ingestion.clinicaltrials_api - INFO - Response status code: 200
+2025-11-04 08:52:08,568 - data_ingestion.clinicaltrials_api - INFO - Getting studies with params: {'pageSize': 1000, 'pageToken': 'ZVNj7o2Elu8o3lptVoj4tqr2mo6QfJVvZvGm1fg'}
+2025-11-04 08:52:08,569 - data_ingestion.clinicaltrials_api - INFO - Making request to https://clinicaltrials.gov/api/v2/studies with params: {'pageSize': 1000, 'pageToken': 'ZVNj7o2Elu8o3lptVoj4tqr2mo6QfJVvZvGm1fg'}
+2025-11-04 08:52:09,601 - data_ingestion.clinicaltrials_api - INFO - Response status code: 200
+2025-11-04 08:52:10,062 - data_ingestion.clinicaltrials_api - INFO - Getting studies with params: {'pageSize': 1000, 'pageToken': 'ZVNj7o2Elu8o3lptVoj4tqr2mo6QfpFoYPml1Pg'}
+2025-11-04 08:52:10,063 - data_ingestion.clinicaltrials_api - INFO - Making request to https://clinicaltrials.gov/api/v2/studies with params: {'pageSize': 1000, 'pageToken': 'ZVNj7o2Elu8o3lptVoj4tqr2mo6QfpFoYPml1Pg'}
+2025-11-04 08:52:11,359 - data_ingestion.clinicaltrials_api - INFO - Response status code: 200
+2025-11-04 08:52:11,744 - data_ingestion.clinicaltrials_api - INFO - Getting studies with params: {'pageSize': 1000, 'pageToken': 'ZVNj7o2Elu8o3lptVoj4tqr2mo6QfpVsbPim3fg'}
+2025-11-04 08:52:11,745 - data_ingestion.clinicaltrials_api - INFO - Making request to https://clinicaltrials.gov/api/v2/studies with params: {'pageSize': 1000, 'pageToken': 'ZVNj7o2Elu8o3lptVoj4tqr2mo6QfpVsbPim3fg'}
+2025-11-04 08:52:12,710 - data_ingestion.clinicaltrials_api - INFO - Response status code: 200
+2025-11-04 08:52:13,069 - data_ingestion.clinicaltrials_api - INFO - Getting studies with params: {'pageSize': 1000, 'pageToken': 'ZVNj7o2Elu8o3lptVoj4tqr2mo6QeZdpZvSp'}
+2025-11-04 08:52:13,070 - data_ingestion.clinicaltrials_api - INFO - Making request to https://clinicaltrials.gov/api/v2/studies with params: {'pageSize': 1000, 'pageToken': 'ZVNj7o2Elu8o3lptVoj4tqr2mo6QeZdpZvSp'}
+2025-11-04 08:52:15,280 - data_ingestion.clinicaltrials_api - INFO - Response status code: 200
+2025-11-04 08:52:15,627 - data_ingestion.clinicaltrials_api - INFO - Getting studies with params: {'pageSize': 1000, 'pageToken': 'ZVNj7o2Elu8o3lptVoj4tqr2mo6QfJBoYPSg2Pg'}
+2025-11-04 08:52:15,628 - data_ingestion.clinicaltrials_api - INFO - Making request to https://clinicaltrials.gov/api/v2/studies with params: {'pageSize': 1000, 'pageToken': 'ZVNj7o2Elu8o3lptVoj4tqr2mo6QfJBoYPSg2Pg'}
+2025-11-04 08:52:16,714 - data_ingestion.clinicaltrials_api - INFO - Response status code: 200
+2025-11-04 08:52:17,091 - data_ingestion.clinicaltrials_api - INFO - Getting studies with params: {'pageSize': 1000, 'pageToken': 'ZVNj7o2Elu8o3lptVoj4tqr2mo6Qe59uZ_ak2Pg'}
+2025-11-04 08:52:17,091 - data_ingestion.clinicaltrials_api - INFO - Making request to https://clinicaltrials.gov/api/v2/studies with params: {'pageSize': 1000, 'pageToken': 'ZVNj7o2Elu8o3lptVoj4tqr2mo6Qe59uZ_ak2Pg'}
+2025-11-04 08:52:18,937 - data_ingestion.clinicaltrials_api - INFO - Response status code: 200
+2025-11-04 08:52:19,292 - data_ingestion.clinicaltrials_api - INFO - Getting studies with params: {'pageSize': 1000, 'pageToken': 'ZVNj7o2Elu8o3lptVoj4tqr2mo6QeZFuYPCh3vg'}
+2025-11-04 08:52:19,293 - data_ingestion.clinicaltrials_api - INFO - Making request to https://clinicaltrials.gov/api/v2/studies with params: {'pageSize': 1000, 'pageToken': 'ZVNj7o2Elu8o3lptVoj4tqr2mo6QeZFuYPCh3vg'}
+2025-11-04 08:52:20,377 - data_ingestion.clinicaltrials_api - INFO - Response status code: 200
+2025-11-04 08:52:20,865 - data_ingestion.clinicaltrials_api - INFO - Getting studies with params: {'pageSize': 1000, 'pageToken': 'ZVNj7o2Elu8o3lptVoj4tqr2mo6Qe55vY_Ch0A'}
+2025-11-04 08:52:20,866 - data_ingestion.clinicaltrials_api - INFO - Making request to https://clinicaltrials.gov/api/v2/studies with params: {'pageSize': 1000, 'pageToken': 'ZVNj7o2Elu8o3lptVoj4tqr2mo6Qe55vY_Ch0A'}
+2025-11-04 08:52:22,124 - data_ingestion.clinicaltrials_api - INFO - Response status code: 200
+2025-11-04 08:52:22,500 - data_ingestion.clinicaltrials_api - INFO - Getting studies with params: {'pageSize': 1000, 'pageToken': 'ZVNj7o2Elu8o3lptVoj4tqr2mo6QfJZpY_Oi0A'}
+2025-11-04 08:52:22,501 - data_ingestion.clinicaltrials_api - INFO - Making request to https://clinicaltrials.gov/api/v2/studies with params: {'pageSize': 1000, 'pageToken': 'ZVNj7o2Elu8o3lptVoj4tqr2mo6QfJZpY_Oi0A'}
+2025-11-04 08:52:23,504 - data_ingestion.clinicaltrials_api - INFO - Response status code: 200
+2025-11-04 08:52:23,925 - data_ingestion.clinicaltrials_api - INFO - Getting studies with params: {'pageSize': 1000, 'pageToken': 'ZVNj7o2Elu8o3lptVoj4tqr2mo6QfpJvZfam3vg'}
+2025-11-04 08:52:23,926 - data_ingestion.clinicaltrials_api - INFO - Making request to https://clinicaltrials.gov/api/v2/studies with params: {'pageSize': 1000, 'pageToken': 'ZVNj7o2Elu8o3lptVoj4tqr2mo6QfpJvZfam3vg'}
+2025-11-04 08:52:25,345 - data_ingestion.clinicaltrials_api - INFO - Response status code: 200
+2025-11-04 08:52:25,796 - data_ingestion.clinicaltrials_api - INFO - Getting studies with params: {'pageSize': 1000, 'pageToken': 'ZVNj7o2Elu8o3lptVoj4tqr2mo6QfZFoZPCl3_g'}
+2025-11-04 08:52:25,797 - data_ingestion.clinicaltrials_api - INFO - Making request to https://clinicaltrials.gov/api/v2/studies with params: {'pageSize': 1000, 'pageToken': 'ZVNj7o2Elu8o3lptVoj4tqr2mo6QfZFoZPCl3_g'}
+2025-11-04 08:52:26,822 - data_ingestion.clinicaltrials_api - INFO - Response status code: 200
+2025-11-04 08:52:27,713 - data_ingestion.clinicaltrials_api - INFO - Getting studies with params: {'pageSize': 1000, 'pageToken': 'ZVNj7o2Elu8o3lptVoj4tqr2mo6QfpZsY_Wl2_g'}
+2025-11-04 08:52:27,714 - data_ingestion.clinicaltrials_api - INFO - Making request to https://clinicaltrials.gov/api/v2/studies with params: {'pageSize': 1000, 'pageToken': 'ZVNj7o2Elu8o3lptVoj4tqr2mo6QfpZsY_Wl2_g'}
+2025-11-04 08:52:28,945 - data_ingestion.clinicaltrials_api - INFO - Response status code: 200
+2025-11-04 08:52:29,368 - data_ingestion.clinicaltrials_api - INFO - Getting studies with params: {'pageSize': 1000, 'pageToken': 'ZVNj7o2Elu8o3lptVoj4tqr2mo6Qe5dvZ_Kg1fg'}
+2025-11-04 08:52:29,369 - data_ingestion.clinicaltrials_api - INFO - Making request to https://clinicaltrials.gov/api/v2/studies with params: {'pageSize': 1000, 'pageToken': 'ZVNj7o2Elu8o3lptVoj4tqr2mo6Qe5dvZ_Kg1fg'}
+2025-11-04 08:52:30,387 - data_ingestion.clinicaltrials_api - INFO - Response status code: 200
+2025-11-04 08:52:30,776 - data_ingestion.clinicaltrials_api - INFO - Getting studies with params: {'pageSize': 1000, 'pageToken': 'ZVNj7o2Elu8o3lptVoj4tqr2mo6QeZJnZPas3vg'}
+2025-11-04 08:52:30,777 - data_ingestion.clinicaltrials_api - INFO - Making request to https://clinicaltrials.gov/api/v2/studies with params: {'pageSize': 1000, 'pageToken': 'ZVNj7o2Elu8o3lptVoj4tqr2mo6QeZJnZPas3vg'}
+2025-11-04 08:52:32,271 - data_ingestion.clinicaltrials_api - INFO - Response status code: 200
+2025-11-04 08:52:32,641 - data_ingestion.clinicaltrials_api - INFO - Getting studies with params: {'pageSize': 1000, 'pageToken': 'ZVNj7o2Elu8o3lptVoj4tqr2mo6Qf5doYfei2Pg'}
+2025-11-04 08:52:32,642 - data_ingestion.clinicaltrials_api - INFO - Making request to https://clinicaltrials.gov/api/v2/studies with params: {'pageSize': 1000, 'pageToken': 'ZVNj7o2Elu8o3lptVoj4tqr2mo6Qf5doYfei2Pg'}
+2025-11-04 08:52:33,620 - data_ingestion.clinicaltrials_api - INFO - Response status code: 200
+2025-11-04 08:52:33,989 - data_ingestion.clinicaltrials_api - INFO - Getting studies with params: {'pageSize': 1000, 'pageToken': 'ZVNj7o2Elu8o3lptVoj4tqr2mo6QeZRnY_Oi3vg'}
+2025-11-04 08:52:33,991 - data_ingestion.clinicaltrials_api - INFO - Making request to https://clinicaltrials.gov/api/v2/studies with params: {'pageSize': 1000, 'pageToken': 'ZVNj7o2Elu8o3lptVoj4tqr2mo6QeZRnY_Oi3vg'}
+2025-11-04 08:52:35,593 - data_ingestion.clinicaltrials_api - INFO - Response status code: 200
+2025-11-04 08:52:35,972 - data_ingestion.clinicaltrials_api - INFO - Getting studies with params: {'pageSize': 1000, 'pageToken': 'ZVNj7o2Elu8o3lptVoj4tqr2mo6QfpVrYPag2fg'}
+2025-11-04 08:52:35,974 - data_ingestion.clinicaltrials_api - INFO - Making request to https://clinicaltrials.gov/api/v2/studies with params: {'pageSize': 1000, 'pageToken': 'ZVNj7o2Elu8o3lptVoj4tqr2mo6QfpVrYPag2fg'}
+2025-11-04 08:52:37,203 - data_ingestion.clinicaltrials_api - INFO - Response status code: 200
+2025-11-04 08:52:37,560 - data_ingestion.clinicaltrials_api - INFO - Getting studies with params: {'pageSize': 1000, 'pageToken': 'ZVNj7o2Elu8o3lptVoj4tqr2mo6QepVubfKs2Pg'}
+2025-11-04 08:52:37,561 - data_ingestion.clinicaltrials_api - INFO - Making request to https://clinicaltrials.gov/api/v2/studies with params: {'pageSize': 1000, 'pageToken': 'ZVNj7o2Elu8o3lptVoj4tqr2mo6QepVubfKs2Pg'}
+2025-11-04 08:52:39,029 - data_ingestion.clinicaltrials_api - INFO - Response status code: 200
+2025-11-04 08:52:39,450 - data_ingestion.clinicaltrials_api - INFO - Getting studies with params: {'pageSize': 1000, 'pageToken': 'ZVNj7o2Elu8o3lptVoj4tqr2mo6QeZFnZfSt2Pg'}
+2025-11-04 08:52:39,451 - data_ingestion.clinicaltrials_api - INFO - Making request to https://clinicaltrials.gov/api/v2/studies with params: {'pageSize': 1000, 'pageToken': 'ZVNj7o2Elu8o3lptVoj4tqr2mo6QeZFnZfSt2Pg'}
+2025-11-04 08:52:40,541 - data_ingestion.clinicaltrials_api - INFO - Response status code: 200
+2025-11-04 08:52:40,937 - data_ingestion.clinicaltrials_api - INFO - Getting studies with params: {'pageSize': 1000, 'pageToken': 'ZVNj7o2Elu8o3lptVoj4tqr2mo6QfpFobPis2Pg'}
+2025-11-04 08:52:40,937 - data_ingestion.clinicaltrials_api - INFO - Making request to https://clinicaltrials.gov/api/v2/studies with params: {'pageSize': 1000, 'pageToken': 'ZVNj7o2Elu8o3lptVoj4tqr2mo6QfpFobPis2Pg'}
+2025-11-04 08:52:42,073 - data_ingestion.clinicaltrials_api - INFO - Response status code: 200
+2025-11-04 08:52:42,450 - data_ingestion.clinicaltrials_api - INFO - Getting studies with params: {'pageSize': 1000, 'pageToken': 'ZVNj7o2Elu8o3lptVoj4tqr2mo6QeZVnZ_Gl2Pg'}
+2025-11-04 08:52:42,452 - data_ingestion.clinicaltrials_api - INFO - Making request to https://clinicaltrials.gov/api/v2/studies with params: {'pageSize': 1000, 'pageToken': 'ZVNj7o2Elu8o3lptVoj4tqr2mo6QeZVnZ_Gl2Pg'}
+2025-11-04 08:52:43,414 - data_ingestion.clinicaltrials_api - INFO - Response status code: 200
+2025-11-04 08:52:43,764 - data_ingestion.clinicaltrials_api - INFO - Getting studies with params: {'pageSize': 1000, 'pageToken': 'ZVNj7o2Elu8o3lptVoj4tqr2mo6QfZ5rY_eh2vg'}
+2025-11-04 08:52:43,766 - data_ingestion.clinicaltrials_api - INFO - Making request to https://clinicaltrials.gov/api/v2/studies with params: {'pageSize': 1000, 'pageToken': 'ZVNj7o2Elu8o3lptVoj4tqr2mo6QfZ5rY_eh2vg'}
+2025-11-04 08:52:44,750 - data_ingestion.clinicaltrials_api - INFO - Response status code: 200
+2025-11-04 08:52:45,129 - data_ingestion.clinicaltrials_api - INFO - Getting studies with params: {'pageSize': 1000, 'pageToken': 'ZVNj7o2Elu8o3lptVoj4tqr2mo6QepNnYPGk3fg'}
+2025-11-04 08:52:45,130 - data_ingestion.clinicaltrials_api - INFO - Making request to https://clinicaltrials.gov/api/v2/studies with params: {'pageSize': 1000, 'pageToken': 'ZVNj7o2Elu8o3lptVoj4tqr2mo6QepNnYPGk3fg'}
+2025-11-04 08:52:46,145 - data_ingestion.clinicaltrials_api - INFO - Response status code: 200
+2025-11-04 08:52:46,954 - data_ingestion.clinicaltrials_api - INFO - Getting studies with params: {'pageSize': 1000, 'pageToken': 'ZVNj7o2Elu8o3lptVoj4tqr2mo6Qe59rbfCl0A'}
+2025-11-04 08:52:46,955 - data_ingestion.clinicaltrials_api - INFO - Making request to https://clinicaltrials.gov/api/v2/studies with params: {'pageSize': 1000, 'pageToken': 'ZVNj7o2Elu8o3lptVoj4tqr2mo6Qe59rbfCl0A'}
+2025-11-04 08:52:47,971 - data_ingestion.clinicaltrials_api - INFO - Response status code: 200
+2025-11-04 08:52:48,325 - data_ingestion.clinicaltrials_api - INFO - Getting studies with params: {'pageSize': 1000, 'pageToken': 'ZVNj7o2Elu8o3lptVoj4tqr2mo6Qe5dnbPmk0A'}
+2025-11-04 08:52:48,326 - data_ingestion.clinicaltrials_api - INFO - Making request to https://clinicaltrials.gov/api/v2/studies with params: {'pageSize': 1000, 'pageToken': 'ZVNj7o2Elu8o3lptVoj4tqr2mo6Qe5dnbPmk0A'}
+2025-11-04 08:52:49,707 - data_ingestion.clinicaltrials_api - INFO - Response status code: 200
+2025-11-04 08:52:50,114 - data_ingestion.clinicaltrials_api - INFO - Getting studies with params: {'pageSize': 1000, 'pageToken': 'ZVNj7o2Elu8o3lptVoj4tqr2mo6Qf5VrZ_Wl0A'}
+2025-11-04 08:52:50,115 - data_ingestion.clinicaltrials_api - INFO - Making request to https://clinicaltrials.gov/api/v2/studies with params: {'pageSize': 1000, 'pageToken': 'ZVNj7o2Elu8o3lptVoj4tqr2mo6Qf5VrZ_Wl0A'}
+2025-11-04 08:52:51,112 - data_ingestion.clinicaltrials_api - INFO - Response status code: 200
+2025-11-04 08:52:51,531 - data_ingestion.clinicaltrials_api - INFO - Getting studies with params: {'pageSize': 1000, 'pageToken': 'ZVNj7o2Elu8o3lptVoj4tqr2mo6Qe59nZfCh2fg'}
+2025-11-04 08:52:51,532 - data_ingestion.clinicaltrials_api - INFO - Making request to https://clinicaltrials.gov/api/v2/studies with params: {'pageSize': 1000, 'pageToken': 'ZVNj7o2Elu8o3lptVoj4tqr2mo6Qe59nZfCh2fg'}
+2025-11-04 08:52:53,039 - data_ingestion.clinicaltrials_api - INFO - Response status code: 200
+2025-11-04 08:52:53,473 - data_ingestion.clinicaltrials_api - INFO - Getting studies with params: {'pageSize': 1000, 'pageToken': 'ZVNj7o2Elu8o3lptVoj4tqr2mo6QfZJqY_mk2fg'}
+2025-11-04 08:52:53,473 - data_ingestion.clinicaltrials_api - INFO - Making request to https://clinicaltrials.gov/api/v2/studies with params: {'pageSize': 1000, 'pageToken': 'ZVNj7o2Elu8o3lptVoj4tqr2mo6QfZJqY_mk2fg'}
+2025-11-04 08:52:54,437 - data_ingestion.clinicaltrials_api - INFO - Response status code: 200
+2025-11-04 08:52:54,772 - data_ingestion.clinicaltrials_api - INFO - Getting studies with params: {'pageSize': 1000, 'pageToken': 'ZVNj7o2Elu8o3lptVoj4tqr2mo6QeZZqZ_Cs2Pg'}
+2025-11-04 08:52:54,773 - data_ingestion.clinicaltrials_api - INFO - Making request to https://clinicaltrials.gov/api/v2/studies with params: {'pageSize': 1000, 'pageToken': 'ZVNj7o2Elu8o3lptVoj4tqr2mo6QeZZqZ_Cs2Pg'}
+2025-11-04 08:52:56,272 - data_ingestion.clinicaltrials_api - INFO - Response status code: 200
+2025-11-04 08:52:56,713 - data_ingestion.clinicaltrials_api - INFO - Getting studies with params: {'pageSize': 1000, 'pageToken': 'ZVNj7o2Elu8o3lptVoj4tqr2mo6Qep9rY_Cm1Pg'}
+2025-11-04 08:52:56,713 - data_ingestion.clinicaltrials_api - INFO - Making request to https://clinicaltrials.gov/api/v2/studies with params: {'pageSize': 1000, 'pageToken': 'ZVNj7o2Elu8o3lptVoj4tqr2mo6Qep9rY_Cm1Pg'}
+2025-11-04 08:52:57,755 - data_ingestion.clinicaltrials_api - INFO - Response status code: 200
+2025-11-04 08:52:58,107 - data_ingestion.clinicaltrials_api - INFO - Getting studies with params: {'pageSize': 1000, 'pageToken': 'ZVNj7o2Elu8o3lptVoj4tqr2mo6Qe5NvbfSl2fg'}
+2025-11-04 08:52:58,108 - data_ingestion.clinicaltrials_api - INFO - Making request to https://clinicaltrials.gov/api/v2/studies with params: {'pageSize': 1000, 'pageToken': 'ZVNj7o2Elu8o3lptVoj4tqr2mo6Qe5NvbfSl2fg'}
+2025-11-04 08:52:59,674 - data_ingestion.clinicaltrials_api - INFO - Response status code: 200
+2025-11-04 08:52:59,988 - data_ingestion.clinicaltrials_api - INFO - Getting studies with params: {'pageSize': 1000, 'pageToken': 'ZVNj7o2Elu8o3lptVoj4tqr2mo6QfZFuYPmk2Pg'}
+2025-11-04 08:52:59,989 - data_ingestion.clinicaltrials_api - INFO - Making request to https://clinicaltrials.gov/api/v2/studies with params: {'pageSize': 1000, 'pageToken': 'ZVNj7o2Elu8o3lptVoj4tqr2mo6QfZFuYPmk2Pg'}
+2025-11-04 08:53:00,992 - data_ingestion.clinicaltrials_api - INFO - Response status code: 200
+2025-11-04 08:53:01,319 - data_ingestion.clinicaltrials_api - INFO - Getting studies with params: {'pageSize': 1000, 'pageToken': 'ZVNj7o2Elu8o3lptVoj4tqr2mo6QepNoYPal3_g'}
+2025-11-04 08:53:01,320 - data_ingestion.clinicaltrials_api - INFO - Making request to https://clinicaltrials.gov/api/v2/studies with params: {'pageSize': 1000, 'pageToken': 'ZVNj7o2Elu8o3lptVoj4tqr2mo6QepNoYPal3_g'}
+2025-11-04 08:53:02,891 - data_ingestion.clinicaltrials_api - INFO - Response status code: 200
+2025-11-04 08:53:03,288 - data_ingestion.clinicaltrials_api - INFO - Getting studies with params: {'pageSize': 1000, 'pageToken': 'ZVNj7o2Elu8o3lptVoj4tqr2mo6QepNvYvis1fg'}
+2025-11-04 08:53:03,289 - data_ingestion.clinicaltrials_api - INFO - Making request to https://clinicaltrials.gov/api/v2/studies with params: {'pageSize': 1000, 'pageToken': 'ZVNj7o2Elu8o3lptVoj4tqr2mo6QepNvYvis1fg'}
+2025-11-04 08:53:04,261 - data_ingestion.clinicaltrials_api - INFO - Response status code: 200
+2025-11-04 08:53:04,603 - data_ingestion.clinicaltrials_api - INFO - Getting studies with params: {'pageSize': 1000, 'pageToken': 'ZVNj7o2Elu8o3lptVoj4tqr2mo6QepFuYfSt3vg'}
+2025-11-04 08:53:04,604 - data_ingestion.clinicaltrials_api - INFO - Making request to https://clinicaltrials.gov/api/v2/studies with params: {'pageSize': 1000, 'pageToken': 'ZVNj7o2Elu8o3lptVoj4tqr2mo6QepFuYfSt3vg'}
+2025-11-04 08:53:05,633 - data_ingestion.clinicaltrials_api - INFO - Response status code: 200
+2025-11-04 08:53:06,336 - data_ingestion.clinicaltrials_api - INFO - Getting studies with params: {'pageSize': 1000, 'pageToken': 'ZVNj7o2Elu8o3lptVoj4tqr2mo6QfJZuYfWj2fg'}
+2025-11-04 08:53:06,337 - data_ingestion.clinicaltrials_api - INFO - Making request to https://clinicaltrials.gov/api/v2/studies with params: {'pageSize': 1000, 'pageToken': 'ZVNj7o2Elu8o3lptVoj4tqr2mo6QfJZuYfWj2fg'}
+2025-11-04 08:53:07,367 - data_ingestion.clinicaltrials_api - INFO - Response status code: 200
+2025-11-04 08:53:07,737 - data_ingestion.clinicaltrials_api - INFO - Getting studies with params: {'pageSize': 1000, 'pageToken': 'ZVNj7o2Elu8o3lptVoj4tqr2mo6QfJRuZvig3Pg'}
+2025-11-04 08:53:07,738 - data_ingestion.clinicaltrials_api - INFO - Making request to https://clinicaltrials.gov/api/v2/studies with params: {'pageSize': 1000, 'pageToken': 'ZVNj7o2Elu8o3lptVoj4tqr2mo6QfJRuZvig3Pg'}
+2025-11-04 08:53:09,056 - data_ingestion.clinicaltrials_api - INFO - Response status code: 200
+2025-11-04 08:53:09,377 - data_ingestion.clinicaltrials_api - INFO - Getting studies with params: {'pageSize': 1000, 'pageToken': 'ZVNj7o2Elu8o3lptVoj4tqr2mo6QfJ5uYPan0A'}
+2025-11-04 08:53:09,378 - data_ingestion.clinicaltrials_api - INFO - Making request to https://clinicaltrials.gov/api/v2/studies with params: {'pageSize': 1000, 'pageToken': 'ZVNj7o2Elu8o3lptVoj4tqr2mo6QfJ5uYPan0A'}
+2025-11-04 08:53:10,419 - data_ingestion.clinicaltrials_api - INFO - Response status code: 200
+2025-11-04 08:53:10,764 - data_ingestion.clinicaltrials_api - INFO - Getting studies with params: {'pageSize': 1000, 'pageToken': 'ZVNj7o2Elu8o3lptVoj4tqr2mo6QfpNubPig2fg'}
+2025-11-04 08:53:10,765 - data_ingestion.clinicaltrials_api - INFO - Making request to https://clinicaltrials.gov/api/v2/studies with params: {'pageSize': 1000, 'pageToken': 'ZVNj7o2Elu8o3lptVoj4tqr2mo6QfpNubPig2fg'}
+2025-11-04 08:53:12,156 - data_ingestion.clinicaltrials_api - INFO - Response status code: 200
+2025-11-04 08:53:12,483 - data_ingestion.clinicaltrials_api - INFO - Getting studies with params: {'pageSize': 1000, 'pageToken': 'ZVNj7o2Elu8o3lptVoj4tqr2mo6QepZrbfel2fg'}
+2025-11-04 08:53:12,484 - data_ingestion.clinicaltrials_api - INFO - Making request to https://clinicaltrials.gov/api/v2/studies with params: {'pageSize': 1000, 'pageToken': 'ZVNj7o2Elu8o3lptVoj4tqr2mo6QepZrbfel2fg'}
+2025-11-04 08:53:13,499 - data_ingestion.clinicaltrials_api - INFO - Response status code: 200

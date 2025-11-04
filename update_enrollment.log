@@ -1,0 +1,506 @@
+2025-11-04 11:38:32,505 - INFO - Enrollment Data Updater Script
+2025-11-04 11:38:32,505 - INFO - ========================================
+2025-11-04 11:38:32,507 - INFO - Starting enrollment data update process...
+2025-11-04 11:38:32,753 - INFO - Found 100 trials without enrollment data
+2025-11-04 11:38:32,753 - INFO - Processing trial 1/100: NCT04789135
+2025-11-04 11:38:32,753 - INFO - Fetching data for trial NCT04789135
+2025-11-04 11:38:33,229 - INFO - Successfully fetched data for trial NCT04789135
+2025-11-04 11:38:33,229 - INFO - Found enrollment count: 50
+2025-11-04 11:38:33,442 - INFO - Updated enrollment count for trial NCT04789135: 50
+2025-11-04 11:38:33,944 - INFO - Processing trial 2/100: NCT07135635
+2025-11-04 11:38:33,989 - INFO - Fetching data for trial NCT07135635
+2025-11-04 11:38:34,334 - INFO - Successfully fetched data for trial NCT07135635
+2025-11-04 11:38:34,334 - INFO - Found enrollment count: 100
+2025-11-04 11:38:34,863 - INFO - Updated enrollment count for trial NCT07135635: 100
+2025-11-04 11:38:35,364 - INFO - Processing trial 3/100: NCT05056935
+2025-11-04 11:38:35,364 - INFO - Fetching data for trial NCT05056935
+2025-11-04 11:38:35,697 - INFO - Successfully fetched data for trial NCT05056935
+2025-11-04 11:38:35,698 - INFO - Found enrollment count: 131
+2025-11-04 11:38:35,935 - INFO - Updated enrollment count for trial NCT05056935: 131
+2025-11-04 11:38:36,437 - INFO - Processing trial 4/100: NCT04137835
+2025-11-04 11:38:36,438 - INFO - Fetching data for trial NCT04137835
+2025-11-04 11:38:36,768 - INFO - Successfully fetched data for trial NCT04137835
+2025-11-04 11:38:36,769 - INFO - Found enrollment count: 60
+2025-11-04 11:38:37,024 - INFO - Updated enrollment count for trial NCT04137835: 60
+2025-11-04 11:38:37,525 - INFO - Processing trial 5/100: NCT01966835
+2025-11-04 11:38:37,525 - INFO - Fetching data for trial NCT01966835
+2025-11-04 11:38:37,863 - INFO - Successfully fetched data for trial NCT01966835
+2025-11-04 11:38:37,864 - INFO - Found enrollment count: 44
+2025-11-04 11:38:38,069 - INFO - Updated enrollment count for trial NCT01966835: 44
+2025-11-04 11:38:38,571 - INFO - Processing trial 6/100: NCT02246335
+2025-11-04 11:38:38,571 - INFO - Fetching data for trial NCT02246335
+2025-11-04 11:38:38,908 - INFO - Successfully fetched data for trial NCT02246335
+2025-11-04 11:38:38,924 - INFO - Found enrollment count: 120
+2025-11-04 11:38:39,341 - INFO - Updated enrollment count for trial NCT02246335: 120
+2025-11-04 11:38:39,843 - INFO - Processing trial 7/100: NCT06411535
+2025-11-04 11:38:39,843 - INFO - Fetching data for trial NCT06411535
+2025-11-04 11:38:40,177 - INFO - Successfully fetched data for trial NCT06411535
+2025-11-04 11:38:40,178 - INFO - Found enrollment count: 66
+2025-11-04 11:38:40,562 - INFO - Updated enrollment count for trial NCT06411535: 66
+2025-11-04 11:38:41,064 - INFO - Processing trial 8/100: NCT03950635
+2025-11-04 11:38:41,064 - INFO - Fetching data for trial NCT03950635
+2025-11-04 11:38:41,395 - INFO - Successfully fetched data for trial NCT03950635
+2025-11-04 11:38:41,395 - INFO - Found enrollment count: 13
+2025-11-04 11:38:41,708 - INFO - Updated enrollment count for trial NCT03950635: 13
+2025-11-04 11:38:42,209 - INFO - Processing trial 9/100: NCT06785935
+2025-11-04 11:38:42,209 - INFO - Fetching data for trial NCT06785935
+2025-11-04 11:38:42,541 - INFO - Successfully fetched data for trial NCT06785935
+2025-11-04 11:38:42,542 - INFO - Found enrollment count: 40
+2025-11-04 11:38:42,941 - INFO - Updated enrollment count for trial NCT06785935: 40
+2025-11-04 11:38:43,442 - INFO - Processing trial 10/100: NCT01827735
+2025-11-04 11:38:43,442 - INFO - Fetching data for trial NCT01827735
+2025-11-04 11:38:43,779 - INFO - Successfully fetched data for trial NCT01827735
+2025-11-04 11:38:43,780 - INFO - Found enrollment count: 40
+2025-11-04 11:38:43,986 - INFO - Updated enrollment count for trial NCT01827735: 40
+2025-11-04 11:38:44,488 - INFO - Processing trial 11/100: NCT01160835
+2025-11-04 11:38:44,489 - INFO - Fetching data for trial NCT01160835
+2025-11-04 11:38:44,826 - INFO - Successfully fetched data for trial NCT01160835
+2025-11-04 11:38:44,827 - INFO - Found enrollment count: 80
+2025-11-04 11:38:45,241 - INFO - Updated enrollment count for trial NCT01160835: 80
+2025-11-04 11:38:45,742 - INFO - Processing trial 12/100: NCT05067335
+2025-11-04 11:38:45,742 - INFO - Fetching data for trial NCT05067335
+2025-11-04 11:38:46,084 - INFO - Successfully fetched data for trial NCT05067335
+2025-11-04 11:38:46,084 - INFO - Found enrollment count: 327
+2025-11-04 11:38:46,359 - INFO - Updated enrollment count for trial NCT05067335: 327
+2025-11-04 11:38:46,860 - INFO - Processing trial 13/100: NCT06622135
+2025-11-04 11:38:46,860 - INFO - Fetching data for trial NCT06622135
+2025-11-04 11:38:47,192 - INFO - Successfully fetched data for trial NCT06622135
+2025-11-04 11:38:47,193 - INFO - Found enrollment count: 16
+2025-11-04 11:38:47,453 - INFO - Updated enrollment count for trial NCT06622135: 16
+2025-11-04 11:38:47,955 - INFO - Processing trial 14/100: NCT05848635
+2025-11-04 11:38:47,956 - INFO - Fetching data for trial NCT05848635
+2025-11-04 11:38:48,289 - INFO - Successfully fetched data for trial NCT05848635
+2025-11-04 11:38:48,289 - INFO - Found enrollment count: 88
+2025-11-04 11:38:48,596 - INFO - Updated enrollment count for trial NCT05848635: 88
+2025-11-04 11:38:49,098 - INFO - Processing trial 15/100: NCT00252135
+2025-11-04 11:38:49,098 - INFO - Fetching data for trial NCT00252135
+2025-11-04 11:38:49,433 - INFO - Successfully fetched data for trial NCT00252135
+2025-11-04 11:38:49,434 - INFO - Found enrollment count: 8023
+2025-11-04 11:38:49,903 - INFO - Updated enrollment count for trial NCT00252135: 8023
+2025-11-04 11:38:50,405 - INFO - Processing trial 16/100: NCT00543335
+2025-11-04 11:38:50,405 - INFO - Fetching data for trial NCT00543335
+2025-11-04 11:38:50,741 - INFO - Successfully fetched data for trial NCT00543335
+2025-11-04 11:38:50,742 - INFO - Found enrollment count: 10
+2025-11-04 11:38:51,231 - INFO - Updated enrollment count for trial NCT00543335: 10
+2025-11-04 11:38:51,733 - INFO - Processing trial 17/100: NCT05028335
+2025-11-04 11:38:51,733 - INFO - Fetching data for trial NCT05028335
+2025-11-04 11:38:52,064 - INFO - Successfully fetched data for trial NCT05028335
+2025-11-04 11:38:52,065 - INFO - Found enrollment count: 50
+2025-11-04 11:38:55,537 - INFO - Updated enrollment count for trial NCT05028335: 50
+2025-11-04 11:38:56,038 - INFO - Processing trial 18/100: NCT03844035
+2025-11-04 11:38:56,038 - INFO - Fetching data for trial NCT03844035
+2025-11-04 11:38:56,371 - INFO - Successfully fetched data for trial NCT03844035
+2025-11-04 11:38:56,372 - INFO - Found enrollment count: 45
+2025-11-04 11:38:56,681 - INFO - Updated enrollment count for trial NCT03844035: 45
+2025-11-04 11:38:57,182 - INFO - Processing trial 19/100: NCT03478735
+2025-11-04 11:38:57,182 - INFO - Fetching data for trial NCT03478735
+2025-11-04 11:38:57,516 - INFO - Successfully fetched data for trial NCT03478735
+2025-11-04 11:38:57,517 - INFO - Found enrollment count: 32
+2025-11-04 11:38:58,359 - INFO - Updated enrollment count for trial NCT03478735: 32
+2025-11-04 11:38:58,860 - INFO - Processing trial 20/100: NCT07126535
+2025-11-04 11:38:58,861 - INFO - Fetching data for trial NCT07126535
+2025-11-04 11:38:59,201 - INFO - Successfully fetched data for trial NCT07126535
+2025-11-04 11:38:59,201 - INFO - Found enrollment count: 10
+2025-11-04 11:38:59,492 - INFO - Updated enrollment count for trial NCT07126535: 10
+2025-11-04 11:38:59,994 - INFO - Processing trial 21/100: NCT03130608
+2025-11-04 11:38:59,994 - INFO - Fetching data for trial NCT03130608
+2025-11-04 11:39:00,325 - INFO - Successfully fetched data for trial NCT03130608
+2025-11-04 11:39:00,326 - INFO - Found enrollment count: 37
+2025-11-04 11:39:00,625 - INFO - Updated enrollment count for trial NCT03130608: 37
+2025-11-04 11:39:01,127 - INFO - Processing trial 22/100: NCT05315908
+2025-11-04 11:39:01,128 - INFO - Fetching data for trial NCT05315908
+2025-11-04 11:39:01,472 - INFO - Successfully fetched data for trial NCT05315908
+2025-11-04 11:39:01,473 - INFO - Found enrollment count: 9120
+2025-11-04 11:39:01,684 - INFO - Updated enrollment count for trial NCT05315908: 9120
+2025-11-04 11:39:02,186 - INFO - Processing trial 23/100: NCT05806008
+2025-11-04 11:39:02,186 - INFO - Fetching data for trial NCT05806008
+2025-11-04 11:39:02,514 - INFO - Successfully fetched data for trial NCT05806008
+2025-11-04 11:39:02,515 - INFO - No enrollment count found in study data
+2025-11-04 11:39:02,515 - INFO - No enrollment data available for trial NCT05806008
+2025-11-04 11:39:03,016 - INFO - Processing trial 24/100: NCT06184308
+2025-11-04 11:39:03,017 - INFO - Fetching data for trial NCT06184308
+2025-11-04 11:39:03,350 - INFO - Successfully fetched data for trial NCT06184308
+2025-11-04 11:39:03,351 - INFO - Found enrollment count: 220
+2025-11-04 11:39:03,716 - INFO - Updated enrollment count for trial NCT06184308: 220
+2025-11-04 11:39:04,218 - INFO - Processing trial 25/100: NCT03507608
+2025-11-04 11:39:04,218 - INFO - Fetching data for trial NCT03507608
+2025-11-04 11:39:04,558 - INFO - Successfully fetched data for trial NCT03507608
+2025-11-04 11:39:04,558 - INFO - Found enrollment count: 25
+2025-11-04 11:39:04,937 - INFO - Updated enrollment count for trial NCT03507608: 25
+2025-11-04 11:39:05,439 - INFO - Processing trial 26/100: NCT00242008
+2025-11-04 11:39:05,439 - INFO - Fetching data for trial NCT00242008
+2025-11-04 11:39:05,767 - INFO - Successfully fetched data for trial NCT00242008
+2025-11-04 11:39:05,768 - INFO - No enrollment count found in study data
+2025-11-04 11:39:05,768 - INFO - No enrollment data available for trial NCT00242008
+2025-11-04 11:39:06,269 - INFO - Processing trial 27/100: NCT04881708
+2025-11-04 11:39:06,269 - INFO - Fetching data for trial NCT04881708
+2025-11-04 11:39:06,598 - INFO - Successfully fetched data for trial NCT04881708
+2025-11-04 11:39:06,599 - INFO - Found enrollment count: 300
+2025-11-04 11:39:06,731 - INFO - Updated enrollment count for trial NCT04881708: 300
+2025-11-04 11:39:07,233 - INFO - Processing trial 28/100: NCT02765308
+2025-11-04 11:39:07,233 - INFO - Fetching data for trial NCT02765308
+2025-11-04 11:39:07,566 - INFO - Successfully fetched data for trial NCT02765308
+2025-11-04 11:39:07,567 - INFO - Found enrollment count: 94
+2025-11-04 11:39:07,708 - INFO - Updated enrollment count for trial NCT02765308: 94
+2025-11-04 11:39:08,210 - INFO - Processing trial 29/100: NCT04964908
+2025-11-04 11:39:08,210 - INFO - Fetching data for trial NCT04964908
+2025-11-04 11:39:08,544 - INFO - Successfully fetched data for trial NCT04964908
+2025-11-04 11:39:08,545 - INFO - Found enrollment count: 1088
+2025-11-04 11:39:08,909 - INFO - Updated enrollment count for trial NCT04964908: 1088
+2025-11-04 11:39:09,410 - INFO - Processing trial 30/100: NCT05986708
+2025-11-04 11:39:09,410 - INFO - Fetching data for trial NCT05986708
+2025-11-04 11:39:09,740 - INFO - Successfully fetched data for trial NCT05986708
+2025-11-04 11:39:09,740 - INFO - Found enrollment count: 65
+2025-11-04 11:39:09,896 - INFO - Updated enrollment count for trial NCT05986708: 65
+2025-11-04 11:39:10,398 - INFO - Processing trial 31/100: NCT02215408
+2025-11-04 11:39:10,398 - INFO - Fetching data for trial NCT02215408
+2025-11-04 11:39:10,735 - INFO - Successfully fetched data for trial NCT02215408
+2025-11-04 11:39:10,735 - INFO - Found enrollment count: 402
+2025-11-04 11:39:10,863 - INFO - Updated enrollment count for trial NCT02215408: 402
+2025-11-04 11:39:11,364 - INFO - Processing trial 32/100: NCT00880308
+2025-11-04 11:39:11,364 - INFO - Fetching data for trial NCT00880308
+2025-11-04 11:39:11,698 - INFO - Successfully fetched data for trial NCT00880308
+2025-11-04 11:39:11,698 - INFO - Found enrollment count: 103
+2025-11-04 11:39:11,831 - INFO - Updated enrollment count for trial NCT00880308: 103
+2025-11-04 11:39:12,333 - INFO - Processing trial 33/100: NCT02704208
+2025-11-04 11:39:12,333 - INFO - Fetching data for trial NCT02704208
+2025-11-04 11:39:12,663 - INFO - Successfully fetched data for trial NCT02704208
+2025-11-04 11:39:12,663 - INFO - Found enrollment count: 410
+2025-11-04 11:39:12,821 - INFO - Updated enrollment count for trial NCT02704208: 410
+2025-11-04 11:39:13,322 - INFO - Processing trial 34/100: NCT06712108
+2025-11-04 11:39:13,322 - INFO - Fetching data for trial NCT06712108
+2025-11-04 11:39:13,654 - INFO - Successfully fetched data for trial NCT06712108
+2025-11-04 11:39:13,654 - INFO - Found enrollment count: 40
+2025-11-04 11:39:13,798 - INFO - Updated enrollment count for trial NCT06712108: 40
+2025-11-04 11:39:14,300 - INFO - Processing trial 35/100: NCT02218008
+2025-11-04 11:39:14,300 - INFO - Fetching data for trial NCT02218008
+2025-11-04 11:39:14,638 - INFO - Successfully fetched data for trial NCT02218008
+2025-11-04 11:39:14,639 - INFO - Found enrollment count: 407
+2025-11-04 11:39:14,832 - INFO - Updated enrollment count for trial NCT02218008: 407
+2025-11-04 11:39:15,333 - INFO - Processing trial 36/100: NCT02448108
+2025-11-04 11:39:15,334 - INFO - Fetching data for trial NCT02448108
+2025-11-04 11:39:15,657 - INFO - Successfully fetched data for trial NCT02448108
+2025-11-04 11:39:15,658 - INFO - Found enrollment count: 47
+2025-11-04 11:39:15,788 - INFO - Updated enrollment count for trial NCT02448108: 47
+2025-11-04 11:39:16,289 - INFO - Processing trial 37/100: NCT02554708
+2025-11-04 11:39:16,289 - INFO - Fetching data for trial NCT02554708
+2025-11-04 11:39:16,616 - INFO - Successfully fetched data for trial NCT02554708
+2025-11-04 11:39:16,616 - INFO - Found enrollment count: 116
+2025-11-04 11:39:16,776 - INFO - Updated enrollment count for trial NCT02554708: 116
+2025-11-04 11:39:17,278 - INFO - Processing trial 38/100: NCT00003708
+2025-11-04 11:39:17,278 - INFO - Fetching data for trial NCT00003708
+2025-11-04 11:39:17,630 - INFO - Successfully fetched data for trial NCT00003708
+2025-11-04 11:39:17,631 - INFO - Found enrollment count: 32
+2025-11-04 11:39:17,881 - INFO - Updated enrollment count for trial NCT00003708: 32
+2025-11-04 11:39:18,382 - INFO - Processing trial 39/100: NCT06008808
+2025-11-04 11:39:18,382 - INFO - Fetching data for trial NCT06008808
+2025-11-04 11:39:18,874 - INFO - Successfully fetched data for trial NCT06008808
+2025-11-04 11:39:18,874 - INFO - Found enrollment count: 41
+2025-11-04 11:39:19,626 - INFO - Updated enrollment count for trial NCT06008808: 41
+2025-11-04 11:39:20,127 - INFO - Processing trial 40/100: NCT03913208
+2025-11-04 11:39:20,128 - INFO - Fetching data for trial NCT03913208
+2025-11-04 11:39:20,457 - INFO - Successfully fetched data for trial NCT03913208
+2025-11-04 11:39:20,457 - INFO - Found enrollment count: 1000
+2025-11-04 11:39:20,581 - INFO - Updated enrollment count for trial NCT03913208: 1000
+2025-11-04 11:39:21,082 - INFO - Processing trial 41/100: NCT03449225
+2025-11-04 11:39:21,083 - INFO - Fetching data for trial NCT03449225
+2025-11-04 11:39:21,415 - INFO - Successfully fetched data for trial NCT03449225
+2025-11-04 11:39:21,415 - INFO - Found enrollment count: 100
+2025-11-04 11:39:21,536 - INFO - Updated enrollment count for trial NCT03449225: 100
+2025-11-04 11:39:22,037 - INFO - Processing trial 42/100: NCT02484625
+2025-11-04 11:39:22,038 - INFO - Fetching data for trial NCT02484625
+2025-11-04 11:39:22,366 - INFO - Successfully fetched data for trial NCT02484625
+2025-11-04 11:39:22,366 - INFO - Found enrollment count: 40
+2025-11-04 11:39:22,545 - INFO - Updated enrollment count for trial NCT02484625: 40
+2025-11-04 11:39:23,047 - INFO - Processing trial 43/100: NCT00079625
+2025-11-04 11:39:23,047 - INFO - Fetching data for trial NCT00079625
+2025-11-04 11:39:23,378 - INFO - Successfully fetched data for trial NCT00079625
+2025-11-04 11:39:23,380 - INFO - Found enrollment count: 22
+2025-11-04 11:39:23,574 - INFO - Updated enrollment count for trial NCT00079625: 22
+2025-11-04 11:39:24,075 - INFO - Processing trial 44/100: NCT01742325
+2025-11-04 11:39:24,075 - INFO - Fetching data for trial NCT01742325
+2025-11-04 11:39:24,405 - INFO - Successfully fetched data for trial NCT01742325
+2025-11-04 11:39:24,406 - INFO - Found enrollment count: 55
+2025-11-04 11:39:24,719 - INFO - Updated enrollment count for trial NCT01742325: 55
+2025-11-04 11:39:25,220 - INFO - Processing trial 45/100: NCT03843125
+2025-11-04 11:39:25,220 - INFO - Fetching data for trial NCT03843125
+2025-11-04 11:39:25,594 - INFO - Successfully fetched data for trial NCT03843125
+2025-11-04 11:39:25,594 - INFO - Found enrollment count: 1147
+2025-11-04 11:39:25,719 - INFO - Updated enrollment count for trial NCT03843125: 1147
+2025-11-04 11:39:26,221 - INFO - Processing trial 46/100: NCT05782725
+2025-11-04 11:39:26,222 - INFO - Fetching data for trial NCT05782725
+2025-11-04 11:39:26,553 - INFO - Successfully fetched data for trial NCT05782725
+2025-11-04 11:39:26,554 - INFO - Found enrollment count: 300
+2025-11-04 11:39:26,686 - INFO - Updated enrollment count for trial NCT05782725: 300
+2025-11-04 11:39:27,188 - INFO - Processing trial 47/100: NCT04831125
+2025-11-04 11:39:27,188 - INFO - Fetching data for trial NCT04831125
+2025-11-04 11:39:27,516 - INFO - Successfully fetched data for trial NCT04831125
+2025-11-04 11:39:27,517 - INFO - Found enrollment count: 383
+2025-11-04 11:39:27,774 - INFO - Updated enrollment count for trial NCT04831125: 383
+2025-11-04 11:39:28,276 - INFO - Processing trial 48/100: NCT03594825
+2025-11-04 11:39:28,276 - INFO - Fetching data for trial NCT03594825
+2025-11-04 11:39:28,745 - INFO - Successfully fetched data for trial NCT03594825
+2025-11-04 11:39:28,745 - INFO - Found enrollment count: 68
+2025-11-04 11:39:28,875 - INFO - Updated enrollment count for trial NCT03594825: 68
+2025-11-04 11:39:29,376 - INFO - Processing trial 49/100: NCT06669325
+2025-11-04 11:39:29,377 - INFO - Fetching data for trial NCT06669325
+2025-11-04 11:39:29,706 - INFO - Successfully fetched data for trial NCT06669325
+2025-11-04 11:39:29,707 - INFO - Found enrollment count: 100
+2025-11-04 11:39:30,141 - INFO - Updated enrollment count for trial NCT06669325: 100
+2025-11-04 11:39:30,643 - INFO - Processing trial 50/100: NCT06554925
+2025-11-04 11:39:30,643 - INFO - Fetching data for trial NCT06554925
+2025-11-04 11:39:30,973 - INFO - Successfully fetched data for trial NCT06554925
+2025-11-04 11:39:30,973 - INFO - Found enrollment count: 10000
+2025-11-04 11:39:31,130 - INFO - Updated enrollment count for trial NCT06554925: 10000
+2025-11-04 11:39:31,631 - INFO - Processing trial 51/100: NCT00961025
+2025-11-04 11:39:31,631 - INFO - Fetching data for trial NCT00961025
+2025-11-04 11:39:31,955 - INFO - Successfully fetched data for trial NCT00961025
+2025-11-04 11:39:31,956 - INFO - Found enrollment count: 110
+2025-11-04 11:39:32,109 - INFO - Updated enrollment count for trial NCT00961025: 110
+2025-11-04 11:39:32,611 - INFO - Processing trial 52/100: NCT01405625
+2025-11-04 11:39:32,611 - INFO - Fetching data for trial NCT01405625
+2025-11-04 11:39:32,936 - INFO - Successfully fetched data for trial NCT01405625
+2025-11-04 11:39:32,937 - INFO - Found enrollment count: 449
+2025-11-04 11:39:33,074 - INFO - Updated enrollment count for trial NCT01405625: 449
+2025-11-04 11:39:33,576 - INFO - Processing trial 53/100: NCT02218125
+2025-11-04 11:39:33,576 - INFO - Fetching data for trial NCT02218125
+2025-11-04 11:39:33,909 - INFO - Successfully fetched data for trial NCT02218125
+2025-11-04 11:39:33,909 - INFO - Found enrollment count: 25
+2025-11-04 11:39:34,041 - INFO - Updated enrollment count for trial NCT02218125: 25
+2025-11-04 11:39:34,543 - INFO - Processing trial 54/100: NCT07095725
+2025-11-04 11:39:34,543 - INFO - Fetching data for trial NCT07095725
+2025-11-04 11:39:34,876 - INFO - Successfully fetched data for trial NCT07095725
+2025-11-04 11:39:34,885 - INFO - Found enrollment count: 72
+2025-11-04 11:39:35,153 - INFO - Updated enrollment count for trial NCT07095725: 72
+2025-11-04 11:39:35,654 - INFO - Processing trial 55/100: NCT04692025
+2025-11-04 11:39:35,654 - INFO - Fetching data for trial NCT04692025
+2025-11-04 11:39:35,981 - INFO - Successfully fetched data for trial NCT04692025
+2025-11-04 11:39:35,981 - INFO - Found enrollment count: 12
+2025-11-04 11:39:36,120 - INFO - Updated enrollment count for trial NCT04692025: 12
+2025-11-04 11:39:36,621 - INFO - Processing trial 56/100: NCT00779025
+2025-11-04 11:39:36,621 - INFO - Fetching data for trial NCT00779025
+2025-11-04 11:39:36,946 - INFO - Successfully fetched data for trial NCT00779025
+2025-11-04 11:39:36,947 - INFO - Found enrollment count: 82
+2025-11-04 11:39:37,076 - INFO - Updated enrollment count for trial NCT00779025: 82
+2025-11-04 11:39:37,577 - INFO - Processing trial 57/100: NCT04827225
+2025-11-04 11:39:37,578 - INFO - Fetching data for trial NCT04827225
+2025-11-04 11:39:37,909 - INFO - Successfully fetched data for trial NCT04827225
+2025-11-04 11:39:37,909 - INFO - Found enrollment count: 300
+2025-11-04 11:39:38,052 - INFO - Updated enrollment count for trial NCT04827225: 300
+2025-11-04 11:39:38,553 - INFO - Processing trial 58/100: NCT06318325
+2025-11-04 11:39:38,553 - INFO - Fetching data for trial NCT06318325
+2025-11-04 11:39:38,878 - INFO - Successfully fetched data for trial NCT06318325
+2025-11-04 11:39:38,879 - INFO - Found enrollment count: 200
+2025-11-04 11:39:39,031 - INFO - Updated enrollment count for trial NCT06318325: 200
+2025-11-04 11:39:39,533 - INFO - Processing trial 59/100: NCT06760325
+2025-11-04 11:39:39,533 - INFO - Fetching data for trial NCT06760325
+2025-11-04 11:39:39,862 - INFO - Successfully fetched data for trial NCT06760325
+2025-11-04 11:39:39,863 - INFO - Found enrollment count: 42
+2025-11-04 11:39:40,018 - INFO - Updated enrollment count for trial NCT06760325: 42
+2025-11-04 11:39:40,520 - INFO - Processing trial 60/100: NCT02549976
+2025-11-04 11:39:40,520 - INFO - Fetching data for trial NCT02549976
+2025-11-04 11:39:40,854 - INFO - Successfully fetched data for trial NCT02549976
+2025-11-04 11:39:40,855 - INFO - Found enrollment count: 54
+2025-11-04 11:39:41,052 - INFO - Updated enrollment count for trial NCT02549976: 54
+2025-11-04 11:39:41,554 - INFO - Processing trial 61/100: NCT02078076
+2025-11-04 11:39:41,555 - INFO - Fetching data for trial NCT02078076
+2025-11-04 11:39:41,883 - INFO - Successfully fetched data for trial NCT02078076
+2025-11-04 11:39:41,884 - INFO - Found enrollment count: 22
+2025-11-04 11:39:42,030 - INFO - Updated enrollment count for trial NCT02078076: 22
+2025-11-04 11:39:42,531 - INFO - Processing trial 62/100: NCT04034576
+2025-11-04 11:39:42,531 - INFO - Fetching data for trial NCT04034576
+2025-11-04 11:39:42,861 - INFO - Successfully fetched data for trial NCT04034576
+2025-11-04 11:39:42,862 - INFO - Found enrollment count: 90
+2025-11-04 11:39:42,982 - INFO - Updated enrollment count for trial NCT04034576: 90
+2025-11-04 11:39:43,483 - INFO - Processing trial 63/100: NCT05476276
+2025-11-04 11:39:43,483 - INFO - Fetching data for trial NCT05476276
+2025-11-04 11:39:43,823 - INFO - Successfully fetched data for trial NCT05476276
+2025-11-04 11:39:43,824 - INFO - Found enrollment count: 122
+2025-11-04 11:39:43,936 - INFO - Updated enrollment count for trial NCT05476276: 122
+2025-11-04 11:39:44,439 - INFO - Processing trial 64/100: NCT05510076
+2025-11-04 11:39:44,440 - INFO - Fetching data for trial NCT05510076
+2025-11-04 11:39:44,766 - INFO - Successfully fetched data for trial NCT05510076
+2025-11-04 11:39:44,766 - INFO - Found enrollment count: 60
+2025-11-04 11:39:45,048 - INFO - Updated enrollment count for trial NCT05510076: 60
+2025-11-04 11:39:45,550 - INFO - Processing trial 65/100: NCT01434576
+2025-11-04 11:39:45,550 - INFO - Fetching data for trial NCT01434576
+2025-11-04 11:39:45,879 - INFO - Successfully fetched data for trial NCT01434576
+2025-11-04 11:39:45,880 - INFO - Found enrollment count: 0
+2025-11-04 11:39:46,003 - INFO - Updated enrollment count for trial NCT01434576: 0
+2025-11-04 11:39:46,505 - INFO - Processing trial 66/100: NCT05061576
+2025-11-04 11:39:46,505 - INFO - Fetching data for trial NCT05061576
+2025-11-04 11:39:46,835 - INFO - Successfully fetched data for trial NCT05061576
+2025-11-04 11:39:46,836 - INFO - Found enrollment count: 100
+2025-11-04 11:39:46,971 - INFO - Updated enrollment count for trial NCT05061576: 100
+2025-11-04 11:39:47,472 - INFO - Processing trial 67/100: NCT02600676
+2025-11-04 11:39:47,473 - INFO - Fetching data for trial NCT02600676
+2025-11-04 11:39:47,808 - INFO - Successfully fetched data for trial NCT02600676
+2025-11-04 11:39:47,808 - INFO - Found enrollment count: 52
+2025-11-04 11:39:47,929 - INFO - Updated enrollment count for trial NCT02600676: 52
+2025-11-04 11:39:48,432 - INFO - Processing trial 68/100: NCT02128776
+2025-11-04 11:39:48,432 - INFO - Fetching data for trial NCT02128776
+2025-11-04 11:39:48,762 - INFO - Successfully fetched data for trial NCT02128776
+2025-11-04 11:39:48,762 - INFO - Found enrollment count: 201
+2025-11-04 11:39:48,946 - INFO - Updated enrollment count for trial NCT02128776: 201
+2025-11-04 11:39:49,448 - INFO - Processing trial 69/100: NCT05762276
+2025-11-04 11:39:49,449 - INFO - Fetching data for trial NCT05762276
+2025-11-04 11:39:49,773 - INFO - Successfully fetched data for trial NCT05762276
+2025-11-04 11:39:49,773 - INFO - Found enrollment count: 64
+2025-11-04 11:39:49,919 - INFO - Updated enrollment count for trial NCT05762276: 64
+2025-11-04 11:39:50,420 - INFO - Processing trial 70/100: NCT06734676
+2025-11-04 11:39:50,421 - INFO - Fetching data for trial NCT06734676
+2025-11-04 11:39:50,752 - INFO - Successfully fetched data for trial NCT06734676
+2025-11-04 11:39:50,752 - INFO - Found enrollment count: 36
+2025-11-04 11:39:50,952 - INFO - Updated enrollment count for trial NCT06734676: 36
+2025-11-04 11:39:51,453 - INFO - Processing trial 71/100: NCT00057876
+2025-11-04 11:39:51,454 - INFO - Fetching data for trial NCT00057876
+2025-11-04 11:39:51,797 - INFO - Successfully fetched data for trial NCT00057876
+2025-11-04 11:39:51,797 - INFO - Found enrollment count: 74
+2025-11-04 11:39:51,937 - INFO - Updated enrollment count for trial NCT00057876: 74
+2025-11-04 11:39:52,438 - INFO - Processing trial 72/100: NCT02903576
+2025-11-04 11:39:52,439 - INFO - Fetching data for trial NCT02903576
+2025-11-04 11:39:52,767 - INFO - Successfully fetched data for trial NCT02903576
+2025-11-04 11:39:52,767 - INFO - Found enrollment count: 15
+2025-11-04 11:39:52,904 - INFO - Updated enrollment count for trial NCT02903576: 15
+2025-11-04 11:39:53,404 - INFO - Processing trial 73/100: NCT05378776
+2025-11-04 11:39:53,404 - INFO - Fetching data for trial NCT05378776
+2025-11-04 11:39:53,737 - INFO - Successfully fetched data for trial NCT05378776
+2025-11-04 11:39:53,737 - INFO - Found enrollment count: 240
+2025-11-04 11:39:53,911 - INFO - Updated enrollment count for trial NCT05378776: 240
+2025-11-04 11:39:54,412 - INFO - Processing trial 74/100: NCT03188276
+2025-11-04 11:39:54,412 - INFO - Fetching data for trial NCT03188276
+2025-11-04 11:39:54,745 - INFO - Successfully fetched data for trial NCT03188276
+2025-11-04 11:39:54,746 - INFO - Found enrollment count: 52
+2025-11-04 11:39:54,866 - INFO - Updated enrollment count for trial NCT03188276: 52
+2025-11-04 11:39:55,368 - INFO - Processing trial 75/100: NCT00377676
+2025-11-04 11:39:55,368 - INFO - Fetching data for trial NCT00377676
+2025-11-04 11:39:55,705 - INFO - Successfully fetched data for trial NCT00377676
+2025-11-04 11:39:55,705 - INFO - Found enrollment count: 3095
+2025-11-04 11:39:55,868 - INFO - Updated enrollment count for trial NCT00377676: 3095
+2025-11-04 11:39:56,369 - INFO - Processing trial 76/100: NCT03666676
+2025-11-04 11:39:56,369 - INFO - Fetching data for trial NCT03666676
+2025-11-04 11:39:56,705 - INFO - Successfully fetched data for trial NCT03666676
+2025-11-04 11:39:56,706 - INFO - Found enrollment count: 67
+2025-11-04 11:39:56,945 - INFO - Updated enrollment count for trial NCT03666676: 67
+2025-11-04 11:39:57,447 - INFO - Processing trial 77/100: NCT06373276
+2025-11-04 11:39:57,447 - INFO - Fetching data for trial NCT06373276
+2025-11-04 11:39:57,780 - INFO - Successfully fetched data for trial NCT06373276
+2025-11-04 11:39:57,781 - INFO - Found enrollment count: 70
+2025-11-04 11:39:57,912 - INFO - Updated enrollment count for trial NCT06373276: 70
+2025-11-04 11:39:58,413 - INFO - Processing trial 78/100: NCT02691676
+2025-11-04 11:39:58,413 - INFO - Fetching data for trial NCT02691676
+2025-11-04 11:39:58,741 - INFO - Successfully fetched data for trial NCT02691676
+2025-11-04 11:39:58,742 - INFO - Found enrollment count: 112
+2025-11-04 11:39:58,866 - INFO - Updated enrollment count for trial NCT02691676: 112
+2025-11-04 11:39:59,368 - INFO - Processing trial 79/100: NCT04836676
+2025-11-04 11:39:59,369 - INFO - Fetching data for trial NCT04836676
+2025-11-04 11:39:59,701 - INFO - Successfully fetched data for trial NCT04836676
+2025-11-04 11:39:59,701 - INFO - Found enrollment count: 200
+2025-11-04 11:39:59,845 - INFO - Updated enrollment count for trial NCT04836676: 200
+2025-11-04 11:40:00,347 - INFO - Processing trial 80/100: NCT00713076
+2025-11-04 11:40:00,347 - INFO - Fetching data for trial NCT00713076
+2025-11-04 11:40:00,679 - INFO - Successfully fetched data for trial NCT00713076
+2025-11-04 11:40:00,680 - INFO - Found enrollment count: 30
+2025-11-04 11:40:00,811 - INFO - Updated enrollment count for trial NCT00713076: 30
+2025-11-04 11:40:01,313 - INFO - Processing trial 81/100: NCT03389776
+2025-11-04 11:40:01,313 - INFO - Fetching data for trial NCT03389776
+2025-11-04 11:40:01,642 - INFO - Successfully fetched data for trial NCT03389776
+2025-11-04 11:40:01,642 - INFO - Found enrollment count: 197
+2025-11-04 11:40:02,023 - INFO - Updated enrollment count for trial NCT03389776: 197
+2025-11-04 11:40:02,524 - INFO - Processing trial 82/100: NCT02031276
+2025-11-04 11:40:02,524 - INFO - Fetching data for trial NCT02031276
+2025-11-04 11:40:02,865 - INFO - Successfully fetched data for trial NCT02031276
+2025-11-04 11:40:02,866 - INFO - Found enrollment count: 121
+2025-11-04 11:40:03,056 - INFO - Updated enrollment count for trial NCT02031276: 121
+2025-11-04 11:40:03,557 - INFO - Processing trial 83/100: NCT05643976
+2025-11-04 11:40:03,557 - INFO - Fetching data for trial NCT05643976
+2025-11-04 11:40:03,886 - INFO - Successfully fetched data for trial NCT05643976
+2025-11-04 11:40:03,887 - INFO - Found enrollment count: 43
+2025-11-04 11:40:04,033 - INFO - Updated enrollment count for trial NCT05643976: 43
+2025-11-04 11:40:04,535 - INFO - Processing trial 84/100: NCT06620276
+2025-11-04 11:40:04,535 - INFO - Fetching data for trial NCT06620276
+2025-11-04 11:40:04,890 - INFO - Successfully fetched data for trial NCT06620276
+2025-11-04 11:40:04,891 - INFO - Found enrollment count: 20
+2025-11-04 11:40:05,012 - INFO - Updated enrollment count for trial NCT06620276: 20
+2025-11-04 11:40:05,515 - INFO - Processing trial 85/100: NCT00939276
+2025-11-04 11:40:05,515 - INFO - Fetching data for trial NCT00939276
+2025-11-04 11:40:05,846 - INFO - Successfully fetched data for trial NCT00939276
+2025-11-04 11:40:05,847 - INFO - Found enrollment count: 175
+2025-11-04 11:40:06,000 - INFO - Updated enrollment count for trial NCT00939276: 175
+2025-11-04 11:40:06,502 - INFO - Processing trial 86/100: NCT06117176
+2025-11-04 11:40:06,502 - INFO - Fetching data for trial NCT06117176
+2025-11-04 11:40:06,844 - INFO - Successfully fetched data for trial NCT06117176
+2025-11-04 11:40:06,844 - INFO - Found enrollment count: 40000
+2025-11-04 11:40:06,978 - INFO - Updated enrollment count for trial NCT06117176: 40000
+2025-11-04 11:40:07,480 - INFO - Processing trial 87/100: NCT02604576
+2025-11-04 11:40:07,480 - INFO - Fetching data for trial NCT02604576
+2025-11-04 11:40:07,810 - INFO - Successfully fetched data for trial NCT02604576
+2025-11-04 11:40:07,811 - INFO - Found enrollment count: 339
+2025-11-04 11:40:07,933 - INFO - Updated enrollment count for trial NCT02604576: 339
+2025-11-04 11:40:08,436 - INFO - Processing trial 88/100: NCT03498976
+2025-11-04 11:40:08,436 - INFO - Fetching data for trial NCT03498976
+2025-11-04 11:40:08,763 - INFO - Successfully fetched data for trial NCT03498976
+2025-11-04 11:40:08,764 - INFO - Found enrollment count: 60
+2025-11-04 11:40:08,901 - INFO - Updated enrollment count for trial NCT03498976: 60
+2025-11-04 11:40:09,402 - INFO - Processing trial 89/100: NCT03512717
+2025-11-04 11:40:09,402 - INFO - Fetching data for trial NCT03512717
+2025-11-04 11:40:09,727 - INFO - Successfully fetched data for trial NCT03512717
+2025-11-04 11:40:09,728 - INFO - Found enrollment count: 76
+2025-11-04 11:40:10,245 - INFO - Updated enrollment count for trial NCT03512717: 76
+2025-11-04 11:40:10,746 - INFO - Processing trial 90/100: NCT01835717
+2025-11-04 11:40:10,747 - INFO - Fetching data for trial NCT01835717
+2025-11-04 11:40:11,080 - INFO - Successfully fetched data for trial NCT01835717
+2025-11-04 11:40:11,081 - INFO - Found enrollment count: 2743
+2025-11-04 11:40:11,222 - INFO - Updated enrollment count for trial NCT01835717: 2743
+2025-11-04 11:40:11,724 - INFO - Processing trial 91/100: NCT02515617
+2025-11-04 11:40:11,724 - INFO - Fetching data for trial NCT02515617
+2025-11-04 11:40:12,057 - INFO - Successfully fetched data for trial NCT02515617
+2025-11-04 11:40:12,059 - INFO - Found enrollment count: 2577
+2025-11-04 11:40:12,211 - INFO - Updated enrollment count for trial NCT02515617: 2577
+2025-11-04 11:40:12,713 - INFO - Processing trial 92/100: NCT02913417
+2025-11-04 11:40:12,713 - INFO - Fetching data for trial NCT02913417
+2025-11-04 11:40:13,046 - INFO - Successfully fetched data for trial NCT02913417
+2025-11-04 11:40:13,046 - INFO - Found enrollment count: 26
+2025-11-04 11:40:13,223 - INFO - Updated enrollment count for trial NCT02913417: 26
+2025-11-04 11:40:13,724 - INFO - Processing trial 93/100: NCT06410417
+2025-11-04 11:40:13,724 - INFO - Fetching data for trial NCT06410417
+2025-11-04 11:40:14,053 - INFO - Successfully fetched data for trial NCT06410417
+2025-11-04 11:40:14,054 - INFO - Found enrollment count: 500
+2025-11-04 11:40:14,578 - INFO - Updated enrollment count for trial NCT06410417: 500
+2025-11-04 11:40:15,079 - INFO - Processing trial 94/100: NCT00318617
+2025-11-04 11:40:15,080 - INFO - Fetching data for trial NCT00318617
+2025-11-04 11:40:15,409 - INFO - Successfully fetched data for trial NCT00318617
+2025-11-04 11:40:15,410 - INFO - Found enrollment count: 30
+2025-11-04 11:40:15,523 - INFO - Updated enrollment count for trial NCT00318617: 30
+2025-11-04 11:40:16,025 - INFO - Processing trial 95/100: NCT03828617
+2025-11-04 11:40:16,025 - INFO - Fetching data for trial NCT03828617
+2025-11-04 11:40:16,366 - INFO - Successfully fetched data for trial NCT03828617
+2025-11-04 11:40:16,366 - INFO - Found enrollment count: 1710
+2025-11-04 11:40:16,490 - INFO - Updated enrollment count for trial NCT03828617: 1710
+2025-11-04 11:40:16,991 - INFO - Processing trial 96/100: NCT00336817
+2025-11-04 11:40:16,991 - INFO - Fetching data for trial NCT00336817
+2025-11-04 11:40:17,323 - INFO - Successfully fetched data for trial NCT00336817
+2025-11-04 11:40:17,324 - INFO - Found enrollment count: 30
+2025-11-04 11:40:17,489 - INFO - Updated enrollment count for trial NCT00336817: 30
+2025-11-04 11:40:17,991 - INFO - Processing trial 97/100: NCT06682117
+2025-11-04 11:40:17,991 - INFO - Fetching data for trial NCT06682117
+2025-11-04 11:40:18,326 - INFO - Successfully fetched data for trial NCT06682117
+2025-11-04 11:40:18,327 - INFO - Found enrollment count: 9
+2025-11-04 11:40:18,467 - INFO - Updated enrollment count for trial NCT06682117: 9
+2025-11-04 11:40:18,968 - INFO - Processing trial 98/100: NCT00334217
+2025-11-04 11:40:18,968 - INFO - Fetching data for trial NCT00334217
+2025-11-04 11:40:19,298 - INFO - Successfully fetched data for trial NCT00334217
+2025-11-04 11:40:19,299 - INFO - Found enrollment count: 40
+2025-11-04 11:40:19,411 - INFO - Updated enrollment count for trial NCT00334217: 40
+2025-11-04 11:40:19,913 - INFO - Processing trial 99/100: NCT01666717
+2025-11-04 11:40:19,913 - INFO - Fetching data for trial NCT01666717
+2025-11-04 11:40:20,247 - INFO - Successfully fetched data for trial NCT01666717
+2025-11-04 11:40:20,248 - INFO - Found enrollment count: 204
+2025-11-04 11:40:20,435 - INFO - Updated enrollment count for trial NCT01666717: 204
+2025-11-04 11:40:20,936 - INFO - Processing trial 100/100: NCT04234217
+2025-11-04 11:40:20,936 - INFO - Fetching data for trial NCT04234217
+2025-11-04 11:40:21,262 - INFO - Successfully fetched data for trial NCT04234217
+2025-11-04 11:40:21,263 - INFO - Found enrollment count: 300
+2025-11-04 11:40:21,411 - INFO - Updated enrollment count for trial NCT04234217: 300
+2025-11-04 11:40:21,412 - INFO - Enrollment update process completed. Updated: 98, Failed: 2
+2025-11-04 11:40:21,412 - INFO - Script execution completed

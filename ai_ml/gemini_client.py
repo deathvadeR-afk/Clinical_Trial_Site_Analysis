@@ -33,23 +33,35 @@ except ImportError:
 class GeminiClient:
     """Client for interacting with Google's Gemini API"""
     
-    def __init__(self, api_key: Optional[str] = None):
+    def __init__(self, api_key: Optional[str] = None, model_name: str = 'gemini-pro'):
         """
         Initialize the Gemini client
         
         Args:
             api_key: Google Gemini API key (if None, will try to get from environment)
+            model_name: Name of the Gemini model to use (default: gemini-pro)
         """
         self.api_key = api_key or os.getenv("GEMINI_API_KEY")
+        self.model_name = model_name
         self.model = None
         self.is_configured = False
         
-        if GEMINI_AVAILABLE and self.api_key:
+        # Try to load model name from config if available
+        try:
+            if os.path.exists("config.json"):
+                with open("config.json", "r") as f:
+                    config = json.load(f)
+                    # Look for model specification in config
+                    self.model_name = config.get("gemini", {}).get("model", self.model_name)
+        except Exception as e:
+            logger.debug(f"Could not load model name from config: {e}")
+        
+        if GEMINI_AVAILABLE and self.api_key and genai:
             try:
                 genai.configure(api_key=self.api_key)
-                self.model = genai.GenerativeModel('gemini-pro')
+                self.model = genai.GenerativeModel(self.model_name)
                 self.is_configured = True
-                logger.info("Gemini client configured successfully")
+                logger.info(f"Gemini client configured successfully with model {self.model_name}")
             except Exception as e:
                 logger.error(f"Failed to configure Gemini client: {e}")
         else:
@@ -58,14 +70,17 @@ class GeminiClient:
             if not self.api_key:
                 logger.warning("No API key provided for Gemini client")
     
-    def configure_client(self) -> bool:
+    def configure_client(self, model_name: Optional[str] = None) -> bool:
         """
         Configure Gemini API client
         
+        Args:
+            model_name: Name of the Gemini model to use (if None, uses self.model_name)
+            
         Returns:
             True if successful, False otherwise
         """
-        if not GEMINI_AVAILABLE:
+        if not GEMINI_AVAILABLE or not genai:
             logger.error("Google Generative AI SDK not available")
             return False
             
@@ -73,11 +88,15 @@ class GeminiClient:
             logger.error("No API key provided")
             return False
             
+        # Use provided model name or fall back to instance model name
+        model_to_use = model_name or self.model_name
+            
         try:
             genai.configure(api_key=self.api_key)
-            self.model = genai.GenerativeModel('gemini-pro')
+            self.model = genai.GenerativeModel(model_to_use)
+            self.model_name = model_to_use
             self.is_configured = True
-            logger.info("Gemini client configured successfully")
+            logger.info(f"Gemini client configured successfully with model {model_to_use}")
             return True
         except Exception as e:
             logger.error(f"Failed to configure Gemini client: {e}")
@@ -157,20 +176,34 @@ class GeminiClient:
         Returns:
             Generated text or None if error occurred
         """
-        if not self.is_configured or not GEMINI_AVAILABLE or not self.model:
+        if not self.is_configured or not GEMINI_AVAILABLE or not self.model or not genai:
             logger.warning("Gemini client not properly configured")
             return None
             
         try:
-            response = self.model.generate_content(
-                prompt,
-                generation_config=genai.types.GenerationConfig(
+            # Use generation config if available, otherwise use simpler approach
+            if hasattr(genai, 'types') and hasattr(genai.types, 'GenerationConfig'):
+                generation_config = genai.types.GenerationConfig(
                     max_output_tokens=max_tokens,
                     temperature=0.7,
                     top_p=0.8,
                     top_k=40
                 )
-            )
+                response = self.model.generate_content(
+                    prompt,
+                    generation_config=generation_config
+                )
+            else:
+                # Fallback for older versions or when types is not available
+                response = self.model.generate_content(
+                    prompt,
+                    generation_config={
+                        "max_output_tokens": max_tokens,
+                        "temperature": 0.7,
+                        "top_p": 0.8,
+                        "top_k": 40
+                    }
+                )
             
             if response and response.text:
                 logger.info("Text generated successfully using Gemini API")

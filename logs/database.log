@@ -51,3 +51,198 @@
 2025-11-02 12:58:08,611 - database.db_manager - INFO - Disconnected from database
 2025-11-02 12:58:08,628 - database.db_manager - INFO - Connected to database at E:\Codecademy\Clinical_Site_Trial_Analysis\dashboard\pages\../../clinical_trials.db
 2025-11-02 12:58:08,630 - database.db_manager - INFO - Disconnected from database
+2025-11-03 16:37:16,696 - database.db_manager - INFO - Connected to database at clinical_trials.db
+2025-11-03 16:37:16,696 - database.db_manager - INFO - Connected to database at clinical_trials.db
+2025-11-03 16:37:16,973 - database.db_manager - INFO - Disconnected from database
+2025-11-03 16:37:16,973 - database.db_manager - INFO - Disconnected from database
+2025-11-03 16:37:37,399 - database.db_manager - INFO - Connected to database at clinical_trials.db
+2025-11-03 16:37:37,426 - database.db_manager - INFO - Disconnected from database
+2025-11-03 16:37:41,210 - database.db_manager - INFO - Connected to database at clinical_trials.db
+2025-11-03 16:37:41,212 - database.db_manager - INFO - Disconnected from database
+2025-11-03 16:37:50,541 - database.db_manager - INFO - Connected to database at clinical_trials.db
+2025-11-03 16:37:50,543 - database.db_manager - INFO - Disconnected from database
+2025-11-03 16:37:50,545 - database.db_manager - INFO - Connected to database at clinical_trials.db
+2025-11-03 16:37:50,546 - database.db_manager - INFO - Disconnected from database
+2025-11-03 16:37:50,556 - database.db_manager - INFO - Connected to database at clinical_trials.db
+2025-11-03 16:37:50,558 - database.db_manager - INFO - Disconnected from database
+2025-11-03 16:54:14,001 - database.db_manager - INFO - Connected to database at clinical_trials.db
+2025-11-03 16:54:14,002 - database.db_manager - INFO - Disconnected from database
+2025-11-03 17:02:15,366 - database.db_manager - INFO - Connected to database at clinical_trials.db
+2025-11-03 17:02:15,381 - database.db_manager - ERROR - Failed to create tables: table sites_master already exists
+2025-11-03 17:02:15,382 - database.db_manager - INFO - Disconnected from database
+2025-11-03 17:02:51,632 - database.db_manager - INFO - Connected to database at clinical_trials.db
+2025-11-03 17:02:51,635 - database.db_manager - ERROR - Query failed: no such column: last_updated
+2025-11-03 17:02:55,071 - database.db_manager - INFO - Disconnected from database
+2025-11-03 17:03:44,645 - database.db_manager - INFO - Connected to database at clinical_trials.db
+2025-11-03 17:03:44,646 - database.db_manager - ERROR - Query failed: no such column: last_updated
+2025-11-03 17:41:10,791 - database.db_manager - INFO - Disconnected from database
+2025-11-03 18:02:50,519 - database.db_manager - INFO - Connected to database at clinical_trials.db
+2025-11-03 18:03:53,618 - database.db_manager - ERROR - Failed to insert data into clinical_trials: UNIQUE constraint failed: clinical_trials.nct_id
+2025-11-03 18:04:02,887 - database.db_manager - ERROR - Failed to insert data into clinical_trials: UNIQUE constraint failed: clinical_trials.nct_id
+2025-11-03 18:04:07,035 - database.db_manager - ERROR - Failed to insert data into clinical_trials: UNIQUE constraint failed: clinical_trials.nct_id
+2025-11-03 18:04:12,058 - database.db_manager - ERROR - Failed to insert data into clinical_trials: UNIQUE constraint failed: clinical_trials.nct_id
+2025-11-03 18:04:14,172 - database.db_manager - ERROR - Failed to insert data into clinical_trials: UNIQUE constraint failed: clinical_trials.nct_id
+2025-11-03 18:04:16,259 - database.db_manager - ERROR - Failed to insert data into clinical_trials: UNIQUE constraint failed: clinical_trials.nct_id
+2025-11-03 18:04:20,907 - database.db_manager - ERROR - Failed to insert data into clinical_trials: UNIQUE constraint failed: clinical_trials.nct_id
+2025-11-03 18:04:24,538 - database.db_manager - ERROR - Failed to insert data into clinical_trials: UNIQUE constraint failed: clinical_trials.nct_id
+2025-11-03 18:04:42,774 - database.db_manager - INFO - Connected to database at clinical_trials.db
+2025-11-03 18:08:41,897 - database.db_manager - ERROR - Failed to insert data into clinical_trials: UNIQUE constraint failed: clinical_trials.nct_id
+2025-11-03 18:08:49,713 - database.db_manager - ERROR - Failed to insert data into clinical_trials: UNIQUE constraint failed: clinical_trials.nct_id
+2025-11-03 18:08:53,307 - database.db_manager - ERROR - Failed to insert data into clinical_trials: UNIQUE constraint failed: clinical_trials.nct_id
+2025-11-03 18:08:59,980 - database.db_manager - ERROR - Failed to insert data into clinical_trials: UNIQUE constraint failed: clinical_trials.nct_id
+2025-11-03 18:09:03,173 - database.db_manager - ERROR - Failed to insert data into clinical_trials: UNIQUE constraint failed: clinical_trials.nct_id
+2025-11-03 18:09:07,649 - database.db_manager - ERROR - Failed to insert data into clinical_trials: UNIQUE constraint failed: clinical_trials.nct_id
+2025-11-03 18:09:13,457 - database.db_manager - ERROR - Failed to insert data into clinical_trials: UNIQUE constraint failed: clinical_trials.nct_id
+2025-11-03 18:09:19,191 - database.db_manager - ERROR - Failed to insert data into clinical_trials: UNIQUE constraint failed: clinical_trials.nct_id
+2025-11-03 18:09:31,486 - database.db_manager - ERROR - Failed to insert data into clinical_trials: UNIQUE constraint failed: clinical_trials.nct_id
+2025-11-03 18:09:33,794 - database.db_manager - ERROR - Failed to insert data into clinical_trials: UNIQUE constraint failed: clinical_trials.nct_id
+2025-11-03 18:09:37,702 - database.db_manager - ERROR - Failed to insert data into clinical_trials: UNIQUE constraint failed: clinical_trials.nct_id
+2025-11-03 18:09:41,293 - database.db_manager - ERROR - Failed to insert data into clinical_trials: UNIQUE constraint failed: clinical_trials.nct_id
+2025-11-03 18:09:45,369 - database.db_manager - ERROR - Failed to insert data into clinical_trials: UNIQUE constraint failed: clinical_trials.nct_id
+2025-11-03 18:09:47,283 - database.db_manager - ERROR - Failed to insert data into clinical_trials: UNIQUE constraint failed: clinical_trials.nct_id
+2025-11-03 18:09:49,692 - database.db_manager - ERROR - Failed to insert data into clinical_trials: UNIQUE constraint failed: clinical_trials.nct_id
+2025-11-03 18:09:52,836 - database.db_manager - ERROR - Failed to insert data into clinical_trials: UNIQUE constraint failed: clinical_trials.nct_id
+2025-11-03 18:09:54,438 - database.db_manager - ERROR - Failed to insert data into clinical_trials: UNIQUE constraint failed: clinical_trials.nct_id
+2025-11-03 18:10:22,090 - database.db_manager - ERROR - Failed to insert data into clinical_trials: UNIQUE constraint failed: clinical_trials.nct_id
+2025-11-03 18:10:24,526 - database.db_manager - ERROR - Failed to insert data into clinical_trials: UNIQUE constraint failed: clinical_trials.nct_id
+2025-11-03 18:10:25,048 - database.db_manager - ERROR - Failed to insert data into clinical_trials: UNIQUE constraint failed: clinical_trials.nct_id
+2025-11-03 18:10:26,053 - database.db_manager - ERROR - Failed to insert data into clinical_trials: UNIQUE constraint failed: clinical_trials.nct_id
+2025-11-03 18:10:28,149 - database.db_manager - ERROR - Failed to insert data into clinical_trials: UNIQUE constraint failed: clinical_trials.nct_id
+2025-11-03 18:10:30,015 - database.db_manager - ERROR - Failed to insert data into clinical_trials: UNIQUE constraint failed: clinical_trials.nct_id
+2025-11-03 18:10:31,071 - database.db_manager - ERROR - Failed to insert data into clinical_trials: UNIQUE constraint failed: clinical_trials.nct_id
+2025-11-03 18:10:32,661 - database.db_manager - ERROR - Failed to insert data into clinical_trials: UNIQUE constraint failed: clinical_trials.nct_id
+2025-11-03 18:10:33,634 - database.db_manager - ERROR - Failed to insert data into clinical_trials: UNIQUE constraint failed: clinical_trials.nct_id
+2025-11-03 18:10:35,726 - database.db_manager - ERROR - Failed to insert data into clinical_trials: UNIQUE constraint failed: clinical_trials.nct_id
+2025-11-03 18:10:37,760 - database.db_manager - ERROR - Failed to insert data into clinical_trials: UNIQUE constraint failed: clinical_trials.nct_id
+2025-11-03 18:10:38,337 - database.db_manager - ERROR - Failed to insert data into clinical_trials: UNIQUE constraint failed: clinical_trials.nct_id
+2025-11-03 18:10:41,907 - database.db_manager - ERROR - Failed to insert data into clinical_trials: UNIQUE constraint failed: clinical_trials.nct_id
+2025-11-03 18:10:42,827 - database.db_manager - ERROR - Failed to insert data into clinical_trials: UNIQUE constraint failed: clinical_trials.nct_id
+2025-11-03 18:10:43,982 - database.db_manager - ERROR - Failed to insert data into clinical_trials: UNIQUE constraint failed: clinical_trials.nct_id
+2025-11-03 18:10:46,403 - database.db_manager - ERROR - Failed to insert data into clinical_trials: UNIQUE constraint failed: clinical_trials.nct_id
+2025-11-03 18:10:49,236 - database.db_manager - ERROR - Failed to insert data into clinical_trials: UNIQUE constraint failed: clinical_trials.nct_id
+2025-11-03 18:11:27,579 - database.db_manager - ERROR - Failed to insert data into clinical_trials: UNIQUE constraint failed: clinical_trials.nct_id
+2025-11-03 18:11:31,384 - database.db_manager - ERROR - Failed to insert data into clinical_trials: UNIQUE constraint failed: clinical_trials.nct_id
+2025-11-03 18:11:38,741 - database.db_manager - ERROR - Failed to insert data into clinical_trials: UNIQUE constraint failed: clinical_trials.nct_id
+2025-11-03 18:11:40,595 - database.db_manager - ERROR - Failed to insert data into clinical_trials: UNIQUE constraint failed: clinical_trials.nct_id
+2025-11-03 18:11:41,207 - database.db_manager - ERROR - Failed to insert data into clinical_trials: UNIQUE constraint failed: clinical_trials.nct_id
+2025-11-03 18:11:43,906 - database.db_manager - ERROR - Failed to insert data into clinical_trials: UNIQUE constraint failed: clinical_trials.nct_id
+2025-11-03 18:12:00,581 - database.db_manager - ERROR - Failed to insert data into clinical_trials: UNIQUE constraint failed: clinical_trials.nct_id
+2025-11-03 18:12:01,474 - database.db_manager - ERROR - Failed to insert data into clinical_trials: UNIQUE constraint failed: clinical_trials.nct_id
+2025-11-03 18:12:06,429 - database.db_manager - ERROR - Failed to insert data into clinical_trials: UNIQUE constraint failed: clinical_trials.nct_id
+2025-11-03 18:12:07,463 - database.db_manager - ERROR - Failed to insert data into clinical_trials: UNIQUE constraint failed: clinical_trials.nct_id
+2025-11-03 18:12:08,631 - database.db_manager - ERROR - Failed to insert data into clinical_trials: UNIQUE constraint failed: clinical_trials.nct_id
+2025-11-03 18:12:09,663 - database.db_manager - ERROR - Failed to insert data into clinical_trials: UNIQUE constraint failed: clinical_trials.nct_id
+2025-11-03 18:12:10,787 - database.db_manager - ERROR - Failed to insert data into clinical_trials: UNIQUE constraint failed: clinical_trials.nct_id
+2025-11-03 18:12:11,961 - database.db_manager - ERROR - Failed to insert data into clinical_trials: UNIQUE constraint failed: clinical_trials.nct_id
+2025-11-03 18:13:23,685 - database.db_manager - ERROR - Failed to insert data into clinical_trials: UNIQUE constraint failed: clinical_trials.nct_id
+2025-11-03 18:13:28,197 - database.db_manager - ERROR - Failed to insert data into clinical_trials: UNIQUE constraint failed: clinical_trials.nct_id
+2025-11-03 18:15:45,496 - database.db_manager - ERROR - Failed to insert data into clinical_trials: UNIQUE constraint failed: clinical_trials.nct_id
+2025-11-03 18:15:46,352 - database.db_manager - ERROR - Failed to insert data into clinical_trials: UNIQUE constraint failed: clinical_trials.nct_id
+2025-11-03 18:15:48,807 - database.db_manager - ERROR - Failed to insert data into clinical_trials: UNIQUE constraint failed: clinical_trials.nct_id
+2025-11-03 18:15:49,554 - database.db_manager - ERROR - Failed to insert data into clinical_trials: UNIQUE constraint failed: clinical_trials.nct_id
+2025-11-03 18:15:50,487 - database.db_manager - ERROR - Failed to insert data into clinical_trials: UNIQUE constraint failed: clinical_trials.nct_id
+2025-11-03 18:15:51,506 - database.db_manager - ERROR - Failed to insert data into clinical_trials: UNIQUE constraint failed: clinical_trials.nct_id
+2025-11-03 18:15:52,214 - database.db_manager - ERROR - Failed to insert data into clinical_trials: UNIQUE constraint failed: clinical_trials.nct_id
+2025-11-03 18:15:52,842 - database.db_manager - ERROR - Failed to insert data into clinical_trials: UNIQUE constraint failed: clinical_trials.nct_id
+2025-11-03 18:15:53,458 - database.db_manager - ERROR - Failed to insert data into clinical_trials: UNIQUE constraint failed: clinical_trials.nct_id
+2025-11-03 18:15:54,354 - database.db_manager - ERROR - Failed to insert data into clinical_trials: UNIQUE constraint failed: clinical_trials.nct_id
+2025-11-03 18:15:54,952 - database.db_manager - ERROR - Failed to insert data into clinical_trials: UNIQUE constraint failed: clinical_trials.nct_id
+2025-11-03 18:15:55,658 - database.db_manager - ERROR - Failed to insert data into clinical_trials: UNIQUE constraint failed: clinical_trials.nct_id
+2025-11-03 18:15:56,364 - database.db_manager - ERROR - Failed to insert data into clinical_trials: UNIQUE constraint failed: clinical_trials.nct_id
+2025-11-03 18:15:57,375 - database.db_manager - ERROR - Failed to insert data into clinical_trials: UNIQUE constraint failed: clinical_trials.nct_id
+2025-11-03 18:15:58,491 - database.db_manager - ERROR - Failed to insert data into clinical_trials: UNIQUE constraint failed: clinical_trials.nct_id
+2025-11-03 18:16:01,580 - database.db_manager - ERROR - Failed to insert data into clinical_trials: UNIQUE constraint failed: clinical_trials.nct_id
+2025-11-03 18:16:02,451 - database.db_manager - ERROR - Failed to insert data into clinical_trials: UNIQUE constraint failed: clinical_trials.nct_id
+2025-11-03 18:16:03,559 - database.db_manager - ERROR - Failed to insert data into clinical_trials: UNIQUE constraint failed: clinical_trials.nct_id
+2025-11-03 18:16:10,464 - database.db_manager - ERROR - Failed to insert data into clinical_trials: UNIQUE constraint failed: clinical_trials.nct_id
+2025-11-03 18:16:11,209 - database.db_manager - ERROR - Failed to insert data into clinical_trials: UNIQUE constraint failed: clinical_trials.nct_id
+2025-11-03 18:16:11,460 - database.db_manager - ERROR - Failed to insert data into clinical_trials: UNIQUE constraint failed: clinical_trials.nct_id
+2025-11-03 18:16:12,286 - database.db_manager - ERROR - Failed to insert data into clinical_trials: UNIQUE constraint failed: clinical_trials.nct_id
+2025-11-03 18:16:12,859 - database.db_manager - ERROR - Failed to insert data into clinical_trials: UNIQUE constraint failed: clinical_trials.nct_id
+2025-11-03 18:16:13,597 - database.db_manager - ERROR - Failed to insert data into clinical_trials: UNIQUE constraint failed: clinical_trials.nct_id
+2025-11-03 18:16:15,241 - database.db_manager - ERROR - Failed to insert data into clinical_trials: UNIQUE constraint failed: clinical_trials.nct_id
+2025-11-03 18:16:15,740 - database.db_manager - ERROR - Failed to insert data into clinical_trials: UNIQUE constraint failed: clinical_trials.nct_id
+2025-11-03 18:17:26,311 - database.db_manager - ERROR - Failed to insert data into clinical_trials: UNIQUE constraint failed: clinical_trials.nct_id
+2025-11-03 18:17:27,231 - database.db_manager - ERROR - Failed to insert data into clinical_trials: UNIQUE constraint failed: clinical_trials.nct_id
+2025-11-03 18:17:28,152 - database.db_manager - ERROR - Failed to insert data into clinical_trials: UNIQUE constraint failed: clinical_trials.nct_id
+2025-11-03 18:17:28,965 - database.db_manager - ERROR - Failed to insert data into clinical_trials: UNIQUE constraint failed: clinical_trials.nct_id
+2025-11-03 18:17:29,283 - database.db_manager - ERROR - Failed to insert data into clinical_trials: UNIQUE constraint failed: clinical_trials.nct_id
+2025-11-03 18:17:30,154 - database.db_manager - ERROR - Failed to insert data into clinical_trials: UNIQUE constraint failed: clinical_trials.nct_id
+2025-11-03 18:17:31,098 - database.db_manager - ERROR - Failed to insert data into clinical_trials: UNIQUE constraint failed: clinical_trials.nct_id
+2025-11-03 18:17:31,718 - database.db_manager - ERROR - Failed to insert data into clinical_trials: UNIQUE constraint failed: clinical_trials.nct_id
+2025-11-03 18:17:33,543 - database.db_manager - ERROR - Failed to insert data into clinical_trials: UNIQUE constraint failed: clinical_trials.nct_id
+2025-11-03 18:17:34,157 - database.db_manager - ERROR - Failed to insert data into clinical_trials: UNIQUE constraint failed: clinical_trials.nct_id
+2025-11-03 18:17:35,055 - database.db_manager - ERROR - Failed to insert data into clinical_trials: UNIQUE constraint failed: clinical_trials.nct_id
+2025-11-03 18:17:35,329 - database.db_manager - ERROR - Failed to insert data into clinical_trials: UNIQUE constraint failed: clinical_trials.nct_id
+2025-11-03 18:17:36,177 - database.db_manager - ERROR - Failed to insert data into clinical_trials: UNIQUE constraint failed: clinical_trials.nct_id
+2025-11-03 18:17:36,711 - database.db_manager - ERROR - Failed to insert data into clinical_trials: UNIQUE constraint failed: clinical_trials.nct_id
+2025-11-03 18:17:37,478 - database.db_manager - ERROR - Failed to insert data into clinical_trials: UNIQUE constraint failed: clinical_trials.nct_id
+2025-11-03 18:17:39,289 - database.db_manager - ERROR - Failed to insert data into clinical_trials: UNIQUE constraint failed: clinical_trials.nct_id
+2025-11-03 18:17:42,300 - database.db_manager - ERROR - Failed to insert data into clinical_trials: UNIQUE constraint failed: clinical_trials.nct_id
+2025-11-03 18:17:43,154 - database.db_manager - ERROR - Failed to insert data into clinical_trials: UNIQUE constraint failed: clinical_trials.nct_id
+2025-11-03 18:17:43,700 - database.db_manager - ERROR - Failed to insert data into clinical_trials: UNIQUE constraint failed: clinical_trials.nct_id
+2025-11-03 18:17:44,311 - database.db_manager - ERROR - Failed to insert data into clinical_trials: UNIQUE constraint failed: clinical_trials.nct_id
+2025-11-03 18:17:52,945 - database.db_manager - ERROR - Failed to insert data into clinical_trials: UNIQUE constraint failed: clinical_trials.nct_id
+2025-11-03 18:17:54,843 - database.db_manager - ERROR - Failed to insert data into clinical_trials: UNIQUE constraint failed: clinical_trials.nct_id
+2025-11-03 18:17:55,667 - database.db_manager - ERROR - Failed to insert data into clinical_trials: UNIQUE constraint failed: clinical_trials.nct_id
+2025-11-03 18:17:56,578 - database.db_manager - ERROR - Failed to insert data into clinical_trials: UNIQUE constraint failed: clinical_trials.nct_id
+2025-11-04 00:39:07,892 - database.db_manager - INFO - Disconnected from database
+2025-11-04 00:40:22,780 - database.db_manager - INFO - Connected to database at clinical_trials.db
+2025-11-04 00:40:23,002 - database.db_manager - INFO - Disconnected from database
+2025-11-04 08:49:42,133 - database.db_manager - INFO - Connected to database at test_clinical_trials.db
+2025-11-04 08:49:42,147 - database.db_manager - ERROR - Failed to create tables: table sites_master already exists
+2025-11-04 08:49:54,117 - database.db_manager - INFO - Connected to database at test_enrollment.db
+2025-11-04 08:49:56,617 - database.db_manager - INFO - Database tables created successfully
+2025-11-04 08:49:56,753 - database.db_manager - INFO - Disconnected from database
+2025-11-04 08:50:01,200 - database.db_manager - INFO - Connected to database at clinical_trials.db
+2025-11-04 08:51:49,289 - database.db_manager - INFO - Connected to database at clinical_trials.db
+2025-11-04 08:52:05,275 - database.db_manager - INFO - Disconnected from database
+2025-11-04 08:53:15,421 - database.db_manager - ERROR - Failed to insert data into clinical_trials: UNIQUE constraint failed: clinical_trials.nct_id
+2025-11-04 08:53:15,987 - database.db_manager - ERROR - Failed to insert data into clinical_trials: UNIQUE constraint failed: clinical_trials.nct_id
+2025-11-04 08:53:16,119 - database.db_manager - ERROR - Failed to insert data into clinical_trials: UNIQUE constraint failed: clinical_trials.nct_id
+2025-11-04 08:53:16,539 - database.db_manager - ERROR - Failed to insert data into clinical_trials: UNIQUE constraint failed: clinical_trials.nct_id
+2025-11-04 08:53:16,932 - database.db_manager - ERROR - Failed to insert data into clinical_trials: UNIQUE constraint failed: clinical_trials.nct_id
+2025-11-04 08:53:17,229 - database.db_manager - ERROR - Failed to insert data into clinical_trials: UNIQUE constraint failed: clinical_trials.nct_id
+2025-11-04 09:44:01,551 - database.db_manager - ERROR - Failed to insert data into clinical_trials: UNIQUE constraint failed: clinical_trials.nct_id
+2025-11-04 10:39:11,128 - database.db_manager - ERROR - Failed to insert data into clinical_trials: UNIQUE constraint failed: clinical_trials.nct_id
+2025-11-04 11:02:06,052 - database.db_manager - ERROR - Failed to insert data into clinical_trials: UNIQUE constraint failed: clinical_trials.nct_id
+2025-11-04 11:31:21,645 - database.db_manager - ERROR - Failed to insert data into clinical_trials: UNIQUE constraint failed: clinical_trials.nct_id
+2025-11-04 11:53:13,563 - database.db_manager - INFO - Disconnected from database
+2025-11-04 12:01:39,694 - database.db_manager - INFO - Connected to database at clinical_trials.db
+2025-11-04 12:01:42,821 - database.db_manager - INFO - Disconnected from database
+2025-11-04 12:01:42,821 - database.db_manager - INFO - Disconnected from database
+2025-11-04 12:12:51,708 - database.db_manager - INFO - Connected to database at clinical_trials.db
+2025-11-04 12:12:52,146 - database.db_manager - INFO - Disconnected from database
+2025-11-04 12:13:19,085 - database.db_manager - INFO - Connected to database at clinical_trials.db
+2025-11-04 12:13:19,346 - database.db_manager - INFO - Disconnected from database
+2025-11-04 12:14:19,989 - database.db_manager - INFO - Connected to database at clinical_trials.db
+2025-11-04 12:14:35,289 - database.db_manager - INFO - Connected to database at clinical_trials.db
+2025-11-04 12:15:27,497 - database.db_manager - INFO - Connected to database at clinical_trials.db
+2025-11-04 12:15:55,175 - database.db_manager - ERROR - Query failed: database is locked
+2025-11-04 12:16:02,704 - database.db_manager - ERROR - Query failed: database is locked
+2025-11-04 12:16:39,278 - database.db_manager - ERROR - Query failed: database is locked
+2025-11-04 12:23:37,381 - database.db_manager - INFO - Connected to database at clinical_trials.db
+2025-11-04 13:08:24,511 - database.db_manager - INFO - Connected to database at clinical_trials.db
+2025-11-04 13:08:24,798 - database.db_manager - INFO - Disconnected from database
+2025-11-04 13:08:24,801 - database.db_manager - INFO - Connected to database at clinical_trials.db
+2025-11-04 13:09:20,445 - database.db_manager - INFO - Connected to database at clinical_trials.db
+2025-11-04 13:09:21,375 - database.db_manager - INFO - Disconnected from database
+2025-11-04 13:09:21,382 - database.db_manager - INFO - Connected to database at clinical_trials.db
+2025-11-04 13:10:06,995 - database.db_manager - ERROR - Query failed: database is locked
+2025-11-04 13:10:43,579 - database.db_manager - INFO - Connected to database at clinical_trials.db
+2025-11-04 13:10:44,002 - database.db_manager - ERROR - Query failed: database is locked
+2025-11-04 13:10:47,261 - database.db_manager - INFO - Disconnected from database
+2025-11-04 13:10:47,313 - database.db_manager - INFO - Connected to database at clinical_trials.db
+2025-11-04 13:11:13,094 - database.db_manager - INFO - Connected to database at clinical_trials.db
+2025-11-04 13:11:13,954 - database.db_manager - INFO - Disconnected from database
+2025-11-04 13:11:13,963 - database.db_manager - INFO - Disconnected from database
+2025-11-04 13:13:05,617 - database.db_manager - ERROR - Query failed: database is locked
+2025-11-04 13:13:05,617 - database.db_manager - ERROR - Query failed: database is locked
+2025-11-04 13:13:34,051 - database.db_manager - ERROR - Query failed: database is locked
+2025-11-04 13:13:34,051 - database.db_manager - ERROR - Query failed: database is locked
+2025-11-04 13:14:58,654 - database.db_manager - ERROR - Query failed: database is locked
+2025-11-04 13:14:58,654 - database.db_manager - ERROR - Query failed: database is locked
+2025-11-04 13:16:46,276 - database.db_manager - ERROR - Query failed: database is locked
+2025-11-04 13:17:11,310 - database.db_manager - ERROR - Query failed: database is locked
+2025-11-04 13:17:11,310 - database.db_manager - ERROR - Query failed: database is locked
+2025-11-04 13:49:22,650 - database.db_manager - INFO - Disconnected from database

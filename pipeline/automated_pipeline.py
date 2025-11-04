@@ -155,42 +155,52 @@ class AutomatedPipeline:
             Dictionary with clinical trials data
         """
         try:
-            if since_date is None:
-                since_date = self.get_last_update_time()
-
-            # If no previous update time, fetch recent trials
-            if since_date is None:
-                since_date = datetime.now() - timedelta(days=30)
-
-            # Format date for API query
-            date_str = since_date.strftime("%Y-%m-%d")
-            logger.info(f"Fetching clinical trials updated since {date_str}")
-
-            # Use the date filter in the API query for more efficient retrieval
-            # We'll fetch trials updated since the specified date
-            params = {
-                "fmt": "json",
-                "filter.overallStatus": " recruiting, active, completed, withdrawn, terminated, unknown_status",
-                "filter.lastUpdateDate": f"[{date_str},]",
-                "pageSize": 100
-            }
+            # Initialize an empty result dictionary
+            all_studies_result = {"studies": []}
             
-            # Get studies using the ClinicalTrialsAPI with filters
-            studies_result = self.clinicaltrials_api._make_request(params)
+            # Fetch multiple pages of data to get more trials
+            page_token = None
+            pages_fetched = 0
+            max_pages = 50  # Increase to fetch more data for production grade
+            
+            logger.info("Fetching multiple pages of clinical trials data for production grade...")
+            
+            while pages_fetched < max_pages:
+                # Use the ClinicalTrialsAPI get_studies method to fetch trials
+                # Increase page size for more data per request
+                studies_result = self.clinicaltrials_api.get_studies(page_size=1000, page_token=page_token)
 
-            # Handle None result
-            if studies_result is None:
-                logger.warning("No studies returned from API")
-                studies_result = {}
+                # Handle None result
+                if studies_result is None:
+                    logger.warning("No studies returned from API")
+                    break
+
+                # Add studies to our collection
+                studies = studies_result.get("studies", [])
+                all_studies_result["studies"].extend(studies)
+                
+                logger.info(f"Fetched page {pages_fetched + 1} with {len(studies)} clinical trials (Total: {len(all_studies_result['studies'])})")
+
+                # Check for next page
+                next_page_token = studies_result.get("nextPageToken")
+                if not next_page_token:
+                    logger.info("No more pages available")
+                    break
+
+                page_token = next_page_token
+                pages_fetched += 1
+
+                # Rate limiting - slightly faster for production grade data
+                time.sleep(0.1)
 
             logger.info(
-                f"Fetched {len(studies_result.get('studies', []))} clinical trials"
+                f"Total fetched {len(all_studies_result.get('studies', []))} clinical trials across {pages_fetched} pages"
             )
-            return studies_result
+            return all_studies_result
 
         except Exception as e:
             logger.error(f"Error fetching clinical trials: {e}")
-            return {}
+            return {"studies": []}
 
     def fetch_investigator_data(self, investigator_names: List[str]) -> Dict:
         """
@@ -265,17 +275,21 @@ class AutomatedPipeline:
             failed_count = 0
             
             # Process all studies, not just the first 5
-            for study in studies:
+            # Add progress tracking for large datasets
+            total_studies = len(studies)
+            progress_interval = max(1, total_studies // 20)  # Report progress every 5%
+            
+            for i, study in enumerate(studies):
                 nct_id = "unknown"  # Initialize nct_id to avoid unbound variable error
                 try:
                     nct_id = study["protocolSection"]["identificationModule"]["nctId"]
-                    logger.info(f"Processing study {nct_id}...")
+                    
+                    # Report progress periodically
+                    if (i + 1) % progress_interval == 0 or i == 0 or i == total_studies - 1:
+                        logger.info(f"Processing study {i+1}/{total_studies}: {nct_id}...")
 
                     # Process clinical trial data
                     if data_processor.process_clinical_trial_data(study):
-                        logger.info(
-                            f"Successfully processed clinical trial data for {nct_id}"
-                        )
                         processed_count += 1
                     else:
                         logger.error(f"Failed to process clinical trial data for {nct_id}")
@@ -283,20 +297,18 @@ class AutomatedPipeline:
 
                     # Process site data
                     if data_processor.process_site_data(study):
-                        logger.info(f"Successfully processed site data for {nct_id}")
+                        pass  # Success
                     else:
                         logger.error(f"Failed to process site data for {nct_id}")
 
                     # Process investigator data
                     if data_processor.process_investigator_data(study):
-                        logger.info(
-                            f"Successfully processed investigator data for {nct_id}"
-                        )
+                        pass  # Success
                     else:
                         logger.error(f"Failed to process investigator data for {nct_id}")
                         
                 except KeyError as e:
-                    logger.error(f"Missing key in study data: {e}")
+                    logger.error(f"Missing key in study {nct_id}: {e}")
                     failed_count += 1
                     continue
                 except Exception as e:
@@ -538,8 +550,7 @@ class AutomatedPipeline:
                         # Check if study has enrollment data before processing
                         protocol_section = study.get("protocolSection", {})
                         design_module = protocol_section.get("designModule", {})
-                        design_info = design_module.get("designInfo", {})
-                        enrollment_info = design_info.get("enrollmentInfo", {})
+                        enrollment_info = design_module.get("enrollmentInfo", {})
                         enrollment_count_value = enrollment_info.get("count")
 
                         # Only process studies with enrollment data
@@ -674,6 +685,9 @@ class AutomatedPipeline:
                         # Check if study has complete date information
                         protocol_section = study.get("protocolSection", {})
                         status_module = protocol_section.get("statusModule", {})
+                        design_module = protocol_section.get("designModule", {})
+                        enrollment_info = design_module.get("enrollmentInfo", {})
+                        enrollment_count_value = enrollment_info.get("count")
 
                         start_date_struct = status_module.get("startDateStruct", {})
                         start_date_value = start_date_struct.get("date")
@@ -849,6 +863,84 @@ class AutomatedPipeline:
             logger.error(f"Error downloading diverse site metrics data: {e}")
             return False
 
+    def fetch_historical_data_for_ml(self) -> bool:
+        """
+        Fetch historical clinical trials data specifically for ML training purposes
+        
+        Returns:
+            True if successful, False otherwise
+        """
+        try:
+            logger.info("Fetching historical data for ML training...")
+            
+            if not self.db_manager and not self.connect_database():
+                logger.error("Failed to connect to database")
+                return False
+                
+            # Initialize data processor
+            data_processor = DataProcessor(self.db_manager)
+            
+            # Fetch multiple pages of historical data
+            page_token = None
+            pages_fetched = 0
+            max_pages = 50  # Fetch more pages for historical data
+            total_processed = 0
+            
+            while pages_fetched < max_pages:
+                # Fetch a page of studies with larger page size
+                studies_result = self.clinicaltrials_api.get_studies(
+                    page_size=1000, page_token=page_token
+                )
+                
+                if not studies_result:
+                    logger.warning("Failed to retrieve studies for ML training")
+                    break
+                    
+                studies = studies_result.get("studies", [])
+                if not studies:
+                    logger.info("No more studies found for ML training")
+                    break
+                    
+                # Process each study
+                processed_count = 0
+                for study in studies:
+                    try:
+                        nct_id = study["protocolSection"]["identificationModule"]["nctId"]
+                        
+                        # Process all data types for comprehensive ML training
+                        success1 = data_processor.process_clinical_trial_data(study)
+                        success2 = data_processor.process_site_data(study)
+                        success3 = data_processor.process_investigator_data(study)
+                        
+                        if success1 and success2 and success3:
+                            processed_count += 1
+                            total_processed += 1
+                            
+                    except Exception as e:
+                        logger.debug(f"Error processing study for ML training: {e}")
+                        continue
+                        
+                logger.info(f"Processed {processed_count} studies for ML training from page {pages_fetched + 1}")
+                
+                # Check for next page
+                next_page_token = studies_result.get("nextPageToken")
+                if not next_page_token:
+                    logger.info("No more pages available for ML training")
+                    break
+                    
+                page_token = next_page_token
+                pages_fetched += 1
+                
+                # Rate limiting
+                time.sleep(0.1)
+                
+            logger.info(f"Successfully fetched {total_processed} studies for ML training")
+            return True
+            
+        except Exception as e:
+            logger.error(f"Error fetching historical data for ML: {e}")
+            return False
+
     def run_pipeline(self) -> bool:
         """
         Run the complete automated pipeline
@@ -865,9 +957,9 @@ class AutomatedPipeline:
                 logger.error("Failed to connect to database")
                 return False
 
-            # Fetch new clinical trials
+            # Fetch new clinical trials with enhanced method
             clinical_trials_data = self.fetch_new_clinical_trials()
-            if not clinical_trials_data:
+            if not clinical_trials_data or len(clinical_trials_data.get("studies", [])) == 0:
                 logger.warning("No clinical trials data fetched")
 
             # Fetch investigator data
@@ -877,6 +969,10 @@ class AutomatedPipeline:
             if not self.process_data(clinical_trials_data, investigator_data):
                 logger.error("Failed to process data")
                 return False
+
+            # Fetch additional historical data for ML training
+            logger.info("Fetching additional historical data for ML training...")
+            self.fetch_historical_data_for_ml()
 
             # Calculate metrics
             if not self.calculate_metrics():

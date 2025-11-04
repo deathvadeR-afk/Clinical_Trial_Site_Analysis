@@ -165,8 +165,8 @@ class DataProcessor:
             interventions_json = json.dumps(interventions) if interventions else None
             
             # Extract enrollment info
-            design_info = design_module.get('designInfo', {})
-            enrollment_info = design_info.get('enrollmentInfo', {})
+            # FIX: enrollmentInfo is a direct child of design_module, not design_info
+            enrollment_info = design_module.get('enrollmentInfo', {})
             enrollment_count = enrollment_info.get('count')
             
             # Extract dates
@@ -265,8 +265,8 @@ class DataProcessor:
             
             # Extract design module for enrollment info
             design_module = protocol_section.get('designModule', {})
-            design_info = design_module.get('designInfo', {})
-            enrollment_info = design_info.get('enrollmentInfo', {})
+            # FIX: enrollmentInfo is a direct child of design_module, not design_info
+            enrollment_info = design_module.get('enrollmentInfo', {})
             enrollment_count = enrollment_info.get('count')
             
             # Extract dates
