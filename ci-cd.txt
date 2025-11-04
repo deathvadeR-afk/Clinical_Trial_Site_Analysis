@@ -1,66 +1,304 @@
-Run black --check .
-would reformat /home/runner/work/Clinical_Trial_Site_Analysis/Clinical_Trial_Site_Analysis/ai_ml/final_model_test.py
-would reformat /home/runner/work/Clinical_Trial_Site_Analysis/Clinical_Trial_Site_Analysis/ai_ml/gemini_client.py
-would reformat /home/runner/work/Clinical_Trial_Site_Analysis/Clinical_Trial_Site_Analysis/ai_ml/clustering.py
-would reformat /home/runner/work/Clinical_Trial_Site_Analysis/Clinical_Trial_Site_Analysis/ai_ml/predictive_model.py
-would reformat /home/runner/work/Clinical_Trial_Site_Analysis/Clinical_Trial_Site_Analysis/ai_ml/nl_query.py
-would reformat /home/runner/work/Clinical_Trial_Site_Analysis/Clinical_Trial_Site_Analysis/analytics/match_calculator.py
-would reformat /home/runner/work/Clinical_Trial_Site_Analysis/Clinical_Trial_Site_Analysis/analytics/populate_metrics.py
-would reformat /home/runner/work/Clinical_Trial_Site_Analysis/Clinical_Trial_Site_Analysis/analytics/metrics_calculator.py
-would reformat /home/runner/work/Clinical_Trial_Site_Analysis/Clinical_Trial_Site_Analysis/analytics/recommendation_engine.py
-would reformat /home/runner/work/Clinical_Trial_Site_Analysis/Clinical_Trial_Site_Analysis/dashboard/app.py
-would reformat /home/runner/work/Clinical_Trial_Site_Analysis/Clinical_Trial_Site_Analysis/dashboard/pages/__init__.py
-would reformat /home/runner/work/Clinical_Trial_Site_Analysis/Clinical_Trial_Site_Analysis/dashboard/pages/analytics.py
-would reformat /home/runner/work/Clinical_Trial_Site_Analysis/Clinical_Trial_Site_Analysis/analytics/strengths_weaknesses.py
-would reformat /home/runner/work/Clinical_Trial_Site_Analysis/Clinical_Trial_Site_Analysis/dashboard/pages/recommendations.py
-would reformat /home/runner/work/Clinical_Trial_Site_Analysis/Clinical_Trial_Site_Analysis/dashboard/pages/home.py
-would reformat /home/runner/work/Clinical_Trial_Site_Analysis/Clinical_Trial_Site_Analysis/dashboard/pages/site_explorer.py
-would reformat /home/runner/work/Clinical_Trial_Site_Analysis/Clinical_Trial_Site_Analysis/data_analysis.py
-would reformat /home/runner/work/Clinical_Trial_Site_Analysis/Clinical_Trial_Site_Analysis/data_ingestion/clinicaltrials_api.py
-would reformat /home/runner/work/Clinical_Trial_Site_Analysis/Clinical_Trial_Site_Analysis/data_ingestion/data_validator.py
-would reformat /home/runner/work/Clinical_Trial_Site_Analysis/Clinical_Trial_Site_Analysis/data_ingestion/data_processor.py
-would reformat /home/runner/work/Clinical_Trial_Site_Analysis/Clinical_Trial_Site_Analysis/data_ingestion/fix_enrollment.py
-would reformat /home/runner/work/Clinical_Trial_Site_Analysis/Clinical_Trial_Site_Analysis/data_ingestion/investigator_metrics.py
-would reformat /home/runner/work/Clinical_Trial_Site_Analysis/Clinical_Trial_Site_Analysis/data_ingestion/pubmed_api.py
-would reformat /home/runner/work/Clinical_Trial_Site_Analysis/Clinical_Trial_Site_Analysis/database/__init__.py
-would reformat /home/runner/work/Clinical_Trial_Site_Analysis/Clinical_Trial_Site_Analysis/data_ingestion/update_coordinates.py
-would reformat /home/runner/work/Clinical_Trial_Site_Analysis/Clinical_Trial_Site_Analysis/database/initialize.py
-would reformat /home/runner/work/Clinical_Trial_Site_Analysis/Clinical_Trial_Site_Analysis/database/optimize.py
-would reformat /home/runner/work/Clinical_Trial_Site_Analysis/Clinical_Trial_Site_Analysis/database/update_timestamps.py
-would reformat /home/runner/work/Clinical_Trial_Site_Analysis/Clinical_Trial_Site_Analysis/database/db_manager.py
-would reformat /home/runner/work/Clinical_Trial_Site_Analysis/Clinical_Trial_Site_Analysis/main.py
-would reformat /home/runner/work/Clinical_Trial_Site_Analysis/Clinical_Trial_Site_Analysis/ml_operations.py
-would reformat /home/runner/work/Clinical_Trial_Site_Analysis/Clinical_Trial_Site_Analysis/pipeline/data_quality_monitor.py
-would reformat /home/runner/work/Clinical_Trial_Site_Analysis/Clinical_Trial_Site_Analysis/pipeline/improve_ml_with_real_data.py
-would reformat /home/runner/work/Clinical_Trial_Site_Analysis/Clinical_Trial_Site_Analysis/pipeline/automated_pipeline.py
-would reformat /home/runner/work/Clinical_Trial_Site_Analysis/Clinical_Trial_Site_Analysis/pipeline/improve_predictive_model.py
-would reformat /home/runner/work/Clinical_Trial_Site_Analysis/Clinical_Trial_Site_Analysis/pipeline/monitor_data_quality.py
-would reformat /home/runner/work/Clinical_Trial_Site_Analysis/Clinical_Trial_Site_Analysis/pipeline/notification_system.py
-would reformat /home/runner/work/Clinical_Trial_Site_Analysis/Clinical_Trial_Site_Analysis/pipeline/scheduler.py
-would reformat /home/runner/work/Clinical_Trial_Site_Analysis/Clinical_Trial_Site_Analysis/project_template.py
-would reformat /home/runner/work/Clinical_Trial_Site_Analysis/Clinical_Trial_Site_Analysis/tests/comprehensive_milestone6_test.py
-would reformat /home/runner/work/Clinical_Trial_Site_Analysis/Clinical_Trial_Site_Analysis/tests/test_clinicaltrials_api.py
-would reformat /home/runner/work/Clinical_Trial_Site_Analysis/Clinical_Trial_Site_Analysis/tests/test_clustering.py
-would reformat /home/runner/work/Clinical_Trial_Site_Analysis/Clinical_Trial_Site_Analysis/tests/comprehensive_test_final.py
-would reformat /home/runner/work/Clinical_Trial_Site_Analysis/Clinical_Trial_Site_Analysis/tests/test_data_processor.py
-would reformat /home/runner/work/Clinical_Trial_Site_Analysis/Clinical_Trial_Site_Analysis/tests/test_data_validator.py
-would reformat /home/runner/work/Clinical_Trial_Site_Analysis/Clinical_Trial_Site_Analysis/tests/test_database.py
-would reformat /home/runner/work/Clinical_Trial_Site_Analysis/Clinical_Trial_Site_Analysis/tests/test_db.py
-would reformat /home/runner/work/Clinical_Trial_Site_Analysis/Clinical_Trial_Site_Analysis/tests/test_gemini_client.py
-would reformat /home/runner/work/Clinical_Trial_Site_Analysis/Clinical_Trial_Site_Analysis/tests/test_logging.py
-would reformat /home/runner/work/Clinical_Trial_Site_Analysis/Clinical_Trial_Site_Analysis/tests/test_match_calculator.py
-would reformat /home/runner/work/Clinical_Trial_Site_Analysis/Clinical_Trial_Site_Analysis/tests/test_investigator_metrics.py
-would reformat /home/runner/work/Clinical_Trial_Site_Analysis/Clinical_Trial_Site_Analysis/tests/test_metrics_calculator.py
-would reformat /home/runner/work/Clinical_Trial_Site_Analysis/Clinical_Trial_Site_Analysis/tests/test_milestone4.py
-would reformat /home/runner/work/Clinical_Trial_Site_Analysis/Clinical_Trial_Site_Analysis/tests/test_milestone3.py
-would reformat /home/runner/work/Clinical_Trial_Site_Analysis/Clinical_Trial_Site_Analysis/tests/test_milestone5.py
-would reformat /home/runner/work/Clinical_Trial_Site_Analysis/Clinical_Trial_Site_Analysis/tests/test_milestone6.py
-would reformat /home/runner/work/Clinical_Trial_Site_Analysis/Clinical_Trial_Site_Analysis/tests/test_pubmed_api.py
-would reformat /home/runner/work/Clinical_Trial_Site_Analysis/Clinical_Trial_Site_Analysis/tests/test_nl_query.py
-would reformat /home/runner/work/Clinical_Trial_Site_Analysis/Clinical_Trial_Site_Analysis/tests/verify_milestone4.py
-would reformat /home/runner/work/Clinical_Trial_Site_Analysis/Clinical_Trial_Site_Analysis/tests/verify_milestone3.py
-would reformat /home/runner/work/Clinical_Trial_Site_Analysis/Clinical_Trial_Site_Analysis/utils/cache_manager.py
+Run pytest tests/ -v --cov=. --cov-report=xml
+============================= test session starts ==============================
+platform linux -- Python 3.9.24, pytest-8.4.2, pluggy-1.6.0 -- /opt/hostedtoolcache/Python/3.9.24/x64/bin/python
+cachedir: .pytest_cache
+rootdir: /home/runner/work/Clinical_Trial_Site_Analysis/Clinical_Trial_Site_Analysis
+plugins: cov-7.0.0
+collecting ... collected 32 items
 
-Oh no! 💥 💔 💥
-61 files would be reformatted, 13 files would be left unchanged.
+tests/comprehensive_milestone6_test.py::test_complete_workflow PASSED    [  3%]
+tests/test_clinicaltrials_api.py::test_api_connection PASSED             [  6%]
+tests/test_clustering.py::test_clustering_import PASSED                  [  9%]
+tests/test_data_processor.py::test_data_processor PASSED                 [ 12%]
+tests/test_data_validator.py::test_data_validator PASSED                 [ 15%]
+tests/test_database.py::test_database_manager PASSED                     [ 18%]
+tests/test_db.py::test_database PASSED                                   [ 21%]
+tests/test_gemini_client.py::test_gemini_client_import PASSED            [ 25%]
+tests/test_investigator_metrics.py::test_investigator_metrics PASSED     [ 28%]
+tests/test_logging.py::test_logging PASSED                               [ 31%]
+tests/test_match_calculator.py::test_match_calculator PASSED             [ 34%]
+tests/test_metrics_calculator.py::test_metrics_calculator PASSED         [ 37%]
+tests/test_milestone3.py::test_match_calculator ERROR                    [ 40%]
+tests/test_milestone3.py::test_strengths_weaknesses_detector ERROR       [ 43%]
+tests/test_milestone3.py::test_recommendation_engine ERROR               [ 46%]
+tests/test_milestone4.py::test_gemini_client PASSED                      [ 50%]
+tests/test_milestone4.py::test_site_clustering PASSED                    [ 53%]
+tests/test_milestone4.py::test_predictive_model PASSED                   [ 56%]
+tests/test_milestone4.py::test_nl_query PASSED                           [ 59%]
+tests/test_milestone5.py::TestMilestone5::test_analytics_page_import PASSED [ 62%]
+tests/test_milestone5.py::TestMilestone5::test_dashboard_structure PASSED [ 65%]
+tests/test_milestone5.py::TestMilestone5::test_home_page_import PASSED   [ 68%]
+tests/test_milestone5.py::TestMilestone5::test_main_app_import FAILED    [ 71%]
+tests/test_milestone5.py::TestMilestone5::test_recommendations_page_import PASSED [ 75%]
+tests/test_milestone5.py::TestMilestone5::test_site_explorer_page_import FAILED [ 78%]
+tests/test_milestone6.py::test_cache_manager PASSED                      [ 81%]
+tests/test_milestone6.py::test_database_caching PASSED                   [ 84%]
+tests/test_milestone6.py::test_automated_pipeline PASSED                 [ 87%]
+tests/test_milestone6.py::test_data_quality_monitoring PASSED            [ 90%]
+tests/test_milestone6.py::test_notification_system PASSED                [ 93%]
+tests/test_nl_query.py::test_nl_query_import PASSED                      [ 96%]
+tests/test_pubmed_api.py::test_pubmed_api PASSED                         [100%]
+
+==================================== ERRORS ====================================
+___________________ ERROR at setup of test_match_calculator ____________________
+file /home/runner/work/Clinical_Trial_Site_Analysis/Clinical_Trial_Site_Analysis/tests/test_milestone3.py, line 216
+  def test_match_calculator(db_manager):
+E       fixture 'db_manager' not found
+>       available fixtures: cache, capfd, capfdbinary, caplog, capsys, capsysbinary, capteesys, cov, doctest_namespace, monkeypatch, no_cover, pytestconfig, record_property, record_testsuite_property, record_xml_attribute, recwarn, tmp_path, tmp_path_factory, tmpdir, tmpdir_factory
+>       use 'pytest --fixtures [testpath]' for help on them.
+
+/home/runner/work/Clinical_Trial_Site_Analysis/Clinical_Trial_Site_Analysis/tests/test_milestone3.py:216
+_____________ ERROR at setup of test_strengths_weaknesses_detector _____________
+file /home/runner/work/Clinical_Trial_Site_Analysis/Clinical_Trial_Site_Analysis/tests/test_milestone3.py, line 267
+  def test_strengths_weaknesses_detector(db_manager):
+E       fixture 'db_manager' not found
+>       available fixtures: cache, capfd, capfdbinary, caplog, capsys, capsysbinary, capteesys, cov, doctest_namespace, monkeypatch, no_cover, pytestconfig, record_property, record_testsuite_property, record_xml_attribute, recwarn, tmp_path, tmp_path_factory, tmpdir, tmpdir_factory
+>       use 'pytest --fixtures [testpath]' for help on them.
+
+/home/runner/work/Clinical_Trial_Site_Analysis/Clinical_Trial_Site_Analysis/tests/test_milestone3.py:267
+_________________ ERROR at setup of test_recommendation_engine _________________
+file /home/runner/work/Clinical_Trial_Site_Analysis/Clinical_Trial_Site_Analysis/tests/test_milestone3.py, line 310
+  def test_recommendation_engine(db_manager):
+E       fixture 'db_manager' not found
+>       available fixtures: cache, capfd, capfdbinary, caplog, capsys, capsysbinary, capteesys, cov, doctest_namespace, monkeypatch, no_cover, pytestconfig, record_property, record_testsuite_property, record_xml_attribute, recwarn, tmp_path, tmp_path_factory, tmpdir, tmpdir_factory
+>       use 'pytest --fixtures [testpath]' for help on them.
+
+/home/runner/work/Clinical_Trial_Site_Analysis/Clinical_Trial_Site_Analysis/tests/test_milestone3.py:310
+=================================== FAILURES ===================================
+_____________________ TestMilestone5.test_main_app_import ______________________
+
+self = <tests.test_milestone5.TestMilestone5 testMethod=test_main_app_import>
+
+    def test_main_app_import(self):
+        """Test that main app can be imported without errors"""
+        try:
+>           import dashboard.app
+
+tests/test_milestone5.py:81: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+dashboard/app.py:14: in <module>
+    from dashboard.pages.site_explorer import show_site_explorer_page
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+    """
+    Site Explorer Page for Clinical Trial Site Analysis Platform Dashboard
+    """
+    
+    import streamlit as st
+    import sys
+    import os
+    import pandas as pd
+    import plotly.express as px
+    import folium
+>   from streamlit_folium import st_folium
+E   ModuleNotFoundError: No module named 'streamlit_folium'
+
+dashboard/pages/site_explorer.py:11: ModuleNotFoundError
+
+During handling of the above exception, another exception occurred:
+
+self = <tests.test_milestone5.TestMilestone5 testMethod=test_main_app_import>
+
+    def test_main_app_import(self):
+        """Test that main app can be imported without errors"""
+        try:
+            import dashboard.app
+    
+            self.assertTrue(True, "Main app should import successfully")
+        except ImportError as e:
+>           self.fail(f"Failed to import main app: {e}")
+E           AssertionError: Failed to import main app: No module named 'streamlit_folium'
+
+tests/test_milestone5.py:85: AssertionError
+________________ TestMilestone5.test_site_explorer_page_import _________________
+
+self = <tests.test_milestone5.TestMilestone5 testMethod=test_site_explorer_page_import>
+
+    def test_site_explorer_page_import(self):
+        """Test that site explorer page can be imported without errors"""
+        try:
+>           from dashboard.pages.site_explorer import show_site_explorer_page
+
+tests/test_milestone5.py:54: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+    """
+    Site Explorer Page for Clinical Trial Site Analysis Platform Dashboard
+    """
+    
+    import streamlit as st
+    import sys
+    import os
+    import pandas as pd
+    import plotly.express as px
+    import folium
+>   from streamlit_folium import st_folium
+E   ModuleNotFoundError: No module named 'streamlit_folium'
+
+dashboard/pages/site_explorer.py:11: ModuleNotFoundError
+
+During handling of the above exception, another exception occurred:
+
+self = <tests.test_milestone5.TestMilestone5 testMethod=test_site_explorer_page_import>
+
+    def test_site_explorer_page_import(self):
+        """Test that site explorer page can be imported without errors"""
+        try:
+            from dashboard.pages.site_explorer import show_site_explorer_page
+    
+            self.assertTrue(True, "Site explorer page should import successfully")
+        except ImportError as e:
+>           self.fail(f"Failed to import site explorer page: {e}")
+E           AssertionError: Failed to import site explorer page: No module named 'streamlit_folium'
+
+tests/test_milestone5.py:58: AssertionError
+=============================== warnings summary ===============================
+tests/comprehensive_milestone6_test.py::test_complete_workflow
+  /opt/hostedtoolcache/Python/3.9.24/x64/lib/python3.9/site-packages/_pytest/python.py:161: PytestReturnNotNoneWarning: Test functions should return None, but tests/comprehensive_milestone6_test.py::test_complete_workflow returned <class 'bool'>.
+  Did you mean to use `assert` instead of `return`?
+  See https://docs.pytest.org/en/stable/how-to/assert.html#return-not-none for more information.
+    warnings.warn(
+
+tests/test_clinicaltrials_api.py::test_api_connection
+  /opt/hostedtoolcache/Python/3.9.24/x64/lib/python3.9/site-packages/_pytest/python.py:161: PytestReturnNotNoneWarning: Test functions should return None, but tests/test_clinicaltrials_api.py::test_api_connection returned <class 'bool'>.
+  Did you mean to use `assert` instead of `return`?
+  See https://docs.pytest.org/en/stable/how-to/assert.html#return-not-none for more information.
+    warnings.warn(
+
+tests/test_clustering.py::test_clustering_import
+  /opt/hostedtoolcache/Python/3.9.24/x64/lib/python3.9/site-packages/_pytest/python.py:161: PytestReturnNotNoneWarning: Test functions should return None, but tests/test_clustering.py::test_clustering_import returned <class 'bool'>.
+  Did you mean to use `assert` instead of `return`?
+  See https://docs.pytest.org/en/stable/how-to/assert.html#return-not-none for more information.
+    warnings.warn(
+
+tests/test_data_processor.py::test_data_processor
+  /opt/hostedtoolcache/Python/3.9.24/x64/lib/python3.9/site-packages/_pytest/python.py:161: PytestReturnNotNoneWarning: Test functions should return None, but tests/test_data_processor.py::test_data_processor returned <class 'bool'>.
+  Did you mean to use `assert` instead of `return`?
+  See https://docs.pytest.org/en/stable/how-to/assert.html#return-not-none for more information.
+    warnings.warn(
+
+tests/test_data_validator.py::test_data_validator
+  /opt/hostedtoolcache/Python/3.9.24/x64/lib/python3.9/site-packages/_pytest/python.py:161: PytestReturnNotNoneWarning: Test functions should return None, but tests/test_data_validator.py::test_data_validator returned <class 'bool'>.
+  Did you mean to use `assert` instead of `return`?
+  See https://docs.pytest.org/en/stable/how-to/assert.html#return-not-none for more information.
+    warnings.warn(
+
+tests/test_database.py::test_database_manager
+  /opt/hostedtoolcache/Python/3.9.24/x64/lib/python3.9/site-packages/_pytest/python.py:161: PytestReturnNotNoneWarning: Test functions should return None, but tests/test_database.py::test_database_manager returned <class 'bool'>.
+  Did you mean to use `assert` instead of `return`?
+  See https://docs.pytest.org/en/stable/how-to/assert.html#return-not-none for more information.
+    warnings.warn(
+
+tests/test_db.py::test_database
+  /opt/hostedtoolcache/Python/3.9.24/x64/lib/python3.9/site-packages/_pytest/python.py:161: PytestReturnNotNoneWarning: Test functions should return None, but tests/test_db.py::test_database returned <class 'bool'>.
+  Did you mean to use `assert` instead of `return`?
+  See https://docs.pytest.org/en/stable/how-to/assert.html#return-not-none for more information.
+    warnings.warn(
+
+tests/test_gemini_client.py::test_gemini_client_import
+  /opt/hostedtoolcache/Python/3.9.24/x64/lib/python3.9/site-packages/google/api_core/_python_version_support.py:252: FutureWarning: You are using a Python version (3.9.24) past its end of life. Google will update google.api_core with critical bug fixes on a best-effort basis, but not with any other fixes or features. Please upgrade to the latest Python version, or at least Python 3.10, and then update google.api_core.
+    warnings.warn(message, FutureWarning)
+
+tests/test_gemini_client.py::test_gemini_client_import
+  /opt/hostedtoolcache/Python/3.9.24/x64/lib/python3.9/site-packages/_pytest/python.py:161: PytestReturnNotNoneWarning: Test functions should return None, but tests/test_gemini_client.py::test_gemini_client_import returned <class 'bool'>.
+  Did you mean to use `assert` instead of `return`?
+  See https://docs.pytest.org/en/stable/how-to/assert.html#return-not-none for more information.
+    warnings.warn(
+
+tests/test_investigator_metrics.py::test_investigator_metrics
+  /opt/hostedtoolcache/Python/3.9.24/x64/lib/python3.9/site-packages/_pytest/python.py:161: PytestReturnNotNoneWarning: Test functions should return None, but tests/test_investigator_metrics.py::test_investigator_metrics returned <class 'bool'>.
+  Did you mean to use `assert` instead of `return`?
+  See https://docs.pytest.org/en/stable/how-to/assert.html#return-not-none for more information.
+    warnings.warn(
+
+tests/test_match_calculator.py::test_match_calculator
+  /opt/hostedtoolcache/Python/3.9.24/x64/lib/python3.9/site-packages/_pytest/python.py:161: PytestReturnNotNoneWarning: Test functions should return None, but tests/test_match_calculator.py::test_match_calculator returned <class 'bool'>.
+  Did you mean to use `assert` instead of `return`?
+  See https://docs.pytest.org/en/stable/how-to/assert.html#return-not-none for more information.
+    warnings.warn(
+
+tests/test_metrics_calculator.py::test_metrics_calculator
+  /opt/hostedtoolcache/Python/3.9.24/x64/lib/python3.9/site-packages/_pytest/python.py:161: PytestReturnNotNoneWarning: Test functions should return None, but tests/test_metrics_calculator.py::test_metrics_calculator returned <class 'bool'>.
+  Did you mean to use `assert` instead of `return`?
+  See https://docs.pytest.org/en/stable/how-to/assert.html#return-not-none for more information.
+    warnings.warn(
+
+tests/test_milestone4.py::test_gemini_client
+  /opt/hostedtoolcache/Python/3.9.24/x64/lib/python3.9/site-packages/_pytest/python.py:161: PytestReturnNotNoneWarning: Test functions should return None, but tests/test_milestone4.py::test_gemini_client returned <class 'bool'>.
+  Did you mean to use `assert` instead of `return`?
+  See https://docs.pytest.org/en/stable/how-to/assert.html#return-not-none for more information.
+    warnings.warn(
+
+tests/test_milestone4.py::test_site_clustering
+  /opt/hostedtoolcache/Python/3.9.24/x64/lib/python3.9/site-packages/_pytest/python.py:161: PytestReturnNotNoneWarning: Test functions should return None, but tests/test_milestone4.py::test_site_clustering returned <class 'bool'>.
+  Did you mean to use `assert` instead of `return`?
+  See https://docs.pytest.org/en/stable/how-to/assert.html#return-not-none for more information.
+    warnings.warn(
+
+tests/test_milestone4.py::test_predictive_model
+  /opt/hostedtoolcache/Python/3.9.24/x64/lib/python3.9/site-packages/_pytest/python.py:161: PytestReturnNotNoneWarning: Test functions should return None, but tests/test_milestone4.py::test_predictive_model returned <class 'bool'>.
+  Did you mean to use `assert` instead of `return`?
+  See https://docs.pytest.org/en/stable/how-to/assert.html#return-not-none for more information.
+    warnings.warn(
+
+tests/test_milestone4.py::test_nl_query
+  /opt/hostedtoolcache/Python/3.9.24/x64/lib/python3.9/site-packages/_pytest/python.py:161: PytestReturnNotNoneWarning: Test functions should return None, but tests/test_milestone4.py::test_nl_query returned <class 'bool'>.
+  Did you mean to use `assert` instead of `return`?
+  See https://docs.pytest.org/en/stable/how-to/assert.html#return-not-none for more information.
+    warnings.warn(
+
+tests/test_milestone6.py::test_cache_manager
+  /opt/hostedtoolcache/Python/3.9.24/x64/lib/python3.9/site-packages/_pytest/python.py:161: PytestReturnNotNoneWarning: Test functions should return None, but tests/test_milestone6.py::test_cache_manager returned <class 'bool'>.
+  Did you mean to use `assert` instead of `return`?
+  See https://docs.pytest.org/en/stable/how-to/assert.html#return-not-none for more information.
+    warnings.warn(
+
+tests/test_milestone6.py::test_database_caching
+  /opt/hostedtoolcache/Python/3.9.24/x64/lib/python3.9/site-packages/_pytest/python.py:161: PytestReturnNotNoneWarning: Test functions should return None, but tests/test_milestone6.py::test_database_caching returned <class 'bool'>.
+  Did you mean to use `assert` instead of `return`?
+  See https://docs.pytest.org/en/stable/how-to/assert.html#return-not-none for more information.
+    warnings.warn(
+
+tests/test_milestone6.py::test_automated_pipeline
+  /opt/hostedtoolcache/Python/3.9.24/x64/lib/python3.9/site-packages/_pytest/python.py:161: PytestReturnNotNoneWarning: Test functions should return None, but tests/test_milestone6.py::test_automated_pipeline returned <class 'bool'>.
+  Did you mean to use `assert` instead of `return`?
+  See https://docs.pytest.org/en/stable/how-to/assert.html#return-not-none for more information.
+    warnings.warn(
+
+tests/test_milestone6.py::test_data_quality_monitoring
+  /opt/hostedtoolcache/Python/3.9.24/x64/lib/python3.9/site-packages/_pytest/python.py:161: PytestReturnNotNoneWarning: Test functions should return None, but tests/test_milestone6.py::test_data_quality_monitoring returned <class 'bool'>.
+  Did you mean to use `assert` instead of `return`?
+  See https://docs.pytest.org/en/stable/how-to/assert.html#return-not-none for more information.
+    warnings.warn(
+
+tests/test_milestone6.py::test_notification_system
+  /opt/hostedtoolcache/Python/3.9.24/x64/lib/python3.9/site-packages/_pytest/python.py:161: PytestReturnNotNoneWarning: Test functions should return None, but tests/test_milestone6.py::test_notification_system returned <class 'bool'>.
+  Did you mean to use `assert` instead of `return`?
+  See https://docs.pytest.org/en/stable/how-to/assert.html#return-not-none for more information.
+    warnings.warn(
+
+tests/test_nl_query.py::test_nl_query_import
+  /opt/hostedtoolcache/Python/3.9.24/x64/lib/python3.9/site-packages/_pytest/python.py:161: PytestReturnNotNoneWarning: Test functions should return None, but tests/test_nl_query.py::test_nl_query_import returned <class 'bool'>.
+  Did you mean to use `assert` instead of `return`?
+  See https://docs.pytest.org/en/stable/how-to/assert.html#return-not-none for more information.
+    warnings.warn(
+
+tests/test_pubmed_api.py::test_pubmed_api
+  /opt/hostedtoolcache/Python/3.9.24/x64/lib/python3.9/site-packages/_pytest/python.py:161: PytestReturnNotNoneWarning: Test functions should return None, but tests/test_pubmed_api.py::test_pubmed_api returned <class 'bool'>.
+  Did you mean to use `assert` instead of `return`?
+  See https://docs.pytest.org/en/stable/how-to/assert.html#return-not-none for more information.
+    warnings.warn(
+
+-- Docs: https://docs.pytest.org/en/stable/how-to/capture-warnings.html
+================================ tests coverage ================================
+_______________ coverage: platform linux, python 3.9.24-final-0 ________________
+
+Coverage XML written to file coverage.xml
+=========================== short test summary info ============================
+FAILED tests/test_milestone5.py::TestMilestone5::test_main_app_import - AssertionError: Failed to import main app: No module named 'streamlit_folium'
+FAILED tests/test_milestone5.py::TestMilestone5::test_site_explorer_page_import - AssertionError: Failed to import site explorer page: No module named 'streamlit_folium'
+ERROR tests/test_milestone3.py::test_match_calculator
+ERROR tests/test_milestone3.py::test_strengths_weaknesses_detector
+ERROR tests/test_milestone3.py::test_recommendation_engine
+============= 2 failed, 27 passed, 23 warnings, 3 errors in 11.68s =============
 Error: Process completed with exit code 1.

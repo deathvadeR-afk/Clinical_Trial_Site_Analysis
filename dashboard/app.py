@@ -9,11 +9,34 @@ import os
 # Add the project root to the Python path
 sys.path.append(os.path.dirname(os.path.abspath(__file__)) + "/../")
 
-# Import page modules
-from dashboard.pages.home import show_home_page
-from dashboard.pages.site_explorer import show_site_explorer_page
-from dashboard.pages.recommendations import show_recommendations_page
-from dashboard.pages.analytics import show_analytics_page
+# Import page modules with error handling
+try:
+    from dashboard.pages.home import show_home_page
+except ImportError as e:
+    st.error(f"Error importing home page: {e}")
+    def show_home_page():
+        st.error("Home page not available")
+
+try:
+    from dashboard.pages.site_explorer import show_site_explorer_page
+except ImportError as e:
+    st.error(f"Error importing site explorer page: {e}")
+    def show_site_explorer_page():
+        st.error("Site explorer page not available")
+
+try:
+    from dashboard.pages.recommendations import show_recommendations_page
+except ImportError as e:
+    st.error(f"Error importing recommendations page: {e}")
+    def show_recommendations_page():
+        st.error("Recommendations page not available")
+
+try:
+    from dashboard.pages.analytics import show_analytics_page
+except ImportError as e:
+    st.error(f"Error importing analytics page: {e}")
+    def show_analytics_page():
+        st.error("Analytics page not available")
 
 # Configure page settings
 st.set_page_config(

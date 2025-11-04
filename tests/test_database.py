@@ -4,30 +4,33 @@ Test script for Database Manager
 
 import sys
 import os
+import unittest
 
 # Add the project root to the Python path
-sys.path.append(os.path.dirname(os.path.abspath(__file__)))
+sys.path.append(os.path.dirname(os.path.abspath(__file__)) + "/../")
 
 from database.db_manager import DatabaseManager
 
 
-def test_database_manager():
-    """Test the database manager functionality"""
-    print("Testing Database Manager")
-    print("=" * 30)
+class TestDatabaseManager(unittest.TestCase):
+    """Test cases for Database Manager"""
 
-    # Initialize database manager
-    db_manager = DatabaseManager("test_clinical_trials.db")
+    def test_database_manager(self):
+        """Test the database manager functionality"""
+        print("Testing Database Manager")
+        print("=" * 30)
 
-    # Test 1: Database connection
-    print("Test 1: Database connection...")
-    if db_manager.connect():
-        print("✓ Database connection successful")
+        # Initialize database manager
+        db_manager = DatabaseManager("test_clinical_trials.db")
 
-        # Test 2: Create tables
-        print("\nTest 2: Creating database tables...")
-        if db_manager.create_tables("database/schema.sql"):
-            print("✓ Database tables created successfully")
+        # Test 1: Database connection
+        print("Test 1: Database connection...")
+        self.assertTrue(db_manager.connect(), "Database connection should be successful")
+
+        try:
+            # Test 2: Create tables
+            print("\nTest 2: Creating database tables...")
+            self.assertTrue(db_manager.create_tables("database/schema.sql"), "Database tables should be created successfully")
 
             # Test 3: Insert data
             print("\nTest 3: Inserting test data...")
@@ -41,36 +44,26 @@ def test_database_manager():
                 "accreditation_status": "Active",
             }
 
-            if db_manager.insert_data("sites_master", test_site):
-                print("✓ Data insertion successful")
+            self.assertTrue(db_manager.insert_data("sites_master", test_site), "Data insertion should be successful")
 
-                # Test 4: Query data
-                print("\nTest 4: Querying test data...")
-                results = db_manager.query(
-                    "SELECT * FROM sites_master WHERE site_name = ?",
-                    ("Test Medical Center",),
-                )
-                if results:
-                    print("✓ Data query successful")
-                    print(f"  Retrieved {len(results)} record(s)")
-                else:
-                    print("✗ Data query failed")
-            else:
-                print("✗ Data insertion failed")
-        else:
-            print("✗ Failed to create database tables")
+            # Test 4: Query data
+            print("\nTest 4: Querying test data...")
+            results = db_manager.query(
+                "SELECT * FROM sites_master WHERE site_name = ?",
+                ("Test Medical Center",),
+            )
+            self.assertIsNotNone(results, "Data query should not return None")
+            self.assertGreater(len(results), 0, "Should retrieve at least one record")
+            print(f"  Retrieved {len(results)} record(s)")
 
-        # Disconnect
-        db_manager.disconnect()
-        print("\n✓ Database disconnected")
-    else:
-        print("✗ Database connection failed")
-        return False
+        finally:
+            # Disconnect
+            db_manager.disconnect()
+            print("\n✓ Database disconnected")
 
-    print("\n" + "=" * 30)
-    print("Database Manager Tests Complete!")
-    return True
+        print("\n" + "=" * 30)
+        print("Database Manager Tests Complete!")
 
 
 if __name__ == "__main__":
-    test_database_manager()
+    unittest.main()

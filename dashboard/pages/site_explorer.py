@@ -8,13 +8,20 @@ import os
 import pandas as pd
 import plotly.express as px
 import folium
-from streamlit_folium import st_folium
 
 # Add the project root to the Python path
 sys.path.append(os.path.dirname(os.path.abspath(__file__)) + "/../../")
 
 # Import database manager
 from database.db_manager import DatabaseManager
+
+# Try to import streamlit_folium with error handling
+try:
+    from streamlit_folium import st_folium
+    ST_FOLIUM_AVAILABLE = True
+except ImportError:
+    ST_FOLIUM_AVAILABLE = False
+    st.warning("Map visualization not available. Please install streamlit-folium for full functionality.")
 
 
 def get_db_connection():

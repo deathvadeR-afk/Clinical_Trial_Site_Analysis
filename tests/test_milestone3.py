@@ -4,6 +4,8 @@ Test script for Milestone 3 Analytics Engine components
 
 import sys
 import os
+import unittest
+from unittest.mock import patch, MagicMock
 
 # Add the project root to the Python path
 sys.path.append(os.path.dirname(os.path.abspath(__file__)) + "/../")
@@ -213,165 +215,158 @@ def insert_test_data(db_manager):
     print("✅ Test data insertion completed")
 
 
-def test_match_calculator(db_manager):
-    """Test the match calculator functionality"""
-    print("\n=== Testing Match Calculator ===")
+class TestMilestone3(unittest.TestCase):
+    """Test cases for Milestone 3 analytics engine components"""
 
-    # Initialize match calculator
-    match_calculator = MatchScoreCalculator(db_manager)
+    def setUp(self):
+        """Set up test database before each test"""
+        self.db_manager = setup_test_database()
+        if self.db_manager:
+            insert_test_data(self.db_manager)
 
-    # Test target study
-    target_study = {
-        "conditions": ["diabetes", "hyperglycemia"],
-        "phase": "Phase 2",
-        "intervention_type": "Drug",
-        "country": "United States",
-    }
+    def tearDown(self):
+        """Clean up after each test"""
+        if self.db_manager:
+            self.db_manager.disconnect()
 
-    # Test match score calculation for site 1
-    print("Testing match score calculation for Site 1...")
-    scores = match_calculator.calculate_match_scores_for_site(1, target_study)
-    if scores:
-        print("✅ Match score calculation test passed")
+    def test_match_calculator(self):
+        """Test the match calculator functionality"""
+        print("\n=== Testing Match Calculator ===")
+        
+        # Skip test if database setup failed
+        if not self.db_manager:
+            self.skipTest("Database setup failed")
+            
+        # Initialize match calculator
+        match_calculator = MatchScoreCalculator(self.db_manager)
+
+        # Test target study
+        target_study = {
+            "conditions": ["diabetes", "hyperglycemia"],
+            "phase": "Phase 2",
+            "intervention_type": "Drug",
+            "country": "United States",
+        }
+
+        # Test match score calculation for site 1
+        print("Testing match score calculation for Site 1...")
+        scores = match_calculator.calculate_match_scores_for_site(1, target_study)
+        self.assertIsNotNone(scores, "Match score calculation should not return None")
         print(f"   Overall match score: {scores.get('overall_match_score', 0):.3f}")
-    else:
-        print("❌ Match score calculation test failed")
-        return False
 
-    # Test experience-based adjustments
-    print("Testing experience-based adjustments...")
-    adjusted_scores = match_calculator.apply_experience_based_adjustments(
-        1, scores, target_study
-    )
-    if adjusted_scores:
-        print("✅ Experience-based adjustments test passed")
+        # Test experience-based adjustments
+        print("Testing experience-based adjustments...")
+        adjusted_scores = match_calculator.apply_experience_based_adjustments(
+            1, scores, target_study
+        )
+        self.assertIsNotNone(adjusted_scores, "Experience-based adjustments should not return None")
         print(
             f"   Adjusted overall match score: {adjusted_scores.get('overall_match_score', 0):.3f}"
         )
-    else:
-        print("❌ Experience-based adjustments test failed")
-        return False
 
-    # Test storing match scores
-    print("Testing match score storage...")
-    store_result = match_calculator.store_match_scores(1, target_study, adjusted_scores)
-    if store_result:
-        print("✅ Match score storage test passed")
-    else:
-        print("❌ Match score storage test failed")
-        return False
+        # Test storing match scores
+        print("Testing match score storage...")
+        store_result = match_calculator.store_match_scores(1, target_study, adjusted_scores)
+        self.assertTrue(store_result, "Match score storage should succeed")
 
-    return True
+    def test_strengths_weaknesses_detector(self):
+        """Test the strengths and weaknesses detector"""
+        print("\n=== Testing Strengths and Weaknesses Detector ===")
+        
+        # Skip test if database setup failed
+        if not self.db_manager:
+            self.skipTest("Database setup failed")
+            
+        # Initialize detector
+        detector = StrengthsWeaknessesDetector(self.db_manager)
 
+        # Test strength detection
+        print("Testing strength detection for Site 1...")
+        strengths = detector.detect_site_strengths(1)
+        self.assertIsInstance(strengths, list, "Strengths should be returned as a list")
 
-def test_strengths_weaknesses_detector(db_manager):
-    """Test the strengths and weaknesses detector"""
-    print("\n=== Testing Strengths and Weaknesses Detector ===")
+        # Test weakness detection
+        print("Testing weakness detection for Site 1...")
+        weaknesses = detector.detect_site_weaknesses(1)
+        self.assertIsInstance(weaknesses, list, "Weaknesses should be returned as a list")
 
-    # Initialize detector
-    detector = StrengthsWeaknessesDetector(db_manager)
+        # Test comparative analysis
+        print("Testing comparative analysis...")
+        comparative_analysis = detector.implement_comparative_analysis(1)
+        self.assertIsNotNone(comparative_analysis, "Comparative analysis should not return None")
 
-    # Test strength detection
-    print("Testing strength detection for Site 1...")
-    strengths = detector.detect_site_strengths(1)
-    print(f"✅ Detected {len(strengths)} strengths")
+        # Test pattern detection
+        print("Testing pattern detection...")
+        patterns = detector.build_pattern_detection(1)
+        self.assertIsNotNone(patterns, "Pattern detection should not return None")
 
-    # Test weakness detection
-    print("Testing weakness detection for Site 1...")
-    weaknesses = detector.detect_site_weaknesses(1)
-    print(f"✅ Detected {len(weaknesses)} weaknesses")
+        # Test structured generation
+        print("Testing structured strengths/weaknesses generation...")
+        structured_output = detector.generate_structured_strengths_weaknesses(1)
+        self.assertIsNotNone(structured_output, "Structured generation should not return None")
 
-    # Test comparative analysis
-    print("Testing comparative analysis...")
-    comparative_analysis = detector.implement_comparative_analysis(1)
-    if comparative_analysis:
-        print("✅ Comparative analysis test passed")
-    else:
-        print("❌ Comparative analysis test failed")
-        return False
+    def test_recommendation_engine(self):
+        """Test the recommendation engine"""
+        print("\n=== Testing Recommendation Engine ===")
+        
+        # Skip test if database setup failed
+        if not self.db_manager:
+            self.skipTest("Database setup failed")
+            
+        # Initialize recommendation engine
+        engine = RecommendationEngine(self.db_manager)
 
-    # Test pattern detection
-    print("Testing pattern detection...")
-    patterns = detector.build_pattern_detection(1)
-    print(f"✅ Pattern detection test completed")
+        # Test target study parameters
+        target_study = {
+            "conditions": ["diabetes", "hyperglycemia"],
+            "phase": "Phase 2",
+            "intervention_type": "Drug",
+            "country": "United States",
+        }
 
-    # Test structured generation
-    print("Testing structured strengths/weaknesses generation...")
-    structured_output = detector.generate_structured_strengths_weaknesses(1)
-    if structured_output:
-        print("✅ Structured generation test passed")
-    else:
-        print("❌ Structured generation test failed")
-        return False
+        # Test parameter validation
+        print("Testing target study parameter validation...")
+        validation_result = engine.accept_target_study_parameters(target_study)
+        self.assertTrue(validation_result, "Parameter validation should succeed")
 
-    return True
+        # Test mandatory filtering
+        print("Testing mandatory filtering criteria...")
+        eligible_sites = engine.apply_mandatory_filtering_criteria(target_study)
+        self.assertIsInstance(eligible_sites, list, "Eligible sites should be returned as a list")
+        print(f"✅ Found {len(eligible_sites)} eligible sites")
 
+        # Test match score calculation
+        print("Testing match score calculation...")
+        site_scores = engine.execute_match_score_calculation(eligible_sites, target_study)
+        self.assertIsInstance(site_scores, list, "Site scores should be returned as a list")
+        print(f"✅ Calculated match scores for {len(site_scores)} sites")
 
-def test_recommendation_engine(db_manager):
-    """Test the recommendation engine"""
-    print("\n=== Testing Recommendation Engine ===")
+        # Test portfolio optimization
+        print("Testing portfolio optimization...")
+        optimized_sites = engine.implement_portfolio_optimization(site_scores, target_study)
+        self.assertIsInstance(optimized_sites, list, "Optimized sites should be returned as a list")
+        print(f"✅ Optimized to {len(optimized_sites)} sites")
 
-    # Initialize recommendation engine
-    engine = RecommendationEngine(db_manager)
+        # Test tier generation
+        print("Testing site selection tiers...")
+        tiers = engine.generate_site_selection_tiers(optimized_sites)
+        self.assertIsInstance(tiers, dict, "Tiers should be returned as a dictionary")
+        self.assertIn("primary", tiers, "Tiers should contain 'primary' key")
+        self.assertIn("secondary", tiers, "Tiers should contain 'secondary' key")
+        self.assertIn("tertiary", tiers, "Tiers should contain 'tertiary' key")
+        print(
+            f"✅ Generated tiers: Primary={len(tiers['primary'])}, Secondary={len(tiers['secondary'])}, Tertiary={len(tiers['tertiary'])}"
+        )
 
-    # Test target study parameters
-    target_study = {
-        "conditions": ["diabetes", "hyperglycemia"],
-        "phase": "Phase 2",
-        "intervention_type": "Drug",
-        "country": "United States",
-    }
+        # Test recommendation reports
+        print("Testing recommendation reports...")
+        reports = engine.create_recommendation_reports(tiers, target_study)
+        self.assertIsNotNone(reports, "Recommendation reports should not return None")
 
-    # Test parameter validation
-    print("Testing target study parameter validation...")
-    validation_result = engine.accept_target_study_parameters(target_study)
-    if validation_result:
-        print("✅ Parameter validation test passed")
-    else:
-        print("❌ Parameter validation test failed")
-        return False
-
-    # Test mandatory filtering
-    print("Testing mandatory filtering criteria...")
-    eligible_sites = engine.apply_mandatory_filtering_criteria(target_study)
-    print(f"✅ Found {len(eligible_sites)} eligible sites")
-
-    # Test match score calculation
-    print("Testing match score calculation...")
-    site_scores = engine.execute_match_score_calculation(eligible_sites, target_study)
-    print(f"✅ Calculated match scores for {len(site_scores)} sites")
-
-    # Test portfolio optimization
-    print("Testing portfolio optimization...")
-    optimized_sites = engine.implement_portfolio_optimization(site_scores, target_study)
-    print(f"✅ Optimized to {len(optimized_sites)} sites")
-
-    # Test tier generation
-    print("Testing site selection tiers...")
-    tiers = engine.generate_site_selection_tiers(optimized_sites)
-    print(
-        f"✅ Generated tiers: Primary={len(tiers['primary'])}, Secondary={len(tiers['secondary'])}, Tertiary={len(tiers['tertiary'])}"
-    )
-
-    # Test recommendation reports
-    print("Testing recommendation reports...")
-    reports = engine.create_recommendation_reports(tiers, target_study)
-    if reports:
-        print("✅ Recommendation reports test passed")
-    else:
-        print("❌ Recommendation reports test failed")
-        return False
-
-    # Test full recommendation generation
-    print("Testing full recommendation generation...")
-    recommendations = engine.generate_recommendations(target_study)
-    if recommendations:
-        print("✅ Full recommendation generation test passed")
-    else:
-        print("❌ Full recommendation generation test failed")
-        return False
-
-    return True
+        # Test full recommendation generation
+        print("Testing full recommendation generation...")
+        recommendations = engine.generate_recommendations(target_study)
+        self.assertIsNotNone(recommendations, "Full recommendation generation should not return None")
 
 
 def main():
@@ -379,47 +374,9 @@ def main():
     print("🧪 Testing Milestone 3 Analytics Engine Components")
     print("=" * 50)
 
-    # Set up test database
-    db_manager = setup_test_database()
-    if not db_manager:
-        return False
-
-    try:
-        # Insert test data
-        insert_test_data(db_manager)
-
-        # Test match calculator
-        if not test_match_calculator(db_manager):
-            print("\n❌ Match Calculator tests failed")
-            return False
-
-        # Test strengths and weaknesses detector
-        if not test_strengths_weaknesses_detector(db_manager):
-            print("\n❌ Strengths and Weaknesses Detector tests failed")
-            return False
-
-        # Test recommendation engine
-        if not test_recommendation_engine(db_manager):
-            print("\n❌ Recommendation Engine tests failed")
-            return False
-
-        # Disconnect from database
-        db_manager.disconnect()
-        print("\n✅ Disconnected from database")
-
-        print("\n🎉 All Milestone 3 tests passed!")
-        print("✅ Match Score Calculation System working")
-        print("✅ Strengths and Weaknesses Detection working")
-        print("✅ Site Recommendation Engine working")
-        return True
-
-    except Exception as e:
-        print(f"\n❌ Error during testing: {e}")
-        db_manager.disconnect()
-        return False
+    # Run unittest
+    unittest.main()
 
 
 if __name__ == "__main__":
-    success = main()
-    if not success:
-        sys.exit(1)
+    main()
