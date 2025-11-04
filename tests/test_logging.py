@@ -1,6 +1,7 @@
 """
 Test script to verify logging functionality
 """
+
 import logging
 import os
 
@@ -11,14 +12,15 @@ os.makedirs(log_dir, exist_ok=True)
 # Configure logging with both file and console handlers
 logging.basicConfig(
     level=logging.INFO,
-    format='%(asctime)s - %(name)s - %(levelname)s - %(message)s',
+    format="%(asctime)s - %(name)s - %(levelname)s - %(message)s",
     handlers=[
         logging.FileHandler(os.path.join(log_dir, "test_logging.log")),
-        logging.StreamHandler()
-    ]
+        logging.StreamHandler(),
+    ],
 )
 
 logger = logging.getLogger(__name__)
+
 
 def test_logging():
     """Test logging functionality"""
@@ -27,6 +29,7 @@ def test_logging():
     logger.warning("This is a warning message")
     logger.error("This is an error message")
     print("Logging test completed.")
+
 
 if __name__ == "__main__":
     test_logging()

@@ -44,6 +44,7 @@ except ImportError:
 # Try to import scipy for prediction intervals
 try:
     from scipy import stats
+
     SCIPY_AVAILABLE = True
 except ImportError:
     logger.warning("Scipy not available. Install with: pip install scipy")
@@ -122,12 +123,16 @@ class PredictiveEnrollmentModel:
 
             # Calculate enrollment duration
             # Handle different date formats
-            df["start_date"] = pd.to_datetime(df["start_date"], format='mixed', errors='coerce')
-            df["completion_date"] = pd.to_datetime(df["completion_date"], format='mixed', errors='coerce')
-            
+            df["start_date"] = pd.to_datetime(
+                df["start_date"], format="mixed", errors="coerce"
+            )
+            df["completion_date"] = pd.to_datetime(
+                df["completion_date"], format="mixed", errors="coerce"
+            )
+
             # Remove rows with invalid dates
-            df = df.dropna(subset=['start_date', 'completion_date'])
-            
+            df = df.dropna(subset=["start_date", "completion_date"])
+
             df["enrollment_duration_days"] = (
                 df["completion_date"] - df["start_date"]
             ).dt.days
@@ -172,12 +177,15 @@ class PredictiveEnrollmentModel:
             logger.error(f"Error engineering features: {e}")
             return df
 
-    def train_regression_model(self, df: pd.DataFrame, 
-                             n_estimators: int = 100, 
-                             learning_rate: float = 0.1, 
-                             max_depth: int = 6,
-                             test_size: float = 0.2,
-                             random_state: int = 42) -> bool:
+    def train_regression_model(
+        self,
+        df: pd.DataFrame,
+        n_estimators: int = 100,
+        learning_rate: float = 0.1,
+        max_depth: int = 6,
+        test_size: float = 0.2,
+        random_state: int = 42,
+    ) -> bool:
         """
         Train regression model using gradient boosting
 
@@ -226,10 +234,10 @@ class PredictiveEnrollmentModel:
 
             # Train model
             self.model = GradientBoostingRegressor(
-                n_estimators=n_estimators, 
-                learning_rate=learning_rate, 
-                max_depth=max_depth, 
-                random_state=random_state
+                n_estimators=n_estimators,
+                learning_rate=learning_rate,
+                max_depth=max_depth,
+                random_state=random_state,
             )
 
             self.model.fit(X_train_scaled, y_train)

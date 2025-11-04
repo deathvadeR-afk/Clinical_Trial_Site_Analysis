@@ -157,18 +157,22 @@ class AutomatedPipeline:
         try:
             # Initialize an empty result dictionary
             all_studies_result = {"studies": []}
-            
+
             # Fetch multiple pages of data to get more trials
             page_token = None
             pages_fetched = 0
             max_pages = 50  # Increase to fetch more data for production grade
-            
-            logger.info("Fetching multiple pages of clinical trials data for production grade...")
-            
+
+            logger.info(
+                "Fetching multiple pages of clinical trials data for production grade..."
+            )
+
             while pages_fetched < max_pages:
                 # Use the ClinicalTrialsAPI get_studies method to fetch trials
                 # Increase page size for more data per request
-                studies_result = self.clinicaltrials_api.get_studies(page_size=1000, page_token=page_token)
+                studies_result = self.clinicaltrials_api.get_studies(
+                    page_size=1000, page_token=page_token
+                )
 
                 # Handle None result
                 if studies_result is None:
@@ -178,8 +182,10 @@ class AutomatedPipeline:
                 # Add studies to our collection
                 studies = studies_result.get("studies", [])
                 all_studies_result["studies"].extend(studies)
-                
-                logger.info(f"Fetched page {pages_fetched + 1} with {len(studies)} clinical trials (Total: {len(all_studies_result['studies'])})")
+
+                logger.info(
+                    f"Fetched page {pages_fetched + 1} with {len(studies)} clinical trials (Total: {len(all_studies_result['studies'])})"
+                )
 
                 # Check for next page
                 next_page_token = studies_result.get("nextPageToken")
@@ -273,26 +279,34 @@ class AutomatedPipeline:
 
             processed_count = 0
             failed_count = 0
-            
+
             # Process all studies, not just the first 5
             # Add progress tracking for large datasets
             total_studies = len(studies)
             progress_interval = max(1, total_studies // 20)  # Report progress every 5%
-            
+
             for i, study in enumerate(studies):
                 nct_id = "unknown"  # Initialize nct_id to avoid unbound variable error
                 try:
                     nct_id = study["protocolSection"]["identificationModule"]["nctId"]
-                    
+
                     # Report progress periodically
-                    if (i + 1) % progress_interval == 0 or i == 0 or i == total_studies - 1:
-                        logger.info(f"Processing study {i+1}/{total_studies}: {nct_id}...")
+                    if (
+                        (i + 1) % progress_interval == 0
+                        or i == 0
+                        or i == total_studies - 1
+                    ):
+                        logger.info(
+                            f"Processing study {i+1}/{total_studies}: {nct_id}..."
+                        )
 
                     # Process clinical trial data
                     if data_processor.process_clinical_trial_data(study):
                         processed_count += 1
                     else:
-                        logger.error(f"Failed to process clinical trial data for {nct_id}")
+                        logger.error(
+                            f"Failed to process clinical trial data for {nct_id}"
+                        )
                         failed_count += 1
 
                     # Process site data
@@ -305,8 +319,10 @@ class AutomatedPipeline:
                     if data_processor.process_investigator_data(study):
                         pass  # Success
                     else:
-                        logger.error(f"Failed to process investigator data for {nct_id}")
-                        
+                        logger.error(
+                            f"Failed to process investigator data for {nct_id}"
+                        )
+
                 except KeyError as e:
                     logger.error(f"Missing key in study {nct_id}: {e}")
                     failed_count += 1
@@ -316,7 +332,9 @@ class AutomatedPipeline:
                     failed_count += 1
                     continue
 
-            logger.info(f"Processed {processed_count} clinical trials successfully, {failed_count} failed")
+            logger.info(
+                f"Processed {processed_count} clinical trials successfully, {failed_count} failed"
+            )
 
             # Validate data
             logger.info("Validating processed data...")
@@ -324,7 +342,9 @@ class AutomatedPipeline:
             profiling_report = data_validator.build_data_profiling_module()
 
             logger.info("Data validation completed")
-            return processed_count > 0  # Return True if at least one study was processed
+            return (
+                processed_count > 0
+            )  # Return True if at least one study was processed
 
         except Exception as e:
             logger.error(f"Error processing data: {e}")
@@ -866,77 +886,83 @@ class AutomatedPipeline:
     def fetch_historical_data_for_ml(self) -> bool:
         """
         Fetch historical clinical trials data specifically for ML training purposes
-        
+
         Returns:
             True if successful, False otherwise
         """
         try:
             logger.info("Fetching historical data for ML training...")
-            
+
             if not self.db_manager and not self.connect_database():
                 logger.error("Failed to connect to database")
                 return False
-                
+
             # Initialize data processor
             data_processor = DataProcessor(self.db_manager)
-            
+
             # Fetch multiple pages of historical data
             page_token = None
             pages_fetched = 0
             max_pages = 50  # Fetch more pages for historical data
             total_processed = 0
-            
+
             while pages_fetched < max_pages:
                 # Fetch a page of studies with larger page size
                 studies_result = self.clinicaltrials_api.get_studies(
                     page_size=1000, page_token=page_token
                 )
-                
+
                 if not studies_result:
                     logger.warning("Failed to retrieve studies for ML training")
                     break
-                    
+
                 studies = studies_result.get("studies", [])
                 if not studies:
                     logger.info("No more studies found for ML training")
                     break
-                    
+
                 # Process each study
                 processed_count = 0
                 for study in studies:
                     try:
-                        nct_id = study["protocolSection"]["identificationModule"]["nctId"]
-                        
+                        nct_id = study["protocolSection"]["identificationModule"][
+                            "nctId"
+                        ]
+
                         # Process all data types for comprehensive ML training
                         success1 = data_processor.process_clinical_trial_data(study)
                         success2 = data_processor.process_site_data(study)
                         success3 = data_processor.process_investigator_data(study)
-                        
+
                         if success1 and success2 and success3:
                             processed_count += 1
                             total_processed += 1
-                            
+
                     except Exception as e:
                         logger.debug(f"Error processing study for ML training: {e}")
                         continue
-                        
-                logger.info(f"Processed {processed_count} studies for ML training from page {pages_fetched + 1}")
-                
+
+                logger.info(
+                    f"Processed {processed_count} studies for ML training from page {pages_fetched + 1}"
+                )
+
                 # Check for next page
                 next_page_token = studies_result.get("nextPageToken")
                 if not next_page_token:
                     logger.info("No more pages available for ML training")
                     break
-                    
+
                 page_token = next_page_token
                 pages_fetched += 1
-                
+
                 # Rate limiting
                 time.sleep(0.1)
-                
-            logger.info(f"Successfully fetched {total_processed} studies for ML training")
+
+            logger.info(
+                f"Successfully fetched {total_processed} studies for ML training"
+            )
             return True
-            
+
         except Exception as e:
             logger.error(f"Error fetching historical data for ML: {e}")
             return False
@@ -959,7 +985,10 @@ class AutomatedPipeline:
 
             # Fetch new clinical trials with enhanced method
             clinical_trials_data = self.fetch_new_clinical_trials()
-            if not clinical_trials_data or len(clinical_trials_data.get("studies", [])) == 0:
+            if (
+                not clinical_trials_data
+                or len(clinical_trials_data.get("studies", [])) == 0
+            ):
                 logger.warning("No clinical trials data fetched")
 
             # Fetch investigator data

@@ -1,6 +1,7 @@
 """
 Site Explorer Page for Clinical Trial Site Analysis Platform Dashboard
 """
+
 import streamlit as st
 import sys
 import os
@@ -15,6 +16,7 @@ sys.path.append(os.path.dirname(os.path.abspath(__file__)) + "/../../")
 # Import database manager
 from database.db_manager import DatabaseManager
 
+
 def get_db_connection():
     """Create and return a database connection"""
     db_path = "clinical_trials.db"
@@ -23,12 +25,13 @@ def get_db_connection():
         return db_manager
     return None
 
+
 def fetch_sites_data(search_term="", therapeutic_area="All", country="All"):
     """Fetch sites data from database with optional filters"""
     db_manager = get_db_connection()
     if not db_manager:
         return []
-    
+
     try:
         # Base query
         query = """
@@ -38,38 +41,42 @@ def fetch_sites_data(search_term="", therapeutic_area="All", country="All"):
         WHERE 1=1
         """
         params = []
-        
+
         # Add search filter
         if search_term:
             query += " AND (site_name LIKE ? OR city LIKE ? OR state LIKE ? OR country LIKE ?)"
             search_pattern = f"%{search_term}%"
-            params.extend([search_pattern, search_pattern, search_pattern, search_pattern])
-        
+            params.extend(
+                [search_pattern, search_pattern, search_pattern, search_pattern]
+            )
+
         # Add country filter
         if country != "All":
             query += " AND country = ?"
             params.append(country)
-        
+
         # Order by site name
         query += " ORDER BY site_name"
-        
+
         results = db_manager.query(query, tuple(params))
         db_manager.disconnect()
-        
+
         # Convert to list of dictionaries
         sites_data = []
         for row in results:
-            sites_data.append({
-                "ID": row["site_id"],
-                "Name": row["site_name"],
-                "City": row["city"] or "",
-                "State": row["state"] or "",
-                "Country": row["country"] or "",
-                "Institution Type": row["institution_type"] or "Unknown",
-                "Total Capacity": row["total_capacity"] or 0,
-                "Accreditation": row["accreditation_status"] or "Unknown"
-            })
-        
+            sites_data.append(
+                {
+                    "ID": row["site_id"],
+                    "Name": row["site_name"],
+                    "City": row["city"] or "",
+                    "State": row["state"] or "",
+                    "Country": row["country"] or "",
+                    "Institution Type": row["institution_type"] or "Unknown",
+                    "Total Capacity": row["total_capacity"] or 0,
+                    "Accreditation": row["accreditation_status"] or "Unknown",
+                }
+            )
+
         return sites_data
     except Exception as e:
         st.error(f"Error fetching sites data: {e}")
@@ -77,12 +84,13 @@ def fetch_sites_data(search_term="", therapeutic_area="All", country="All"):
             db_manager.disconnect()
         return []
 
+
 def fetch_site_metrics():
     """Fetch site metrics data from database"""
     db_manager = get_db_connection()
     if not db_manager:
         return []
-    
+
     try:
         query = """
         SELECT sm.site_id, sm.site_name, sm.city, sm.country,
@@ -94,24 +102,32 @@ def fetch_site_metrics():
         ORDER BY sm.site_name
         LIMIT 100
         """
-        
+
         results = db_manager.query(query)
         db_manager.disconnect()
-        
+
         # Convert to list of dictionaries
         metrics_data = []
         for row in results:
             # Convert completion ratio to percentage
-            completion_pct = round(row["completion_ratio"] * 100, 1) if row["completion_ratio"] else 0
-            
-            metrics_data.append({
-                "ID": row["site_id"],
-                "Name": row["site_name"],
-                "Location": f"{row['city'] or ''}, {row['country'] or ''}".strip(", "),
-                "Studies": row["total_studies"] or 0,
-                "Success Rate": f"{completion_pct}%"
-            })
-        
+            completion_pct = (
+                round(row["completion_ratio"] * 100, 1)
+                if row["completion_ratio"]
+                else 0
+            )
+
+            metrics_data.append(
+                {
+                    "ID": row["site_id"],
+                    "Name": row["site_name"],
+                    "Location": f"{row['city'] or ''}, {row['country'] or ''}".strip(
+                        ", "
+                    ),
+                    "Studies": row["total_studies"] or 0,
+                    "Success Rate": f"{completion_pct}%",
+                }
+            )
+
         return metrics_data
     except Exception as e:
         st.error(f"Error fetching site metrics: {e}")
@@ -119,12 +135,13 @@ def fetch_site_metrics():
             db_manager.disconnect()
         return []
 
+
 def fetch_map_data():
     """Fetch geographical data for map visualization"""
     db_manager = get_db_connection()
     if not db_manager:
         return pd.DataFrame()
-    
+
     try:
         query = """
         SELECT site_id, site_name, city, state, country, latitude, longitude
@@ -132,20 +149,24 @@ def fetch_map_data():
         WHERE latitude IS NOT NULL AND longitude IS NOT NULL
         ORDER BY site_name
         """
-        
+
         results = db_manager.query(query)
         db_manager.disconnect()
-        
+
         # Convert to DataFrame
         map_data = []
         for row in results:
-            map_data.append({
-                'lat': row["latitude"],
-                'lon': row["longitude"],
-                'name': row["site_name"],
-                'location': f"{row['city'] or ''}, {row['state'] or ''}, {row['country'] or ''}".strip(", ")
-            })
-        
+            map_data.append(
+                {
+                    "lat": row["latitude"],
+                    "lon": row["longitude"],
+                    "name": row["site_name"],
+                    "location": f"{row['city'] or ''}, {row['state'] or ''}, {row['country'] or ''}".strip(
+                        ", "
+                    ),
+                }
+            )
+
         return pd.DataFrame(map_data)
     except Exception as e:
         st.error(f"Error fetching map data: {e}")
@@ -153,78 +174,89 @@ def fetch_map_data():
             db_manager.disconnect()
         return pd.DataFrame()
 
+
 def show_site_explorer_page():
     """Display the site explorer page"""
     st.title("🔍 Site Explorer")
     st.markdown("---")
-    
+
     st.write("Search and explore clinical trial sites in our database.")
-    
+
     # Search filters
     col1, col2, col3 = st.columns(3)
-    
+
     with col1:
-        search_term = st.text_input("Search Sites", placeholder="Enter site name or location")
-    
+        search_term = st.text_input(
+            "Search Sites", placeholder="Enter site name or location"
+        )
+
     with col2:
         therapeutic_area = st.selectbox(
             "Therapeutic Area",
-            ["All", "Oncology", "Cardiology", "Neurology", "Infectious Disease", "Other"]
+            [
+                "All",
+                "Oncology",
+                "Cardiology",
+                "Neurology",
+                "Infectious Disease",
+                "Other",
+            ],
         )
-    
+
     with col3:
         country = st.selectbox(
             "Country",
-            ["All", "United States", "Canada", "United Kingdom", "Germany", "Other"]
+            ["All", "United States", "Canada", "United Kingdom", "Germany", "Other"],
         )
-    
+
     # Fetch real data from database
     sites_data = fetch_sites_data(search_term, therapeutic_area, country)
     metrics_data = fetch_site_metrics()
-    
+
     # Display sites data
     st.subheader("Sites Database")
     st.write(f"Displaying {len(sites_data)} sites from the database:")
-    
+
     if sites_data:
         # Convert to DataFrame for better display
         df = pd.DataFrame(sites_data)
         st.dataframe(df, use_container_width=True)
     else:
         st.info("No sites found matching your criteria.")
-    
+
     # Display metrics data in table format
     st.subheader("Site Performance Metrics")
     st.write("Key performance indicators for clinical trial sites:")
-    
+
     if metrics_data:
         # Display as table
         metrics_df = pd.DataFrame(metrics_data)
         st.table(metrics_df)
     else:
         st.info("No metrics data available.")
-    
+
     # Create a map visualization
     st.subheader("Site Locations")
     st.write("Interactive map showing site locations:")
-    
+
     map_data = fetch_map_data()
     if not map_data.empty and len(map_data) > 0:
         # Create a simple map using Plotly
         fig = px.scatter_mapbox(
-            map_data, 
-            lat="lat", 
-            lon="lon", 
+            map_data,
+            lat="lat",
+            lon="lon",
             hover_name="name",
             hover_data=["location"],
             zoom=2,
-            height=500
+            height=500,
         )
         fig.update_layout(mapbox_style="open-street-map")
-        fig.update_layout(margin={"r":0,"t":0,"l":0,"b":0})
+        fig.update_layout(margin={"r": 0, "t": 0, "l": 0, "b": 0})
         st.plotly_chart(fig, use_container_width=True)
     else:
         st.info("No geographical data available for mapping.")
+
 
 if __name__ == "__main__":
     show_site_explorer_page()

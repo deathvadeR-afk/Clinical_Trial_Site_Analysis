@@ -77,7 +77,7 @@ class ClinicalTrialsAPI:
                 "Accept": "application/json",
             }
         )
-        
+
         # Add API key to headers if provided
         if self.api_key and self.api_key != "YOUR_CLINICAL_TRIALS_API_KEY_HERE":
             self.session.headers.update(
@@ -90,12 +90,14 @@ class ClinicalTrialsAPI:
     def _load_api_key_from_config(self) -> Optional[str]:
         """
         Load API key from config.json file
-        
+
         Returns:
             API key string or None if not found
         """
         try:
-            config_path = os.path.join(os.path.dirname(os.path.abspath(__file__)), "..", "config.json")
+            config_path = os.path.join(
+                os.path.dirname(os.path.abspath(__file__)), "..", "config.json"
+            )
             if os.path.exists(config_path):
                 with open(config_path, "r") as f:
                     config = json.load(f)

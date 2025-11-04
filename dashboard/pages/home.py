@@ -1,6 +1,7 @@
 """
 Home Page for Clinical Trial Site Analysis Platform Dashboard
 """
+
 import streamlit as st
 import os
 import sys
@@ -18,9 +19,11 @@ try:
     from pipeline.automated_pipeline import AutomatedPipeline
     from ai_ml.predictive_model import PredictiveEnrollmentModel
     from ai_ml.clustering import SiteClustering
+
     ML_MODULES_AVAILABLE = True
 except ImportError:
     pass
+
 
 def get_db_connection():
     """Create and return a database connection"""
@@ -31,37 +34,43 @@ def get_db_connection():
         return db_manager
     return None
 
+
 def fetch_platform_statistics():
     """Fetch platform statistics from database"""
     db_manager = get_db_connection()
     if not db_manager:
         return {"sites": 0, "trials": 0, "recommendations": 0}
-    
+
     try:
         # Get site count
         site_result = db_manager.query("SELECT COUNT(*) as count FROM sites_master")
-        sites_count = site_result[0]['count'] if site_result else 0
-        
+        sites_count = site_result[0]["count"] if site_result else 0
+
         # Get trial count
         trial_result = db_manager.query("SELECT COUNT(*) as count FROM clinical_trials")
-        trials_count = trial_result[0]['count'] if trial_result else 0
-        
+        trials_count = trial_result[0]["count"] if trial_result else 0
+
         # Get match score count (as proxy for recommendations)
-        recommendation_result = db_manager.query("SELECT COUNT(*) as count FROM match_scores")
-        recommendations_count = recommendation_result[0]['count'] if recommendation_result else 0
-        
+        recommendation_result = db_manager.query(
+            "SELECT COUNT(*) as count FROM match_scores"
+        )
+        recommendations_count = (
+            recommendation_result[0]["count"] if recommendation_result else 0
+        )
+
         db_manager.disconnect()
-        
+
         return {
             "sites": sites_count,
             "trials": trials_count,
-            "recommendations": recommendations_count
+            "recommendations": recommendations_count,
         }
     except Exception as e:
         st.error(f"Error fetching statistics: {e}")
         if db_manager:
             db_manager.disconnect()
         return {"sites": 0, "trials": 0, "recommendations": 0}
+
 
 def run_data_ingestion():
     """Run the automated data ingestion pipeline"""
@@ -70,11 +79,12 @@ def run_data_ingestion():
         db_path = "clinical_trials.db"
         if ML_MODULES_AVAILABLE:
             from pipeline.automated_pipeline import AutomatedPipeline
+
             pipeline = AutomatedPipeline(db_path)
-            
+
             # Run the pipeline
             success = pipeline.run_pipeline()
-            
+
             if success:
                 st.success("Data ingestion completed successfully!")
                 return True
@@ -88,49 +98,55 @@ def run_data_ingestion():
         st.error(f"Error running data ingestion: {e}")
         return False
 
+
 def run_model_retraining():
     """Run model retraining with latest data"""
     try:
         if not ML_MODULES_AVAILABLE:
             st.error("ML modules not available. Please check your installation.")
             return False
-        
+
         # Get database connection
         db_path = "clinical_trials.db"
         db_manager = DatabaseManager(db_path)
         if not db_manager.connect():
             st.error("Failed to connect to database")
             return False
-        
+
         # Train predictive model
         st.info("Training predictive enrollment model...")
         from ai_ml.predictive_model import PredictiveEnrollmentModel
+
         predictive_model = PredictiveEnrollmentModel(db_manager)
         training_results = predictive_model.train_predictive_model()
-        
-        if training_results.get('training_success', False):
-            st.success(f"Predictive model trained successfully! Dataset size: {training_results.get('dataset_size', 0)}")
+
+        if training_results.get("training_success", False):
+            st.success(
+                f"Predictive model trained successfully! Dataset size: {training_results.get('dataset_size', 0)}"
+            )
         else:
             st.warning("Predictive model training completed but with limited data.")
-        
+
         # Run clustering
         st.info("Running site clustering...")
         from ai_ml.clustering import SiteClustering
+
         clustering_model = SiteClustering(db_manager)
         clustering_results = clustering_model.perform_site_clustering(n_clusters=5)
-        
+
         if clustering_results:
-            clusters_found = len(clustering_results.get('cluster_characteristics', {}))
+            clusters_found = len(clustering_results.get("cluster_characteristics", {}))
             st.success(f"Site clustering completed! Found {clusters_found} clusters.")
         else:
             st.warning("Site clustering completed but no results generated.")
-        
+
         db_manager.disconnect()
         return True
-        
+
     except Exception as e:
         st.error(f"Error running model retraining: {e}")
         return False
+
 
 def download_historical_data(start_date: str, end_date: str):
     """Download historical clinical trial data for ML training"""
@@ -139,13 +155,16 @@ def download_historical_data(start_date: str, end_date: str):
         db_path = "clinical_trials.db"
         if ML_MODULES_AVAILABLE:
             from pipeline.automated_pipeline import AutomatedPipeline
+
             pipeline = AutomatedPipeline(db_path)
-            
+
             # Download historical data
             success = pipeline.download_historical_trials(start_date, end_date)
-            
+
             if success:
-                st.success(f"Historical data from {start_date} to {end_date} downloaded successfully!")
+                st.success(
+                    f"Historical data from {start_date} to {end_date} downloaded successfully!"
+                )
                 return True
             else:
                 st.error("Historical data download failed. Check logs for details.")
@@ -157,58 +176,65 @@ def download_historical_data(start_date: str, end_date: str):
         st.error(f"Error downloading historical data: {e}")
         return False
 
+
 def show_home_page():
     """Display the home page"""
     st.title("🏥 Clinical Trial Site Analysis Platform")
     st.markdown("---")
-    
+
     # Fetch real statistics from database
     stats = fetch_platform_statistics()
-    
+
     st.header("Overview")
-    st.write("""
+    st.write(
+        """
     Welcome to the Clinical Trial Site Analysis Platform dashboard. This platform helps clinical research 
     organizations identify and evaluate the best sites for their clinical trials based on comprehensive 
     data analysis and AI-powered insights.
-    """)
-    
+    """
+    )
+
     st.subheader("Key Features")
     col1, col2, col3 = st.columns(3)
-    
+
     with col1:
         st.metric("Sites Analyzed", stats["sites"])
         st.info("Comprehensive site database")
-    
+
     with col2:
         st.metric("Trials Processed", stats["trials"])
         st.success("Up-to-date trial information")
-    
+
     with col3:
         st.metric("Recommendations Generated", stats["recommendations"])
         st.warning("AI-powered insights")
-    
+
     st.subheader("Platform Capabilities")
-    st.markdown("""
+    st.markdown(
+        """
     - **Data Ingestion**: Real-time data from ClinicalTrials.gov and PubMed
     - **Intelligent Analysis**: Advanced analytics and machine learning
     - **Site Matching**: AI-powered site recommendations
     - **Performance Metrics**: Comprehensive site evaluation
     - **Visualization**: Interactive dashboards and maps
-    """)
-    
+    """
+    )
+
     st.subheader("Getting Started")
-    st.markdown("""
+    st.markdown(
+        """
     1. Navigate to **Site Explorer** to search and filter clinical trial sites
     2. Use **Recommendations** to find the best sites for your trial criteria
     3. Explore **Analytics** for detailed performance metrics and insights
-    """)
-    
+    """
+    )
+
     # System Controls
     st.markdown("---")
     st.subheader("System Controls")
-    
+
     col1, col2, col3 = st.columns(3)
-    
+
     with col1:
         st.markdown("**Data Management**")
         if st.button("📥 Ingest Latest Data"):
@@ -216,9 +242,11 @@ def show_home_page():
                 success = run_data_ingestion()
                 if success:
                     st.experimental_rerun()
-        
-        st.markdown("_Fetches the latest clinical trial and investigator data from ClinicalTrials.gov and PubMed_")
-    
+
+        st.markdown(
+            "_Fetches the latest clinical trial and investigator data from ClinicalTrials.gov and PubMed_"
+        )
+
     with col2:
         st.markdown("**Historical Data**")
         st.markdown("_Download historical data for ML training_")
@@ -232,7 +260,7 @@ def show_home_page():
                 success = download_historical_data(str(start_date), str(end_date))
                 if success:
                     st.experimental_rerun()
-    
+
     with col3:
         st.markdown("**Model Management**")
         if st.button("🧠 Retrain ML Models"):
@@ -240,8 +268,11 @@ def show_home_page():
                 success = run_model_retraining()
                 if success:
                     st.experimental_rerun()
-        
-        st.markdown("_Retrains predictive and clustering models with the latest data in the database_")
+
+        st.markdown(
+            "_Retrains predictive and clustering models with the latest data in the database_"
+        )
+
 
 if __name__ == "__main__":
     show_home_page()

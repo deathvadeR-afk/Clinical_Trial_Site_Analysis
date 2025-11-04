@@ -1,0 +1,66 @@
+Run black --check .
+would reformat /home/runner/work/Clinical_Trial_Site_Analysis/Clinical_Trial_Site_Analysis/ai_ml/final_model_test.py
+would reformat /home/runner/work/Clinical_Trial_Site_Analysis/Clinical_Trial_Site_Analysis/ai_ml/gemini_client.py
+would reformat /home/runner/work/Clinical_Trial_Site_Analysis/Clinical_Trial_Site_Analysis/ai_ml/clustering.py
+would reformat /home/runner/work/Clinical_Trial_Site_Analysis/Clinical_Trial_Site_Analysis/ai_ml/predictive_model.py
+would reformat /home/runner/work/Clinical_Trial_Site_Analysis/Clinical_Trial_Site_Analysis/ai_ml/nl_query.py
+would reformat /home/runner/work/Clinical_Trial_Site_Analysis/Clinical_Trial_Site_Analysis/analytics/match_calculator.py
+would reformat /home/runner/work/Clinical_Trial_Site_Analysis/Clinical_Trial_Site_Analysis/analytics/populate_metrics.py
+would reformat /home/runner/work/Clinical_Trial_Site_Analysis/Clinical_Trial_Site_Analysis/analytics/metrics_calculator.py
+would reformat /home/runner/work/Clinical_Trial_Site_Analysis/Clinical_Trial_Site_Analysis/analytics/recommendation_engine.py
+would reformat /home/runner/work/Clinical_Trial_Site_Analysis/Clinical_Trial_Site_Analysis/dashboard/app.py
+would reformat /home/runner/work/Clinical_Trial_Site_Analysis/Clinical_Trial_Site_Analysis/dashboard/pages/__init__.py
+would reformat /home/runner/work/Clinical_Trial_Site_Analysis/Clinical_Trial_Site_Analysis/dashboard/pages/analytics.py
+would reformat /home/runner/work/Clinical_Trial_Site_Analysis/Clinical_Trial_Site_Analysis/analytics/strengths_weaknesses.py
+would reformat /home/runner/work/Clinical_Trial_Site_Analysis/Clinical_Trial_Site_Analysis/dashboard/pages/recommendations.py
+would reformat /home/runner/work/Clinical_Trial_Site_Analysis/Clinical_Trial_Site_Analysis/dashboard/pages/home.py
+would reformat /home/runner/work/Clinical_Trial_Site_Analysis/Clinical_Trial_Site_Analysis/dashboard/pages/site_explorer.py
+would reformat /home/runner/work/Clinical_Trial_Site_Analysis/Clinical_Trial_Site_Analysis/data_analysis.py
+would reformat /home/runner/work/Clinical_Trial_Site_Analysis/Clinical_Trial_Site_Analysis/data_ingestion/clinicaltrials_api.py
+would reformat /home/runner/work/Clinical_Trial_Site_Analysis/Clinical_Trial_Site_Analysis/data_ingestion/data_validator.py
+would reformat /home/runner/work/Clinical_Trial_Site_Analysis/Clinical_Trial_Site_Analysis/data_ingestion/data_processor.py
+would reformat /home/runner/work/Clinical_Trial_Site_Analysis/Clinical_Trial_Site_Analysis/data_ingestion/fix_enrollment.py
+would reformat /home/runner/work/Clinical_Trial_Site_Analysis/Clinical_Trial_Site_Analysis/data_ingestion/investigator_metrics.py
+would reformat /home/runner/work/Clinical_Trial_Site_Analysis/Clinical_Trial_Site_Analysis/data_ingestion/pubmed_api.py
+would reformat /home/runner/work/Clinical_Trial_Site_Analysis/Clinical_Trial_Site_Analysis/database/__init__.py
+would reformat /home/runner/work/Clinical_Trial_Site_Analysis/Clinical_Trial_Site_Analysis/data_ingestion/update_coordinates.py
+would reformat /home/runner/work/Clinical_Trial_Site_Analysis/Clinical_Trial_Site_Analysis/database/initialize.py
+would reformat /home/runner/work/Clinical_Trial_Site_Analysis/Clinical_Trial_Site_Analysis/database/optimize.py
+would reformat /home/runner/work/Clinical_Trial_Site_Analysis/Clinical_Trial_Site_Analysis/database/update_timestamps.py
+would reformat /home/runner/work/Clinical_Trial_Site_Analysis/Clinical_Trial_Site_Analysis/database/db_manager.py
+would reformat /home/runner/work/Clinical_Trial_Site_Analysis/Clinical_Trial_Site_Analysis/main.py
+would reformat /home/runner/work/Clinical_Trial_Site_Analysis/Clinical_Trial_Site_Analysis/ml_operations.py
+would reformat /home/runner/work/Clinical_Trial_Site_Analysis/Clinical_Trial_Site_Analysis/pipeline/data_quality_monitor.py
+would reformat /home/runner/work/Clinical_Trial_Site_Analysis/Clinical_Trial_Site_Analysis/pipeline/improve_ml_with_real_data.py
+would reformat /home/runner/work/Clinical_Trial_Site_Analysis/Clinical_Trial_Site_Analysis/pipeline/automated_pipeline.py
+would reformat /home/runner/work/Clinical_Trial_Site_Analysis/Clinical_Trial_Site_Analysis/pipeline/improve_predictive_model.py
+would reformat /home/runner/work/Clinical_Trial_Site_Analysis/Clinical_Trial_Site_Analysis/pipeline/monitor_data_quality.py
+would reformat /home/runner/work/Clinical_Trial_Site_Analysis/Clinical_Trial_Site_Analysis/pipeline/notification_system.py
+would reformat /home/runner/work/Clinical_Trial_Site_Analysis/Clinical_Trial_Site_Analysis/pipeline/scheduler.py
+would reformat /home/runner/work/Clinical_Trial_Site_Analysis/Clinical_Trial_Site_Analysis/project_template.py
+would reformat /home/runner/work/Clinical_Trial_Site_Analysis/Clinical_Trial_Site_Analysis/tests/comprehensive_milestone6_test.py
+would reformat /home/runner/work/Clinical_Trial_Site_Analysis/Clinical_Trial_Site_Analysis/tests/test_clinicaltrials_api.py
+would reformat /home/runner/work/Clinical_Trial_Site_Analysis/Clinical_Trial_Site_Analysis/tests/test_clustering.py
+would reformat /home/runner/work/Clinical_Trial_Site_Analysis/Clinical_Trial_Site_Analysis/tests/comprehensive_test_final.py
+would reformat /home/runner/work/Clinical_Trial_Site_Analysis/Clinical_Trial_Site_Analysis/tests/test_data_processor.py
+would reformat /home/runner/work/Clinical_Trial_Site_Analysis/Clinical_Trial_Site_Analysis/tests/test_data_validator.py
+would reformat /home/runner/work/Clinical_Trial_Site_Analysis/Clinical_Trial_Site_Analysis/tests/test_database.py
+would reformat /home/runner/work/Clinical_Trial_Site_Analysis/Clinical_Trial_Site_Analysis/tests/test_db.py
+would reformat /home/runner/work/Clinical_Trial_Site_Analysis/Clinical_Trial_Site_Analysis/tests/test_gemini_client.py
+would reformat /home/runner/work/Clinical_Trial_Site_Analysis/Clinical_Trial_Site_Analysis/tests/test_logging.py
+would reformat /home/runner/work/Clinical_Trial_Site_Analysis/Clinical_Trial_Site_Analysis/tests/test_match_calculator.py
+would reformat /home/runner/work/Clinical_Trial_Site_Analysis/Clinical_Trial_Site_Analysis/tests/test_investigator_metrics.py
+would reformat /home/runner/work/Clinical_Trial_Site_Analysis/Clinical_Trial_Site_Analysis/tests/test_metrics_calculator.py
+would reformat /home/runner/work/Clinical_Trial_Site_Analysis/Clinical_Trial_Site_Analysis/tests/test_milestone4.py
+would reformat /home/runner/work/Clinical_Trial_Site_Analysis/Clinical_Trial_Site_Analysis/tests/test_milestone3.py
+would reformat /home/runner/work/Clinical_Trial_Site_Analysis/Clinical_Trial_Site_Analysis/tests/test_milestone5.py
+would reformat /home/runner/work/Clinical_Trial_Site_Analysis/Clinical_Trial_Site_Analysis/tests/test_milestone6.py
+would reformat /home/runner/work/Clinical_Trial_Site_Analysis/Clinical_Trial_Site_Analysis/tests/test_pubmed_api.py
+would reformat /home/runner/work/Clinical_Trial_Site_Analysis/Clinical_Trial_Site_Analysis/tests/test_nl_query.py
+would reformat /home/runner/work/Clinical_Trial_Site_Analysis/Clinical_Trial_Site_Analysis/tests/verify_milestone4.py
+would reformat /home/runner/work/Clinical_Trial_Site_Analysis/Clinical_Trial_Site_Analysis/tests/verify_milestone3.py
+would reformat /home/runner/work/Clinical_Trial_Site_Analysis/Clinical_Trial_Site_Analysis/utils/cache_manager.py
+
+Oh no! 💥 💔 💥
+61 files would be reformatted, 13 files would be left unchanged.
+Error: Process completed with exit code 1.

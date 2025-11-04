@@ -11,18 +11,19 @@ sys.path.append(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 
 from database.db_manager import DatabaseManager
 
+
 def initialize_database():
     """Initialize the database with all required tables"""
     print("Initializing database...")
-    
+
     # Create database manager
     db_manager = DatabaseManager()
-    
+
     # Connect to database
     if not db_manager.connect():
         print("Failed to connect to database")
         return False
-    
+
     # Create tables from schema
     if db_manager.create_tables():
         print("Database tables created successfully!")
@@ -30,11 +31,12 @@ def initialize_database():
     else:
         print("Failed to create database tables")
         success = False
-    
+
     # Disconnect from database
     db_manager.disconnect()
-    
+
     return success
+
 
 if __name__ == "__main__":
     if initialize_database():

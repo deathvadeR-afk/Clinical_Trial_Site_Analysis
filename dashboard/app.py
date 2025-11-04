@@ -1,6 +1,7 @@
 """
 Main Streamlit Application for Clinical Trial Site Analysis Platform Dashboard
 """
+
 import streamlit as st
 import sys
 import os
@@ -19,18 +20,18 @@ st.set_page_config(
     page_title="Clinical Trial Site Analysis Platform",
     page_icon="🏥",
     layout="wide",
-    initial_sidebar_state="expanded"
+    initial_sidebar_state="expanded",
 )
+
 
 def main():
     """Main application function"""
     # Sidebar navigation
     st.sidebar.title("Navigation")
     page = st.sidebar.selectbox(
-        "Select Page",
-        ["Home", "Site Explorer", "Recommendations", "Analytics"]
+        "Select Page", ["Home", "Site Explorer", "Recommendations", "Analytics"]
     )
-    
+
     # Page routing
     if page == "Home":
         show_home_page()
@@ -40,6 +41,7 @@ def main():
         show_recommendations_page()
     elif page == "Analytics":
         show_analytics_page()
+
 
 if __name__ == "__main__":
     main()
