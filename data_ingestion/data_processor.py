@@ -52,6 +52,31 @@ class DataProcessor:
         if not address:
             return None
             
+        # Create cache directory if it doesn't exist
+        cache_dir = os.path.join(os.path.dirname(os.path.abspath(__file__)), "..", "cache")
+        os.makedirs(cache_dir, exist_ok=True)
+        cache_file = os.path.join(cache_dir, "geocoding_cache.json")
+        
+        # Load existing cache
+        cache = {}
+        if os.path.exists(cache_file):
+            try:
+                with open(cache_file, 'r') as f:
+                    cache = json.load(f)
+            except Exception as e:
+                logger.warning(f"Failed to load geocoding cache: {e}")
+        
+        # Check if address is already cached
+        if address in cache:
+            cached_entry = cache[address]
+            # Check if cache is still valid (24 hours)
+            if time.time() - cached_entry.get('timestamp', 0) < 24 * 60 * 60:
+                logger.info(f"Using cached coordinates for {address}")
+                return cached_entry['coordinates']
+            else:
+                # Remove expired entry
+                del cache[address]
+        
         try:
             # Use OpenStreetMap Nominatim API (free, no API key required)
             # Note: This service has usage limits, so we should cache results
@@ -73,6 +98,9 @@ class DataProcessor:
             max_retries = 3
             for attempt in range(max_retries):
                 try:
+                    # Rate limiting - wait before making request
+                    time.sleep(1)  # 1 second delay between requests
+                    
                     response = requests.get(base_url, params=params, headers=headers, timeout=10)
                     response.raise_for_status()
                     
@@ -86,6 +114,18 @@ class DataProcessor:
                                 'lon': float(result['lon'])
                             }
                             logger.info(f"Geocoded {address} to {coordinates}")
+                            
+                            # Cache the result
+                            cache[address] = {
+                                'coordinates': coordinates,
+                                'timestamp': time.time()
+                            }
+                            try:
+                                with open(cache_file, 'w') as f:
+                                    json.dump(cache, f)
+                            except Exception as e:
+                                logger.warning(f"Failed to save geocoding cache: {e}")
+                            
                             return coordinates
                         else:
                             logger.warning(f"Geocoding result missing lat/lon for address: {address}")
@@ -124,6 +164,48 @@ class DataProcessor:
             logger.error(f"Error geocoding address '{address}': {e}")
             return None
     
+    def _validate_trial_data(self, trial_data: Dict) -> bool:
+        """
+        Validate clinical trial data before insertion
+        
+        Args:
+            trial_data: Dictionary with trial data
+            
+        Returns:
+            True if data is valid, False otherwise
+        """
+        # Check required fields
+        required_fields = ['nct_id']
+        for field in required_fields:
+            if not trial_data.get(field):
+                logger.warning(f"Missing required field: {field}")
+                return False
+        
+        # Validate data types and ranges
+        if trial_data.get('enrollment_count') is not None:
+            try:
+                enrollment = int(trial_data['enrollment_count'])
+                if enrollment < 0:
+                    logger.warning(f"Invalid enrollment count: {enrollment}")
+                    return False
+            except (ValueError, TypeError):
+                logger.warning(f"Invalid enrollment count type: {trial_data['enrollment_count']}")
+                return False
+        
+        # Validate dates if present
+        date_fields = ['start_date', 'completion_date', 'primary_completion_date']
+        for field in date_fields:
+            if trial_data.get(field):
+                try:
+                    # Try to parse the date
+                    if isinstance(trial_data[field], str):
+                        datetime.strptime(trial_data[field], '%Y-%m-%d')
+                except ValueError:
+                    logger.warning(f"Invalid date format for {field}: {trial_data[field]}")
+                    # Don't return False, just log the warning
+        
+        return True
+
     def process_clinical_trial_data(self, study_data: Dict) -> bool:
         """
         Process clinical trial data and store in database
@@ -143,6 +225,11 @@ class DataProcessor:
             nct_id = id_module.get('nctId')
             brief_title = id_module.get('briefTitle')
             official_title = id_module.get('officialTitle')
+            
+            # Validate required data
+            if not nct_id:
+                logger.warning("Missing NCT ID in study data")
+                return False
             
             # Extract status module
             status_module = protocol_section.get('statusModule', {})
@@ -207,6 +294,11 @@ class DataProcessor:
                 'last_update_posted': last_update_posted,
                 'study_first_posted': study_first_posted
             }
+            
+            # Validate data before insertion
+            if not self._validate_trial_data(trial_data):
+                logger.error(f"Invalid data for trial {nct_id}")
+                return False
             
             # Try to insert first
             success = self.db_manager.insert_data('clinical_trials', trial_data)

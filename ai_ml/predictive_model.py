@@ -172,12 +172,22 @@ class PredictiveEnrollmentModel:
             logger.error(f"Error engineering features: {e}")
             return df
 
-    def train_regression_model(self, df: pd.DataFrame) -> bool:
+    def train_regression_model(self, df: pd.DataFrame, 
+                             n_estimators: int = 100, 
+                             learning_rate: float = 0.1, 
+                             max_depth: int = 6,
+                             test_size: float = 0.2,
+                             random_state: int = 42) -> bool:
         """
         Train regression model using gradient boosting
 
         Args:
             df: DataFrame with training data
+            n_estimators: Number of boosting stages
+            learning_rate: Learning rate shrinks the contribution of each tree
+            max_depth: Maximum depth of the individual regression estimators
+            test_size: Proportion of dataset to include in the test split
+            random_state: Controls the randomness of the estimator
 
         Returns:
             True if successful, False otherwise
@@ -206,7 +216,7 @@ class PredictiveEnrollmentModel:
 
             # Split data
             X_train, X_test, y_train, y_test = train_test_split(
-                X, y, test_size=0.2, random_state=42
+                X, y, test_size=test_size, random_state=random_state
             )
 
             # Scale features
@@ -216,7 +226,10 @@ class PredictiveEnrollmentModel:
 
             # Train model
             self.model = GradientBoostingRegressor(
-                n_estimators=100, learning_rate=0.1, max_depth=6, random_state=42
+                n_estimators=n_estimators, 
+                learning_rate=learning_rate, 
+                max_depth=max_depth, 
+                random_state=random_state
             )
 
             self.model.fit(X_train_scaled, y_train)

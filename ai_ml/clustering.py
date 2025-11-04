@@ -197,22 +197,38 @@ class SiteClustering:
         Returns:
             List of cluster labels or None if error occurred
         """
-        if not self.is_configured or embeddings is None:
-            logger.warning("Cannot perform clustering")
+        if not self.is_configured:
+            logger.warning("Cannot perform clustering - scikit-learn not available")
+            return None
+            
+        if embeddings is None:
+            logger.warning("Cannot perform clustering - embeddings is None")
+            return None
+            
+        if len(embeddings) == 0:
+            logger.warning("Cannot perform clustering - embeddings is empty")
             return None
             
         try:
+            # Ensure we have enough data points for clustering
+            if len(embeddings) < n_clusters:
+                logger.warning(f"Not enough data points ({len(embeddings)}) for {n_clusters} clusters")
+                n_clusters = max(1, len(embeddings))
+            
             # Standardize the features
             scaler = StandardScaler()
             standardized_embeddings = scaler.fit_transform(embeddings)
             
             # Apply K-Means clustering
-            kmeans = KMeans(n_clusters=min(n_clusters, len(embeddings)), random_state=42)
+            kmeans = KMeans(n_clusters=n_clusters, random_state=42)
             cluster_labels = kmeans.fit_predict(standardized_embeddings)
             
             logger.info(f"Applied K-Means clustering with {n_clusters} clusters")
             return cluster_labels.tolist()
             
+        except ValueError as e:
+            logger.error(f"Value error in clustering: {e}")
+            return None
         except Exception as e:
             logger.error(f"Error in clustering: {e}")
             return None
@@ -388,28 +404,47 @@ class SiteClustering:
             True if successful, False otherwise
         """
         try:
-            # Insert clustering results for each site
-            for i, profile in enumerate(site_profiles):
-                cluster_id = cluster_labels[i]
-                characteristics = cluster_characteristics.get(cluster_id, {})
+            # Process in batches to avoid memory issues with large datasets
+            batch_size = 1000
+            total_processed = 0
+            total_profiles = len(site_profiles)
+            
+            for i in range(0, total_profiles, batch_size):
+                batch_profiles = site_profiles[i:i + batch_size]
+                batch_end = min(i + batch_size, total_profiles)
                 
-                # Prepare data for insertion
-                cluster_data = {
-                    'site_id': profile['site_id'],
-                    'cluster_label': f"Cluster_{cluster_id}",
-                    'cluster_characteristics': json.dumps(characteristics),
-                    'distance_to_centroid': 0.0,  # Simplified - would calculate actual distance in real implementation
-                    'clustering_algorithm': 'KMeans',
-                    'clustering_date': datetime.now().isoformat()
-                }
+                logger.info(f"Processing batch {i//batch_size + 1}: sites {i+1} to {batch_end} of {total_profiles}")
                 
-                # Insert into database
-                success = self.db_manager.insert_data('site_clusters', cluster_data)
+                # Insert clustering results for this batch
+                batch_data = []
+                for j, profile in enumerate(batch_profiles):
+                    global_index = i + j
+                    if global_index < len(cluster_labels):
+                        cluster_id = cluster_labels[global_index]
+                        characteristics = cluster_characteristics.get(cluster_id, {})
+                        
+                        # Prepare data for insertion
+                        cluster_data = {
+                            'site_id': profile['site_id'],
+                            'cluster_label': f"Cluster_{cluster_id}",
+                            'cluster_characteristics': json.dumps(characteristics),
+                            'distance_to_centroid': 0.0,  # Simplified - would calculate actual distance in real implementation
+                            'clustering_algorithm': 'KMeans',
+                            'clustering_date': datetime.now().isoformat()
+                        }
+                        batch_data.append(cluster_data)
+                
+                # Insert batch data
+                success = self.db_manager.insert_many('site_clusters', batch_data)
                 
                 if not success:
-                    logger.warning(f"Failed to store clustering results for site {profile['site_id']}")
+                    logger.error(f"Failed to store clustering results for batch {i//batch_size + 1}")
+                    return False
+                    
+                total_processed += len(batch_data)
+                logger.info(f"Successfully processed batch {i//batch_size + 1} ({len(batch_data)} records)")
             
-            logger.info("Stored clustering results in database")
+            logger.info(f"Stored clustering results in database ({total_processed} total records)")
             return True
             
         except Exception as e:

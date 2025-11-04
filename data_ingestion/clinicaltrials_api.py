@@ -55,6 +55,7 @@ class ClinicalTrialsAPI:
         base_url: str = "https://clinicaltrials.gov/api/v2/studies",
         max_requests_per_second: int = 5,
         timeout: int = 30,
+        api_key: Optional[str] = None,
     ):
         """
         Initialize the ClinicalTrials API client
@@ -63,10 +64,12 @@ class ClinicalTrialsAPI:
             base_url: Base URL for the API
             max_requests_per_second: Maximum requests per second to avoid rate limiting
             timeout: Request timeout in seconds
+            api_key: API key for ClinicalTrials.gov (if required)
         """
         self.base_url = base_url
         self.max_requests_per_second = max_requests_per_second
         self.timeout = timeout
+        self.api_key = api_key or self._load_api_key_from_config()
         self.session = requests.Session()
         self.session.headers.update(
             {
@@ -74,7 +77,32 @@ class ClinicalTrialsAPI:
                 "Accept": "application/json",
             }
         )
+        
+        # Add API key to headers if provided
+        if self.api_key and self.api_key != "YOUR_CLINICAL_TRIALS_API_KEY_HERE":
+            self.session.headers.update(
+                {
+                    "X-API-Key": self.api_key,
+                }
+            )
         self.last_request_time = 0
+
+    def _load_api_key_from_config(self) -> Optional[str]:
+        """
+        Load API key from config.json file
+        
+        Returns:
+            API key string or None if not found
+        """
+        try:
+            config_path = os.path.join(os.path.dirname(os.path.abspath(__file__)), "..", "config.json")
+            if os.path.exists(config_path):
+                with open(config_path, "r") as f:
+                    config = json.load(f)
+                    return config.get("api_keys", {}).get("clinical_trials")
+        except Exception as e:
+            logger.debug(f"Could not load API key from config: {e}")
+        return None
 
     def _rate_limit(self):
         """Implement rate limiting to avoid exceeding API limits"""

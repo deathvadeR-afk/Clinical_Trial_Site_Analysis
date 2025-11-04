@@ -271,3 +271,13 @@ class DatabaseManager:
         except sqlite3.Error as e:
             logger.error(f"Execution failed: {e}")
             return False
+
+    def __enter__(self):
+        """Context manager entry"""
+        if not self.connect():
+            raise Exception("Failed to connect to database")
+        return self
+
+    def __exit__(self, exc_type, exc_val, exc_tb):
+        """Context manager exit"""
+        self.disconnect()

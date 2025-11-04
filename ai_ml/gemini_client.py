@@ -5,6 +5,7 @@ Handles integration with Google's Gemini API for text generation
 import logging
 import os
 import json
+import time
 from typing import Dict, List, Optional, Any
 from datetime import datetime
 
@@ -165,13 +166,108 @@ class GeminiClient:
             """
         }
     
-    def generate_text(self, prompt: str, max_tokens: int = 1000) -> Optional[str]:
+    def build_insight_caching_strategy(self) -> Dict[str, Any]:
+        """
+        Build insight caching strategy
+        
+        Returns:
+            Dictionary with caching configuration
+        """
+        # Create cache directory if it doesn't exist
+        cache_dir = os.path.join(os.path.dirname(os.path.abspath(__file__)), "..", "cache", "gemini_insights")
+        os.makedirs(cache_dir, exist_ok=True)
+        
+        return {
+            'cache_directory': cache_dir,
+            'max_cache_age_hours': 24,
+            'cache_key_format': '{prompt_hash}_{timestamp}',
+            'enabled': True
+        }
+    
+    def _generate_cache_key(self, prompt: str) -> str:
+        """
+        Generate a cache key for a prompt
+        
+        Args:
+            prompt: The prompt string
+            
+        Returns:
+            Cache key string
+        """
+        import hashlib
+        prompt_hash = hashlib.md5(prompt.encode()).hexdigest()
+        timestamp = int(time.time() // (self.build_insight_caching_strategy()['max_cache_age_hours'] * 3600))
+        return f"{prompt_hash}_{timestamp}"
+    
+    def _get_cached_response(self, prompt: str) -> Optional[str]:
+        """
+        Get cached response for a prompt
+        
+        Args:
+            prompt: The prompt string
+            
+        Returns:
+            Cached response or None if not found or expired
+        """
+        if not self.build_insight_caching_strategy()['enabled']:
+            return None
+            
+        cache_key = self._generate_cache_key(prompt)
+        cache_file = os.path.join(self.build_insight_caching_strategy()['cache_directory'], f"{cache_key}.json")
+        
+        if os.path.exists(cache_file):
+            try:
+                # Check if cache is still valid
+                file_age_hours = (time.time() - os.path.getmtime(cache_file)) / 3600
+                if file_age_hours < self.build_insight_caching_strategy()['max_cache_age_hours']:
+                    with open(cache_file, 'r') as f:
+                        cached_data = json.load(f)
+                        return cached_data.get('response')
+            except Exception as e:
+                logger.warning(f"Failed to read cache file {cache_file}: {e}")
+        
+        return None
+    
+    def _cache_response(self, prompt: str, response: str) -> bool:
+        """
+        Cache a response for a prompt
+        
+        Args:
+            prompt: The prompt string
+            response: The response to cache
+            
+        Returns:
+            True if successful, False otherwise
+        """
+        if not self.build_insight_caching_strategy()['enabled']:
+            return False
+            
+        try:
+            cache_key = self._generate_cache_key(prompt)
+            cache_file = os.path.join(self.build_insight_caching_strategy()['cache_directory'], f"{cache_key}.json")
+            
+            cache_data = {
+                'prompt': prompt,
+                'response': response,
+                'timestamp': time.time()
+            }
+            
+            with open(cache_file, 'w') as f:
+                json.dump(cache_data, f)
+                
+            return True
+        except Exception as e:
+            logger.warning(f"Failed to cache response: {e}")
+            return False
+    
+    def generate_text(self, prompt: str, max_tokens: int = 1000, use_cache: bool = True) -> Optional[str]:
         """
         Generate text using Gemini API
         
         Args:
             prompt: Prompt for text generation
             max_tokens: Maximum number of tokens to generate
+            use_cache: Whether to use caching
             
         Returns:
             Generated text or None if error occurred
@@ -180,6 +276,13 @@ class GeminiClient:
             logger.warning("Gemini client not properly configured")
             return None
             
+        # Check cache first
+        if use_cache:
+            cached_response = self._get_cached_response(prompt)
+            if cached_response:
+                logger.info("Using cached response")
+                return cached_response
+        
         try:
             # Use generation config if available, otherwise use simpler approach
             if hasattr(genai, 'types') and hasattr(genai.types, 'GenerationConfig'):
@@ -207,6 +310,9 @@ class GeminiClient:
             
             if response and response.text:
                 logger.info("Text generated successfully using Gemini API")
+                # Cache the response
+                if use_cache:
+                    self._cache_response(prompt, response.text)
                 return response.text
             else:
                 logger.warning("Empty response from Gemini API")
@@ -329,20 +435,6 @@ class GeminiClient:
                 return False
                 
         return True
-    
-    def build_insight_caching_strategy(self) -> Dict[str, Any]:
-        """
-        Build insight caching strategy
-        
-        Returns:
-            Dictionary with caching configuration
-        """
-        return {
-            'cache_directory': '../cache/gemini_insights',
-            'max_cache_age_hours': 24,
-            'cache_key_format': '{prompt_hash}_{timestamp}',
-            'enabled': True
-        }
     
     def generate_meta_insights(self, site_insights: List[Dict[str, Any]]) -> Optional[str]:
         """
