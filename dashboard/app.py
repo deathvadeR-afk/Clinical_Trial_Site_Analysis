@@ -9,6 +9,42 @@ import os
 # Add the project root to the Python path
 sys.path.append(os.path.dirname(os.path.abspath(__file__)) + "/../")
 
+# Import project modules
+from database.db_manager import DatabaseManager
+
+def initialize_database_if_needed():
+    """Initialize database with schema if it doesn't exist"""
+    db_path = "clinical_trials.db"
+    
+    # Check if database file exists
+    if not os.path.exists(db_path):
+        try:
+            # Create database manager
+            db_manager = DatabaseManager(db_path)
+            
+            # Connect to database
+            if db_manager.connect():
+                # Create tables from schema
+                if db_manager.create_tables():
+                    st.success("Database initialized successfully!")
+                    db_manager.disconnect()
+                    return True
+                else:
+                    st.error("Failed to create database tables")
+                    db_manager.disconnect()
+                    return False
+            else:
+                st.error("Failed to connect to database")
+                return False
+        except Exception as e:
+            st.error(f"Error initializing database: {e}")
+            return False
+    return True
+
+# Initialize database on startup
+if not initialize_database_if_needed():
+    st.error("Failed to initialize database. The application may not function correctly.")
+
 # Import page modules with error handling
 try:
     from dashboard.pages.home import show_home_page

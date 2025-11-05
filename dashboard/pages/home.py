@@ -35,6 +35,40 @@ def get_db_connection():
     return None
 
 
+def check_database_initialized():
+    """Check if the database has been initialized with tables"""
+    db_manager = get_db_connection()
+    if not db_manager:
+        return False
+    
+    try:
+        # Try to query a core table to see if tables exist
+        result = db_manager.query("SELECT COUNT(*) as count FROM sqlite_master WHERE type='table' AND name='sites_master'")
+        table_exists = result[0]["count"] > 0 if result else False
+        db_manager.disconnect()
+        return table_exists
+    except Exception:
+        if db_manager:
+            db_manager.disconnect()
+        return False
+
+
+def initialize_database_schema():
+    """Initialize database schema if not already done"""
+    try:
+        db_manager = get_db_connection()
+        if not db_manager:
+            return False
+            
+        # Create tables from schema
+        success = db_manager.create_tables()
+        db_manager.disconnect()
+        return success
+    except Exception as e:
+        st.error(f"Error initializing database schema: {e}")
+        return False
+
+
 def fetch_platform_statistics():
     """Fetch platform statistics from database"""
     db_manager = get_db_connection()
@@ -42,21 +76,38 @@ def fetch_platform_statistics():
         return {"sites": 0, "trials": 0, "recommendations": 0}
 
     try:
+        # Check if tables exist
+        if not check_database_initialized():
+            # Try to initialize schema
+            if not initialize_database_schema():
+                st.warning("Database schema not initialized. Please run data ingestion first.")
+                db_manager.disconnect()
+                return {"sites": 0, "trials": 0, "recommendations": 0}
+
         # Get site count
-        site_result = db_manager.query("SELECT COUNT(*) as count FROM sites_master")
-        sites_count = site_result[0]["count"] if site_result else 0
+        try:
+            site_result = db_manager.query("SELECT COUNT(*) as count FROM sites_master")
+            sites_count = site_result[0]["count"] if site_result else 0
+        except Exception:
+            sites_count = 0
 
         # Get trial count
-        trial_result = db_manager.query("SELECT COUNT(*) as count FROM clinical_trials")
-        trials_count = trial_result[0]["count"] if trial_result else 0
+        try:
+            trial_result = db_manager.query("SELECT COUNT(*) as count FROM clinical_trials")
+            trials_count = trial_result[0]["count"] if trial_result else 0
+        except Exception:
+            trials_count = 0
 
         # Get match score count (as proxy for recommendations)
-        recommendation_result = db_manager.query(
-            "SELECT COUNT(*) as count FROM match_scores"
-        )
-        recommendations_count = (
-            recommendation_result[0]["count"] if recommendation_result else 0
-        )
+        try:
+            recommendation_result = db_manager.query(
+                "SELECT COUNT(*) as count FROM match_scores"
+            )
+            recommendations_count = (
+                recommendation_result[0]["count"] if recommendation_result else 0
+            )
+        except Exception:
+            recommendations_count = 0
 
         db_manager.disconnect()
 

@@ -51,12 +51,12 @@ def generate_ai_insights():
         # Get API keys from config
         api_keys = get_api_keys()
         gemini_api_key = api_keys.get("gemini")
+        openrouter_api_key = api_keys.get("openrouter")
         
         # Initialize Gemini client with API key from config
         gemini_client = GeminiClient(api_key=gemini_api_key)
         
-        # Initialize OpenRouter client with the provided API key
-        openrouter_api_key = "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"
+        # Initialize OpenRouter client with API key from config
         openrouter_client = OpenRouterClient(api_key=openrouter_api_key, model_name="meta-llama/llama-3.3-70b-instruct:free")
         
         # Check if clients are configured

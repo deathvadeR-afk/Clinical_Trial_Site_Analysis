@@ -33,6 +33,40 @@ def get_db_connection():
     return None
 
 
+def check_database_initialized():
+    """Check if the database has been initialized with tables"""
+    db_manager = get_db_connection()
+    if not db_manager:
+        return False
+    
+    try:
+        # Try to query a core table to see if tables exist
+        result = db_manager.query("SELECT COUNT(*) as count FROM sqlite_master WHERE type='table' AND name='sites_master'")
+        table_exists = result[0]["count"] > 0 if result else False
+        db_manager.disconnect()
+        return table_exists
+    except Exception:
+        if db_manager:
+            db_manager.disconnect()
+        return False
+
+
+def initialize_database_schema():
+    """Initialize database schema if not already done"""
+    try:
+        db_manager = get_db_connection()
+        if not db_manager:
+            return False
+            
+        # Create tables from schema
+        success = db_manager.create_tables()
+        db_manager.disconnect()
+        return success
+    except Exception as e:
+        st.error(f"Error initializing database schema: {e}")
+        return False
+
+
 def fetch_sites_data(search_term="", therapeutic_area="All", country="All"):
     """Fetch sites data from database with optional filters"""
     db_manager = get_db_connection()
@@ -40,6 +74,12 @@ def fetch_sites_data(search_term="", therapeutic_area="All", country="All"):
         return []
 
     try:
+        # Check if database is initialized
+        if not check_database_initialized():
+            st.warning("Database not initialized. Please run data ingestion first.")
+            db_manager.disconnect()
+            return []
+
         # Base query
         query = """
         SELECT site_id, site_name, city, state, country, institution_type, 
@@ -99,6 +139,12 @@ def fetch_site_metrics():
         return []
 
     try:
+        # Check if database is initialized
+        if not check_database_initialized():
+            st.warning("Database not initialized. Please run data ingestion first.")
+            db_manager.disconnect()
+            return []
+
         query = """
         SELECT sm.site_id, sm.site_name, sm.city, sm.country,
                COALESCE(sm.total_capacity, 0) as capacity,
@@ -150,6 +196,12 @@ def fetch_map_data():
         return pd.DataFrame()
 
     try:
+        # Check if database is initialized
+        if not check_database_initialized():
+            st.warning("Database not initialized. Please run data ingestion first.")
+            db_manager.disconnect()
+            return pd.DataFrame()
+
         query = """
         SELECT site_id, site_name, city, state, country, latitude, longitude
         FROM sites_master 

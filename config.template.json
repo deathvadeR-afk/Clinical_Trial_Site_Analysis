@@ -5,7 +5,8 @@
     "api_keys": {
         "clinical_trials": "YOUR_CLINICAL_TRIALS_API_KEY_HERE",
         "pubmed": "YOUR_PUBMED_API_KEY_HERE",
-        "gemini": "YOUR_GEMINI_API_KEY_HERE"
+        "gemini": "YOUR_GEMINI_API_KEY_HERE",
+        "openrouter": "YOUR_OPENROUTER_API_KEY_HERE"
     },
     "logging": {
         "level": "INFO",

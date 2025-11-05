@@ -34,7 +34,8 @@ def load_config(config_path: str = "config.json") -> Dict[str, Any]:
         "api_keys": {
             "clinical_trials": "YOUR_CLINICAL_TRIALS_API_KEY_HERE",
             "pubmed": "YOUR_PUBMED_API_KEY_HERE",
-            "gemini": "YOUR_GEMINI_API_KEY_HERE"
+            "gemini": "YOUR_GEMINI_API_KEY_HERE",
+            "openrouter": "YOUR_OPENROUTER_API_KEY_HERE"
         },
         "logging": {
             "level": "INFO",
@@ -87,6 +88,10 @@ def load_config(config_path: str = "config.json") -> Dict[str, Any]:
     gemini_api_key = os.getenv("GEMINI_API_KEY")
     if gemini_api_key:
         config["api_keys"]["gemini"] = gemini_api_key
+    
+    openrouter_api_key = os.getenv("OPENROUTER_API_KEY")
+    if openrouter_api_key:
+        config["api_keys"]["openrouter"] = openrouter_api_key
     
     # Logging settings
     log_level = os.getenv("LOG_LEVEL")
