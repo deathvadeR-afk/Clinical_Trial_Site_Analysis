@@ -3979,3 +3979,9 @@
 2025-11-05 10:07:56,441 - data_ingestion.clinicaltrials_api - INFO - Processed 45000 studies, found 19 matching
 2025-11-05 10:07:56,543 - data_ingestion.clinicaltrials_api - INFO - Getting studies with params: {'pageSize': 1000, 'pageToken': 'ZVNj7o2Elu8o3lptV96h6rb2mo6QfJZmYvah3_g'}
 2025-11-05 10:07:56,544 - data_ingestion.clinicaltrials_api - INFO - Making request to https://clinicaltrials.gov/api/v2/studies with params: {'pageSize': 1000, 'pageToken': 'ZVNj7o2Elu8o3lptV96h6rb2mo6QfJZmYvah3_g'}
+2025-11-05 15:35:01,654 - data_ingestion.clinicaltrials_api - INFO - Getting studies with params: {'pageSize': 10}
+2025-11-05 15:35:01,655 - data_ingestion.clinicaltrials_api - INFO - Making request to https://clinicaltrials.gov/api/v2/studies with params: {'pageSize': 10}
+2025-11-05 15:35:02,989 - data_ingestion.clinicaltrials_api - INFO - Response status code: 200
+2025-11-05 15:35:02,991 - data_ingestion.clinicaltrials_api - INFO - Getting studies with params: {'pageSize': 5}
+2025-11-05 15:35:02,991 - data_ingestion.clinicaltrials_api - INFO - Making request to https://clinicaltrials.gov/api/v2/studies with params: {'pageSize': 5}
+2025-11-05 15:35:03,332 - data_ingestion.clinicaltrials_api - INFO - Response status code: 200

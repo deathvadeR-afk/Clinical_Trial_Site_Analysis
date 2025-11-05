@@ -31488,3 +31488,150 @@
 2025-11-05 13:25:23,830 - database.db_manager - INFO - Connected to database at clinical_trials.db
 2025-11-05 13:25:23,874 - database.db_manager - INFO - Disconnected from database
 2025-11-05 13:41:44,540 - database.db_manager - INFO - Connected to database at clinical_trials.db
+2025-11-05 15:14:10,384 - database.db_manager - INFO - Connected to database at clinical_trials.db
+2025-11-05 15:14:10,976 - database.db_manager - INFO - Disconnected from database
+2025-11-05 15:15:21,466 - database.db_manager - INFO - Connected to database at clinical_trials.db
+2025-11-05 15:15:21,468 - database.db_manager - INFO - Disconnected from database
+2025-11-05 15:15:23,078 - database.db_manager - INFO - Connected to database at clinical_trials.db
+2025-11-05 15:15:44,422 - database.db_manager - INFO - Disconnected from database
+2025-11-05 15:16:42,139 - database.db_manager - INFO - Connected to database at clinical_trials.db
+2025-11-05 15:16:42,157 - database.db_manager - INFO - Disconnected from database
+2025-11-05 15:16:42,164 - database.db_manager - INFO - Connected to database at clinical_trials.db
+2025-11-05 15:16:42,169 - database.db_manager - INFO - Disconnected from database
+2025-11-05 15:16:42,206 - database.db_manager - INFO - Connected to database at clinical_trials.db
+2025-11-05 15:16:42,218 - database.db_manager - INFO - Disconnected from database
+2025-11-05 15:16:47,141 - database.db_manager - INFO - Connected to database at clinical_trials.db
+2025-11-05 15:16:47,168 - database.db_manager - INFO - Disconnected from database
+2025-11-05 15:16:47,172 - database.db_manager - INFO - Connected to database at clinical_trials.db
+2025-11-05 15:16:47,174 - database.db_manager - INFO - Disconnected from database
+2025-11-05 15:16:47,198 - database.db_manager - INFO - Connected to database at clinical_trials.db
+2025-11-05 15:16:47,204 - database.db_manager - INFO - Disconnected from database
+2025-11-05 15:16:49,604 - database.db_manager - INFO - Connected to database at clinical_trials.db
+2025-11-05 15:16:49,611 - database.db_manager - INFO - Disconnected from database
+2025-11-05 15:16:49,615 - database.db_manager - INFO - Connected to database at clinical_trials.db
+2025-11-05 15:16:49,619 - database.db_manager - INFO - Disconnected from database
+2025-11-05 15:16:49,645 - database.db_manager - INFO - Connected to database at clinical_trials.db
+2025-11-05 15:16:49,654 - database.db_manager - INFO - Disconnected from database
+2025-11-05 15:16:52,648 - database.db_manager - INFO - Connected to database at clinical_trials.db
+2025-11-05 15:16:52,663 - database.db_manager - INFO - Disconnected from database
+2025-11-05 15:16:52,666 - database.db_manager - INFO - Connected to database at clinical_trials.db
+2025-11-05 15:16:52,669 - database.db_manager - INFO - Disconnected from database
+2025-11-05 15:16:52,688 - database.db_manager - INFO - Connected to database at clinical_trials.db
+2025-11-05 15:16:52,698 - database.db_manager - INFO - Disconnected from database
+2025-11-05 15:16:56,581 - database.db_manager - INFO - Connected to database at clinical_trials.db
+2025-11-05 15:16:56,585 - database.db_manager - INFO - Disconnected from database
+2025-11-05 15:16:56,587 - database.db_manager - INFO - Connected to database at clinical_trials.db
+2025-11-05 15:16:56,591 - database.db_manager - INFO - Disconnected from database
+2025-11-05 15:16:56,611 - database.db_manager - INFO - Connected to database at clinical_trials.db
+2025-11-05 15:16:56,619 - database.db_manager - INFO - Disconnected from database
+2025-11-05 15:17:00,101 - database.db_manager - INFO - Connected to database at clinical_trials.db
+2025-11-05 15:17:00,106 - database.db_manager - INFO - Disconnected from database
+2025-11-05 15:17:00,109 - database.db_manager - INFO - Connected to database at clinical_trials.db
+2025-11-05 15:17:00,112 - database.db_manager - INFO - Disconnected from database
+2025-11-05 15:17:00,139 - database.db_manager - INFO - Connected to database at clinical_trials.db
+2025-11-05 15:17:00,145 - database.db_manager - INFO - Disconnected from database
+2025-11-05 15:17:03,802 - database.db_manager - INFO - Connected to database at clinical_trials.db
+2025-11-05 15:17:03,808 - database.db_manager - INFO - Disconnected from database
+2025-11-05 15:17:03,811 - database.db_manager - INFO - Connected to database at clinical_trials.db
+2025-11-05 15:17:03,813 - database.db_manager - INFO - Disconnected from database
+2025-11-05 15:17:03,830 - database.db_manager - INFO - Connected to database at clinical_trials.db
+2025-11-05 15:17:03,836 - database.db_manager - INFO - Disconnected from database
+2025-11-05 15:17:08,196 - database.db_manager - INFO - Connected to database at clinical_trials.db
+2025-11-05 15:17:08,200 - database.db_manager - INFO - Disconnected from database
+2025-11-05 15:17:08,204 - database.db_manager - INFO - Connected to database at clinical_trials.db
+2025-11-05 15:17:08,208 - database.db_manager - INFO - Disconnected from database
+2025-11-05 15:17:08,221 - database.db_manager - INFO - Connected to database at clinical_trials.db
+2025-11-05 15:17:08,232 - database.db_manager - INFO - Disconnected from database
+2025-11-05 15:17:14,165 - database.db_manager - INFO - Connected to database at clinical_trials.db
+2025-11-05 15:17:14,169 - database.db_manager - INFO - Disconnected from database
+2025-11-05 15:17:14,174 - database.db_manager - INFO - Connected to database at clinical_trials.db
+2025-11-05 15:17:14,180 - database.db_manager - INFO - Disconnected from database
+2025-11-05 15:17:14,196 - database.db_manager - INFO - Connected to database at clinical_trials.db
+2025-11-05 15:17:14,204 - database.db_manager - INFO - Disconnected from database
+2025-11-05 15:17:15,577 - database.db_manager - INFO - Connected to database at clinical_trials.db
+2025-11-05 15:17:15,582 - database.db_manager - INFO - Disconnected from database
+2025-11-05 15:17:15,585 - database.db_manager - INFO - Connected to database at clinical_trials.db
+2025-11-05 15:17:15,591 - database.db_manager - INFO - Disconnected from database
+2025-11-05 15:17:15,615 - database.db_manager - INFO - Connected to database at clinical_trials.db
+2025-11-05 15:17:15,624 - database.db_manager - INFO - Disconnected from database
+2025-11-05 15:17:18,331 - database.db_manager - INFO - Connected to database at clinical_trials.db
+2025-11-05 15:17:18,337 - database.db_manager - INFO - Disconnected from database
+2025-11-05 15:17:18,342 - database.db_manager - INFO - Connected to database at clinical_trials.db
+2025-11-05 15:17:18,346 - database.db_manager - INFO - Disconnected from database
+2025-11-05 15:17:18,362 - database.db_manager - INFO - Connected to database at clinical_trials.db
+2025-11-05 15:17:18,370 - database.db_manager - INFO - Disconnected from database
+2025-11-05 15:17:20,727 - database.db_manager - INFO - Connected to database at clinical_trials.db
+2025-11-05 15:17:20,731 - database.db_manager - INFO - Disconnected from database
+2025-11-05 15:17:20,734 - database.db_manager - INFO - Connected to database at clinical_trials.db
+2025-11-05 15:17:20,737 - database.db_manager - INFO - Disconnected from database
+2025-11-05 15:17:20,752 - database.db_manager - INFO - Connected to database at clinical_trials.db
+2025-11-05 15:17:20,760 - database.db_manager - INFO - Disconnected from database
+2025-11-05 15:17:23,865 - database.db_manager - INFO - Connected to database at clinical_trials.db
+2025-11-05 15:17:23,869 - database.db_manager - INFO - Disconnected from database
+2025-11-05 15:17:23,873 - database.db_manager - INFO - Connected to database at clinical_trials.db
+2025-11-05 15:17:23,877 - database.db_manager - INFO - Disconnected from database
+2025-11-05 15:17:23,894 - database.db_manager - INFO - Connected to database at clinical_trials.db
+2025-11-05 15:17:23,904 - database.db_manager - INFO - Disconnected from database
+2025-11-05 15:17:52,583 - database.db_manager - INFO - Connected to database at E:\Codecademy\Clinical_Site_Trial_Analysis\dashboard\pages\../../clinical_trials.db
+2025-11-05 15:17:52,585 - database.db_manager - INFO - Disconnected from database
+2025-11-05 15:17:55,204 - database.db_manager - INFO - Connected to database at E:\Codecademy\Clinical_Site_Trial_Analysis\dashboard\pages\../../clinical_trials.db
+2025-11-05 15:17:55,208 - database.db_manager - INFO - Disconnected from database
+2025-11-05 15:17:55,214 - database.db_manager - INFO - Connected to database at E:\Codecademy\Clinical_Site_Trial_Analysis\dashboard\pages\../../clinical_trials.db
+2025-11-05 15:17:55,225 - database.db_manager - INFO - Disconnected from database
+2025-11-05 15:18:20,213 - database.db_manager - INFO - Connected to database at clinical_trials.db
+2025-11-05 15:18:20,216 - database.db_manager - INFO - Disconnected from database
+2025-11-05 15:34:41,563 - database.db_manager - INFO - Connected to database at test_clinical_trials.db
+2025-11-05 15:34:41,578 - database.db_manager - INFO - Disconnected from database
+2025-11-05 15:34:41,583 - database.db_manager - INFO - Connected to database at test_clinical_trials.db
+2025-11-05 15:34:41,691 - database.db_manager - ERROR - Query failed: no such column: last_updated
+2025-11-05 15:34:41,692 - database.db_manager - INFO - Disconnected from database
+2025-11-05 15:34:41,697 - database.db_manager - INFO - Connected to database at test_clinical_trials.db
+2025-11-05 15:34:41,703 - database.db_manager - INFO - Disconnected from database
+2025-11-05 15:34:52,864 - database.db_manager - INFO - Connected to database at test_clinical_trials.db
+2025-11-05 15:34:52,870 - database.db_manager - INFO - Disconnected from database
+2025-11-05 15:35:01,579 - database.db_manager - INFO - Connected to database at clinical_trials.db
+2025-11-05 15:35:01,582 - database.db_manager - INFO - Disconnected from database
+2025-11-05 15:35:01,583 - database.db_manager - INFO - Connected to database at clinical_trials.db
+2025-11-05 15:35:01,584 - database.db_manager - ERROR - Query failed: no such column: last_updated
+2025-11-05 15:35:01,594 - database.db_manager - INFO - Disconnected from database
+2025-11-05 15:35:01,609 - database.db_manager - INFO - Connected to database at clinical_trials.db
+2025-11-05 15:35:01,648 - database.db_manager - INFO - Disconnected from database
+2025-11-05 15:35:05,929 - database.db_manager - INFO - Connected to database at test_clinical_trials.db
+2025-11-05 15:35:05,944 - database.db_manager - ERROR - Failed to create tables: table sites_master already exists
+2025-11-05 15:35:05,944 - database.db_manager - INFO - Disconnected from database
+2025-11-05 15:35:05,950 - database.db_manager - INFO - Connected to database at test_clinical_trials.db
+2025-11-05 15:35:05,952 - database.db_manager - ERROR - Failed to create tables: table sites_master already exists
+2025-11-05 15:35:05,952 - database.db_manager - INFO - Disconnected from database
+2025-11-05 15:35:05,957 - database.db_manager - INFO - Connected to database at test_clinical_trials.db
+2025-11-05 15:35:05,958 - database.db_manager - ERROR - Failed to create tables: table sites_master already exists
+2025-11-05 15:35:06,820 - database.db_manager - INFO - Disconnected from database
+2025-11-05 15:35:06,828 - database.db_manager - INFO - Connected to database at test_clinical_trials.db
+2025-11-05 15:35:06,830 - database.db_manager - ERROR - Failed to create tables: table sites_master already exists
+2025-11-05 15:35:18,316 - database.db_manager - INFO - Connected to database at test_clinical_trials.db
+2025-11-05 15:35:18,325 - database.db_manager - INFO - Disconnected from database
+2025-11-05 15:35:18,331 - database.db_manager - INFO - Connected to database at test_clinical_trials.db
+2025-11-05 15:35:18,332 - database.db_manager - ERROR - Query failed: no such column: last_updated
+2025-11-05 15:35:18,334 - database.db_manager - INFO - Disconnected from database
+2025-11-05 15:35:18,340 - database.db_manager - INFO - Connected to database at test_clinical_trials.db
+2025-11-05 15:35:18,345 - database.db_manager - INFO - Disconnected from database
+2025-11-05 15:35:30,346 - database.db_manager - INFO - Connected to database at test_clinical_trials.db
+2025-11-05 15:35:30,349 - database.db_manager - ERROR - Failed to create tables: table sites_master already exists
+2025-11-05 15:35:30,349 - database.db_manager - INFO - Disconnected from database
+2025-11-05 15:35:30,360 - database.db_manager - INFO - Connected to database at test_clinical_trials.db
+2025-11-05 15:35:30,361 - database.db_manager - ERROR - Failed to create tables: table sites_master already exists
+2025-11-05 15:35:30,362 - database.db_manager - INFO - Disconnected from database
+2025-11-05 15:35:30,369 - database.db_manager - INFO - Connected to database at test_clinical_trials.db
+2025-11-05 15:35:30,370 - database.db_manager - ERROR - Failed to create tables: table sites_master already exists
+2025-11-05 15:35:30,376 - database.db_manager - INFO - Connected to database at test_clinical_trials.db
+2025-11-05 15:35:30,378 - database.db_manager - ERROR - Failed to create tables: table sites_master already exists
+2025-11-05 15:35:30,419 - database.db_manager - INFO - Connected to database at test_clinical_trials.db
+2025-11-05 15:35:30,421 - database.db_manager - ERROR - Failed to create tables: table sites_master already exists
+2025-11-05 15:35:30,427 - database.db_manager - INFO - Connected to database at test_clinical_trials.db
+2025-11-05 15:35:30,429 - database.db_manager - ERROR - Failed to create tables: table sites_master already exists
+2025-11-05 15:35:40,655 - database.db_manager - INFO - Connected to database at test_clinical_trials.db
+2025-11-05 15:35:40,662 - database.db_manager - INFO - Disconnected from database
+2025-11-05 15:35:40,670 - database.db_manager - INFO - Connected to database at test_clinical_trials.db
+2025-11-05 15:35:40,671 - database.db_manager - ERROR - Query failed: no such column: last_updated
+2025-11-05 15:35:40,671 - database.db_manager - INFO - Disconnected from database
+2025-11-05 15:35:40,676 - database.db_manager - INFO - Connected to database at test_clinical_trials.db
+2025-11-05 15:35:40,681 - database.db_manager - INFO - Disconnected from database
