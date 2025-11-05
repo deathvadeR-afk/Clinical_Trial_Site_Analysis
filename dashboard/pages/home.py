@@ -3,14 +3,15 @@ Home Page for Clinical Trial Site Analysis Platform Dashboard
 """
 
 import streamlit as st
-import os
 import sys
-from datetime import datetime, timedelta
+import os
 
 # Add the project root to the Python path
-sys.path.append(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
+current_dir = os.path.dirname(os.path.abspath(__file__))
+project_root = os.path.dirname(os.path.dirname(current_dir))
+sys.path.append(project_root)
 
-# Import project modules
+# Import database manager
 from database.db_manager import DatabaseManager
 
 # Import pipeline and ML modules (for data ingestion and model retraining)
@@ -27,9 +28,8 @@ except ImportError:
 
 def get_db_connection():
     """Create and return a database connection"""
-    # Use consistent database path
-    db_path = "clinical_trials.db"
-    db_manager = DatabaseManager(db_path)
+    # Let the DatabaseManager handle the path automatically
+    db_manager = DatabaseManager()
     if db_manager.connect():
         return db_manager
     return None
@@ -60,7 +60,7 @@ def initialize_database_schema():
         if not db_manager:
             return False
             
-        # Create tables from schema
+        # Create tables from schema (let DatabaseManager handle the path)
         success = db_manager.create_tables()
         db_manager.disconnect()
         return success
@@ -126,12 +126,11 @@ def fetch_platform_statistics():
 def run_data_ingestion():
     """Run the automated data ingestion pipeline"""
     try:
-        # Create pipeline instance
-        db_path = "clinical_trials.db"
+        # Create pipeline instance (let DatabaseManager handle the path)
         if ML_MODULES_AVAILABLE:
             from pipeline.automated_pipeline import AutomatedPipeline
 
-            pipeline = AutomatedPipeline(db_path)
+            pipeline = AutomatedPipeline()
 
             # Run the pipeline
             success = pipeline.run_pipeline()
@@ -157,9 +156,8 @@ def run_model_retraining():
             st.error("ML modules not available. Please check your installation.")
             return False
 
-        # Get database connection
-        db_path = "clinical_trials.db"
-        db_manager = DatabaseManager(db_path)
+        # Get database connection (let DatabaseManager handle the path)
+        db_manager = DatabaseManager()
         if not db_manager.connect():
             st.error("Failed to connect to database")
             return False
@@ -202,12 +200,11 @@ def run_model_retraining():
 def download_historical_data(start_date: str, end_date: str):
     """Download historical clinical trial data for ML training"""
     try:
-        # Create pipeline instance
-        db_path = "clinical_trials.db"
+        # Create pipeline instance (let DatabaseManager handle the path)
         if ML_MODULES_AVAILABLE:
             from pipeline.automated_pipeline import AutomatedPipeline
 
-            pipeline = AutomatedPipeline(db_path)
+            pipeline = AutomatedPipeline()
 
             # Download historical data
             success = pipeline.download_historical_trials(start_date, end_date)
@@ -302,6 +299,7 @@ def show_home_page():
         st.markdown("**Historical Data**")
         st.markdown("_Download historical data for ML training_")
         # Calculate default dates (1 year ago to today)
+        from datetime import datetime, timedelta
         default_end = datetime.now()
         default_start = default_end - timedelta(days=365)
         start_date = st.date_input("Start Date", value=default_start)

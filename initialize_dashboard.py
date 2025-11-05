@@ -6,9 +6,11 @@ This script initializes the database schema when deploying to Streamlit Cloud
 
 import sys
 import os
+import shutil
 
 # Add the project root to the Python path
-sys.path.append(os.path.dirname(os.path.abspath(__file__)))
+current_dir = os.path.dirname(os.path.abspath(__file__))
+sys.path.append(current_dir)
 
 from database.db_manager import DatabaseManager
 
@@ -17,8 +19,10 @@ def initialize_dashboard_database():
     """Initialize the database with schema for the dashboard"""
     print("Initializing dashboard database...")
     
-    # Create database manager with the standard database name
-    db_manager = DatabaseManager("clinical_trials.db")
+    # Create database manager (let it handle the path automatically)
+    db_manager = DatabaseManager()
+    
+    print(f"Database path: {db_manager.db_path}")
     
     # Connect to database
     if not db_manager.connect():
@@ -41,7 +45,43 @@ def initialize_dashboard_database():
     return success
 
 
+def copy_database_if_needed():
+    """Copy database from project root to dashboard directory if needed for Streamlit Cloud"""
+    try:
+        # Check if we're in the dashboard directory
+        current_dir = os.getcwd()
+        print(f"Current directory: {current_dir}")
+        
+        # If database doesn't exist in current location but exists in parent directory
+        if (os.path.basename(current_dir) == "dashboard" and 
+            not os.path.exists("clinical_trials.db") and 
+            os.path.exists("../clinical_trials.db")):
+            
+            print("Copying database from parent directory...")
+            shutil.copy2("../clinical_trials.db", "clinical_trials.db")
+            print("Database copied successfully!")
+            return True
+        elif not os.path.exists("clinical_trials.db") and os.path.exists("../clinical_trials.db"):
+            print("Copying database from project root...")
+            shutil.copy2("../clinical_trials.db", "clinical_trials.db")
+            print("Database copied successfully!")
+            return True
+        elif os.path.exists("clinical_trials.db"):
+            print("Database already exists in current directory")
+            return True
+        else:
+            print("No existing database found to copy")
+            return True
+    except Exception as e:
+        print(f"Error copying database: {e}")
+        return False
+
+
 if __name__ == "__main__":
+    # Try to copy existing database if needed
+    copy_database_if_needed()
+    
+    # Initialize database schema
     if initialize_dashboard_database():
         print("Dashboard database initialization completed successfully!")
         sys.exit(0)

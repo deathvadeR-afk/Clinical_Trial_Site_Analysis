@@ -7,10 +7,11 @@ import sys
 import os
 import pandas as pd
 import plotly.express as px
-import folium
 
 # Add the project root to the Python path
-sys.path.append(os.path.dirname(os.path.abspath(__file__)) + "/../../")
+current_dir = os.path.dirname(os.path.abspath(__file__))
+project_root = os.path.dirname(os.path.dirname(current_dir))
+sys.path.append(project_root)
 
 # Import database manager
 from database.db_manager import DatabaseManager
@@ -26,8 +27,8 @@ except ImportError:
 
 def get_db_connection():
     """Create and return a database connection"""
-    db_path = "clinical_trials.db"
-    db_manager = DatabaseManager(db_path)
+    # Let the DatabaseManager handle the path automatically
+    db_manager = DatabaseManager()
     if db_manager.connect():
         return db_manager
     return None
@@ -48,22 +49,6 @@ def check_database_initialized():
     except Exception:
         if db_manager:
             db_manager.disconnect()
-        return False
-
-
-def initialize_database_schema():
-    """Initialize database schema if not already done"""
-    try:
-        db_manager = get_db_connection()
-        if not db_manager:
-            return False
-            
-        # Create tables from schema
-        success = db_manager.create_tables()
-        db_manager.disconnect()
-        return success
-    except Exception as e:
-        st.error(f"Error initializing database schema: {e}")
         return False
 
 

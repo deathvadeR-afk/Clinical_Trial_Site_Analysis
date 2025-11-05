@@ -10,10 +10,8 @@ secrets.json
 .env.production
 goal.md
 # Large database files
-clinical_trials.db
 clinical_trials_backup.db
 # All SQLite database files
-*.db
 *.sqlite
 *.sqlite3
 # Cache and log directories

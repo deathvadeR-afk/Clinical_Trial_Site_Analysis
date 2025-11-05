@@ -7,21 +7,21 @@ import sys
 import os
 
 # Add the project root to the Python path
-sys.path.append(os.path.dirname(os.path.abspath(__file__)) + "/../")
+current_dir = os.path.dirname(os.path.abspath(__file__))
+project_root = os.path.dirname(current_dir)
+sys.path.append(project_root)
 
 # Import project modules
 from database.db_manager import DatabaseManager
 
 def initialize_database_if_needed():
     """Initialize database with schema if it doesn't exist"""
-    db_path = "clinical_trials.db"
+    # Let the DatabaseManager handle the path automatically
+    db_manager = DatabaseManager()
     
     # Check if database file exists
-    if not os.path.exists(db_path):
+    if not os.path.exists(db_manager.db_path):
         try:
-            # Create database manager
-            db_manager = DatabaseManager(db_path)
-            
             # Connect to database
             if db_manager.connect():
                 # Create tables from schema

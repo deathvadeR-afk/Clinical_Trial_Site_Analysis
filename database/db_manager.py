@@ -46,18 +46,79 @@ logger.addHandler(console_handler)
 class DatabaseManager:
     """Manager for SQLite database operations"""
 
-    def __init__(self, db_path: str = "clinical_trials.db"):
+    def __init__(self, db_path: Optional[str] = None):
         """
         Initialize the database manager
 
         Args:
-            db_path: Path to the SQLite database file
+            db_path: Path to the SQLite database file. If None, uses a default path that works for deployment.
         """
+        if db_path is None:
+            # Determine the best database path based on the current environment
+            db_path = self._find_best_database_path()
+        
         self.db_path = db_path
         self.connection = None
         self.cache_manager = CacheManager(
             cache_dir="cache", default_ttl=1800
         )  # 30 minutes default TTL
+
+    def _find_best_database_path(self) -> str:
+        """
+        Find the best database path that works for both local development and Streamlit Cloud deployment.
+        
+        Returns:
+            Path to the database file
+        """
+        # List of possible database paths to check
+        possible_paths = [
+            "clinical_trials.db",           # Current directory
+            "../clinical_trials.db",        # Parent directory (from dashboard)
+            "../../clinical_trials.db",     # Two levels up
+            "dashboard/clinical_trials.db", # Dashboard subdirectory
+        ]
+        
+        # Check if any of these paths exist
+        for path in possible_paths:
+            if os.path.exists(path):
+                logger.info(f"Found existing database at: {path}")
+                return path
+        
+        # If no existing database found, determine where to create it
+        # For Streamlit Cloud deployment, we want it in the current directory
+        current_dir = os.getcwd()
+        if os.path.basename(current_dir) == "dashboard":
+            # We're in the dashboard directory, create database here for Streamlit Cloud
+            db_path = "clinical_trials.db"
+        else:
+            # We're in project root or another location, use standard path
+            db_path = "clinical_trials.db"
+            
+        logger.info(f"Using database path: {db_path}")
+        return db_path
+
+    def _find_schema_file(self) -> str:
+        """
+        Find the schema file path that works for both local development and Streamlit Cloud deployment.
+        
+        Returns:
+            Path to the schema file
+        """
+        # List of possible schema paths to check
+        possible_paths = [
+            "database/schema.sql",           # Standard path
+            "../database/schema.sql",        # From dashboard directory
+            "../../database/schema.sql",     # From deeper directories
+        ]
+        
+        # Check if any of these paths exist
+        for path in possible_paths:
+            if os.path.exists(path):
+                logger.info(f"Found schema file at: {path}")
+                return path
+        
+        # If no existing schema found, use default path
+        return "database/schema.sql"
 
     def connect(self) -> bool:
         """
@@ -67,6 +128,11 @@ class DatabaseManager:
             True if connection successful, False otherwise
         """
         try:
+            # Ensure the directory exists
+            db_dir = os.path.dirname(self.db_path)
+            if db_dir and not os.path.exists(db_dir):
+                os.makedirs(db_dir, exist_ok=True)
+                
             self.connection = sqlite3.connect(self.db_path)
             self.connection.row_factory = sqlite3.Row  # Enable column access by name
             logger.info(f"Connected to database at {self.db_path}")
@@ -82,12 +148,12 @@ class DatabaseManager:
             self.connection = None
             logger.info("Disconnected from database")
 
-    def create_tables(self, schema_file: str = "database/schema.sql") -> bool:
+    def create_tables(self, schema_file: Optional[str] = None) -> bool:
         """
         Create database tables from schema file
 
         Args:
-            schema_file: Path to SQL schema file
+            schema_file: Path to SQL schema file. If None, tries to find it automatically.
 
         Returns:
             True if tables created successfully, False otherwise
@@ -97,6 +163,11 @@ class DatabaseManager:
             return False
 
         try:
+            # Handle relative paths correctly using absolute paths
+            if schema_file is None:
+                # Try to find the schema file automatically
+                schema_file = self._find_schema_file()
+            
             # Handle relative paths correctly using absolute paths
             if not os.path.isabs(schema_file):
                 # Get the project root directory

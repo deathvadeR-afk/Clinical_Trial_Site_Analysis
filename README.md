@@ -92,6 +92,26 @@ To deploy this application to Streamlit Cloud:
 
 The application will automatically initialize the database schema on first run.
 
+## Database Management for Streamlit Cloud
+
+**Important**: The database file [clinical_trials.db](file://e:\Codecademy\Clinical_Site_Trial_Analysis\clinical_trials.db) is located in the project root directory. When deploying to Streamlit Cloud, you have two options:
+
+### Option 1: Start with Empty Database (Recommended)
+- The application will automatically create an empty database with the correct schema
+- Use the dashboard controls to ingest data:
+  1. Click "📥 Ingest Latest Data" on the Home page
+  2. Wait for data ingestion to complete
+  3. Your data will be stored in the Streamlit Cloud environment
+
+### Option 2: Copy Existing Database
+If you have an existing database with data locally:
+1. Copy your [clinical_trials.db](file://e:\Codecademy\Clinical_Site_Trial_Analysis\clinical_trials.db) file to the repository root
+2. **Important**: Make sure to remove it from [.gitignore](file://e:\Codecademy\Clinical_Site_Trial_Analysis\.gitignore) temporarily if you want to commit it
+3. Commit and push to GitHub
+4. Deploy to Streamlit Cloud
+
+**Note**: Database files are typically large and should not be committed to version control. For production use, consider using a managed database service.
+
 ## Local Development
 
 For local development, you may need to initialize the database manually:
