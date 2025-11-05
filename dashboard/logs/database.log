@@ -1,0 +1,5 @@
+2025-11-05 09:47:15,897 - database.db_manager - INFO - Connected to database at clinical_trials.db
+2025-11-05 09:47:15,966 - database.db_manager - ERROR - Query failed: no such table: sites_master
+2025-11-05 09:47:15,967 - database.db_manager - ERROR - Query failed: no such table: clinical_trials
+2025-11-05 09:47:15,969 - database.db_manager - ERROR - Query failed: no such table: match_scores
+2025-11-05 09:47:15,970 - database.db_manager - INFO - Disconnected from database

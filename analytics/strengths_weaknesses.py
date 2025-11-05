@@ -548,45 +548,32 @@ class StrengthsWeaknessesDetector:
             logger.error(f"Error categorizing weaknesses: {e}")
             return {}
 
-    def generate_structured_strengths_weaknesses(self, site_id: int) -> Dict[str, Any]:
+    def generate_structured_strengths_weaknesses(self, site_id: int, gemini_client=None, openrouter_client=None) -> Dict[str, Any]:
         """
         Generate structured strength/weakness JSON objects
 
         Args:
             site_id: ID of the site to analyze
+            gemini_client: Optional Gemini client for AI-powered insights
+            openrouter_client: Optional OpenRouter client for AI-powered insights
 
         Returns:
             Dictionary with structured strengths and weaknesses
         """
         try:
-            # Detect strengths and weaknesses
-            strengths = self.detect_site_strengths(site_id)
-            weaknesses = self.detect_site_weaknesses(site_id)
-
-            # Categorize weaknesses
-            categorized_weaknesses = self.create_weakness_categorization(weaknesses)
-
-            # Implement comparative analysis
-            comparative_analysis = self.implement_comparative_analysis(site_id)
-
-            # Build pattern detection
-            patterns = self.build_pattern_detection(site_id)
-
-            # Create structured output
-            structured_output = {
-                "site_id": site_id,
-                "analysis_timestamp": datetime.now().isoformat(),
-                "strengths": strengths,
-                "weaknesses": categorized_weaknesses,
-                "comparative_analysis": comparative_analysis,
-                "patterns": patterns,
-            }
-
-            # Store in database
-            self.store_strengths_weaknesses(site_id, structured_output)
-
-            logger.info(f"Generated structured strengths/weaknesses for site {site_id}")
-            return structured_output
+            # If OpenRouter client is available, use it first
+            if openrouter_client and openrouter_client.is_configured:
+                logger.info(f"Generating AI-powered insights for site {site_id} using OpenRouter")
+                return self._generate_openrouter_insights(site_id, openrouter_client)
+            
+            # If Gemini client is available, use AI-powered insights
+            elif gemini_client and gemini_client.is_configured:
+                logger.info(f"Generating AI-powered insights for site {site_id} using Gemini")
+                return self._generate_ai_insights(site_id, gemini_client)
+            
+            # Otherwise, use algorithmic detection (fallback)
+            logger.info(f"Generating algorithmic insights for site {site_id} (AI not available)")
+            return self._generate_algorithmic_insights(site_id)
 
         except Exception as e:
             logger.error(
@@ -594,8 +581,315 @@ class StrengthsWeaknessesDetector:
             )
             return {}
 
+    def _generate_algorithmic_insights(self, site_id: int) -> Dict[str, Any]:
+        """
+        Generate algorithmic insights (fallback when AI is not available)
+
+        Args:
+            site_id: ID of the site to analyze
+
+        Returns:
+            Dictionary with structured strengths and weaknesses
+        """
+        # Detect strengths and weaknesses
+        strengths = self.detect_site_strengths(site_id)
+        weaknesses = self.detect_site_weaknesses(site_id)
+
+        # Categorize weaknesses
+        categorized_weaknesses = self.create_weakness_categorization(weaknesses)
+
+        # Implement comparative analysis
+        comparative_analysis = self.implement_comparative_analysis(site_id)
+
+        # Build pattern detection
+        patterns = self.build_pattern_detection(site_id)
+
+        # Create structured output
+        structured_output = {
+            "site_id": site_id,
+            "analysis_timestamp": datetime.now().isoformat(),
+            "strengths": strengths,
+            "weaknesses": categorized_weaknesses,
+            "comparative_analysis": comparative_analysis,
+            "patterns": patterns,
+        }
+
+        # Store in database with "algorithmic" provider
+        self.store_strengths_weaknesses(site_id, structured_output, "algorithmic")
+
+        logger.info(f"Generated algorithmic insights for site {site_id}")
+        return structured_output
+
+    def _generate_ai_insights(self, site_id: int, gemini_client) -> Dict[str, Any]:
+        """
+        Generate AI-powered insights using Gemini API
+
+        Args:
+            site_id: ID of the site to analyze
+            gemini_client: Configured Gemini client
+
+        Returns:
+            Dictionary with AI-generated insights
+        """
+        try:
+            # Get comprehensive site data
+            site_data = self._get_comprehensive_site_data(site_id)
+            
+            if not site_data:
+                logger.warning(f"No data found for site {site_id}")
+                return {}
+
+            # Create prompt for Gemini
+            prompt = self._create_gemini_prompt(site_data)
+            
+            # Generate insights using Gemini
+            ai_response = gemini_client.generate_text(prompt)
+            
+            if not ai_response:
+                logger.warning(f"No response from Gemini for site {site_id}")
+                # Fallback to algorithmic insights
+                return self._generate_algorithmic_insights(site_id)
+            
+            # Parse and structure the AI response
+            structured_output = self._parse_ai_response(site_id, ai_response, site_data)
+            
+            # Store in database with "gemini" provider
+            self.store_strengths_weaknesses(site_id, structured_output, "gemini")
+            
+            logger.info(f"Generated AI-powered insights for site {site_id} using Gemini")
+            return structured_output
+            
+        except Exception as e:
+            logger.error(f"Error generating AI insights for site {site_id}: {e}")
+            # Fallback to algorithmic insights
+            return self._generate_algorithmic_insights(site_id)
+
+    def _generate_openrouter_insights(self, site_id: int, openrouter_client) -> Dict[str, Any]:
+        """
+        Generate AI-powered insights using OpenRouter API
+
+        Args:
+            site_id: ID of the site to analyze
+            openrouter_client: Configured OpenRouter client
+
+        Returns:
+            Dictionary with AI-generated insights
+        """
+        try:
+            # Get comprehensive site data
+            site_data = self._get_comprehensive_site_data(site_id)
+            
+            if not site_data:
+                logger.warning(f"No data found for site {site_id}")
+                return {}
+
+            # Create prompt for OpenRouter
+            prompt = self._create_gemini_prompt(site_data)
+            
+            # Generate insights using OpenRouter
+            ai_response = openrouter_client.generate_text(prompt)
+            
+            if not ai_response:
+                logger.warning(f"No response from OpenRouter for site {site_id}")
+                # Fallback to algorithmic insights
+                return self._generate_algorithmic_insights(site_id)
+            
+            # Parse and structure the AI response
+            structured_output = self._parse_ai_response(site_id, ai_response, site_data)
+            
+            # Store in database with "openrouter" provider
+            self.store_strengths_weaknesses(site_id, structured_output, "openrouter")
+            
+            logger.info(f"Generated AI-powered insights for site {site_id} using OpenRouter")
+            return structured_output
+            
+        except Exception as e:
+            logger.error(f"Error generating AI insights for site {site_id} using OpenRouter: {e}")
+            # Fallback to algorithmic insights
+            return self._generate_algorithmic_insights(site_id)
+
+    def _get_comprehensive_site_data(self, site_id: int) -> Optional[Dict[str, Any]]:
+        """
+        Get comprehensive data for a site to feed to the AI model
+
+        Args:
+            site_id: ID of the site
+
+        Returns:
+            Dictionary with comprehensive site data
+        """
+        try:
+            # Get basic site information
+            site_results = self.db_manager.query(
+                "SELECT * FROM sites_master WHERE site_id = ?", (site_id,)
+            )
+            
+            if not site_results:
+                return None
+                
+            site_info = dict(site_results[0])
+            
+            # Get site metrics
+            metrics_results = self.db_manager.query(
+                "SELECT * FROM site_metrics WHERE site_id = ?", (site_id,)
+            )
+            
+            # Get investigator data
+            investigator_results = self.db_manager.query(
+                "SELECT * FROM investigators WHERE affiliation_site_id = ?", (site_id,)
+            )
+            
+            # Get trial participation data
+            participation_results = self.db_manager.query(
+                "SELECT * FROM site_trial_participation WHERE site_id = ?", (site_id,)
+            )
+            
+            return {
+                "site_info": site_info,
+                "metrics": [dict(row) for row in metrics_results] if metrics_results else [],
+                "investigators": [dict(row) for row in investigator_results] if investigator_results else [],
+                "participation": [dict(row) for row in participation_results] if participation_results else [],
+            }
+            
+        except Exception as e:
+            logger.error(f"Error getting comprehensive data for site {site_id}: {e}")
+            return None
+
+    def _create_gemini_prompt(self, site_data: Dict[str, Any]) -> str:
+        """
+        Create a prompt for the Gemini API based on site data
+
+        Args:
+            site_data: Dictionary with comprehensive site data
+
+        Returns:
+            Formatted prompt string
+        """
+        site_info = site_data.get("site_info", {})
+        metrics = site_data.get("metrics", [])
+        investigators = site_data.get("investigators", [])
+        participation = site_data.get("participation", [])
+        
+        # Format metrics for prompt
+        metrics_summary = ""
+        for metric in metrics:
+            metrics_summary += f"- Therapeutic Area: {metric.get('therapeutic_area', 'N/A')}\n"
+            metrics_summary += f"  Total Studies: {metric.get('total_studies', 0)}\n"
+            metrics_summary += f"  Completion Ratio: {metric.get('completion_ratio', 0):.2f}\n"
+            metrics_summary += f"  Experience Index: {metric.get('experience_index', 0):.2f}\n\n"
+        
+        # Format investigator data
+        investigator_summary = ""
+        for investigator in investigators:
+            investigator_summary += f"- {investigator.get('full_name', 'N/A')}\n"
+            investigator_summary += f"  H-Index: {investigator.get('h_index', 'N/A')}\n"
+            investigator_summary += f"  Publications: {investigator.get('total_publications_count', 'N/A')}\n\n"
+        
+        # Format participation data summary
+        total_participation = len(participation)
+        
+        prompt = f"""
+        Analyze the following clinical trial site data and provide detailed insights:
+        
+        Site Information:
+        - Name: {site_info.get('site_name', 'N/A')}
+        - Location: {site_info.get('city', 'N/A')}, {site_info.get('country', 'N/A')}
+        - Institution Type: {site_info.get('institution_type', 'N/A')}
+        
+        Performance Metrics:
+        {metrics_summary}
+        
+        Investigators:
+        {investigator_summary}
+        
+        Trial Participation:
+        - Total Participations: {total_participation}
+        
+        Please provide:
+        1. Key Strengths - What makes this site exceptional?
+        2. Areas for Improvement - What could be enhanced?
+        3. Strategic Recommendations - How can this site optimize performance?
+        4. Unique Capabilities - What distinguishes this site from others?
+        5. Risk Factors - What potential challenges should be considered?
+        
+        Format your response as a structured analysis with clear sections.
+        """
+        
+        return prompt
+
+    def _parse_ai_response(self, site_id: int, ai_response: str, site_data: Dict[str, Any]) -> Dict[str, Any]:
+        """
+        Parse AI response and structure it for storage
+
+        Args:
+            site_id: ID of the site
+            ai_response: Raw response from Gemini API
+            site_data: Original site data used for analysis
+
+        Returns:
+            Structured output dictionary
+        """
+        # Parse the AI response to extract key elements
+        strengths = []
+        weaknesses = {}
+        
+        # Simple parsing logic to extract sections from AI response
+        # In a more sophisticated implementation, we could use more advanced NLP techniques
+        if ai_response:
+            # Split response into lines for easier processing
+            lines = ai_response.split('\n')
+            
+            # Look for sections in the response
+            current_section = None
+            section_content = []
+            
+            for line in lines:
+                line = line.strip()
+                if not line:
+                    continue
+                    
+                # Identify section headers
+                if '1. key strengths' in line.lower() or 'key strengths' in line.lower():
+                    current_section = 'strengths'
+                    section_content = []
+                elif '2. areas for improvement' in line.lower() or 'areas for improvement' in line.lower():
+                    # Save previous section
+                    if current_section == 'strengths' and section_content:
+                        strengths = [item.strip('- ') for item in section_content if item.strip('- ')]
+                    current_section = 'weaknesses'
+                    section_content = []
+                elif any(keyword in line.lower() for keyword in ['3. strategic recommendations', '4. unique capabilities', '5. risk factors']):
+                    # Save previous section
+                    if current_section == 'weaknesses' and section_content:
+                        weakness_list = [item.strip('- ') for item in section_content if item.strip('- ')]
+                        weaknesses = {"general": weakness_list}
+                    current_section = None
+                    section_content = []
+                elif current_section and (line.startswith('-') or line.startswith('*') or len(line) > 10):
+                    # Add content to current section
+                    section_content.append(line)
+            
+            # Save last section if needed
+            if current_section == 'strengths' and section_content:
+                strengths = [item.strip('- ') for item in section_content if item.strip('- ')]
+            elif current_section == 'weaknesses' and section_content:
+                weakness_list = [item.strip('- ') for item in section_content if item.strip('- ')]
+                weaknesses = {"general": weakness_list}
+        
+        structured_output = {
+            "site_id": site_id,
+            "analysis_timestamp": datetime.now().isoformat(),
+            "strengths": strengths,
+            "weaknesses": weaknesses,
+            "comparative_analysis": {},
+            "patterns": {},
+            "ai_raw_response": ai_response,
+        }
+        
+        return structured_output
+
     def store_strengths_weaknesses(
-        self, site_id: int, analysis_data: Dict[str, Any]
+        self, site_id: int, analysis_data: Dict[str, Any], provider: str = "algorithmic"
     ) -> bool:
         """
         Store strengths and weaknesses analysis in the database
@@ -603,16 +897,69 @@ class StrengthsWeaknessesDetector:
         Args:
             site_id: ID of the site
             analysis_data: Dictionary with analysis results
+            provider: AI provider used ("algorithmic", "gemini", or "openrouter")
 
         Returns:
             True if successful, False otherwise
         """
         try:
-            # Convert analysis data to JSON string for storage
+            # Extract strengths and weaknesses from analysis data
+            strengths = analysis_data.get("strengths", [])
+            weaknesses = analysis_data.get("weaknesses", {})
+            
+            # Convert to string format for storage
             import json
-
-            analysis_json = json.dumps(analysis_data, indent=2)
-
+            
+            # Format strengths as a string
+            if isinstance(strengths, list) and len(strengths) > 0:
+                if isinstance(strengths[0], dict):
+                    # If strengths are dictionaries, extract descriptions
+                    strengths_text = "\n".join([s.get("description", str(s)) for s in strengths])
+                else:
+                    # If strengths are strings
+                    strengths_text = "\n".join(str(s) for s in strengths)
+            elif isinstance(strengths, str):
+                strengths_text = strengths
+            else:
+                strengths_text = "No significant strengths identified"
+            
+            # Format weaknesses as a string
+            if isinstance(weaknesses, dict) and len(weaknesses) > 0:
+                weaknesses_parts = []
+                for category, items in weaknesses.items():
+                    if isinstance(items, list) and len(items) > 0:
+                        if isinstance(items[0], dict):
+                            # If weaknesses are dictionaries, extract descriptions
+                            category_text = f"{category}:\n" + "\n".join([w.get("description", str(w)) for w in items])
+                        else:
+                            # If weaknesses are strings
+                            category_text = f"{category}:\n" + "\n".join(str(w) for w in items)
+                        weaknesses_parts.append(category_text)
+                weaknesses_text = "\n\n".join(weaknesses_parts)
+            elif isinstance(weaknesses, list) and len(weaknesses) > 0:
+                if isinstance(weaknesses[0], dict):
+                    # If weaknesses are dictionaries, extract descriptions
+                    weaknesses_text = "\n".join([w.get("description", str(w)) for w in weaknesses])
+                else:
+                    # If weaknesses are strings
+                    weaknesses_text = "\n".join(str(w) for w in weaknesses)
+            elif isinstance(weaknesses, str):
+                weaknesses_text = weaknesses
+            else:
+                weaknesses_text = "No significant weaknesses identified"
+            
+            # Get raw AI response if available
+            ai_raw_response = analysis_data.get("ai_raw_response", "")
+            full_analysis = json.dumps(analysis_data, indent=2)
+            
+            # Determine model version based on provider
+            if provider == "openrouter":
+                model_version = "meta-llama/llama-3.3-70b-instruct:free"
+            elif provider == "gemini":
+                model_version = "gemini-2.0-flash"
+            else:
+                model_version = "algorithmic"
+            
             # Check if record already exists
             existing = self.db_manager.query(
                 "SELECT insight_id FROM ai_insights WHERE site_id = ?", (site_id,)
@@ -620,14 +967,18 @@ class StrengthsWeaknessesDetector:
 
             if existing:
                 # Update existing record
-                sql = "UPDATE ai_insights SET strengths_summary = ?, weaknesses_summary = ?, generated_at = ? WHERE site_id = ?"
-                strengths_summary = analysis_json[:500]  # Limit length
-                weaknesses_summary = analysis_json[500:1000]  # Limit length
+                sql = """UPDATE ai_insights 
+                         SET strengths_summary = ?, weaknesses_summary = ?, recommendation_text = ?, 
+                             confidence_score = ?, gemini_model_version = ?, generated_at = ?
+                         WHERE site_id = ?"""
                 success = self.db_manager.execute(
                     sql,
                     (
-                        strengths_summary,
-                        weaknesses_summary,
+                        strengths_text[:2000],  # Limit length
+                        weaknesses_text[:2000],  # Limit length
+                        ai_raw_response[:2000] if ai_raw_response else f"{provider.capitalize()} analysis completed",
+                        0.9 if ai_raw_response else 0.7,  # Higher confidence for AI-generated content
+                        model_version,
                         datetime.now().isoformat(),
                         site_id,
                     ),
@@ -636,17 +987,17 @@ class StrengthsWeaknessesDetector:
                 # Insert new record
                 insight_data = {
                     "site_id": site_id,
-                    "strengths_summary": analysis_json[:500],  # Limit length
-                    "weaknesses_summary": analysis_json[500:1000],  # Limit length
-                    "recommendation_text": "Analysis completed",
-                    "confidence_score": 0.8,
-                    "gemini_model_version": "N/A",
+                    "strengths_summary": strengths_text[:2000],  # Limit length
+                    "weaknesses_summary": weaknesses_text[:2000],  # Limit length
+                    "recommendation_text": ai_raw_response[:2000] if ai_raw_response else f"{provider.capitalize()} analysis completed",
+                    "confidence_score": 0.9 if ai_raw_response else 0.7,  # Higher confidence for AI-generated content
+                    "gemini_model_version": model_version,
                     "generated_at": datetime.now().isoformat(),
                 }
                 success = self.db_manager.insert_data("ai_insights", insight_data)
 
             if success:
-                logger.info(f"Stored strengths/weaknesses analysis for site {site_id}")
+                logger.info(f"Stored strengths/weaknesses analysis for site {site_id} using {provider}")
             else:
                 logger.error(
                     f"Failed to store strengths/weaknesses analysis for site {site_id}"
@@ -658,6 +1009,9 @@ class StrengthsWeaknessesDetector:
             logger.error(f"Error storing strengths/weaknesses for site {site_id}: {e}")
             return False
 
+
+# Create alias for compatibility with verify_implementation.py
+StrengthsWeaknessesAnalyzer = StrengthsWeaknessesDetector
 
 # Example usage
 if __name__ == "__main__":

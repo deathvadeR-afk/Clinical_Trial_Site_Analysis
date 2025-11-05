@@ -1,40 +1,25 @@
 {
-    "api_keys": {
-        "clinical_trials": "YOUR_CLINICAL_TRIALS_API_KEY_HERE",
-        "pubmed": "YOUR_PUBMED_API_KEY_HERE",
-        "gemini": "YOUR_GEMINI_API_KEY_HERE"
-    },
     "database": {
         "path": "clinical_trials.db"
     },
-    "data_ingestion": {
-        "clinical_trials": {
-            "base_url": "https://clinicaltrials.gov/api/v2/studies",
-            "max_requests_per_second": 5,
-            "timeout": 30
-        },
-        "pubmed": {
-            "base_url": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/",
-            "max_requests_per_second": 10,
-            "timeout": 30
-        }
-    },
-    "gemini": {
-        "model": "gemini-2.0-flash"
+    "api_keys": {
+        "clinical_trials": "YOUR_CLINICAL_TRIALS_API_KEY_HERE",
+        "pubmed": "aa6582053d2551433087d1dd9b16885d4707",
+        "gemini": "AIzaSyBBSjvpA_0ejUEl3IdUl6VCuov7yipzs9M"
     },
     "logging": {
         "level": "INFO",
-        "format": "%(asctime)s - %(name)s - %(levelname)s - %(message)s"
+        "file": "logs/app.log"
     },
-    "notifications_enabled": false,
-    "notification_recipients": [
-        "admin@clinical-trials-platform.com"
-    ],
-    "email": {
-        "sender": "no-reply@clinical-trials-platform.com",
-        "smtp_server": "localhost",
-        "smtp_port": 587,
-        "username": "your_email_username",
-        "password": "your_email_password"
+    "scheduler": {
+        "data_pipeline_time": "02:00",
+        "quality_monitoring_time": "03:00"
+    },
+    "gemini": {
+        "model": "gemini-2.0-flash",
+        "rate_limits": {
+            "rpm": 15,
+            "rpd": 1500
+        }
     }
 }

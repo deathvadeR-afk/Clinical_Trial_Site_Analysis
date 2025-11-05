@@ -112,25 +112,26 @@ class MatchScoreCalculator:
         if not site_phases:
             return 0.0
 
-        target_phase = target_phase.lower()
-        site_phases_lower = [phase.lower() for phase in site_phases]
+        # Normalize case for comparison
+        target_phase_normalized = target_phase.lower().replace(" ", "")
+        site_phases_normalized = [phase.lower().replace(" ", "") for phase in site_phases]
 
-        # Exact match
-        if target_phase in site_phases_lower:
+        # Exact match with normalized case
+        if target_phase_normalized in site_phases_normalized:
             return 1.0
 
         # Adjacent phase matches
-        phase_order = ["phase 1", "phase 2", "phase 3", "phase 4"]
+        phase_order = ["phase1", "phase2", "phase3", "phase4"]
         try:
-            target_index = phase_order.index(target_phase)
+            target_index = phase_order.index(target_phase_normalized)
 
             # Check for adjacent phases
             adjacent_matches = 0
-            if target_index > 0 and phase_order[target_index - 1] in site_phases_lower:
+            if target_index > 0 and phase_order[target_index - 1] in site_phases_normalized:
                 adjacent_matches += 1
             if (
                 target_index < len(phase_order) - 1
-                and phase_order[target_index + 1] in site_phases_lower
+                and phase_order[target_index + 1] in site_phases_normalized
             ):
                 adjacent_matches += 1
 
@@ -138,11 +139,11 @@ class MatchScoreCalculator:
                 return 0.7
 
             # Two phases apart
-            if target_index > 1 and phase_order[target_index - 2] in site_phases_lower:
+            if target_index > 1 and phase_order[target_index - 2] in site_phases_normalized:
                 return 0.4
             if (
                 target_index < len(phase_order) - 2
-                and phase_order[target_index + 2] in site_phases_lower
+                and phase_order[target_index + 2] in site_phases_normalized
             ):
                 return 0.4
 
@@ -171,13 +172,12 @@ class MatchScoreCalculator:
         if not site_interventions:
             return 0.0
 
-        target_intervention = target_intervention.lower()
-        site_interventions_lower = [
-            intervention.lower() for intervention in site_interventions
-        ]
+        # Normalize case for comparison
+        target_intervention_normalized = target_intervention.lower()
+        site_interventions_normalized = [intervention.lower() for intervention in site_interventions]
 
-        # Exact match
-        if target_intervention in site_interventions_lower:
+        # Exact match with normalized case
+        if target_intervention_normalized in site_interventions_normalized:
             return 1.0
 
         # Similar mechanism matches (simplified)
@@ -188,9 +188,9 @@ class MatchScoreCalculator:
             "procedure": ["surgery", "operation"],
         }
 
-        if target_intervention in similar_matches:
-            for similar in similar_matches[target_intervention]:
-                if similar in site_interventions_lower:
+        if target_intervention_normalized in similar_matches:
+            for similar in similar_matches[target_intervention_normalized]:
+                if similar in site_interventions_normalized:
                     return 0.8
 
         # Different modality

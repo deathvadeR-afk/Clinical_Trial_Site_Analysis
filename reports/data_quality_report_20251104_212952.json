@@ -1,0 +1,942 @@
+{
+  "generated_at": "2025-11-04T21:29:52.252233",
+  "data_quality_metrics": {
+    "timestamp": "2025-11-04T21:27:58.699562",
+    "tables_analyzed": [
+      "clinical_trials",
+      "sites_master",
+      "investigators"
+    ],
+    "missing_data_issues": [],
+    "duplicate_data_issues": [
+      {
+        "table": "investigators",
+        "duplicate_count": 2,
+        "details": {
+          "full_name": "Abdallah Ahmed Refaat",
+          "count": 2
+        }
+      },
+      {
+        "table": "investigators",
+        "duplicate_count": 2,
+        "details": {
+          "full_name": "Abeer Gharaibeh",
+          "count": 2
+        }
+      },
+      {
+        "table": "investigators",
+        "duplicate_count": 2,
+        "details": {
+          "full_name": "AdministrateurCIC",
+          "count": 2
+        }
+      },
+      {
+        "table": "investigators",
+        "duplicate_count": 2,
+        "details": {
+          "full_name": "Akram Khan",
+          "count": 2
+        }
+      },
+      {
+        "table": "investigators",
+        "duplicate_count": 2,
+        "details": {
+          "full_name": "Alexander Achalandabaso",
+          "count": 2
+        }
+      },
+      {
+        "table": "investigators",
+        "duplicate_count": 2,
+        "details": {
+          "full_name": "Andrea Natale",
+          "count": 2
+        }
+      },
+      {
+        "table": "investigators",
+        "duplicate_count": 2,
+        "details": {
+          "full_name": "Anthony Teoh",
+          "count": 2
+        }
+      },
+      {
+        "table": "investigators",
+        "duplicate_count": 2,
+        "details": {
+          "full_name": "Avraam Ploumis",
+          "count": 2
+        }
+      },
+      {
+        "table": "investigators",
+        "duplicate_count": 2,
+        "details": {
+          "full_name": "Ayman S Dawood, MD",
+          "count": 2
+        }
+      },
+      {
+        "table": "investigators",
+        "duplicate_count": 2,
+        "details": {
+          "full_name": "Burcu Ozkan Cetinkaya",
+          "count": 2
+        }
+      },
+      {
+        "table": "investigators",
+        "duplicate_count": 3,
+        "details": {
+          "full_name": "Caroline Williams-Gray",
+          "count": 3
+        }
+      },
+      {
+        "table": "investigators",
+        "duplicate_count": 2,
+        "details": {
+          "full_name": "Cecy Martins Silva",
+          "count": 2
+        }
+      },
+      {
+        "table": "investigators",
+        "duplicate_count": 2,
+        "details": {
+          "full_name": "Chao Li",
+          "count": 2
+        }
+      },
+      {
+        "table": "investigators",
+        "duplicate_count": 2,
+        "details": {
+          "full_name": "Chao-Shuang Lin",
+          "count": 2
+        }
+      },
+      {
+        "table": "investigators",
+        "duplicate_count": 2,
+        "details": {
+          "full_name": "Cheng Wang",
+          "count": 2
+        }
+      },
+      {
+        "table": "investigators",
+        "duplicate_count": 2,
+        "details": {
+          "full_name": "Chin-Yu Lin",
+          "count": 2
+        }
+      },
+      {
+        "table": "investigators",
+        "duplicate_count": 2,
+        "details": {
+          "full_name": "Christian Lobue",
+          "count": 2
+        }
+      },
+      {
+        "table": "investigators",
+        "duplicate_count": 2,
+        "details": {
+          "full_name": "Christopher Ryan",
+          "count": 2
+        }
+      },
+      {
+        "table": "investigators",
+        "duplicate_count": 2,
+        "details": {
+          "full_name": "Claudia Spies",
+          "count": 2
+        }
+      },
+      {
+        "table": "investigators",
+        "duplicate_count": 2,
+        "details": {
+          "full_name": "C\u00e9lia Regina Lopes",
+          "count": 2
+        }
+      },
+      {
+        "table": "investigators",
+        "duplicate_count": 2,
+        "details": {
+          "full_name": "David Minor, MD",
+          "count": 2
+        }
+      },
+      {
+        "table": "investigators",
+        "duplicate_count": 2,
+        "details": {
+          "full_name": "David W. Mandel",
+          "count": 2
+        }
+      },
+      {
+        "table": "investigators",
+        "duplicate_count": 2,
+        "details": {
+          "full_name": "Davide Chiumello",
+          "count": 2
+        }
+      },
+      {
+        "table": "investigators",
+        "duplicate_count": 2,
+        "details": {
+          "full_name": "Dilshaad Basrai Vad",
+          "count": 2
+        }
+      },
+      {
+        "table": "investigators",
+        "duplicate_count": 2,
+        "details": {
+          "full_name": "Dirk Vissers",
+          "count": 2
+        }
+      },
+      {
+        "table": "investigators",
+        "duplicate_count": 2,
+        "details": {
+          "full_name": "Dong-Yeop Shin",
+          "count": 2
+        }
+      },
+      {
+        "table": "investigators",
+        "duplicate_count": 2,
+        "details": {
+          "full_name": "Dr Frank Waldron-Lynch",
+          "count": 2
+        }
+      },
+      {
+        "table": "investigators",
+        "duplicate_count": 2,
+        "details": {
+          "full_name": "Dr Mohammad Shafi Kuchay",
+          "count": 2
+        }
+      },
+      {
+        "table": "investigators",
+        "duplicate_count": 2,
+        "details": {
+          "full_name": "Dr Roman Hovorka",
+          "count": 2
+        }
+      },
+      {
+        "table": "investigators",
+        "duplicate_count": 2,
+        "details": {
+          "full_name": "Elizabeth B. Klerman",
+          "count": 2
+        }
+      },
+      {
+        "table": "investigators",
+        "duplicate_count": 2,
+        "details": {
+          "full_name": "Erhan Ozyurt",
+          "count": 2
+        }
+      },
+      {
+        "table": "investigators",
+        "duplicate_count": 2,
+        "details": {
+          "full_name": "Fausto Jose Barbero-Iglesias",
+          "count": 2
+        }
+      },
+      {
+        "table": "investigators",
+        "duplicate_count": 2,
+        "details": {
+          "full_name": "Felipe Francisco Bondan Tuon",
+          "count": 2
+        }
+      },
+      {
+        "table": "investigators",
+        "duplicate_count": 2,
+        "details": {
+          "full_name": "Fusun Uzgor",
+          "count": 2
+        }
+      },
+      {
+        "table": "investigators",
+        "duplicate_count": 3,
+        "details": {
+          "full_name": "Gali Dar",
+          "count": 3
+        }
+      },
+      {
+        "table": "investigators",
+        "duplicate_count": 2,
+        "details": {
+          "full_name": "Grace Kim",
+          "count": 2
+        }
+      },
+      {
+        "table": "investigators",
+        "duplicate_count": 2,
+        "details": {
+          "full_name": "Hakan Alkan",
+          "count": 2
+        }
+      },
+      {
+        "table": "investigators",
+        "duplicate_count": 2,
+        "details": {
+          "full_name": "Hams Hamed Abdelrahman",
+          "count": 2
+        }
+      },
+      {
+        "table": "investigators",
+        "duplicate_count": 2,
+        "details": {
+          "full_name": "Hannes Hagstr\u00f6m",
+          "count": 2
+        }
+      },
+      {
+        "table": "investigators",
+        "duplicate_count": 2,
+        "details": {
+          "full_name": "Helen M. Bronte-Stewart",
+          "count": 2
+        }
+      },
+      {
+        "table": "investigators",
+        "duplicate_count": 2,
+        "details": {
+          "full_name": "Holly Swartz",
+          "count": 2
+        }
+      },
+      {
+        "table": "investigators",
+        "duplicate_count": 2,
+        "details": {
+          "full_name": "Iwona Magdalena Gawron",
+          "count": 2
+        }
+      },
+      {
+        "table": "investigators",
+        "duplicate_count": 2,
+        "details": {
+          "full_name": "Jacques J.G.H.M. Bergman",
+          "count": 2
+        }
+      },
+      {
+        "table": "investigators",
+        "duplicate_count": 2,
+        "details": {
+          "full_name": "James P. Rathmell, MD",
+          "count": 2
+        }
+      },
+      {
+        "table": "investigators",
+        "duplicate_count": 2,
+        "details": {
+          "full_name": "Jamie Cooper, PhD",
+          "count": 2
+        }
+      },
+      {
+        "table": "investigators",
+        "duplicate_count": 2,
+        "details": {
+          "full_name": "Janani S. Reisenauer",
+          "count": 2
+        }
+      },
+      {
+        "table": "investigators",
+        "duplicate_count": 2,
+        "details": {
+          "full_name": "Jennifer Breel",
+          "count": 2
+        }
+      },
+      {
+        "table": "investigators",
+        "duplicate_count": 2,
+        "details": {
+          "full_name": "Jeremy Langrish",
+          "count": 2
+        }
+      },
+      {
+        "table": "investigators",
+        "duplicate_count": 2,
+        "details": {
+          "full_name": "Jesse Nodora",
+          "count": 2
+        }
+      },
+      {
+        "table": "investigators",
+        "duplicate_count": 2,
+        "details": {
+          "full_name": "Jocelyn Gravel",
+          "count": 2
+        }
+      },
+      {
+        "table": "investigators",
+        "duplicate_count": 2,
+        "details": {
+          "full_name": "John Sievenpiper",
+          "count": 2
+        }
+      },
+      {
+        "table": "investigators",
+        "duplicate_count": 2,
+        "details": {
+          "full_name": "Jon Edward Tyson",
+          "count": 2
+        }
+      },
+      {
+        "table": "investigators",
+        "duplicate_count": 2,
+        "details": {
+          "full_name": "Jong Ho Lee",
+          "count": 2
+        }
+      },
+      {
+        "table": "investigators",
+        "duplicate_count": 2,
+        "details": {
+          "full_name": "Juan Jiao",
+          "count": 2
+        }
+      },
+      {
+        "table": "investigators",
+        "duplicate_count": 2,
+        "details": {
+          "full_name": "Julia Kalmar",
+          "count": 2
+        }
+      },
+      {
+        "table": "investigators",
+        "duplicate_count": 2,
+        "details": {
+          "full_name": "Katrine Loeppenthin",
+          "count": 2
+        }
+      },
+      {
+        "table": "investigators",
+        "duplicate_count": 2,
+        "details": {
+          "full_name": "Kevin Farrell",
+          "count": 2
+        }
+      },
+      {
+        "table": "investigators",
+        "duplicate_count": 2,
+        "details": {
+          "full_name": "Kishore Iyer",
+          "count": 2
+        }
+      },
+      {
+        "table": "investigators",
+        "duplicate_count": 2,
+        "details": {
+          "full_name": "Korey Kennelty",
+          "count": 2
+        }
+      },
+      {
+        "table": "investigators",
+        "duplicate_count": 2,
+        "details": {
+          "full_name": "Lama Awawdeh",
+          "count": 2
+        }
+      },
+      {
+        "table": "investigators",
+        "duplicate_count": 2,
+        "details": {
+          "full_name": "Laurel Carney",
+          "count": 2
+        }
+      },
+      {
+        "table": "investigators",
+        "duplicate_count": 2,
+        "details": {
+          "full_name": "Linwah Yip",
+          "count": 2
+        }
+      },
+      {
+        "table": "investigators",
+        "duplicate_count": 2,
+        "details": {
+          "full_name": "Mahenour Esmail Taha",
+          "count": 2
+        }
+      },
+      {
+        "table": "investigators",
+        "duplicate_count": 3,
+        "details": {
+          "full_name": "Mahmoud Mohamed Mahmoud",
+          "count": 3
+        }
+      },
+      {
+        "table": "investigators",
+        "duplicate_count": 2,
+        "details": {
+          "full_name": "Mahnoor",
+          "count": 2
+        }
+      },
+      {
+        "table": "investigators",
+        "duplicate_count": 2,
+        "details": {
+          "full_name": "Manesha Putra, MD",
+          "count": 2
+        }
+      },
+      {
+        "table": "investigators",
+        "duplicate_count": 3,
+        "details": {
+          "full_name": "Maria Ver\u00f4nica de Ara\u00fajo Pires",
+          "count": 3
+        }
+      },
+      {
+        "table": "investigators",
+        "duplicate_count": 2,
+        "details": {
+          "full_name": "Mark D. DeBoer, MD, MSc., MCR",
+          "count": 2
+        }
+      },
+      {
+        "table": "investigators",
+        "duplicate_count": 2,
+        "details": {
+          "full_name": "Matthew Pingree",
+          "count": 2
+        }
+      },
+      {
+        "table": "investigators",
+        "duplicate_count": 2,
+        "details": {
+          "full_name": "Mehdi Pasalar",
+          "count": 2
+        }
+      },
+      {
+        "table": "investigators",
+        "duplicate_count": 2,
+        "details": {
+          "full_name": "Michael J. Telch",
+          "count": 2
+        }
+      },
+      {
+        "table": "investigators",
+        "duplicate_count": 2,
+        "details": {
+          "full_name": "Muhammad Naveed Babur",
+          "count": 2
+        }
+      },
+      {
+        "table": "investigators",
+        "duplicate_count": 3,
+        "details": {
+          "full_name": "National Taiwan University Hospital",
+          "count": 3
+        }
+      },
+      {
+        "table": "investigators",
+        "duplicate_count": 2,
+        "details": {
+          "full_name": "Nicola Discepoli",
+          "count": 2
+        }
+      },
+      {
+        "table": "investigators",
+        "duplicate_count": 2,
+        "details": {
+          "full_name": "Nicola Disma, MD",
+          "count": 2
+        }
+      },
+      {
+        "table": "investigators",
+        "duplicate_count": 2,
+        "details": {
+          "full_name": "Nouran Khalid Ibrahim Sallam",
+          "count": 2
+        }
+      },
+      {
+        "table": "investigators",
+        "duplicate_count": 2,
+        "details": {
+          "full_name": "Olof Skoldenberg",
+          "count": 2
+        }
+      },
+      {
+        "table": "investigators",
+        "duplicate_count": 2,
+        "details": {
+          "full_name": "Oscar Diaz-Cambronero",
+          "count": 2
+        }
+      },
+      {
+        "table": "investigators",
+        "duplicate_count": 2,
+        "details": {
+          "full_name": "Pam Taub, MD",
+          "count": 2
+        }
+      },
+      {
+        "table": "investigators",
+        "duplicate_count": 2,
+        "details": {
+          "full_name": "Philip Levin",
+          "count": 2
+        }
+      },
+      {
+        "table": "investigators",
+        "duplicate_count": 2,
+        "details": {
+          "full_name": "Prof. Dr. Thomas R\u00f6sch",
+          "count": 2
+        }
+      },
+      {
+        "table": "investigators",
+        "duplicate_count": 3,
+        "details": {
+          "full_name": "Radovan Uvizl",
+          "count": 3
+        }
+      },
+      {
+        "table": "investigators",
+        "duplicate_count": 2,
+        "details": {
+          "full_name": "Rajendra Dhakal",
+          "count": 2
+        }
+      },
+      {
+        "table": "investigators",
+        "duplicate_count": 2,
+        "details": {
+          "full_name": "Rodrigo Cartin-Ceba",
+          "count": 2
+        }
+      },
+      {
+        "table": "investigators",
+        "duplicate_count": 2,
+        "details": {
+          "full_name": "Rubens Belfort Jr.",
+          "count": 2
+        }
+      },
+      {
+        "table": "investigators",
+        "duplicate_count": 2,
+        "details": {
+          "full_name": "Rui-hua Xu, MD, PhD",
+          "count": 2
+        }
+      },
+      {
+        "table": "investigators",
+        "duplicate_count": 2,
+        "details": {
+          "full_name": "Seda Saka",
+          "count": 2
+        }
+      },
+      {
+        "table": "investigators",
+        "duplicate_count": 2,
+        "details": {
+          "full_name": "Shuai (Steve) Xu",
+          "count": 2
+        }
+      },
+      {
+        "table": "investigators",
+        "duplicate_count": 3,
+        "details": {
+          "full_name": "Stefano Uccella",
+          "count": 3
+        }
+      },
+      {
+        "table": "investigators",
+        "duplicate_count": 3,
+        "details": {
+          "full_name": "Supriya Sastri (chopra)",
+          "count": 3
+        }
+      },
+      {
+        "table": "investigators",
+        "duplicate_count": 2,
+        "details": {
+          "full_name": "Susan Laubach",
+          "count": 2
+        }
+      },
+      {
+        "table": "investigators",
+        "duplicate_count": 2,
+        "details": {
+          "full_name": "Tao OUYANG",
+          "count": 2
+        }
+      },
+      {
+        "table": "investigators",
+        "duplicate_count": 2,
+        "details": {
+          "full_name": "Thin Thin Moe",
+          "count": 2
+        }
+      },
+      {
+        "table": "investigators",
+        "duplicate_count": 2,
+        "details": {
+          "full_name": "Wolfgang-Michael Franz",
+          "count": 2
+        }
+      },
+      {
+        "table": "investigators",
+        "duplicate_count": 2,
+        "details": {
+          "full_name": "Yuxiao Zeng",
+          "count": 2
+        }
+      },
+      {
+        "table": "investigators",
+        "duplicate_count": 2,
+        "details": {
+          "full_name": "Zhen-Yu Ding",
+          "count": 2
+        }
+      },
+      {
+        "table": "investigators",
+        "duplicate_count": 2,
+        "details": {
+          "full_name": "gulcan seymen",
+          "count": 2
+        }
+      },
+      {
+        "table": "investigators",
+        "duplicate_count": 2,
+        "details": {
+          "full_name": "g\u00fclcan bahcecio\u011flu",
+          "count": 2
+        }
+      },
+      {
+        "table": "investigators",
+        "duplicate_count": 2,
+        "details": {
+          "full_name": "\u00d6zcan \u00d6ZDEM\u0130R",
+          "count": 2
+        }
+      }
+    ],
+    "data_consistency_issues": []
+  },
+  "data_profiling": {
+    "timestamp": "2025-11-04T21:29:18.653043",
+    "table_statistics": {
+      "clinical_trials": {
+        "record_count": 3447,
+        "date_statistics": {
+          "earliest_posted": "1999-10-19",
+          "latest_posted": "2025-10-27"
+        }
+      },
+      "sites_master": {
+        "record_count": 11293,
+        "date_statistics": {
+          "earliest_created": "2025-11-03T17:03:48.404437",
+          "latest_updated": "2025-11-04T17:40:03.069754"
+        }
+      },
+      "investigators": {
+        "record_count": 1514,
+        "date_statistics": {}
+      }
+    },
+    "field_distributions": {
+      "clinical_trials_phase": [
+        {
+          "phase": "NA",
+          "count": 1291
+        },
+        {
+          "phase": null,
+          "count": 863
+        },
+        {
+          "phase": "PHASE2",
+          "count": 404
+        },
+        {
+          "phase": "PHASE1",
+          "count": 402
+        },
+        {
+          "phase": "PHASE3",
+          "count": 253
+        },
+        {
+          "phase": "PHASE4",
+          "count": 204
+        },
+        {
+          "phase": "EARLY_PHASE1",
+          "count": 30
+        }
+      ],
+      "clinical_trials_type": [
+        {
+          "study_type": "INTERVENTIONAL",
+          "count": 2584
+        },
+        {
+          "study_type": "OBSERVATIONAL",
+          "count": 849
+        },
+        {
+          "study_type": null,
+          "count": 10
+        },
+        {
+          "study_type": "EXPANDED_ACCESS",
+          "count": 4
+        }
+      ],
+      "sites_by_country": [
+        {
+          "country": "United States",
+          "count": 4642
+        },
+        {
+          "country": "France",
+          "count": 691
+        },
+        {
+          "country": "China",
+          "count": 599
+        },
+        {
+          "country": "Germany",
+          "count": 536
+        },
+        {
+          "country": "Canada",
+          "count": 412
+        },
+        {
+          "country": "Spain",
+          "count": 410
+        },
+        {
+          "country": "Italy",
+          "count": 369
+        },
+        {
+          "country": "United Kingdom",
+          "count": 355
+        },
+        {
+          "country": "Japan",
+          "count": 303
+        },
+        {
+          "country": "Poland",
+          "count": 189
+        }
+      ],
+      "investigators_by_h_index": [
+        {
+          "h_index_range": "0",
+          "count": 1514
+        }
+      ]
+    }
+  },
+  "database_statistics": {
+    "sites_master": 11293,
+    "clinical_trials": 3447,
+    "site_trial_participation": 13975,
+    "investigators": 1514,
+    "pubmed_publications": 20,
+    "site_metrics": 755,
+    "data_quality_scores": 20,
+    "match_scores": 755,
+    "data_freshness": {
+      "sites_latest_update": "2025-11-04T17:40:03.069754",
+      "trials_latest_update": "2025-11-03"
+    }
+  }
+}

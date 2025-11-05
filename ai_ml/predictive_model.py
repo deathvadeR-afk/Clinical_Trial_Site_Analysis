@@ -450,6 +450,22 @@ class PredictiveEnrollmentModel:
                 logger.warning("No sites found for prediction")
                 return []
 
+            # Extract target study parameters
+            target_phase = target_study.get("phase", "Phase 2")
+            target_country = target_study.get("country", "")
+            target_condition = target_study.get("condition", "")
+            
+            # Map phase to encoded value (simplified mapping)
+            phase_mapping = {
+                "Early Phase 1": 0,
+                "Phase 1": 1,
+                "Phase 2": 2,
+                "Phase 3": 3,
+                "Phase 4": 4,
+                "Not Applicable": 5
+            }
+            phase_encoded = phase_mapping.get(target_phase, 2)  # Default to Phase 2
+
             # Create feature data for each site
             site_data = []
             feature_data = []
@@ -459,8 +475,8 @@ class PredictiveEnrollmentModel:
 
                 # Create feature vector for this site
                 features = {
-                    "phase_encoded": 2,  # Assuming Phase 2 as default
-                    "country_encoded": hash(row["country"] or "") % 1000,
+                    "phase_encoded": phase_encoded,
+                    "country_encoded": hash(row["country"] or target_country or "") % 1000,
                     "institution_type_encoded": hash(row["institution_type"] or "")
                     % 100,
                     "completion_ratio": row["completion_ratio"] or 0,
@@ -471,8 +487,8 @@ class PredictiveEnrollmentModel:
                     "completion_ratio_squared": (row["completion_ratio"] or 0) ** 2,
                     "experience_interaction": (row["experience_index"] or 0)
                     * (row["recruitment_efficiency_score"] or 0),
-                    "phase_country_interaction": 2
-                    * (hash(row["country"] or "") % 1000),  # Phase 2 * country
+                    "phase_country_interaction": phase_encoded
+                    * (hash(row["country"] or target_country or "") % 1000),
                 }
                 feature_data.append(features)
 

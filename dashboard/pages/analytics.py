@@ -191,6 +191,86 @@ def show_analytics_page():
         else:
             st.info("No clinical trial information available.")
 
+        # Top-performing sites by therapeutic area
+        st.subheader("Top-performing Sites by Therapeutic Area")
+        
+        # Get distinct therapeutic areas
+        therapeutic_areas_query = """
+        SELECT DISTINCT therapeutic_area
+        FROM site_metrics
+        WHERE therapeutic_area IS NOT NULL
+        ORDER BY therapeutic_area
+        """
+        
+        therapeutic_areas_result = db_manager.query(therapeutic_areas_query)
+        if therapeutic_areas_result:
+            therapeutic_areas = [row["therapeutic_area"] for row in therapeutic_areas_result]
+            
+            # Create a selectbox for therapeutic area selection
+            selected_area = st.selectbox(
+                "Select Therapeutic Area",
+                ["All"] + therapeutic_areas,
+                key="therapeutic_area_selector"
+            )
+            
+            # Query for top-performing sites based on completion ratio
+            top_sites_query = """
+            SELECT 
+                sm.site_name,
+                sm.country,
+                smt.therapeutic_area,
+                smt.completed_studies,
+                smt.total_studies,
+                ROUND(smt.completion_ratio * 100, 1) as completion_percentage,
+                smt.recruitment_efficiency_score
+            FROM sites_master sm
+            JOIN site_metrics smt ON sm.site_id = smt.site_id
+            WHERE smt.completion_ratio IS NOT NULL
+            """
+            
+            params = []
+            if selected_area != "All":
+                top_sites_query += " AND smt.therapeutic_area = ?"
+                params.append(selected_area)
+            
+            top_sites_query += """
+            ORDER BY smt.completion_ratio DESC
+            LIMIT 10
+            """
+            
+            top_sites_result = db_manager.query(top_sites_query, tuple(params))
+            if top_sites_result:
+                # Convert query results to properly formatted DataFrame
+                top_sites_data = []
+                for row in top_sites_result:
+                    top_sites_data.append({
+                        "Site": row["site_name"],
+                        "Country": row["country"] or "N/A",
+                        "Therapeutic Area": row["therapeutic_area"] or "N/A",
+                        "Completed Studies": row["completed_studies"] or 0,
+                        "Total Studies": row["total_studies"] or 0,
+                        "Completion %": f"{row['completion_percentage']}%" if row['completion_percentage'] else "N/A",
+                        "Recruitment Efficiency": round(row["recruitment_efficiency_score"], 1) if row["recruitment_efficiency_score"] else "N/A"
+                    })
+                
+                top_sites_df = pd.DataFrame(top_sites_data)
+                st.dataframe(top_sites_df, use_container_width=True)
+                
+                # Create a bar chart of completion rates
+                fig2 = px.bar(
+                    top_sites_df, 
+                    x="Site", 
+                    y="Completion %", 
+                    title=f"Top 10 Sites by Completion Rate ({selected_area if selected_area != 'All' else 'All Areas'})",
+                    color="Country"
+                )
+                fig2.update_layout(xaxis_title="Site", yaxis_title="Completion Rate (%)")
+                st.plotly_chart(fig2, use_container_width=True)
+            else:
+                st.info("No performance data available for the selected therapeutic area.")
+        else:
+            st.info("No therapeutic area data available.")
+
     except Exception as e:
         st.error(f"Error fetching data from database: {str(e)}")
         st.info("Showing sample data instead.")

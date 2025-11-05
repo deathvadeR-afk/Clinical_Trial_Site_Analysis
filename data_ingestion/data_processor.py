@@ -20,6 +20,14 @@ logging.basicConfig(
 )
 logger = logging.getLogger(__name__)
 
+# Import fuzzy matching libraries
+try:
+    from fuzzywuzzy import fuzz, process
+    FUZZY_MATCHING_AVAILABLE = True
+except ImportError:
+    FUZZY_MATCHING_AVAILABLE = False
+    logger.warning("Fuzzy matching libraries not available. Install with: pip install fuzzywuzzy python-levenshtein")
+
 
 class DataProcessor:
     """Processor for handling data flow from APIs to database"""
@@ -416,81 +424,29 @@ class DataProcessor:
                 state = location.get("zip", "")
                 country = location.get("country", "")
 
-                # Check if site already exists
-                existing_site = self.db_manager.query(
-                    "SELECT site_id FROM sites_master WHERE site_name = ?", (facility,)
-                )
+                # Skip if facility name is empty
+                if not facility or facility.strip() == "":
+                    logger.warning(f"Skipping location with empty facility name")
+                    continue
 
-                site_id = None
-                if existing_site and len(existing_site) > 0:
-                    site_id = existing_site[0]["site_id"]
-                    # Update existing site
-                    site_data = {
-                        "normalized_name": facility.lower() if facility else None,
-                        "city": city,
-                        "state": state,
-                        "country": country,
-                        "last_updated": datetime.now().isoformat(),
-                    }
+                # Skip if facility name is only numbers (likely data quality issue)
+                if facility.isdigit() and len(facility) <= 5:
+                    logger.warning(f"Skipping location with numeric-only facility name: '{facility}'")
+                    continue
 
-                    # Build update query
-                    set_clause = ", ".join([f"{key} = ?" for key in site_data.keys()])
-                    values = list(site_data.values()) + [facility]
-                    sql = f"UPDATE sites_master SET {set_clause} WHERE site_name = ?"
+                # Infer institution type from facility name
+                institution_type = self._infer_institution_type(facility)
+                
+                # If we couldn't infer the type, set it to "Other" instead of "Unknown"
+                if institution_type == "Unknown":
+                    institution_type = "Other"
 
-                    site_success = self.db_manager.execute(sql, tuple(values))
-                    if site_success:
-                        logger.info(f"Updated site data for {facility}")
-                    else:
-                        logger.error(f"Failed to update site data for {facility}")
-                        return False
-                else:
-                    # Geocode the address to get coordinates
-                    coordinates = self.geocode_address(city, state, country)
-                    latitude = coordinates["lat"] if coordinates else None
-                    longitude = coordinates["lon"] if coordinates else None
+                # Check if site already exists using fuzzy matching
+                site_id = self._get_or_create_site_id(facility, city, state, country, institution_type)
 
-                    # Create new site data
-                    site_data = {
-                        "site_name": facility,
-                        "normalized_name": facility.lower() if facility else None,
-                        "city": city,
-                        "state": state,
-                        "country": country,
-                        "latitude": latitude,
-                        "longitude": longitude,
-                        "institution_type": "Unknown",
-                        "total_capacity": 0,
-                        "accreditation_status": "Unknown",
-                        "created_at": datetime.now().isoformat(),
-                        "last_updated": datetime.now().isoformat(),
-                    }
-
-                    # Insert site data
-                    site_success = self.db_manager.insert_data(
-                        "sites_master", site_data
-                    )
-                    if site_success:
-                        # Get the site_id of the newly inserted site
-                        site_result = self.db_manager.query(
-                            "SELECT site_id FROM sites_master WHERE site_name = ?",
-                            (facility,),
-                        )
-                        logger.info(f"Site insertion result: {site_result}")
-                        if site_result and len(site_result) > 0:
-                            site_id = site_result[0]["site_id"]
-                            logger.info(f"Set site_id to {site_id} for {facility}")
-                        else:
-                            logger.error(f"Failed to retrieve site_id for {facility}")
-                            return False
-                        logger.info(f"Processed site data for {facility}")
-                    else:
-                        logger.error(f"Failed to insert site data for {facility}")
-                        return False
-
-                # Link site to trial in site_trial_participation table
-                logger.info(f"Attempting to link site {site_id} to trial {nct_id}")
                 if site_id and nct_id:
+                    # Link site to trial in site_trial_participation table
+                    logger.info(f"Attempting to link site {site_id} to trial {nct_id}")
                     # Check if the link already exists
                     existing_link = self.db_manager.query(
                         "SELECT site_trial_id FROM site_trial_participation WHERE site_id = ? AND nct_id = ?",
@@ -533,6 +489,207 @@ class DataProcessor:
         except Exception as e:
             logger.error(f"Error processing site data: {e}")
             return False
+
+    def _get_or_create_site_id(self, facility: str, city: str, state: str, country: str, institution_type: str) -> Optional[int]:
+        """
+        Get existing site ID or create a new site with fuzzy matching for similar names
+
+        Args:
+            facility: Facility name
+            city: City name
+            state: State name
+            country: Country name
+            institution_type: Type of institution
+
+        Returns:
+            Site ID if successful, None otherwise
+        """
+        if not facility:
+            return None
+
+        # First, try exact match
+        existing_site = self.db_manager.query(
+            "SELECT site_id FROM sites_master WHERE site_name = ?", (facility,)
+        )
+
+        if existing_site and len(existing_site) > 0:
+            return existing_site[0]["site_id"]
+
+        # If fuzzy matching is available, try to find similar sites
+        if FUZZY_MATCHING_AVAILABLE:
+            similar_site_id = self._find_similar_site(facility)
+            if similar_site_id:
+                logger.info(f"Found similar site for '{facility}' with ID {similar_site_id}")
+                return similar_site_id
+
+        # If no similar site found, create new site
+        return self._create_new_site(facility, city, state, country, institution_type)
+
+    def _find_similar_site(self, facility: str) -> Optional[int]:
+        """
+        Find a similar site using fuzzy matching
+
+        Args:
+            facility: Facility name to match
+
+        Returns:
+            Site ID of the most similar site if found, None otherwise
+        """
+        try:
+            # Get all existing site names
+            all_sites = self.db_manager.query(
+                "SELECT site_id, site_name FROM sites_master"
+            )
+
+            if not all_sites:
+                return None
+
+            site_names = [site["site_name"] for site in all_sites]
+            site_ids = [site["site_id"] for site in all_sites]
+
+            # Use fuzzy matching to find the best match
+            best_match, score = process.extractOne(facility, site_names)
+            
+            # If similarity score is high enough (e.g., > 85), consider it a match
+            if score > 85:
+                # Find the ID of the best matching site
+                best_match_index = site_names.index(best_match)
+                return site_ids[best_match_index]
+            
+            return None
+        except Exception as e:
+            logger.error(f"Error in fuzzy matching: {e}")
+            return None
+
+    def _create_new_site(self, facility: str, city: str, state: str, country: str, institution_type: str) -> Optional[int]:
+        """
+        Create a new site in the database
+
+        Args:
+            facility: Facility name
+            city: City name
+            state: State name
+            country: Country name
+            institution_type: Type of institution
+
+        Returns:
+            Site ID if successful, None otherwise
+        """
+        try:
+            # Geocode the address to get coordinates
+            coordinates = self.geocode_address(city, state, country)
+            latitude = coordinates["lat"] if coordinates else None
+            longitude = coordinates["lon"] if coordinates else None
+
+            # Create new site data
+            site_data = {
+                "site_name": facility,
+                "normalized_name": self._normalize_site_name(facility) if facility else None,
+                "city": city,
+                "state": state,
+                "country": country,
+                "latitude": latitude,
+                "longitude": longitude,
+                "institution_type": institution_type,
+                "total_capacity": 0,
+                "accreditation_status": "Unknown",
+                "created_at": datetime.now().isoformat(),
+                "last_updated": datetime.now().isoformat(),
+            }
+
+            # Insert site data
+            site_success = self.db_manager.insert_data(
+                "sites_master", site_data
+            )
+            if site_success:
+                # Get the site_id of the newly inserted site
+                site_result = self.db_manager.query(
+                    "SELECT site_id FROM sites_master WHERE site_name = ?",
+                    (facility,),
+                )
+                logger.info(f"Site insertion result: {site_result}")
+                if site_result and len(site_result) > 0:
+                    site_id = site_result[0]["site_id"]
+                    logger.info(f"Created new site with ID {site_id} for {facility}")
+                    return site_id
+                else:
+                    logger.error(f"Failed to retrieve site_id for {facility}")
+                    return None
+            else:
+                logger.error(f"Failed to insert site data for {facility}")
+                return None
+        except Exception as e:
+            logger.error(f"Error creating new site: {e}")
+            return None
+
+    def _normalize_site_name(self, name: str) -> str:
+        """
+        Normalize site name for better matching
+
+        Args:
+            name: Original site name
+
+        Returns:
+            Normalized site name
+        """
+        if not name:
+            return ""
+        
+        # Convert to lowercase
+        normalized = name.lower()
+        
+        # Remove common punctuation variations
+        normalized = normalized.replace(",", "")
+        normalized = normalized.replace(".", "")
+        normalized = normalized.replace(";", "")
+        
+        # Standardize common terms
+        normalized = normalized.replace("university", "univ")
+        normalized = normalized.replace("medical center", "med ctr")
+        normalized = normalized.replace("medical centre", "med ctr")
+        normalized = normalized.replace("health center", "health ctr")
+        normalized = normalized.replace("health centre", "health ctr")
+        
+        # Remove extra whitespace
+        normalized = " ".join(normalized.split())
+        
+        return normalized
+
+    def _infer_institution_type(self, facility_name: str) -> str:
+        """
+        Infer institution type from facility name
+
+        Args:
+            facility_name: Name of the facility
+
+        Returns:
+            Inferred institution type
+        """
+        if not facility_name:
+            return "Other"
+
+        # Convert to lowercase for case-insensitive matching
+        name_lower = facility_name.lower()
+
+        # Define institution type keywords
+        institution_types = {
+            "hospital": ["hospital", "medical center", "medical centre", "general hospital"],
+            "university": ["university", "college", "medical school", "school of"],
+            "clinic": ["clinic", "health center", "health centre", "medical group"],
+            "research institute": ["institute", "research center", "research centre", "laboratory", "research foundation"],
+            "foundation": ["foundation", "trust", "charity"],
+            "pharmacy": ["pharmacy"],
+            "private practice": ["private practice", "medical practice", "physician"],
+        }
+
+        # Check each institution type
+        for inst_type, keywords in institution_types.items():
+            for keyword in keywords:
+                if keyword in name_lower:
+                    return inst_type.title()
+
+        # If we can't determine the type, return "Other" instead of "Unknown"
+        return "Other"
 
     def process_investigator_data(self, study_data: Dict) -> bool:
         """

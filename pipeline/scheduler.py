@@ -108,6 +108,9 @@ class PipelineScheduler:
                 time.sleep(60)  # Continue running despite errors
 
 
+# Create alias for compatibility with verify_implementation.py
+Scheduler = PipelineScheduler
+
 # Example usage
 if __name__ == "__main__":
     # Create and run the scheduler

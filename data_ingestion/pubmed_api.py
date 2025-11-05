@@ -10,6 +10,7 @@ from typing import Dict, List, Optional, Any
 import logging
 import os
 from urllib.parse import urlencode
+from xml.etree import ElementTree as ET
 
 # Set up logging
 log_dir = "../logs"
@@ -43,26 +44,84 @@ logger.addHandler(file_handler)
 logger.addHandler(console_handler)
 
 
+class RateLimiter:
+    """Rate limiter for PubMed API calls"""
+    
+    def __init__(self, requests_per_second: int = 3, requests_per_day: int = 10000):
+        self.requests_per_second = requests_per_second  # Default without API key
+        self.requests_per_day = requests_per_day  # Default without API key
+        self.requests_today = 0
+        self.day_start = time.time()
+        self.last_request_time = 0
+    
+    def update_limits(self, has_api_key: bool = False):
+        """Update rate limits based on whether an API key is provided"""
+        if has_api_key:
+            # With API key: 10 requests per second, 10,000 per day
+            self.requests_per_second = 10
+            self.requests_per_day = 10000
+        else:
+            # Without API key: 3 requests per second, 10,000 per day
+            self.requests_per_second = 3
+            self.requests_per_day = 10000
+    
+    def wait_if_needed(self):
+        """Wait if rate limits would be exceeded"""
+        current_time = time.time()
+        
+        # Reset day counter if 24 hours have passed
+        if current_time - self.day_start >= 86400:  # 24 hours
+            self.requests_today = 0
+            self.day_start = current_time
+            
+        # Check if we've hit the daily limit
+        if self.requests_today >= self.requests_per_day:
+            # Wait until the next day
+            sleep_time = 86400 - (current_time - self.day_start)
+            if sleep_time > 0:
+                logger.info(f"Daily limit reached, waiting {sleep_time/3600:.1f} hours")
+                time.sleep(sleep_time)
+                self.requests_today = 0
+                self.day_start = time.time()
+        
+        # Check per-second rate limit
+        time_since_last_request = current_time - self.last_request_time
+        min_interval = 1.0 / self.requests_per_second
+        
+        if time_since_last_request < min_interval:
+            sleep_time = min_interval - time_since_last_request
+            logger.debug(f"Rate limiting: sleeping for {sleep_time:.3f} seconds")
+            time.sleep(sleep_time)
+    
+    def increment_request_count(self):
+        """Increment request counter"""
+        self.requests_today += 1
+        self.last_request_time = time.time()
+
+
 class PubMedAPI:
     """API client for PubMed E-utilities"""
 
     def __init__(
         self,
+        api_key: Optional[str] = None,
         base_url: str = "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/",
-        max_requests_per_second: int = 10,
         timeout: int = 30,
+        db_manager = None,
     ):
         """
         Initialize the PubMed API client
 
         Args:
+            api_key: Optional API key for higher rate limits
             base_url: Base URL for the API
-            max_requests_per_second: Maximum requests per second to avoid rate limiting
             timeout: Request timeout in seconds
+            db_manager: Optional database manager for storing results
         """
+        self.api_key = api_key
         self.base_url = base_url
-        self.max_requests_per_second = max_requests_per_second
         self.timeout = timeout
+        self.db_manager = db_manager
         self.session = requests.Session()
         self.session.headers.update(
             {
@@ -70,20 +129,16 @@ class PubMedAPI:
                 "Accept": "application/json",
             }
         )
-        self.last_request_time = 0
+        
+        # Initialize rate limiter
+        self.rate_limiter = RateLimiter()
+        if api_key:
+            self.rate_limiter.update_limits(has_api_key=True)
 
     def _rate_limit(self):
         """Implement rate limiting to avoid exceeding API limits"""
-        current_time = time.time()
-        time_since_last_request = current_time - self.last_request_time
-        min_interval = 1.0 / self.max_requests_per_second
-
-        if time_since_last_request < min_interval:
-            sleep_time = min_interval - time_since_last_request
-            logger.debug(f"Rate limiting: sleeping for {sleep_time:.3f} seconds")
-            time.sleep(sleep_time)
-
-        self.last_request_time = time.time()
+        self.rate_limiter.wait_if_needed()
+        self.rate_limiter.increment_request_count()
 
     def _make_request(self, endpoint: str, params: Dict[str, Any]) -> Optional[Dict]:
         """
@@ -97,6 +152,10 @@ class PubMedAPI:
             JSON response or None if error occurred
         """
         self._rate_limit()
+
+        # Add API key to params if available
+        if self.api_key:
+            params["api_key"] = self.api_key
 
         url = f"{self.base_url}{endpoint}"
         response = None
@@ -215,6 +274,79 @@ class PubMedAPI:
         else:
             return None
 
+    def parse_publication_xml(self, xml_text: str) -> List[Dict]:
+        """
+        Parse XML response from PubMed ESummary API into publication dictionaries
+
+        Args:
+            xml_text: XML text response from PubMed API
+
+        Returns:
+            List of publication dictionaries
+        """
+        publications = []
+        try:
+            root = ET.fromstring(xml_text)
+            
+            # Parse each DocSum element
+            for doc_sum in root.findall('.//DocSum'):
+                pub_data = {}
+                
+                # Extract PMID
+                pmid_elem = doc_sum.find('.//Id')
+                if pmid_elem is not None:
+                    pub_data['pmid'] = pmid_elem.text
+                
+                # Extract other fields
+                for item in doc_sum.findall('.//Item'):
+                    name = item.get('Name')
+                    if name == 'Title':
+                        pub_data['title'] = item.text or ''
+                    elif name == 'AuthorList':
+                        authors = []
+                        for author_elem in item.findall('.//Item'):
+                            if author_elem.text:
+                                authors.append(author_elem.text)
+                        pub_data['authors'] = authors
+                    elif name == 'PubDate':
+                        pub_data['publication_date'] = item.text or ''
+                    elif name == 'Source':
+                        pub_data['journal'] = item.text or ''
+                    elif name == 'Volume':
+                        pub_data['volume'] = item.text or ''
+                    elif name == 'Issue':
+                        pub_data['issue'] = item.text or ''
+                    elif name == 'Pages':
+                        pub_data['pages'] = item.text or ''
+                    elif name == 'FullJournalName':
+                        pub_data['full_journal_name'] = item.text or ''
+                    elif name == 'ESSN':
+                        pub_data['essn'] = item.text or ''
+                    elif name == 'DOI':
+                        pub_data['doi'] = item.text or ''
+                
+                # Add default values for missing fields
+                if 'authors' not in pub_data:
+                    pub_data['authors'] = []
+                if 'title' not in pub_data:
+                    pub_data['title'] = ''
+                if 'journal' not in pub_data:
+                    pub_data['journal'] = ''
+                if 'publication_date' not in pub_data:
+                    pub_data['publication_date'] = ''
+                
+                publications.append(pub_data)
+            
+            logger.info(f"Parsed {len(publications)} publications from XML")
+            return publications
+            
+        except ET.ParseError as e:
+            logger.error(f"Failed to parse XML: {e}")
+            return []
+        except Exception as e:
+            logger.error(f"Error parsing publication XML: {e}")
+            return []
+
     def extract_condition_specific_counts(
         self, publications: List[Dict], conditions: List[str]
     ) -> Dict[str, int]:
@@ -275,30 +407,53 @@ class PubMedAPI:
         Returns:
             True if successful, False otherwise
         """
+        if not self.db_manager:
+            logger.warning("No database manager available, cannot store publications")
+            return False
+            
         try:
-            # This would typically use a database manager, but for now we'll just log
             logger.info(f"Storing {len(publications)} publication records")
-
-            # In a real implementation, this would insert into pubmed_publications table
+            
+            # Store each publication in the database
+            stored_count = 0
             for pub in publications:
                 # Extract publication data
                 pmid = pub.get("pmid")
-                title = pub.get("title")
+                title = pub.get("title", "")
                 authors = json.dumps(pub.get("authors", []))
-                journal = pub.get("journal")
-                publication_date = pub.get("publication_date")
+                journal = pub.get("journal", "")
+                publication_date = pub.get("publication_date", "")
                 citations_count = pub.get("citations_count", 0)
-                abstract = pub.get("abstract")
+                abstract = pub.get("abstract", "")
                 keywords = json.dumps(pub.get("keywords", []))
                 mesh_terms = json.dumps(pub.get("mesh_terms", []))
-
-                # Log the publication data
-                logger.debug(f"Publication: {pmid} - {title}")
+                
+                # Prepare data for insertion
+                pub_data = {
+                    "pmid": pmid,
+                    "title": title,
+                    "authors": authors,
+                    "journal": journal,
+                    "publication_date": publication_date,
+                    "citations_count": citations_count,
+                    "abstract": abstract,
+                    "keywords": keywords,
+                    "mesh_terms": mesh_terms,
+                    "investigator_id": investigator_id,
+                    "site_id": site_id
+                }
+                
+                # Insert publication record
+                success = self.db_manager.insert_data("pubmed_publications", pub_data)
+                if success:
+                    stored_count += 1
+                else:
+                    logger.warning(f"Failed to store publication {pmid}")
 
             logger.info(
-                f"Successfully processed {len(publications)} publication records"
+                f"Successfully stored {stored_count}/{len(publications)} publication records"
             )
-            return True
+            return stored_count > 0
         except Exception as e:
             logger.error(f"Error storing publication records: {e}")
             return False

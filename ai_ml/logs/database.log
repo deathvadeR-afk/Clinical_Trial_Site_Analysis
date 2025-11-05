@@ -1,0 +1,2 @@
+2025-11-05 11:29:58,991 - database.db_manager - INFO - Connected to database at ../clinical_trials.db
+2025-11-05 12:33:49,797 - database.db_manager - INFO - Disconnected from database

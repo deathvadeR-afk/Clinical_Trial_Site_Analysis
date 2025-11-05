@@ -1,0 +1,25 @@
+{
+    "database": {
+        "path": "clinical_trials.db"
+    },
+    "api_keys": {
+        "clinical_trials": "YOUR_CLINICAL_TRIALS_API_KEY_HERE",
+        "pubmed": "YOUR_PUBMED_API_KEY_HERE",
+        "gemini": "YOUR_GEMINI_API_KEY_HERE"
+    },
+    "logging": {
+        "level": "INFO",
+        "file": "logs/app.log"
+    },
+    "scheduler": {
+        "data_pipeline_time": "02:00",
+        "quality_monitoring_time": "03:00"
+    },
+    "gemini": {
+        "model": "gemini-2.0-flash",
+        "rate_limits": {
+            "rpm": 15,
+            "rpd": 1500
+        }
+    }
+}

@@ -155,54 +155,34 @@ class AutomatedPipeline:
             Dictionary with clinical trials data
         """
         try:
-            # Initialize an empty result dictionary
-            all_studies_result = {"studies": []}
+            # Determine the date to fetch trials from
+            if since_date is None:
+                # Get the last update time from the database
+                last_update = self.get_last_update_time()
+                if last_update:
+                    # Use the last update time, but subtract a small buffer to ensure we don't miss any updates
+                    # This accounts for potential time zone differences and ensures we get all recent updates
+                    since_date = last_update - timedelta(hours=24)
+                    logger.info(f"Fetching trials updated since {since_date.isoformat()}")
+                else:
+                    # If no last update time, fetch trials from 30 days ago
+                    since_date = datetime.now() - timedelta(days=30)
+                    logger.info(f"No previous update time found, fetching trials from last 30 days")
+            else:
+                logger.info(f"Fetching trials updated since {since_date.isoformat()}")
 
-            # Fetch multiple pages of data to get more trials
-            page_token = None
-            pages_fetched = 0
-            max_pages = 50  # Increase to fetch more data for production grade
-
-            logger.info(
-                "Fetching multiple pages of clinical trials data for production grade..."
+            # Convert datetime to string format for the API (YYYY-MM-DD)
+            since_date_str = since_date.strftime("%Y-%m-%d")
+            
+            # Use the ClinicalTrialsAPI method to get studies updated since the specified date
+            matching_studies = self.clinicaltrials_api.get_studies_since_date(
+                since_date_str, page_size=1000
             )
-
-            while pages_fetched < max_pages:
-                # Use the ClinicalTrialsAPI get_studies method to fetch trials
-                # Increase page size for more data per request
-                studies_result = self.clinicaltrials_api.get_studies(
-                    page_size=1000, page_token=page_token
-                )
-
-                # Handle None result
-                if studies_result is None:
-                    logger.warning("No studies returned from API")
-                    break
-
-                # Add studies to our collection
-                studies = studies_result.get("studies", [])
-                all_studies_result["studies"].extend(studies)
-
-                logger.info(
-                    f"Fetched page {pages_fetched + 1} with {len(studies)} clinical trials (Total: {len(all_studies_result['studies'])})"
-                )
-
-                # Check for next page
-                next_page_token = studies_result.get("nextPageToken")
-                if not next_page_token:
-                    logger.info("No more pages available")
-                    break
-
-                page_token = next_page_token
-                pages_fetched += 1
-
-                # Rate limiting - slightly faster for production grade data
-                time.sleep(0.1)
-
-            logger.info(
-                f"Total fetched {len(all_studies_result.get('studies', []))} clinical trials across {pages_fetched} pages"
-            )
-            return all_studies_result
+            
+            logger.info(f"Found {len(matching_studies)} new studies since {since_date_str}")
+            
+            # Return in the expected format
+            return {"studies": matching_studies}
 
         except Exception as e:
             logger.error(f"Error fetching clinical trials: {e}")

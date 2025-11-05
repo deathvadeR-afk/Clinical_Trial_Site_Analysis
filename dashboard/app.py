@@ -38,6 +38,13 @@ except ImportError as e:
     def show_analytics_page():
         st.error("Analytics page not available")
 
+try:
+    from dashboard.pages.site_profile import show_site_profile_page
+except ImportError as e:
+    st.error(f"Error importing site profile page: {e}")
+    def show_site_profile_page():
+        st.error("Site profile page not available")
+
 # Configure page settings
 st.set_page_config(
     page_title="Clinical Trial Site Analysis Platform",
@@ -52,7 +59,7 @@ def main():
     # Sidebar navigation
     st.sidebar.title("Navigation")
     page = st.sidebar.selectbox(
-        "Select Page", ["Home", "Site Explorer", "Recommendations", "Analytics"]
+        "Select Page", ["Home", "Site Explorer", "Site Profile", "Recommendations", "Analytics"]
     )
 
     # Page routing
@@ -60,6 +67,8 @@ def main():
         show_home_page()
     elif page == "Site Explorer":
         show_site_explorer_page()
+    elif page == "Site Profile":
+        show_site_profile_page()
     elif page == "Recommendations":
         show_recommendations_page()
     elif page == "Analytics":

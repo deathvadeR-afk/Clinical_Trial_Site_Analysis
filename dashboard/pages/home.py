@@ -241,7 +241,7 @@ def show_home_page():
             with st.spinner("Ingesting latest data from APIs..."):
                 success = run_data_ingestion()
                 if success:
-                    st.experimental_rerun()
+                    st.rerun()
 
         st.markdown(
             "_Fetches the latest clinical trial and investigator data from ClinicalTrials.gov and PubMed_"
@@ -259,7 +259,7 @@ def show_home_page():
             with st.spinner("Downloading historical data from APIs..."):
                 success = download_historical_data(str(start_date), str(end_date))
                 if success:
-                    st.experimental_rerun()
+                    st.rerun()
 
     with col3:
         st.markdown("**Model Management**")
@@ -267,7 +267,7 @@ def show_home_page():
             with st.spinner("Retraining machine learning models with latest data..."):
                 success = run_model_retraining()
                 if success:
-                    st.experimental_rerun()
+                    st.rerun()
 
         st.markdown(
             "_Retrains predictive and clustering models with the latest data in the database_"

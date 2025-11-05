@@ -1,3 +1,11 @@
 .venv
 Blueprint_Task
 txt.txt
+# Configuration files with secrets
+config.json
+.env
+secrets.json
+.env.local
+.env.development
+.env.production
+goal.md

@@ -227,6 +227,9 @@ def show_site_explorer_page():
     if sites_data:
         # Convert to DataFrame for better display
         df = pd.DataFrame(sites_data)
+        # Add a column for viewing profile
+        if 'ID' in df.columns:
+            df['View Profile'] = df['ID'].apply(lambda x: f"[View Profile](?page=site_profile&site_id={x})")
         st.dataframe(df, use_container_width=True)
     else:
         st.info("No sites found matching your criteria.")
