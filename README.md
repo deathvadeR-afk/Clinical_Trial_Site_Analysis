@@ -1,104 +1,77 @@
 # Clinical Trial Site Analysis Platform
 
-## Project Overview
+This platform analyzes clinical trial sites to help researchers identify optimal sites for their studies.
 
-The Clinical Trial Site Analysis Platform is a sophisticated system designed to help pharmaceutical companies and research organizations identify the best locations for conducting clinical trials. The platform automates and optimizes the site selection process using advanced data analysis and artificial intelligence.
+## Project Structure
 
-## Key Features
-
-1. **Data Integration**: Comprehensive data collection from ClinicalTrials.gov and PubMed APIs
-2. **Intelligent Analytics**: Advanced algorithms for site-study matching and performance evaluation
-3. **AI/ML Enhancement**: Machine learning and natural language processing for deeper insights
-4. **Interactive Dashboard**: User-friendly interface for data exploration and decision making
-5. **Production Ready**: Optimized for performance and reliability in real-world deployment
-
-## Quick Start
-
-### Using the startup scripts:
-
-**On Windows:**
-```cmd
-start.bat
+```
+├── ai_ml/                 # AI and machine learning components
+├── analytics/             # Data analysis and metrics calculation
+├── cache/                 # API response caching
+├── dashboard/             # Streamlit dashboard application
+├── data_ingestion/        # Data collection from external APIs
+├── database/              # Database schema and management
+├── logs/                  # Application logs
+├── pipeline/              # Automated data processing pipelines
+├── reports/               # Generated reports and visualizations
+├── tests/                 # Unit and integration tests
+└── utils/                 # Utility functions and helpers
 ```
 
-**On macOS/Linux:**
-```bash
-./start.sh
-```
+## Configuration
 
-### Using consolidated analysis scripts:
+### API Keys
+To use this platform, you need API keys for:
+- ClinicalTrials.gov
+- PubMed
+- Google Gemini (optional, for AI insights)
 
-**Analyze data for ML readiness:**
-```bash
-python data_analysis.py
-```
+Create a `config.json` file from `config.template.json` and add your API keys, or set them as environment variables:
+- `CLINICAL_TRIALS_API_KEY`
+- `PUBMED_API_KEY`
+- `GEMINI_API_KEY`
 
-**Run ML operations (training and clustering):**
-```bash
-python ml_operations.py
-```
+## Excluded Files
 
-### Using Docker Compose directly:
+The following files are excluded from version control for security and performance reasons:
 
-```bash
-# Build and start services
-docker-compose up --build
+### Database Files
+- `clinical_trials.db` - Main production database (large file)
+- `clinical_trials_backup.db` - Backup of main database
+- All `*.db` files - SQLite database files
 
-# Start in detached mode
-docker-compose up --build -d
+### Configuration Files
+- `config.json` - Contains API keys and sensitive configuration
+- `.env` files - Environment variables with sensitive data
 
-# Stop services
-docker-compose down
-```
+### Cache and Logs
+- `cache/` directory - Cached API responses
+- `logs/` directory - Application logs
+- `reports/` directory - Generated reports
 
-## Accessing the Application
+## Getting Started
 
-Once the containers are running, access the dashboard at:
-- http://localhost:8501
+1. Install dependencies:
+   ```bash
+   pip install -r requirements.txt
+   ```
 
-## Services Overview
+2. Set up configuration:
+   ```bash
+   cp config.template.json config.json
+   # Edit config.json with your API keys
+   ```
 
-- **clinical-trial-app**: Main application with Streamlit dashboard
-- **data-ingestion**: Automated data ingestion pipeline
-- **ml-training**: Machine learning model training service
+3. Run the main application:
+   ```bash
+   python main.py
+   ```
 
-## Dashboard Controls
+4. Access the dashboard:
+   ```bash
+   streamlit run dashboard/app.py
+   ```
 
-The dashboard provides direct user control over key operations:
+## Security Notes
 
-1. **Data Ingestion**: Trigger fetching of latest data from ClinicalTrials.gov and PubMed APIs
-2. **Historical Data Download**: Download historical clinical trial data for enhanced ML training
-3. **Model Retraining**: Retrain machine learning models with current data
-
-## GitHub Actions CI/CD
-
-The project includes three GitHub Actions workflows:
-
-1. **ci-cd.yml**: Continuous integration and deployment pipeline
-2. **data-ingestion.yml**: Automated daily data ingestion
-3. **ml-retraining.yml**: Weekly ML model retraining
-
-## Environment Variables
-
-The application uses the following environment variables:
-
-- `CLINICAL_TRIALS_API_KEY`: API key for ClinicalTrials.gov (if required)
-- `PUBMED_API_KEY`: API key for PubMed (if required)
-- `GEMINI_API_KEY`: API key for Google's Gemini API (for AI features)
-
-Set these in your Docker environment or GitHub Secrets.
-
-## Technical Architecture
-
-### Core Components
-
-1. **Data Ingestion Layer**: ClinicalTrials.gov and PubMed API integration
-2. **Database Layer**: SQLite database with comprehensive schema
-3. **Analytics Engine**: Match scoring and recommendation algorithms
-4. **AI/ML Layer**: Google Gemini API integration and machine learning models
-5. **Presentation Layer**: Streamlit dashboard with interactive visualizations
-6. **Automation Layer**: Scheduled pipelines and monitoring systems
-
-## For Detailed Documentation
-
-See [CLINICAL_TRIAL_PLATFORM_CONSOLIDATED.md](CLINICAL_TRIAL_PLATFORM_CONSOLIDATED.md) for comprehensive documentation of the platform architecture, implementation details, and future roadmap.
+Never commit `config.json` or any files containing API keys to version control. Use environment variables for deployment.

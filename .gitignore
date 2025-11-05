@@ -9,3 +9,47 @@ secrets.json
 .env.development
 .env.production
 goal.md
+# Large database files
+clinical_trials.db
+clinical_trials_backup.db
+# All SQLite database files
+*.db
+*.sqlite
+*.sqlite3
+# Cache and log directories
+cache/
+logs/
+reports/
+# Python cache files
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+.Python
+*.so
+.coverage
+.coverage.*
+.cache
+nosetests.xml
+coverage.xml
+*.cover
+*.log
+.local
+.tox
+.coverage
+.coverage.*
+.cache
+.pytest_cache/
+.pytest_cache
+eggs/
+.eggs/
+build/
+develop-eggs/
+dist/
+downloads/
+.svn/
+.git/
+.hg/
+.cvsignore
+.DS_Store
+Thumbs.db
